@@ -134,7 +134,6 @@ public class Fenetre {
         territoires.add(ter604);
         
         frame.addMouseListener(new MouseListener() {
-            @Override
             public void mouseClicked(MouseEvent e) {
                 int x = e.getX();
                 int y = e.getY();
@@ -171,8 +170,4 @@ public class Fenetre {
 			}
         });  
     }
-    public void changeTour() {
-    }
-    
-        
-    }
+}

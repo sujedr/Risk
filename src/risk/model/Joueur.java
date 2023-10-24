@@ -1,6 +1,8 @@
 package risk.model;
-import java.util.Date;
 
+/**
+ * Objet joueur
+ */
 public class Joueur {
 	// Attributs 
 	private String id; 
@@ -8,7 +10,13 @@ public class Joueur {
 	private String prenom;
 	private String dtNaissance;
 
-	// Constructeur
+	/**
+	 * Constructeur
+	 * @param id
+	 * @param nom
+	 * @param prenom
+	 * @param dtNaissance
+	 */
 	public Joueur(String id, String nom, String prenom, String dtNaissance) {
 		this.id = id;
 		this.nom = nom;
