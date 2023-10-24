@@ -15,3 +15,6 @@ public class Risk {
         Fenetre vue = new Fenetre(); // Crée une instance de Fenetre
 	}
 }
+
+
+// test kun
