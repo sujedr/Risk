@@ -160,7 +160,7 @@ public class ConnexionDB {
             System.err.println("Erreur de fin de connexion : " + e.getMessage());
         }
     }
-
+/*
     public static void main(String[] args) {
         String url = "jdbc:mysql://localhost:3306/risk";
         String user = "root";
@@ -182,5 +182,5 @@ public class ConnexionDB {
         
         // close connexion
         dbRisk.closeConnexion();
-    }
+    } */
 }
