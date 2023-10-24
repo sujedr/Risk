@@ -32,7 +32,7 @@ public class Fenetre {
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setVisible(true);
         
-        int seuil = 25;
+        int seuil = 10;
         
         ArrayList<Territoire> territoires = new ArrayList<>();
         
