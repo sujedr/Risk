@@ -169,7 +169,7 @@ public class ConnexionDB {
         ConnexionDB dbRisk = new ConnexionDB(url, user, password);
 
         // insert values
-        dbRisk.insertJoueurByScanner();
+        //dbRisk.insertJoueurByScanner();
         
         // display query
         dbRisk.readQuery("SELECT * FROM joueur");
@@ -177,6 +177,9 @@ public class ConnexionDB {
         // creation d'équipe
         //dbRisk.createEquipe("Kikou", 1, 2, 3, 4);
 
+        // creation de la compétition du mois de novembre
+        //dbRisk.createCompetition(2023, Date.valueOf("2023-11-01"), Date.valueOf("2023-11-30"));
+        
         // close connexion
         dbRisk.closeConnexion();
     }
