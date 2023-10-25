@@ -1,6 +1,10 @@
 package risk;
 
 import risk.vue.Fenetre;
+
+import java.util.Date;
+
+import risk.controler.ConnexionDB;
 import risk.model.*;
 
 /**
@@ -17,7 +21,8 @@ public class Risk {
         
         // INITIALISATION D'UNE MANCHE
 	    /** Deb - A supprimer apres test*/
-		String dn = "10/10/2020";
+        
+		String dn = "2020-10-10";
 		Joueur j1 = new Joueur("1", "AA", "aa", dn);
 		Joueur j2 = new Joueur("2", "BB", "bb", dn);
 		Joueur j3 = new Joueur("3", "CC", "cc", dn);
@@ -27,6 +32,17 @@ public class Risk {
 		Joueur[] participants = {j1, j2, j3, j4, j5, j6};
 	    /** Fin - A supprimer apres test*/
 
+		// Enregistrement des joueurs dans la base de données
+		String url = "jdbc:mysql://localhost:3306/risk";
+        String user = "root";
+        String password = "";
+
+        ConnexionDB dbRisk = new ConnexionDB(url, user, password);
+        
+        for (Joueur joueur : participants) {
+            dbRisk.insertJoueur(joueur.getNom(), joueur.getPrenom(), joueur.getDtNaissance());
+        }
+		
 		// Creation d'une manche 
 		Manche manche1 = new Manche(participants);
         System.out.println(manche1.toString());  

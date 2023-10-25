@@ -1,5 +1,6 @@
 package risk.controler;
 import java.sql.*;
+import java.time.LocalDate;
 import java.util.Scanner;
 
 public class ConnexionDB {
@@ -44,17 +45,16 @@ public class ConnexionDB {
 
     
     // méthode permettant l'insertion de joueurs
-    public void insertJoueur(String nom, String prenom, Date dateNaissance, String nomEquipe) {
+    public void insertJoueur(String nom, String prenom, String dateNaissance) {
         try {
             // requete paramétrée
-            String insertSQL = "INSERT INTO joueur (nom, prenom, dateNaissance, nomEquipe ) VALUES (?, ?, ?, ?)";
+            String insertSQL = "INSERT INTO joueur (nom, prenom, dateNaissance) VALUES (?, ?, ?)";
             PreparedStatement preparedStatement = conn.prepareStatement(insertSQL);
 
             // associer paramêtres
             preparedStatement.setString(1, nom);
             preparedStatement.setString(2, prenom);
-            preparedStatement.setDate(3, dateNaissance);
-            preparedStatement.setString(4, nomEquipe);
+            preparedStatement.setString(3, dateNaissance);
 
             // execute query
             preparedStatement.executeUpdate();
@@ -77,17 +77,13 @@ public class ConnexionDB {
             String prenom = scanner.nextLine();
 
             System.out.print("Date de naissance (format YYYY-MM-DD) : ");
-            String dateNaissanceStr = scanner.nextLine();
-            Date dateNaissance = Date.valueOf(dateNaissanceStr);
-
-            System.out.print("Nom d'Equipe du joueur : ");
-            String nomEquipe = scanner.nextLine();
+            String dateNaissance = scanner.nextLine();
             
             System.out.println("Enregistrer la saisie ? (oui/non)");
             String confirmation = scanner.next();
 
             if (confirmation.equalsIgnoreCase("oui")) {
-                insertJoueur(nom, prenom, dateNaissance, nomEquipe);
+                insertJoueur(nom, prenom, dateNaissance);
                 System.out.println("Joueur enregistré");
             } else {
                 System.out.println("Enregistrement annulé");
@@ -177,7 +173,7 @@ public class ConnexionDB {
         // creation d'équipe
         //dbRisk.createEquipe("Kikou", 1, 2, 3, 4);
 
-        // creation de la compétition du mois de novembre
+        // creation de la compétition
         //dbRisk.createCompetition(2023, Date.valueOf("2023-11-01"), Date.valueOf("2023-11-30"));
         
         // close connexion
