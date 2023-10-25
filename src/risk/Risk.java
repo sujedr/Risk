@@ -4,6 +4,10 @@ import risk.vue.Fenetre;
 
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
+import java.util.Random;
+import java.util.Scanner;
+
 import risk.controler.ConnexionDB;
 import risk.model.*;
 
@@ -21,7 +25,7 @@ public class Risk {
         // Creation du plateau (objets continents et territoires)
         Monde monde = new Monde();
         ArrayList<Territoire> territoires = monde.getTerritoires();//              <======== ajouter la var territoires en input @raph 
-        Fenetre vue = new Fenetre(); // Crée une instance de Fenetre 
+        Fenetre vue = new Fenetre(territoires); // Crée une instance de Fenetre
         
         System.out.println("okk");
         
@@ -53,6 +57,36 @@ public class Risk {
 //            }
 //        }
 		
+		
+		// instances régiment pour infanterie, cavalerie et artillerie
+		Regiment infanterie = new Regiment("infanterie",1);
+		Regiment cavalerie = new Regiment("cavalerie",5);
+		Regiment artilleire = new Regiment("artilleire",10);
+		
+		// générer les cartes en associant chaque carte à un territoire 
+		List<String> nomsTerritoires = new ArrayList<>();
+		for (Territoire nomTerritoire : territoires) {
+			nomsTerritoires.add(nomTerritoire.getNom());
+		}
+		
+		List<String> typesRegiments = new ArrayList<>();
+        typesRegiments.add("Infanterie");
+        typesRegiments.add("Cavalerie");
+        typesRegiments.add("Artillerie");
+        
+        List<Carte> cartes = new ArrayList<>();
+        Random random = new Random();
+        for (String territoire : nomsTerritoires) {
+            int randRegiment = random.nextInt(typesRegiments.size());
+            String typeRegiment = typesRegiments.get(randRegiment);
+            cartes.add(new Carte(territoire, typeRegiment));
+        }
+
+        // display cartes
+        for (Carte carte : cartes) {
+            System.out.println("CARTE : Territoire : " + carte.getTerritoire() + ", Type de Régiment : " + carte.getTypeRegiment());
+        }
+		
 		// Creation d'une manche 
 		Manche manche1 = new Manche(participants);
         System.out.println(manche1.toString());  
@@ -69,18 +103,25 @@ public class Risk {
          boolean isWinner = false;
          while (isWinner != true) {
         	 for (Joueur joueur : participants) {
-        	 // Ajouter les nouveaux régiments
-        	 /** NEEDED - Fonction retournant un territoire et une quantité au click */
-        	 Territoire destTerritoireAjout = monde.getTerritoires().get(0);                    //    <== changer valeur
-        	 int nbRegimentsAjoutes = 2;														//    <== changer valeur
-        	 
-        	 System.out.println(destTerritoireAjout);
-        	 destTerritoireAjout.setNbRegiments(nbRegimentsAjoutes);
-        	 System.out.println(destTerritoireAjout);
-        	 System.out.println(joueur);
-        	 joueur.enleverNbRegimentsRestants(nbRegimentsAjoutes);
-        	 System.out.println(joueur);
+	        	 System.out.println("Joueur " + joueur.getNom());
+	        	 // Ajouter les nouveaux régiments
+	        	 while (joueur.getNbRegimentsRestants() != 0) {
+	        	 System.out.println("Tour : " + joueur.getNom());
 
+	        	 /** NEEDED - Fonction retournant un territoire et une quantité au click 
+	        	  *  Condition : territoire.occupant == null || territoire.occupant == joueur
+	        	  *  Sinon retourner fenetre message erreur territoire deja occupé
+	        	  */	        	 
+	        	 Territoire destTerritoireAjout = monde.getTerritoires().get(0);                    //    <== changer valeur
+	        	 int nbRegimentsAjoutes = 1;														//    <== changer valeur
+	        	 System.out.println("*Debut* Territoire : "+destTerritoireAjout.getNom()+" - Nb : "+destTerritoireAjout.getNbRegiments());
+	        	 System.out.println("*Debut* Joueur : "+joueur.getNom()+" - Nb : "+joueur.getNbRegimentsRestants());
+	        	 destTerritoireAjout.setNbRegiments(nbRegimentsAjoutes); // Ajout régiment au territoire
+	        	 joueur.enleverNbRegimentsRestants(nbRegimentsAjoutes); // Retrait nb au nb de regiment à placer
+	        	 System.out.println("*Fin* Territoire : "+destTerritoireAjout.getNom()+" - Nb : "+destTerritoireAjout.getNbRegiments());
+	        	 System.out.println("*Fin* Joueur : "+joueur.getNom()+" - Nb : "+joueur.getNbRegimentsRestants());
+	        	 }
+        	  
         	 isWinner = true;																	// A supprimer (for testing only)
         	 // isWinner = true if all territoire conquis ou cart objectif realisee
         	 }
