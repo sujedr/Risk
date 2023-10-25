@@ -104,6 +104,10 @@ public class Territoire {
 		this.continent = continent;
 	}
 
+	public ArrayList<Territoire> getVoisins() {
+		return voisins;
+	}
+
 	@Override
 	public String toString() {
 		return "Territoire [numero=" + numero + ", nom=" + nom + ", centreX=" + centreX + ", centreY=" + centreY

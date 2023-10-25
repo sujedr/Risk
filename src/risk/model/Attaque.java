@@ -2,19 +2,22 @@ package risk.model;
 
 import java.util.ArrayList;
 import java.util.Scanner;
-import risk.model.Joueur;
+//import RiskTest.Joueur;
 
 public class Attaque extends Action {
 	
 	private Joueur attaquant;
-	private Joueur defense;
 	private Territoire territoireAttaquant;
 	private Territoire territoireDefenseur;
+	private int nbRegimentAttaquant;
 	
-	public Attaque(Joueur attaquant,Territoire territoireAttaquant,Territoire territoireDefenseur) {
+	public Attaque(Joueur attaquant) {
 		// TODO Auto-generated constructor stub
-		territoireAttaquant=choisirTerritoirePartir(attaquant);
+		this.attaquant=attaquant;
+		this.territoireAttaquant=choisirTerritoirePartir(attaquant);
 		int nbTerritoireAttaquantable=territoireAttaquant.getNbRegiments();
+		this.nbRegimentAttaquant=choisirnbRegimentAttaquant(nbTerritoireAttaquantable);
+		this.territoireDefenseur=choisirTerritoireDefenseur(territoireAttaquant);
 		
 	}	
 	private Territoire choisirTerritoirePartir(Joueur attaquant) {
@@ -29,17 +32,43 @@ public class Attaque extends Action {
 	    // 获取玩家的选择
 	    Scanner scanner = new Scanner(System.in);
 	    int choix = scanner.nextInt();
+	    return allTerritoires.get(choix - 1); // 减去1以获取正确的索引
 
-	    // 确保选择在有效范围内
-	    if (choix >= 1 && choix <= allTerritoires.size()) {
-	        return allTerritoires.get(choix - 1); // 减去1以获取正确的索引
-	    } else {
-	        System.out.println("invalid");
-	        return null; // 或者采取其他操作，例如重新提示选择
-	    }
 	}
 	
-	private int choisir nbRegimentAttaquant(int nbTerritoireAttaquantable) {
-		
+	private int choisirnbRegimentAttaquant(int nbTerritoireAttaquantable) {
+		int choix;
+		Scanner scanner = new Scanner(System.in);
+		if(nbTerritoireAttaquantable>=3) {
+			System.out.println("Veuillez entrer le nombre de troupes que vous souhaitez déployer, veuillez saisir un chiffre inférieur à 3.");
+			choix = scanner.nextInt();
+			while(choix>3 || choix<1 ) {
+				System.out.println("Veuillez saisir à nouveau.");
+				choix = scanner.nextInt();
+			}
+		}
+		else {
+			System.out.println("Veuillez entrer le nombre de troupes que vous souhaitez déployer, veuillez saisir un chiffre inférieur à "+nbTerritoireAttaquantable+".");
+			choix = scanner.nextInt();
+			while(choix> nbTerritoireAttaquantable || choix<1 ) {
+				System.out.println("Veuillez saisir à nouveau.");
+				choix = scanner.nextInt();
+			}
+		}
+		return choix;
+	}
+	
+	private Territoire choisirTerritoireDefenseur(Territoire territoireAttaquant) {
+		ArrayList<Territoire> voisins= new ArrayList<>();
+		voisins=territoireAttaquant.getVoisins();
+		System.out.println("Veuillez sélectionner le pays que vous souhaitez attaquer.");
+	    for (int i = 0; i < voisins.size(); i++) {
+	        System.out.println((i + 1) + ". " + voisins.get(i).getNom()); // 假设Territoire有一个getNom()方法来获取名称
+	    }
+	    // 获取玩家的选择
+	    Scanner scanner = new Scanner(System.in);
+	    int choix = scanner.nextInt();
+
+	    return voisins.get(choix - 1); 
 	}
 }
