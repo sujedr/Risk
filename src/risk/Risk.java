@@ -17,6 +17,7 @@ public class Risk {
 	 * @param args
 	 */
 	public static void main(String[] args) {
+		
         // Creation du plateau (objets continents et territoires)
         Monde monde = new Monde();
         ArrayList<Territoire> territoires = monde.getTerritoires();//              <======== ajouter la var territoires en input @raph 
@@ -26,17 +27,27 @@ public class Risk {
         
         // INITIALISATION D'UNE MANCHE
 	    /** Deb - A supprimer apres test*/
-        
+        String[] nomsContinents = monde.getNomContinent();
 		String dn = "2020-10-10";
-		Joueur j1 = new Joueur("1", "AA", "aa", dn, monde);
-		Joueur j2 = new Joueur("2", "BB", "bb", dn, monde);
-		Joueur j3 = new Joueur("3", "CC", "cc", dn, monde);
-		Joueur j4 = new Joueur("4", "DD", "dd", dn, monde);
-		Joueur j5 = new Joueur("5", "EE", "ee", dn, monde);
-		Joueur j6 = new Joueur("6", "FF", "ff", dn, monde);
+		Joueur j1 = new Joueur("1", "AA", "aa", dn, nomsContinents);
+		Joueur j2 = new Joueur("2", "BB", "bb", dn, nomsContinents);
+		Joueur j3 = new Joueur("3", "CC", "cc", dn, nomsContinents);
+		Joueur j4 = new Joueur("4", "DD", "dd", dn, nomsContinents);
+		Joueur j5 = new Joueur("5", "EE", "ee", dn, nomsContinents);
+		Joueur j6 = new Joueur("6", "FF", "ff", dn, nomsContinents);
 		Joueur[] participants = {j1, j2, j3, j4, j5, j6};
 	    /** Fin - A supprimer apres test*/
 
+		System.out.println(j1.getTerritoiresConquis());
+		j1.ajouterTerritoiresConquis(monde.getTerritoires().get(0));
+		System.out.println(j1.getTerritoiresConquis());
+		j1.supprimerTerritoiresConquis(monde.getTerritoires().get(0));
+		System.out.println(j1.getTerritoiresConquis());
+		j1.supprimerTerritoiresConquis(monde.getTerritoires().get(0));
+		System.out.println(j1.getTerritoiresConquis());
+
+
+		
 //		// Enregistrement des joueurs dans la base de données
 //		String url = "jdbc:mysql://localhost:3306/risk";
 //        String user = "root";

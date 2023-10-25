@@ -32,24 +32,16 @@ public class Joueur {
 	 * @param prenom
 	 * @param dtNaissance
 	 */
-	public Joueur(String id, String nom, String prenom, String dtNaissance, Monde monde) {
+	public Joueur(String id, String nom, String prenom, String dtNaissance, String[] nomsContinents) {
 		this.id = id;
 		this.nom = nom;
 		this.prenom = prenom;
 		this.dtNaissance = dtNaissance;
 		
-		/** Initialisation des continents dans la hashmap */	
-		String[] continents = {"Asie", "Afrique", "Amerique du Nord", "Amerique du Sud", "Europe", "Oceanie"};
-		for (int i = 0; i < continents.length; i++) {
-			this.territoiresConquis.put(continents[i], null);
+		/** Initialisation des continents dans la hashmap */			
+		for (int i = 0; i < nomsContinents.length; i++) {
+			this.territoiresConquis.put(nomsContinents[i], new ArrayList<Territoire>());
 		}
-//		System.out.println(monde.getMonde());
-
-//		for (Continent continent : monde.getMonde()) {
-//			System.out.println(continent.getNom());
-//		    ArrayList<Territoire> listeTerritoires = new ArrayList<>(); // Initialize with the actual list of Territoire objects
-//		    this.territoiresConquis.put(continent, null);
-//		}
 		
 		/** Initialisation des attributs statistique à zero */         //*** A peut etre supprimer ***
 		for (int i=0; i<6; i++) {
@@ -96,21 +88,34 @@ public class Joueur {
 		this.dtNaissance = dtNaissance;
 	}
 
-//	/**
-//	 * Retourne les territoires conquis par le joueur classés par continents
-//	 * @return HashMap<Continent, Territoire>
-//	 */
-//	public HashMap<Continent, ArrayList<Territoire>> getTerritoiresConquis() {
-//		return territoiresConquis;
-//	}
+	/**
+	 * Retourne les territoires conquis par le joueur classés par continents
+	 * @return HashMap<String, ArrayList<Territoire>>
+	 */
+	public HashMap<String, ArrayList<Territoire>> getTerritoiresConquis() {
+		return territoiresConquis;
+	}
 	
 	/**
 	 * Ajoute un territoire conquis à la HashMap<Continent, Territoire> alias territoiresConquis du joueur 
 	 * @param territoiresConquis
 	 */
 	public void ajouterTerritoiresConquis(Territoire territoire) {
-//		territoire.
-//		this.territoiresConquis.;
+		String nomContinent = territoire.getContinent().getNom();
+        ArrayList<Territoire> territoiresParContinent = territoiresConquis.get(nomContinent);
+        territoiresParContinent = new ArrayList<>();
+        territoiresConquis.put(nomContinent, territoiresParContinent);
+        territoiresParContinent.add(territoire);
+	}
+	
+	/**
+	 * Supprimer un territoire conquis à la HashMap<Continent, Territoire> alias territoiresConquis du joueur 
+	 * @param territoiresConquis
+	 */
+	public void supprimerTerritoiresConquis(Territoire territoire) {
+	    String nomContinent = territoire.getContinent().getNom();
+	    ArrayList<Territoire> territoiresParContinent = territoiresConquis.get(nomContinent);
+	    territoiresParContinent.remove(territoire);
 	}
 
 	@Override
