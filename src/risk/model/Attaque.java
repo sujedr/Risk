@@ -13,7 +13,9 @@ public class Attaque extends Action {
 	
 	public Attaque(Joueur attaquant,Territoire territoireAttaquant,Territoire territoireDefenseur) {
 		// TODO Auto-generated constructor stub
-		int nbTerritoireAttaquant;
+		territoireAttaquant=choisirTerritoirePartir(attaquant);
+		int nbTerritoireAttaquantable=territoireAttaquant.getNbRegiments();
+		
 	}	
 	private Territoire choisirTerritoirePartir(Joueur attaquant) {
 		ArrayList<Territoire> allTerritoires = new ArrayList<>();
@@ -35,6 +37,9 @@ public class Attaque extends Action {
 	        System.out.println("invalid");
 	        return null; // 或者采取其他操作，例如重新提示选择
 	    }
-
+	}
+	
+	private int choisir nbRegimentAttaquant(int nbTerritoireAttaquantable) {
+		
 	}
 }
