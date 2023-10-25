@@ -16,7 +16,8 @@ public class Joueur {
 	
 	/** Attributs spécifiques à une manche */
 	private HashMap<String, ArrayList<Territoire>> territoiresConquis = new HashMap<>();
-
+	private int nbRegimentsRestants;
+	
 	/** Attributs statistiques */           // *** A peut etre supprimer ***
 	private int[] nbTirageDes = new int[6];
 	private int nbAttaque;
@@ -42,6 +43,7 @@ public class Joueur {
 		for (int i = 0; i < nomsContinents.length; i++) {
 			this.territoiresConquis.put(nomsContinents[i], new ArrayList<Territoire>());
 		}
+		this.setNbRegimentsRestants(3);
 		
 		/** Initialisation des attributs statistique à zero */         //*** A peut etre supprimer ***
 		for (int i=0; i<6; i++) {
@@ -86,6 +88,21 @@ public class Joueur {
 	/** @param dtNaissance */
 	public void setDtNaissance(String dtNaissance) {
 		this.dtNaissance = dtNaissance;
+	}
+	/**
+	 * Nombre de régiments à placer sur la carte
+	 * @return nbRegimentsRestants
+	 */
+	public int getNbRegimentsRestants() {
+		return nbRegimentsRestants;
+	}
+
+	/**
+	 * Ajoute ou enlève des régiments au nombre initial
+	 * @param nbRegimentsRestants
+	 */
+	public void setNbRegimentsRestants(int nbRegimentsBonus) {
+		this.nbRegimentsRestants =  this.nbRegimentsRestants + nbRegimentsBonus;
 	}
 
 	/**
