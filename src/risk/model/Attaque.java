@@ -2,7 +2,7 @@ package risk.model;
 
 import java.util.ArrayList;
 import java.util.Scanner;
-import RiskTest.Joueur;
+import risk.model.Joueur;
 
 public class Attaque extends Action {
 	

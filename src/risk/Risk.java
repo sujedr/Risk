@@ -53,6 +53,12 @@ public class Risk {
 //            }
 //        }
 		
+		
+		// instances régiment pour infanterie, cavalerie et artillerie
+		Regiment infanterie = new Regiment("infanterie",1);
+		Regiment cavalerie = new Regiment("cavalerie",5);
+		Regiment artilleire = new Regiment("artilleire",10);
+		
 		// Creation d'une manche 
 		Manche manche1 = new Manche(participants);
         System.out.println(manche1.toString());  
