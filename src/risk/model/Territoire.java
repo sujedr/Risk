@@ -11,6 +11,8 @@ public class Territoire {
 	private int centreX;
 	private int centreY;
 	private ArrayList<Territoire> voisins;
+	private Joueur occupant;
+	private int nbRegiments;
 	
 	/**
 	 * Constructeur
@@ -18,7 +20,6 @@ public class Territoire {
 	 * @param nom
 	 * @param centreX
 	 * @param centreY
-	 * @param voisins 
 	 */
 	public Territoire(int numero, String nom, int centreX, int centreY) {
 		this.numero = numero;
@@ -54,4 +55,38 @@ public class Territoire {
     public String getNom() {
     	return this.nom;
     }
+    
+	/** 
+	 * Getter joueur occupant
+	 * @return Joueur
+	 */
+	public Joueur getOccupant() {
+		return occupant;
+	}
+
+	/** 
+	 * Setter joueur occupant
+	 * @param Joueur occupant
+	 */
+	public void setOccupant(Joueur occupant) {
+		this.occupant = occupant;
+	}
+
+	/**
+	 * Getter nombre de régiment qu'à un joueur occupant sur un torritoire donné
+	 * @return int nbRegiments
+	 */
+	public int getNbRegiments() {
+		return nbRegiments;
+	}
+
+	/** Setter nombre de régiment qu'à un joueur occupant sur un torritoire donné
+	 * @param nbRegiments
+	 */
+	public void setNbRegiments(int nbRegiments) {
+		this.nbRegiments = nbRegiments;
+	}
+
+	
+
 }

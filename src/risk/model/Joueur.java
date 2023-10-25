@@ -1,5 +1,7 @@
 package risk.model;
 
+import java.util.Arrays;
+
 /**
  * Objet joueur
  */
@@ -9,6 +11,14 @@ public class Joueur {
 	private String nom;
 	private String prenom;
 	private String dtNaissance;
+	
+	// Attributs statistiques *** A peut etre supprimer ***
+	private int[] nbTirageDes;
+	private int nbAttaque;
+	private int nbDefense;
+	private int nbTerritoire;
+	private int nbRegiments;
+	private int nbTours;
 
 	/**
 	 * Constructeur
@@ -22,6 +32,15 @@ public class Joueur {
 		this.nom = nom;
 		this.prenom = prenom;
 		this.dtNaissance = dtNaissance;
+		// Initialisation des attributs statistique à zero *** A peut etre supprimer ***
+		for (int i=0; i<6; i++) {
+			this.nbTirageDes[i] = 0;
+		}
+		this.nbAttaque = 0;
+		this.nbDefense = 0;
+		this.nbTerritoire = 0;
+		this.nbRegiments = 0;
+		this.nbTours = 0;
 	}
 	
 	// Getter and setter
@@ -60,6 +79,9 @@ public class Joueur {
 
 	@Override
 	public String toString() {
-		return "Joueur [id=" + id + ", nom=" + nom + ", prenom=" + prenom + ", dtNaissance=" + dtNaissance + "]";
+		return "Joueur [id=" + id + ", nom=" + nom + ", prenom=" + prenom + ", dtNaissance=" + dtNaissance
+				+ ", nbTirageDes=" + Arrays.toString(nbTirageDes) + ", nbAttaque=" + nbAttaque + ", nbDefense="
+				+ nbDefense + ", nbTerritoire=" + nbTerritoire + ", nbRegiments=" + nbRegiments + ", nbTours=" + nbTours
+				+ "]";
 	}
 }
