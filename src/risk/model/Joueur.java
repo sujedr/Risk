@@ -104,6 +104,21 @@ public class Joueur {
 //		return territoiresConquis;
 //	}
 	
+	public ArrayList<Territoire> getAllTerritoires() {
+		HashMap<String, ArrayList<Territoire>> map = new HashMap<>(this.territoiresConquis);
+		ArrayList<Territoire> allTerritoires = new ArrayList<>();
+
+	    // 遍历HashMap中的所有值（ArrayList<Territoire>）
+	    for (ArrayList<Territoire> territoriesList : map.values()) {
+	        // 遍历每个ArrayList<Territoire>，将其中的Territoire添加到allTerritoires中
+	        for (Territoire territoire : territoriesList) {
+	            allTerritoires.add(territoire);
+	        }
+	    }
+
+	    return allTerritoires;
+	}
+
 	/**
 	 * Ajoute un territoire conquis à la HashMap<Continent, Territoire> alias territoiresConquis du joueur 
 	 * @param territoiresConquis
