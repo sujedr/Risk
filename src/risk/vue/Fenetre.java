@@ -146,13 +146,14 @@ public class Fenetre {
         
         frame.addMouseListener(new MouseListener() {
             public void mouseClicked(MouseEvent e) {
-            	afficherBoiteDialogue();
+            	
                 int x = e.getX();
                 int y = e.getY();
                 
                 for (Territoire territoire : territoires) {
                 	if (territoire.isInTerritory(x, y, seuil) ) {
-                		JOptionPane.showMessageDialog(null, territoire.getNumber() + " : " + territoire.getNom());
+                	//	JOptionPane.showMessageDialog(null, territoire.getNumber() + " : " + territoire.getNom());
+                		choixJoueur(territoire);
                 	};
                 }  
             }
@@ -190,9 +191,12 @@ public class Fenetre {
     	this.label.setText(tour.getJoueur().getNom());
     }
     
-    public void afficherBoiteDialogue() {
+    /**
+     * @param territoire
+     */
+    public void choixJoueur(Territoire territoire) {
         String[] options = {"Attaquer", "Déplacer", "Passer tour"};
-        int choice = JOptionPane.showOptionDialog(frame, "Choisissez une action", "Action", JOptionPane.DEFAULT_OPTION, JOptionPane.QUESTION_MESSAGE, null, options, options[0]);
+        int choice = JOptionPane.showOptionDialog(frame, territoire.getNumber() + " : " + territoire.getNom() + "\n Choisissez une action ", "Action", JOptionPane.DEFAULT_OPTION, JOptionPane.QUESTION_MESSAGE, null, options, options[0]);
 
         if (choice == 0) {
             JOptionPane.showMessageDialog(frame, "Vous avez choisi d'attaquer");
