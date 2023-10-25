@@ -10,13 +10,14 @@ public class Attaque extends Action {
 	private Joueur defense;
 	private Territoire territoireAttaquant;
 	private Territoire territoireDefenseur;
+	private int nbRegimentAttaquant;
 	
 	public Attaque(Joueur attaquant) {
 		// TODO Auto-generated constructor stub
-		Territoire territoireAttaquant=choisirTerritoirePartir(attaquant);
+		this.territoireAttaquant=choisirTerritoirePartir(attaquant);
 		int nbTerritoireAttaquantable=territoireAttaquant.getNbRegiments();
-		int nbRegimentAttaquant=choisirnbRegimentAttaquant(nbTerritoireAttaquantable);
-		Territoire territoireDefenseur=choisirTerritoireDefenseur(territoireAttaquant);
+		this.nbRegimentAttaquant=choisirnbRegimentAttaquant(nbTerritoireAttaquantable);
+		this.territoireDefenseur=choisirTerritoireDefenseur(territoireAttaquant);
 	}	
 	private Territoire choisirTerritoirePartir(Joueur attaquant) {
 		ArrayList<Territoire> allTerritoires = new ArrayList<>();
@@ -63,7 +64,6 @@ public class Attaque extends Action {
 	    for (int i = 0; i < voisins.size(); i++) {
 	        System.out.println((i + 1) + ". " + voisins.get(i).getNom()); // 假设Territoire有一个getNom()方法来获取名称
 	    }
-
 	    // 获取玩家的选择
 	    Scanner scanner = new Scanner(System.in);
 	    int choix = scanner.nextInt();
