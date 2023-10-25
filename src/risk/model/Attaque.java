@@ -15,7 +15,7 @@ public class Attaque extends Action {
 		// TODO Auto-generated constructor stub
 		this.attaquant=attaquant;
 		this.territoireAttaquant=choisirTerritoirePartir(attaquant);
-		int nbTerritoireAttaquantable=territoireAttaquant.getNbRegiments();
+		int nbTerritoireAttaquantable=territoireAttaquant.getNbRegiments()-1;
 		this.nbRegimentAttaquant=choisirnbRegimentAttaquant(nbTerritoireAttaquantable);
 		this.territoireDefenseur=choisirTerritoireDefenseur(territoireAttaquant);
 		
