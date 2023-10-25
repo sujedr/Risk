@@ -1,6 +1,7 @@
 package risk.vue;
 
 import java.awt.BorderLayout;
+import java.awt.Dimension;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.util.ArrayList;
@@ -34,7 +35,7 @@ public class Fenetre {
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setVisible(true);
         
-        int seuil = 10;
+        int seuil = 20;
         
         ArrayList<Territoire> territoires = new ArrayList<>();
         
@@ -134,6 +135,14 @@ public class Fenetre {
         territoires.add(ter602);
         territoires.add(ter603);
         territoires.add(ter604);
+        
+        JDialog testAlert = new JDialog();
+        testAlert.setSize(new Dimension(100, 100));
+        testAlert.setLocationRelativeTo(frame);
+        testAlert.add(new JLabel("Test"));
+        testAlert.setModal(true);
+        testAlert.setResizable(false);
+        testAlert.setVisible(true);
         
         frame.addMouseListener(new MouseListener() {
             public void mouseClicked(MouseEvent e) {

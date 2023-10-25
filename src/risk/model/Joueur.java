@@ -1,19 +1,23 @@
 package risk.model;
 
+import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Date;
+import java.util.HashMap;
 
 /**
  * Objet joueur
  */
 public class Joueur {
-	// Attributs 
+	/** Attributs informations joueur */
 	private String id; 
 	private String nom;
 	private String prenom;
 	private String dtNaissance;
 	
-	// Attributs statistiques *** A peut etre supprimer ***
+	/** Attributs spécifiques à une manche */
+	private HashMap<Continent, ArrayList<Territoire>> dictionnaire = new HashMap<>();
+
+	/** Attributs statistiques */           // *** A peut etre supprimer ***
 	private int[] nbTirageDes = new int[6];
 	private int nbAttaque;
 	private int nbDefense;
@@ -33,7 +37,11 @@ public class Joueur {
 		this.nom = nom;
 		this.prenom = prenom;
 		this.dtNaissance = dtNaissance;
-		// Initialisation des attributs statistique à zero *** A peut etre supprimer ***
+		
+		/** Initialisation des continents dans la hashmap */
+		// .............
+		
+		/** Initialisation des attributs statistique à zero */         //*** A peut etre supprimer ***
 		for (int i=0; i<6; i++) {
 			this.nbTirageDes[i] = 0;
 		}
