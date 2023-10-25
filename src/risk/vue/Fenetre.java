@@ -22,12 +22,15 @@ public class Fenetre {
     ImageIcon map = new ImageIcon("./img/map4.jpg");
     JLabel mapLabel = new JLabel(map);
     JLabel label = new JLabel("            Tour : Joueur 1");
-    ArrayList<Territoire> territoires = new ArrayList<>();
+    ArrayList<Territoire> territoires= new ArrayList<>();
+    
     /**
      * Constructeur
+     * @param territoires 
      */
-    public Fenetre() {
+    public Fenetre(ArrayList<Territoire> territoires) {
     	//TODO Affichage dynamique des tours
+    	this.territoires = territoires;
         frame.add(mapLabel);
         frame.add(label, BorderLayout.SOUTH);
         frame.setSize(1230, 650);
