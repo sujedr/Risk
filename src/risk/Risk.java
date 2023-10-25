@@ -3,6 +3,7 @@ package risk;
 import risk.vue.Fenetre;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.Date;
 import java.util.Scanner;
 
@@ -77,16 +78,18 @@ public class Risk {
         // DEBUT DE LA MANCHE
          boolean isWinner = false;
          while (isWinner != true) {
+        	 // POUR CHAQUE JOUEUR
         	 for (Joueur joueur : participants) {
 	        	 System.out.println("Joueur " + joueur.getNom());
-	        	 // Ajouter les nouveaux régiments
+	        	 
+	        	 // AJOUT NOUVEAUX REGIMENTS
 	        	 while (joueur.getNbRegimentsRestants() != 0) {
-	        	 System.out.println("Tour : " + joueur.getNom());
-
+	        		 
 	        	 /** NEEDED - Fonction retournant un territoire et une quantité au click 
 	        	  *  Condition : territoire.occupant == null || territoire.occupant == joueur
 	        	  *  Sinon retourner fenetre message erreur territoire deja occupé
 	        	  */	        	 
+	    
 	        	 Territoire destTerritoireAjout = monde.getTerritoires().get(0);                    //    <== changer valeur
 	        	 int nbRegimentsAjoutes = 1;														//    <== changer valeur
 	        	 System.out.println("*Debut* Territoire : "+destTerritoireAjout.getNom()+" - Nb : "+destTerritoireAjout.getNbRegiments());
@@ -96,7 +99,14 @@ public class Risk {
 	        	 System.out.println("*Fin* Territoire : "+destTerritoireAjout.getNom()+" - Nb : "+destTerritoireAjout.getNbRegiments());
 	        	 System.out.println("*Fin* Joueur : "+joueur.getNom()+" - Nb : "+joueur.getNbRegimentsRestants());
 	        	 }
-        	  
+	        	 
+	        	 // Variable stockant si un nouveau territoire a ete conquis ou non au cours des attaques
+	        	 Boolean isNouveauTerritoireConquis = false;
+	        	 // Variable stockant si un nouveau continent a ete conquis ou non au cours des attaques
+	        	 HashMap <String, Boolean> stockContinentsOccupes = new HashMap();
+	        	 stockContinentsOccupes = joueur.consulterContinentsEntierementOccupes();
+
+	        	 
         	 isWinner = true;																	// A supprimer (for testing only)
         	 // isWinner = true if all territoire conquis ou cart objectif realisee
         	 }

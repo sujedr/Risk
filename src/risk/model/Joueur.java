@@ -156,6 +156,43 @@ public class Joueur {
 	    ArrayList<Territoire> territoiresParContinent = territoiresConquis.get(nomContinent);
 	    territoiresParContinent.remove(territoire);
 	}
+	
+	public HashMap <String, Boolean> consulterContinentsEntierementOccupes() {
+		HashMap <String, Boolean> continentsOccupes = new HashMap();
+		
+        for (String continent : this.territoiresConquis.keySet()) {
+            int countContinents = this.territoiresConquis.get(continent).size();
+            int totalContinents = 0;
+            // Vérfication du nombre de territoires par continents
+            if (continent == "Europe") {
+            	totalContinents = 7;
+            }
+            else if (continent == "Asie") {
+            	totalContinents = 12;
+            }
+            else if (continent == "Amerique du Nord") {
+            	totalContinents = 9;
+            }
+            else if (continent == "Amerique du Sud") {
+            	totalContinents = 4;
+            }
+            else if (continent == "Afrique") {
+            	totalContinents = 6;
+            }
+            else if (continent == "Oceanie") {
+            	totalContinents = 4;
+            }
+            // Si le joueur à tous les territoires d'un continent on note la conquete du continent dans le dico
+            System.out.println("count "+countContinents+" vs. total "+totalContinents);
+            if (countContinents == totalContinents) {
+            	continentsOccupes.put(continent, true);
+            }
+            else {
+            	continentsOccupes.put(continent, false);
+            }
+        }
+        return continentsOccupes;
+	}
 
 	@Override
 	public String toString() {
