@@ -83,7 +83,7 @@ public class Risk {
             cartes.add(new Carte(territoire, typeRegiment));
         }
 
-        // display cartes
+        // afficher toutes les cartes
         for (Carte carte : cartes) {
             System.out.println("CARTE : Territoire : " + carte.getTerritoire() + ", Type de Régiment : " + carte.getTypeRegiment());
         }
