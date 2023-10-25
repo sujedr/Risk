@@ -27,6 +27,7 @@ public class Territoire {
 		this.nom = nom;
 		this.centreX = centreX;
 		this.centreY = centreY;
+		this.nbRegiments = 0;
 	}
 	
     /**
@@ -81,11 +82,11 @@ public class Territoire {
 		return nbRegiments;
 	}
 
-	/** Setter nombre de régiment qu'à un joueur occupant sur un torritoire donné
+	/** Setter nombre de régiment qu'à un joueur occupant sur un territoire donné, ajout du nombre regiments à la valeur initiale
 	 * @param nbRegiments
 	 */
-	public void setNbRegiments(int nbRegiments) {
-		this.nbRegiments = nbRegiments;
+	public void setNbRegiments(int nbRegimentsAjoutes) {
+		this.nbRegiments = this.nbRegiments + nbRegimentsAjoutes ;
 	}
 	/**
 	 * Retourne le continent auquel appartient le territoire
