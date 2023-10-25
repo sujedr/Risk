@@ -2,8 +2,8 @@ package risk;
 
 import risk.vue.Fenetre;
 
+import java.util.ArrayList;
 import java.util.Date;
-
 import risk.controler.ConnexionDB;
 import risk.model.*;
 
@@ -17,7 +17,11 @@ public class Risk {
 	 * @param args
 	 */
 	public static void main(String[] args) {
-        Fenetre vue = new Fenetre(); // Crée une instance de Fenetre
+        // Creation du plateau (objets continents et territoires)
+        Monde monde = new Monde();
+        ArrayList<Territoire> territoires = monde.getTerritoires();        
+        
+        Fenetre vue = new Fenetre(); // Crée une instance de Fenetre <======== ajouter la var territoires en input @raph
         
         // INITIALISATION D'UNE MANCHE
 	    /** Deb - A supprimer apres test*/
@@ -40,11 +44,7 @@ public class Risk {
 //        ConnexionDB dbRisk = new ConnexionDB(url, user, password);
 //        
 //        for (Joueur joueur : participants) {
-//            if (!dbRisk.joueurExiste(joueur.getNom(), joueur.getPrenom())) {
-//                dbRisk.insertJoueur(joueur.getNom(), joueur.getPrenom(), joueur.getDtNaissance());
-//            } else {
-//                System.out.println("Le joueur " + joueur.getNom() + " " + joueur.getPrenom() + " existe déjà.");
-//            }
+//            dbRisk.insertJoueur(joueur.getNom(), joueur.getPrenom(), joueur.getDtNaissance());
 //        }
 		
 		// Creation d'une manche 
@@ -57,7 +57,7 @@ public class Risk {
         System.out.println(resultatDes);        
         manche1.definirOrdreJoueur(resultatDes);
         System.out.println(manche1.toString());  
-        
+
         // DEBUT DE LA MANCHE
          boolean isWinner = false;
          while (isWinner != true) {

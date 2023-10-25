@@ -177,8 +177,7 @@ public class Monde {
 
 	@Override
 	public String toString() {
-		return "Monde [monde=" + monde + ", getMonde()=" + getMonde() + ", getTerritoires()=" + getTerritoires()
-				+ ", getClass()=" + getClass() + ", hashCode()=" + hashCode() + ", toString()=" + super.toString()
-				+ "]";
+		return "Monde [monde=" + monde + ", getMonde()=" + getMonde() + ", getTerritoires()=" + getTerritoires() + "]";
 	}
+
 }

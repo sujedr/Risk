@@ -87,6 +87,11 @@ public class Territoire {
 		this.nbRegiments = nbRegiments;
 	}
 
-	
-
+	@Override
+	public String toString() {
+		return "Territoire [numero=" + numero + ", nom=" + nom + ", centreX=" + centreX + ", centreY=" + centreY
+				+ ", voisins=" + voisins + ", occupant=" + occupant + ", nbRegiments=" + nbRegiments + ", getNumber()="
+				+ getNumber() + ", getNom()=" + getNom() + ", getOccupant()=" + getOccupant() + ", getNbRegiments()="
+				+ getNbRegiments() + "]";
+	}
 }
