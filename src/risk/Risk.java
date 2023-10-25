@@ -37,16 +37,6 @@ public class Risk {
 		Joueur j6 = new Joueur("6", "FF", "ff", dn, nomsContinents);
 		Joueur[] participants = {j1, j2, j3, j4, j5, j6};
 	    /** Fin - A supprimer apres test*/
-
-		System.out.println(j1.getTerritoiresConquis());
-		j1.ajouterTerritoiresConquis(monde.getTerritoires().get(0));
-		System.out.println(j1.getTerritoiresConquis());
-		j1.supprimerTerritoiresConquis(monde.getTerritoires().get(0));
-		System.out.println(j1.getTerritoiresConquis());
-		j1.supprimerTerritoiresConquis(monde.getTerritoires().get(0));
-		System.out.println(j1.getTerritoiresConquis());
-
-
 		
 //		// Enregistrement des joueurs dans la base de données
 //		String url = "jdbc:mysql://localhost:3306/risk";
