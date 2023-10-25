@@ -13,6 +13,7 @@ public class Territoire {
 	private ArrayList<Territoire> voisins;
 	private Joueur occupant;
 	private int nbRegiments;
+	private Continent continent;
 	
 	/**
 	 * Constructeur
@@ -86,6 +87,21 @@ public class Territoire {
 	public void setNbRegiments(int nbRegiments) {
 		this.nbRegiments = nbRegiments;
 	}
+	/**
+	 * Retourne le continent auquel appartient le territoire
+	 * @return Continent
+	 */
+	public Continent getContinent() {
+		return continent;
+	}
+
+	/**
+	 * Initialise le continent auquel appartient le territoire
+	 * @param continent
+	 */
+	public void setContinent(Continent continent) {
+		this.continent = continent;
+	}
 
 	@Override
 	public String toString() {
@@ -94,4 +110,6 @@ public class Territoire {
 				+ getNumber() + ", getNom()=" + getNom() + ", getOccupant()=" + getOccupant() + ", getNbRegiments()="
 				+ getNbRegiments() + "]";
 	}
+
+
 }

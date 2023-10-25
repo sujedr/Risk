@@ -144,6 +144,27 @@ public class Monde {
 		this.monde.add(europe);
 		this.monde.add(oceanie);
 		this.monde.add(asie);
+		
+		/** Insertion de l'attribut contienent de chaque territoire */
+		for (Territoire territoire : ameriqueSud.getTerritoires()) {
+			territoire.setContinent(ameriqueSud);
+		}
+		for (Territoire territoire : ameriqueNord.getTerritoires()) {
+			territoire.setContinent(ameriqueNord);
+		}
+		for (Territoire territoire : afrique.getTerritoires()) {
+			territoire.setContinent(afrique);
+		}
+		for (Territoire territoire : europe.getTerritoires()) {
+			territoire.setContinent(europe);
+		}
+		for (Territoire territoire : oceanie.getTerritoires()) {
+			territoire.setContinent(oceanie);
+		}
+		for (Territoire territoire : asie.getTerritoires()) {
+			territoire.setContinent(asie);
+		}
+		System.out.println("ok");
 	}
 
 	// Methodes
@@ -175,9 +196,9 @@ public class Monde {
 		return territoires;
 	}
 
-	@Override
-	public String toString() {
-		return "Monde [monde=" + monde + ", getMonde()=" + getMonde() + ", getTerritoires()=" + getTerritoires() + "]";
-	}
+//	@Override
+//	public String toString() {
+//		return "Monde [monde=" + monde + ", getMonde()=" + getMonde() + ", getTerritoires()=" + getTerritoires() + "]";
+//	}
 
 }
