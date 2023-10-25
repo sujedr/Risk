@@ -4,6 +4,9 @@ import risk.vue.Fenetre;
 
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
+import java.util.Random;
+
 import risk.controler.ConnexionDB;
 import risk.model.*;
 
@@ -58,6 +61,30 @@ public class Risk {
 		Regiment infanterie = new Regiment("infanterie",1);
 		Regiment cavalerie = new Regiment("cavalerie",5);
 		Regiment artilleire = new Regiment("artilleire",10);
+		
+		// générer les cartes en associant chaque carte à un territoire 
+		List<String> nomsTerritoires = new ArrayList<>();
+		for (Territoire nomTerritoire : territoires) {
+			nomsTerritoires.add(nomTerritoire.getNom());
+		}
+		
+		List<String> typesRegiments = new ArrayList<>();
+        typesRegiments.add("Infanterie");
+        typesRegiments.add("Cavalerie");
+        typesRegiments.add("Artillerie");
+        
+        List<Carte> cartes = new ArrayList<>();
+        Random random = new Random();
+        for (String territoire : nomsTerritoires) {
+            int randRegiment = random.nextInt(typesRegiments.size());
+            String typeRegiment = typesRegiments.get(randRegiment);
+            cartes.add(new Carte(territoire, typeRegiment));
+        }
+
+        // display cartes
+        for (Carte carte : cartes) {
+            System.out.println("CARTE : Territoire : " + carte.getTerritoire() + ", Type de Régiment : " + carte.getTypeRegiment());
+        }
 		
 		// Creation d'une manche 
 		Manche manche1 = new Manche(participants);
