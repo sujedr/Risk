@@ -6,6 +6,10 @@ public class Monde {
 	
 	private ArrayList<Continent> monde = new ArrayList<>(); 
 	
+	/**
+	 * Classe Monde
+	 * Instancie l'ensemble des continents et leurs territoires
+	 */
 	public Monde() {
 			
 		/** Initialisation des territoires */
@@ -58,8 +62,8 @@ public class Monde {
         Territoire ter604 = new Territoire(604, "Australie Orientale", 1147, 515);
        		
 		/** Creation des listes de territoires par continents */
+        // Amerique du Nord
         ArrayList<Territoire> territoiresAmeriqueNord = new ArrayList<>();
-        
         territoiresAmeriqueNord.add(ter101);
         territoiresAmeriqueNord.add(ter102);
         territoiresAmeriqueNord.add(ter103);
@@ -70,15 +74,15 @@ public class Monde {
         territoiresAmeriqueNord.add(ter108);
         territoiresAmeriqueNord.add(ter109);
         
+        // Amerique du Sud
         ArrayList<Territoire> territoiresAmeriqueSud = new ArrayList<>();
-        
         territoiresAmeriqueSud.add(ter201);
         territoiresAmeriqueSud.add(ter202);
         territoiresAmeriqueSud.add(ter203);
         territoiresAmeriqueSud.add(ter204);
         
+        // Afrique
         ArrayList<Territoire> territoiresAfrique = new ArrayList<>();
-        
         territoiresAfrique.add(ter301);
         territoiresAfrique.add(ter302);
         territoiresAfrique.add(ter303);
@@ -86,8 +90,8 @@ public class Monde {
         territoiresAfrique.add(ter305);
         territoiresAfrique.add(ter306);
         
+        // Europe
         ArrayList<Territoire> territoiresEurope = new ArrayList<>();
-        
         territoiresAfrique.add(ter401);
         territoiresAfrique.add(ter402);
         territoiresAfrique.add(ter403);
@@ -96,8 +100,8 @@ public class Monde {
         territoiresAfrique.add(ter406);
         territoiresAfrique.add(ter407);
         
+        // Asie
         ArrayList<Territoire> territoiresAsie = new ArrayList<>();
-        
         territoiresAsie.add(ter501);
         territoiresAsie.add(ter502);
         territoiresAsie.add(ter503);
@@ -111,8 +115,8 @@ public class Monde {
         territoiresAsie.add(ter511);
         territoiresAsie.add(ter512);
         
+        // Oceanie
         ArrayList<Territoire> territoiresOceanie = new ArrayList<>();
-        
         territoiresOceanie.add(ter601);
         territoiresOceanie.add(ter602);
         territoiresOceanie.add(ter603);
@@ -125,5 +129,17 @@ public class Monde {
 		Continent afrique = new Continent("Afrique", territoiresAfrique);
 		Continent ameriqueNord = new Continent("Amerique du Nord", territoiresAmeriqueNord);
 		Continent ameriqueSud = new Continent("Amerique du Sud", territoiresAmeriqueSud);
+		
+		/** Ajout des continents à la liste finale (attribut monde) */
+		this.monde.add(ameriqueSud);
+		this.monde.add(ameriqueNord);
+		this.monde.add(afrique);
+		this.monde.add(europe);
+		this.monde.add(oceanie);
+		this.monde.add(asie);
 	}
+	
+	
+	
+	
 }
