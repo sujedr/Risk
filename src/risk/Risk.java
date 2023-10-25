@@ -71,7 +71,11 @@ public class Risk {
         	 // Ajouter les nouveaux régiments
         	 /** NEEDED - Fonction retournant un territoire et une quantité au click au click */
         	 Territoire destTerritoireAjout = monde.getTerritoires().get(0);                    //    <== changer valeur
-        	 
+        	 System.out.println(destTerritoireAjout);
+        	 destTerritoireAjout.setNbRegiments(2);
+        	 System.out.println(destTerritoireAjout);
+
+        	 isWinner = true;
         	 // isWinner = true if all territoire conquis ou cart objectif realisee
          }
         
