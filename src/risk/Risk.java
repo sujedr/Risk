@@ -19,20 +19,21 @@ public class Risk {
 	public static void main(String[] args) {
         // Creation du plateau (objets continents et territoires)
         Monde monde = new Monde();
-        ArrayList<Territoire> territoires = monde.getTerritoires();        
+        ArrayList<Territoire> territoires = monde.getTerritoires();//              <======== ajouter la var territoires en input @raph 
+        Fenetre vue = new Fenetre(); // Crée une instance de Fenetre 
         
-        Fenetre vue = new Fenetre(); // Crée une instance de Fenetre <======== ajouter la var territoires en input @raph
+        System.out.println("okk");
         
         // INITIALISATION D'UNE MANCHE
 	    /** Deb - A supprimer apres test*/
         
 		String dn = "2020-10-10";
-		Joueur j1 = new Joueur("1", "AA", "aa", dn);
-		Joueur j2 = new Joueur("2", "BB", "bb", dn);
-		Joueur j3 = new Joueur("3", "CC", "cc", dn);
-		Joueur j4 = new Joueur("4", "DD", "dd", dn);
-		Joueur j5 = new Joueur("5", "EE", "ee", dn);
-		Joueur j6 = new Joueur("6", "FF", "ff", dn);
+		Joueur j1 = new Joueur("1", "AA", "aa", dn, monde);
+		Joueur j2 = new Joueur("2", "BB", "bb", dn, monde);
+		Joueur j3 = new Joueur("3", "CC", "cc", dn, monde);
+		Joueur j4 = new Joueur("4", "DD", "dd", dn, monde);
+		Joueur j5 = new Joueur("5", "EE", "ee", dn, monde);
+		Joueur j6 = new Joueur("6", "FF", "ff", dn, monde);
 		Joueur[] participants = {j1, j2, j3, j4, j5, j6};
 	    /** Fin - A supprimer apres test*/
 
@@ -72,6 +73,8 @@ public class Risk {
         
         //TODO Pour l'actualisation de l'affichage du jouer à qui c'est le tour
         //vue.actualiserTour(tour);
+         
+        System.out.println("end");
 	}
 }
 

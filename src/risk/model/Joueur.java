@@ -15,7 +15,7 @@ public class Joueur {
 	private String dtNaissance;
 	
 	/** Attributs spécifiques à une manche */
-	private HashMap<Continent, ArrayList<Territoire>> dictionnaire = new HashMap<>();
+	private HashMap<String, ArrayList<Territoire>> territoiresConquis = new HashMap<>();
 
 	/** Attributs statistiques */           // *** A peut etre supprimer ***
 	private int[] nbTirageDes = new int[6];
@@ -32,14 +32,24 @@ public class Joueur {
 	 * @param prenom
 	 * @param dtNaissance
 	 */
-	public Joueur(String id, String nom, String prenom, String dtNaissance) {
+	public Joueur(String id, String nom, String prenom, String dtNaissance, Monde monde) {
 		this.id = id;
 		this.nom = nom;
 		this.prenom = prenom;
 		this.dtNaissance = dtNaissance;
 		
-		/** Initialisation des continents dans la hashmap */
-		// .............
+		/** Initialisation des continents dans la hashmap */	
+		String[] continents = {"Asie", "Afrique", "Amerique du Nord", "Amerique du Sud", "Europe", "Oceanie"};
+		for (int i = 0; i < continents.length; i++) {
+			this.territoiresConquis.put(continents[i], null);
+		}
+//		System.out.println(monde.getMonde());
+
+//		for (Continent continent : monde.getMonde()) {
+//			System.out.println(continent.getNom());
+//		    ArrayList<Territoire> listeTerritoires = new ArrayList<>(); // Initialize with the actual list of Territoire objects
+//		    this.territoiresConquis.put(continent, null);
+//		}
 		
 		/** Initialisation des attributs statistique à zero */         //*** A peut etre supprimer ***
 		for (int i=0; i<6; i++) {
@@ -86,11 +96,28 @@ public class Joueur {
 		this.dtNaissance = dtNaissance;
 	}
 
+//	/**
+//	 * Retourne les territoires conquis par le joueur classés par continents
+//	 * @return HashMap<Continent, Territoire>
+//	 */
+//	public HashMap<Continent, ArrayList<Territoire>> getTerritoiresConquis() {
+//		return territoiresConquis;
+//	}
+	
+	/**
+	 * Ajoute un territoire conquis à la HashMap<Continent, Territoire> alias territoiresConquis du joueur 
+	 * @param territoiresConquis
+	 */
+	public void ajouterTerritoiresConquis(Territoire territoire) {
+//		territoire.
+//		this.territoiresConquis.;
+	}
+
 	@Override
 	public String toString() {
 		return "Joueur [id=" + id + ", nom=" + nom + ", prenom=" + prenom + ", dtNaissance=" + dtNaissance
-				+ ", nbTirageDes=" + Arrays.toString(nbTirageDes) + ", nbAttaque=" + nbAttaque + ", nbDefense="
-				+ nbDefense + ", nbTerritoire=" + nbTerritoire + ", nbRegiments=" + nbRegiments + ", nbTours=" + nbTours
-				+ "]";
+				+ ", territoiresConquis=" + territoiresConquis + ", nbTirageDes=" + Arrays.toString(nbTirageDes)
+				+ ", nbAttaque=" + nbAttaque + ", nbDefense=" + nbDefense + ", nbTerritoire=" + nbTerritoire
+				+ ", nbRegiments=" + nbRegiments + ", nbTours=" + nbTours + "]";
 	}
 }
