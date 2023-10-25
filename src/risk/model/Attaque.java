@@ -7,17 +7,18 @@ import java.util.Scanner;
 public class Attaque extends Action {
 	
 	private Joueur attaquant;
-	private Joueur defense;
 	private Territoire territoireAttaquant;
 	private Territoire territoireDefenseur;
 	private int nbRegimentAttaquant;
 	
 	public Attaque(Joueur attaquant) {
 		// TODO Auto-generated constructor stub
+		this.attaquant=attaquant;
 		this.territoireAttaquant=choisirTerritoirePartir(attaquant);
 		int nbTerritoireAttaquantable=territoireAttaquant.getNbRegiments();
 		this.nbRegimentAttaquant=choisirnbRegimentAttaquant(nbTerritoireAttaquantable);
 		this.territoireDefenseur=choisirTerritoireDefenseur(territoireAttaquant);
+		
 	}	
 	private Territoire choisirTerritoirePartir(Joueur attaquant) {
 		ArrayList<Territoire> allTerritoires = new ArrayList<>();
