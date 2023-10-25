@@ -68,15 +68,22 @@ public class Risk {
         // DEBUT DE LA MANCHE
          boolean isWinner = false;
          while (isWinner != true) {
+        	 for (Joueur joueur : participants) {
         	 // Ajouter les nouveaux régiments
-        	 /** NEEDED - Fonction retournant un territoire et une quantité au click au click */
+        	 /** NEEDED - Fonction retournant un territoire et une quantité au click */
         	 Territoire destTerritoireAjout = monde.getTerritoires().get(0);                    //    <== changer valeur
+        	 int nbRegimentsAjoutes = 2;														//    <== changer valeur
+        	 
         	 System.out.println(destTerritoireAjout);
-        	 destTerritoireAjout.setNbRegiments(2);
+        	 destTerritoireAjout.setNbRegiments(nbRegimentsAjoutes);
         	 System.out.println(destTerritoireAjout);
+        	 System.out.println(joueur);
+        	 joueur.enleverNbRegimentsRestants(nbRegimentsAjoutes);
+        	 System.out.println(joueur);
 
-        	 isWinner = true;
+        	 isWinner = true;																	// A supprimer (for testing only)
         	 // isWinner = true if all territoire conquis ou cart objectif realisee
+        	 }
          }
         
         //TODO Pour l'actualisation de l'affichage du jouer à qui c'est le tour

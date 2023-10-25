@@ -43,7 +43,8 @@ public class Joueur {
 		for (int i = 0; i < nomsContinents.length; i++) {
 			this.territoiresConquis.put(nomsContinents[i], new ArrayList<Territoire>());
 		}
-		this.setNbRegimentsRestants(3);
+		this.nbRegimentsRestants = 0;
+		this.ajouterNbRegimentsRestants(3);
 		
 		/** Initialisation des attributs statistique à zero */         //*** A peut etre supprimer ***
 		for (int i=0; i<6; i++) {
@@ -98,13 +99,19 @@ public class Joueur {
 	}
 
 	/**
-	 * Ajoute ou enlève des régiments au nombre initial
+	 * Ajoute des régiments au nombre initial
 	 * @param nbRegimentsRestants
 	 */
-	public void setNbRegimentsRestants(int nbRegimentsBonus) {
+	public void ajouterNbRegimentsRestants(int nbRegimentsBonus) {
 		this.nbRegimentsRestants =  this.nbRegimentsRestants + nbRegimentsBonus;
 	}
-
+	/**
+	 * Enlève des régiments au nombre initial
+	 * @param nbRegimentsRestants
+	 */
+	public void enleverNbRegimentsRestants(int nbRegimentsMalus) {
+		this.nbRegimentsRestants =  this.nbRegimentsRestants - nbRegimentsMalus;
+	}
 	/**
 	 * Retourne les territoires conquis par le joueur classés par continents
 	 * @return HashMap<String, ArrayList<Territoire>>
@@ -153,8 +160,9 @@ public class Joueur {
 	@Override
 	public String toString() {
 		return "Joueur [id=" + id + ", nom=" + nom + ", prenom=" + prenom + ", dtNaissance=" + dtNaissance
-				+ ", territoiresConquis=" + territoiresConquis + ", nbTirageDes=" + Arrays.toString(nbTirageDes)
-				+ ", nbAttaque=" + nbAttaque + ", nbDefense=" + nbDefense + ", nbTerritoire=" + nbTerritoire
-				+ ", nbRegiments=" + nbRegiments + ", nbTours=" + nbTours + "]";
+				+ ", territoiresConquis=" + territoiresConquis + ", nbRegimentsRestants=" + nbRegimentsRestants
+				+ ", nbTirageDes=" + Arrays.toString(nbTirageDes) + ", nbAttaque=" + nbAttaque + ", nbDefense="
+				+ nbDefense + ", nbTerritoire=" + nbTerritoire + ", nbRegiments=" + nbRegiments + ", nbTours=" + nbTours
+				+ "]";
 	}
 }
