@@ -18,6 +18,33 @@ public class ConnexionDB {
         }
     }
 
+//    public void generateTable() {
+//        try {
+//            Statement statement = conn.createStatement();
+//
+//            // vérification table existe
+//            ResultSet resultSetJoueur = statement.executeQuery("SHOW TABLES LIKE 'joueur'");
+//            if (!resultSetJoueur.next()) {
+//                String generateJoueur = "CREATE TABLE joueur ("
+//                        + "id INT AUTO_INCREMENT PRIMARY KEY,"
+//                        + "vNomJoueur VARCHAR(50),"
+//                        + "vPrenomJoueur VARCHAR(50),"
+//                        + "dtNaissance VARCHAR(50)"
+//                        + ")";
+//                statement.executeUpdate(generateJoueur);
+//            }
+//
+//            // Ajoutez des blocs similaires pour les autres tables que vous avez besoin de créer
+//
+//            // Fermez le statement
+//            statement.close();
+//
+//            System.out.println("Tables créées avec succès.");
+//        } catch (SQLException e) {
+//            System.err.println("Erreur lors de la création des tables : " + e.getMessage());
+//        }
+//    }
+    
     // méthode permettant la lecture d'une requete sql
     public void readQuery(String sql) {
         try {
@@ -156,6 +183,28 @@ public class ConnexionDB {
             System.err.println("Erreur de fin de connexion : " + e.getMessage());
         }
     }
+    
+    // vérifier si le joueur existe déja
+    public boolean joueurExiste(String nom, String prenom) {
+        try {
+            String query = "SELECT COUNT(*) FROM joueur WHERE nom = ? AND prenom = ?";
+            PreparedStatement preparedStatement = conn.prepareStatement(query);
+            preparedStatement.setString(1, nom);
+            preparedStatement.setString(2, prenom);
+            ResultSet resultSet = preparedStatement.executeQuery();
+
+            if (resultSet.next()) {
+                int count = resultSet.getInt(1);
+                return count > 0;
+            }
+
+        } catch (SQLException e) {
+            System.err.println("Erreur lors de la vérification de l'existence du joueur : " + e.getMessage());
+        }
+
+        return false;
+    }
+    
     
     public static void main(String[] args) {
         String url = "jdbc:mysql://localhost:3306/risk";
