@@ -96,8 +96,9 @@ public class Joueur {
 		return territoiresConquis;
 	}
 	
-	public ArrayList<Territoire> getAllTerritoires(HashMap<String, ArrayList<Territoire>> map) {
-	    ArrayList<Territoire> allTerritoires = new ArrayList<>();
+	public ArrayList<Territoire> getAllTerritoires() {
+		HashMap<String, ArrayList<Territoire>> map = new HashMap<>(this.territoiresConquis);
+		ArrayList<Territoire> allTerritoires = new ArrayList<>();
 
 	    // 遍历HashMap中的所有值（ArrayList<Territoire>）
 	    for (ArrayList<Territoire> territoriesList : map.values()) {
