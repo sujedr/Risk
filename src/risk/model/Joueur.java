@@ -13,7 +13,7 @@ public class Joueur {
 	private String dtNaissance;
 	
 	// Attributs statistiques *** A peut etre supprimer ***
-	private int[] nbTirageDes;
+	private int[] nbTirageDes = new int[6];
 	private int nbAttaque;
 	private int nbDefense;
 	private int nbTerritoire;
