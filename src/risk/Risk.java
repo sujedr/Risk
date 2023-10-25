@@ -39,7 +39,11 @@ public class Risk {
         System.out.println(manche1.toString());  
         
         // DEBUT DE LA MANCHE
-        
+         boolean isWinner = false;
+         while (isWinner != true) {
+        	 // 
+        	 // isWinner = true if all territoire conquis ou cart objectif realisee
+         }
         
         //TODO Pour l'actualisation de l'affichage du jouer à qui c'est le tour
         //vue.actualiserTour(tour);

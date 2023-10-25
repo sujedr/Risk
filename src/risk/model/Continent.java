@@ -13,8 +13,9 @@ public class Continent {
 	private ArrayList<Territoire> territoires = new ArrayList<Territoire>();
 	
 	// Constructeur
-	public Continent(String nom) {
+	public Continent(String nom, ArrayList<Territoire> territoires) {
 		this.nom = nom;
+		this.territoires = territoires;
 	}
 	
 	// Getter and setter
