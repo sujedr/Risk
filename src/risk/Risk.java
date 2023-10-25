@@ -61,6 +61,7 @@ public class Risk {
         System.out.println(resultatDes);        
         manche1.definirOrdreJoueur(resultatDes);
         System.out.println(manche1.toString());  
+        System.out.println("--------------------------");  
 
         // DEBUT DE LA MANCHE
          boolean isWinner = false;

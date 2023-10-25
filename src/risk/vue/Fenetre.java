@@ -136,22 +136,24 @@ public class Fenetre {
         territoires.add(ter603);
         territoires.add(ter604);
         
-        JDialog testAlert = new JDialog();
+   /*     JDialog testAlert = new JDialog();
         testAlert.setSize(new Dimension(100, 100));
         testAlert.setLocationRelativeTo(frame);
         testAlert.add(new JLabel("Test"));
         testAlert.setModal(true);
         testAlert.setResizable(false);
-        testAlert.setVisible(true);
+        testAlert.setVisible(true); */
         
         frame.addMouseListener(new MouseListener() {
             public void mouseClicked(MouseEvent e) {
+            	
                 int x = e.getX();
                 int y = e.getY();
                 
                 for (Territoire territoire : territoires) {
                 	if (territoire.isInTerritory(x, y, seuil) ) {
-                		JOptionPane.showMessageDialog(null, territoire.getNumber() + " : " + territoire.getNom());
+                	//	JOptionPane.showMessageDialog(null, territoire.getNumber() + " : " + territoire.getNom());
+                		choixJoueur(territoire);
                 	};
                 }  
             }
@@ -187,6 +189,22 @@ public class Fenetre {
      */
     public void actualiserTour(Tour tour) {
     	this.label.setText(tour.getJoueur().getNom());
+    }
+    
+    /**
+     * @param territoire
+     */
+    public void choixJoueur(Territoire territoire) {
+        String[] options = {"Attaquer", "Déplacer", "Passer tour"};
+        int choice = JOptionPane.showOptionDialog(frame, territoire.getNumber() + " : " + territoire.getNom() + "\n Choisissez une action ", "Action", JOptionPane.DEFAULT_OPTION, JOptionPane.QUESTION_MESSAGE, null, options, options[0]);
+
+        if (choice == 0) {
+            JOptionPane.showMessageDialog(frame, "Vous avez choisi d'attaquer");
+        } else if (choice == 1) {
+            JOptionPane.showMessageDialog(frame, "Vous avez choisi de déplacer");
+        } else if (choice == 2) {
+            JOptionPane.showMessageDialog(frame, "Vous avez choisi de passer tour");
+        }
     }
     
     
