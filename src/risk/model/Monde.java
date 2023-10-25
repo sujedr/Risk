@@ -176,6 +176,18 @@ public class Monde {
 		return monde;
 	}
 	
+	/**
+	 * Getter nom continents
+	 * @return ArrayLise<String> monde
+	 */	
+	public String[] getNomContinent() {
+		String[] nomContinents = new String[6];
+		for (int i = 0; i < this.monde.size(); i++) {
+			nomContinents[i] = this.monde.get(i).getNom();
+		}
+		return nomContinents;
+	}
+	
 	/** 
 	 * Retourne une liste contenant l'ensemble des territoires du monde, touut continent confondu
 	 * 
@@ -196,9 +208,9 @@ public class Monde {
 		return territoires;
 	}
 
-//	@Override
-//	public String toString() {
-//		return "Monde [monde=" + monde + ", getMonde()=" + getMonde() + ", getTerritoires()=" + getTerritoires() + "]";
-//	}
+	@Override
+	public String toString() {
+		return "Monde [monde=" + monde + ", getMonde()=" + getMonde() + ", getTerritoires()=" + getTerritoires() + "]";
+	}
 
 }
