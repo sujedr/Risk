@@ -36,20 +36,20 @@ public class Risk {
 		Joueur[] participants = {j1, j2, j3, j4, j5, j6};
 	    /** Fin - A supprimer apres test*/
 
-		// Enregistrement des joueurs dans la base de données
-		String url = "jdbc:mysql://localhost:3306/risk";
-        String user = "root";
-        String password = "";
-
-        ConnexionDB dbRisk = new ConnexionDB(url, user, password);
-        
-        for (Joueur joueur : participants) {
-            if (!dbRisk.joueurExiste(joueur.getNom(), joueur.getPrenom())) {
-                dbRisk.insertJoueur(joueur.getNom(), joueur.getPrenom(), joueur.getDtNaissance());
-            } else {
-                System.out.println("Le joueur " + joueur.getNom() + " " + joueur.getPrenom() + " existe déjà.");
-            }
-        }
+//		// Enregistrement des joueurs dans la base de données
+//		String url = "jdbc:mysql://localhost:3306/risk";
+//        String user = "root";
+//        String password = "";
+//
+//        ConnexionDB dbRisk = new ConnexionDB(url, user, password);
+//        
+//        for (Joueur joueur : participants) {
+//            if (!dbRisk.joueurExiste(joueur.getNom(), joueur.getPrenom())) {
+//                dbRisk.insertJoueur(joueur.getNom(), joueur.getPrenom(), joueur.getDtNaissance());
+//            } else {
+//                System.out.println("Le joueur " + joueur.getNom() + " " + joueur.getPrenom() + " existe déjà.");
+//            }
+//        }
 		
 		// Creation d'une manche 
 		Manche manche1 = new Manche(participants);
