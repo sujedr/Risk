@@ -8,6 +8,7 @@ import java.util.ArrayList;
 import javax.swing.*;
 
 import risk.model.Territoire;
+import risk.model.Tour;
 
 /**
  * Objet fenêtre
@@ -20,11 +21,12 @@ public class Fenetre {
 	private JFrame frame = new JFrame("Risk");
     ImageIcon map = new ImageIcon("./img/map4.jpg");
     JLabel mapLabel = new JLabel(map);
+    JLabel label = new JLabel("            Tour : Joueur 1");
     /**
      * Constructeur
      */
     public Fenetre() {
-        JLabel label = new JLabel("            Tour : Joueur 1");
+    	//TODO Affichage dynamique des tours
         frame.add(mapLabel);
         frame.add(label, BorderLayout.SOUTH);
         frame.setSize(1230, 650);
@@ -168,6 +170,15 @@ public class Fenetre {
 				// TODO Auto-generated method stub
 				
 			}
-        });  
+        }); 
     }
+    
+    /**
+     * @param tour
+     */
+    public void actualiserTour(Tour tour) {
+    	this.label.setText(tour.getJoueur().getNom());
+    }
+    
+    
 }
