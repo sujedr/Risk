@@ -21,7 +21,8 @@ public class Risk {
         // Creation du plateau (objets continents et territoires)
         Monde monde = new Monde();
         ArrayList<Territoire> territoires = monde.getTerritoires();//              <======== ajouter la var territoires en input @raph 
-        Fenetre vue = new Fenetre(); // Crée une instance de Fenetre 
+        Fenetre vue = new Fenetre(); // Crée une instance de Fenetre
+        vue.setTerritoires(territoires);
         
         System.out.println("okk");
         
