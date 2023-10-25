@@ -68,7 +68,10 @@ public class Risk {
         // DEBUT DE LA MANCHE
          boolean isWinner = false;
          while (isWinner != true) {
-        	 // 
+        	 // Ajouter les nouveaux régiments
+        	 /** NEEDED - Fonction retournant un territoire et une quantité au click au click */
+        	 Territoire destTerritoireAjout = monde.getTerritoires().get(0);                    //    <== changer valeur
+        	 
         	 // isWinner = true if all territoire conquis ou cart objectif realisee
          }
         

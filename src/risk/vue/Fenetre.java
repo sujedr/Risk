@@ -8,6 +8,7 @@ import java.util.ArrayList;
 
 import javax.swing.*;
 
+import risk.model.Joueur;
 import risk.model.Territoire;
 import risk.model.Tour;
 
@@ -86,7 +87,6 @@ public class Fenetre {
         Territoire ter602 = new Territoire(602, "Nouvelle Guinee", 1146, 420);
         Territoire ter603 = new Territoire(603, "Australie Occidentale", 1052, 517);
         Territoire ter604 = new Territoire(604, "Australie Orientale", 1147, 515);
-        
         
         territoires.add(ter101);
         territoires.add(ter102);
@@ -196,7 +196,7 @@ public class Fenetre {
      */
     public void choixJoueur(Territoire territoire) {
         String[] options = {"Attaquer", "Déplacer", "Passer tour"};
-        int choice = JOptionPane.showOptionDialog(frame, territoire.getNumber() + " : " + territoire.getNom() + "\n Choisissez une action ", "Action", JOptionPane.DEFAULT_OPTION, JOptionPane.QUESTION_MESSAGE, null, options, options[0]);
+        int choice = JOptionPane.showOptionDialog(frame, territoire.getNumber() + " : " + territoire.getNom() + "\n Occupant : " + territoire.getOccupant().getNom() + "\n Choisissez une action ", "Action", JOptionPane.DEFAULT_OPTION, JOptionPane.QUESTION_MESSAGE, null, options, options[0]);
 
         if (choice == 0) {
             JOptionPane.showMessageDialog(frame, "Vous avez choisi d'attaquer");
