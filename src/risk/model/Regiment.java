@@ -3,13 +3,11 @@ package risk.model;
 public class Regiment {
 	
 	private String type;
-	private int degat;
-	private int nombre;
-	
-	public Regiment(String type, int degat, int nombre) {
+	private int nbRegiment;
+
+	public Regiment(String type, int nbRegiment) {
 		this.type = type;
-		this.degat = degat;
-		this.nombre = nombre;
+		this.nbRegiment = nbRegiment;
 	}
 
 	public String getType() {
@@ -20,20 +18,12 @@ public class Regiment {
 		this.type = type;
 	}
 
-	public int getDegat() {
-		return degat;
+	public int getNbRegiment() {
+		return nbRegiment;
 	}
 
-	public void setDegat(int degat) {
-		this.degat = degat;
-	}
-
-	public int getNombre() {
-		return nombre;
-	}
-
-	public void setNombre(int nombre) {
-		this.nombre = nombre;
+	public void setNbRegiment(int nbRegiment) {
+		this.nbRegiment = nbRegiment;
 	}
 
 }

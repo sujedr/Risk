@@ -23,7 +23,8 @@ public class Risk {
         // Creation du plateau (objets continents et territoires)
         Monde monde = new Monde();
         ArrayList<Territoire> territoires = monde.getTerritoires();//              <======== ajouter la var territoires en input @raph 
-        Fenetre vue = new Fenetre(); // Crée une instance de Fenetre 
+        Fenetre vue = new Fenetre(); // Crée une instance de Fenetre
+        vue.setTerritoires(territoires);
         
         System.out.println("okk");
         
@@ -54,6 +55,12 @@ public class Risk {
 //                System.out.println("Le joueur " + joueur.getNom() + " " + joueur.getPrenom() + " existe déjà.");
 //            }
 //        }
+		
+		
+		// instances régiment pour infanterie, cavalerie et artillerie
+		Regiment infanterie = new Regiment("infanterie",1);
+		Regiment cavalerie = new Regiment("cavalerie",5);
+		Regiment artilleire = new Regiment("artilleire",10);
 		
 		// Creation d'une manche 
 		Manche manche1 = new Manche(participants);
