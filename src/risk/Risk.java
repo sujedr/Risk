@@ -2,8 +2,8 @@ package risk;
 
 import risk.vue.Fenetre;
 
+import java.util.ArrayList;
 import java.util.Date;
-
 import risk.controler.ConnexionDB;
 import risk.model.*;
 
@@ -17,7 +17,11 @@ public class Risk {
 	 * @param args
 	 */
 	public static void main(String[] args) {
-        Fenetre vue = new Fenetre(); // Crée une instance de Fenetre
+        // Creation du plateau (objets continents et territoires)
+        Monde monde = new Monde();
+        ArrayList<Territoire> territoires = monde.getTerritoires();        
+        
+        Fenetre vue = new Fenetre(); // Crée une instance de Fenetre <======== ajouter la var territoires en input @raph
         
         // INITIALISATION D'UNE MANCHE
 	    /** Deb - A supprimer apres test*/
@@ -32,16 +36,16 @@ public class Risk {
 		Joueur[] participants = {j1, j2, j3, j4, j5, j6};
 	    /** Fin - A supprimer apres test*/
 
-		// Enregistrement des joueurs dans la base de données
-		String url = "jdbc:mysql://localhost:3306/risk";
-        String user = "root";
-        String password = "";
-
-        ConnexionDB dbRisk = new ConnexionDB(url, user, password);
-        
-        for (Joueur joueur : participants) {
-            dbRisk.insertJoueur(joueur.getNom(), joueur.getPrenom(), joueur.getDtNaissance());
-        }
+//		// Enregistrement des joueurs dans la base de données
+//		String url = "jdbc:mysql://localhost:3306/risk";
+//        String user = "root";
+//        String password = "";
+//
+//        ConnexionDB dbRisk = new ConnexionDB(url, user, password);
+//        
+//        for (Joueur joueur : participants) {
+//            dbRisk.insertJoueur(joueur.getNom(), joueur.getPrenom(), joueur.getDtNaissance());
+//        }
 		
 		// Creation d'une manche 
 		Manche manche1 = new Manche(participants);
@@ -53,7 +57,7 @@ public class Risk {
         System.out.println(resultatDes);        
         manche1.definirOrdreJoueur(resultatDes);
         System.out.println(manche1.toString());  
-        
+
         // DEBUT DE LA MANCHE
          boolean isWinner = false;
          while (isWinner != true) {

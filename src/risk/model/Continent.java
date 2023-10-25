@@ -10,7 +10,7 @@ public class Continent {
 	
 	// Attributs
 	private String nom;
-	private ArrayList<Territoire> territoires = new ArrayList<Territoire>();
+	private ArrayList<Territoire> territoires = new ArrayList<>();
 	
 	// Constructeur
 	public Continent(String nom, ArrayList<Territoire> territoires) {
@@ -39,5 +39,11 @@ public class Continent {
 	 */
 	public void setTerritoires(ArrayList<Territoire> territoires) {
 		this.territoires = territoires;
+	}
+
+	@Override
+	public String toString() {
+		return "Continent [nom=" + nom + ", territoires=" + territoires + ", getNom()=" + getNom()
+				+ ", getTerritoires()=" + getTerritoires() + "]";
 	}
 }
