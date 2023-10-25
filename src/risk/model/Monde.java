@@ -2,13 +2,20 @@ package risk.model;
 
 import java.util.ArrayList;
 
+/**
+ * Classe Monde
+ * Instancie l'ensemble des continents et leurs territoires
+ */
 public class Monde {
 	
+	/** Attribut liste de Continent */
 	private ArrayList<Continent> monde = new ArrayList<>(); 
 	
 	/**
-	 * Classe Monde
-	 * Instancie l'ensemble des continents et leurs territoires
+	 * Constructeur Monde
+	 * Creation des objets territoire
+	 * Creation des objets continent
+	 * Ajout des continents à l'attribut monde (liste des continents)
 	 */
 	public Monde() {
 			
@@ -138,8 +145,40 @@ public class Monde {
 		this.monde.add(oceanie);
 		this.monde.add(asie);
 	}
+
+	// Methodes
+	/**
+	 * Getter monde
+	 * @return ArrayLise<Continent> monde
+	 */	
+	public ArrayList<Continent> getMonde() {
+		return monde;
+	}
 	
-	
-	
-	
+	/** 
+	 * Retourne une liste contenant l'ensemble des territoires du monde, touut continent confondu
+	 * 
+	 * @return ArrayList<Territoire> 
+	 */
+	public ArrayList<Territoire> getTerritoires() {
+		// Liste finale des territoires
+		ArrayList<Territoire> territoires = new ArrayList<>();
+		// Parcours de chaque continent
+		for (int i = 0; i < this.monde.size(); i++) {
+			// Parcours de chaque territoires
+			Continent continent = this.monde.get(i);
+			for (int j = 0; j < continent.getTerritoires().size(); j++) {
+				Territoire territoire = continent.getTerritoires().get(j);
+	            territoires.add(territoire);
+			}	
+		}
+		return territoires;
+	}
+
+	@Override
+	public String toString() {
+		return "Monde [monde=" + monde + ", getMonde()=" + getMonde() + ", getTerritoires()=" + getTerritoires()
+				+ ", getClass()=" + getClass() + ", hashCode()=" + hashCode() + ", toString()=" + super.toString()
+				+ "]";
+	}
 }
