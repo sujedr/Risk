@@ -2,6 +2,7 @@ package risk.model;
 
 import java.util.ArrayList;
 import java.util.Scanner;
+import risk.model.LancerDes;
 //import RiskTest.Joueur;
 
 public class Attaque extends Action {
@@ -10,15 +11,16 @@ public class Attaque extends Action {
 	private Territoire territoireAttaquant;
 	private Territoire territoireDefenseur;
 	private int nbRegimentAttaquant;
+	private ArrayList<Integer> des;
 	
 	public Attaque(Joueur attaquant) {
 		// TODO Auto-generated constructor stub
 		this.attaquant=attaquant;
 		this.territoireAttaquant=choisirTerritoirePartir(attaquant);
-		int nbTerritoireAttaquantable=territoireAttaquant.getNbRegiments();
+		int nbTerritoireAttaquantable=territoireAttaquant.getNbRegiments()-1;
 		this.nbRegimentAttaquant=choisirnbRegimentAttaquant(nbTerritoireAttaquantable);
 		this.territoireDefenseur=choisirTerritoireDefenseur(territoireAttaquant);
-		
+		this.des=desAttaquer(nbRegimentAttaquant);
 	}	
 	private Territoire choisirTerritoirePartir(Joueur attaquant) {
 		ArrayList<Territoire> allTerritoires = new ArrayList<>();
@@ -71,4 +73,16 @@ public class Attaque extends Action {
 
 	    return voisins.get(choix - 1); 
 	}
+	
+    public ArrayList<Integer> desAttaquer(int nbRegimentAttaquant) {
+        ArrayList<Integer> resultats = new ArrayList<>();
+
+        for (int i = 0; i < nbRegimentAttaquant; i++) {
+        	LancerDes lancerDes=new LancerDes();
+            int resultat = lancerDes.getResultatDes();
+            resultats.add(resultat);
+        }
+
+        return resultats;
+    }
 }

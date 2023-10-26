@@ -10,7 +10,7 @@ public class LancerDes {
 	 * 
 	 */
 	public LancerDes() {
-		this.resultatDes = resultatDes;
+		this.resultatDes = lancerDes();
 	}
 	
 	
@@ -24,7 +24,7 @@ public class LancerDes {
 	/**
 	 * @return int : résultat du tirage du dès (entre 1 et 6)
 	 */
-	public int lancerDes() {
+	private int lancerDes() {
         Random random = new Random();
         return random.nextInt(6)+1; 
     }
