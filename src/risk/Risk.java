@@ -141,15 +141,15 @@ public class Risk {
         		 
 	        	 // PLACEMENT DES 20 REGIMENTS POUR LE PREMIER TOUR
 	        	 if (isFirstTour == true) {
+        			 while (joueur.getNbRegimentsRestants() != 0) {
 		        		 for (Territoire territoire : joueur.getAllTerritoires()) {
 		        			 //Affichage de l'ajout d'unités sur un territoire retourne le nombre a ajouté
-		        			 while (joueur.getNbRegimentsRestants() != 0) {
 		        			 nbUnitesAjout = vue.premierTour(joueur, territoire);
 		        			 territoire.ajouterNbRegiments(nbUnitesAjout);
 		        			 joueur.enleverNbRegimentsRestants(nbUnitesAjout);
 		        		 } 
 		        	 }
-		        	 if (joueur.getId() == "6") {
+		        	 if (joueur == participants[5]) {
 		        		 isFirstTour = false;
 		        	 }
 	        	 }
