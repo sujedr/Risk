@@ -6,15 +6,15 @@ import java.util.Random;
 
 public class Carte {
 	
-	private String territoire;
+	private Territoire territoire;
     private String typeRegiment;
     
-    public Carte(String territoire, String typeRegiment) {
+    public Carte(Territoire territoire, String typeRegiment) {
         this.territoire = territoire;
         this.typeRegiment = typeRegiment;
     }
     
-    public String getTerritoire() {
+    public Territoire getTerritoire() {
         return territoire;
     }
     
