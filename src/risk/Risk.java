@@ -139,6 +139,7 @@ public class Risk {
 
          while (isWinner != true) {
         	 // POUR CHAQUE JOUEUR
+        	 int indiceJoueur = 0;
         	 for (Joueur joueur : participants) {
 	        	 System.out.println("Joueur " + joueur.getNom());
 	        	 
@@ -263,10 +264,21 @@ public class Risk {
 		         }
 		         // Si le joueur n'a plus de territoire il est eliminé 
 		         if (nbTerritoiresConquis == 0) {
-		        	 // REMOVE JOUEUR FROM LIST
+		        	int nouvelIndiceTableau = 0;
+		        	// Copie des joueurs dans un tableau à jour (sans le joueur eliminé)
+		        	Joueur[] participantsMaj = new Joueur[participants.length - 1];
+		        	for (int k = 0; k < participants.length; k++) {
+		        	    if (k != indiceJoueur) {
+		        	    	participantsMaj[nouvelIndiceTableau] = participants[k];
+		        	    	nouvelIndiceTableau = nouvelIndiceTableau+1;
+		        	    }
+		        	}
+		        	// Mise à jour du tableau des participants
+		        	participants = participantsMaj;
 		         }	 
         	 isWinner = true;																	// A supprimer (for testing only)
-        	 // isWinner = true if all territoire conquis ou cart objectif realisee
+        	 // Incrementation indice joueur de 1
+        	 indiceJoueur = indiceJoueur+1;
         	 }
          }
         
