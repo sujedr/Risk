@@ -3,6 +3,7 @@ package risk.model;
 import java.util.HashMap;
 
 public class HistoriqueJoueurs {
+	/*
 	private HashMap<Integer,Joueur> classement;
 
 	public HistoriqueJoueurs() {
@@ -32,5 +33,5 @@ public class HistoriqueJoueurs {
 	public int getClassementLength() {
 	    return classement.size();
 	}
-
+*/
 }
