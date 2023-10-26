@@ -127,7 +127,10 @@ public class Conflit {
 	    System.out.println("ATTAQUANT : "+this.territoireAttaquant.getNbRegiments());
 	    System.out.println("DEFENDEUR : "+this.territoireDefenseur.getNbRegiments());
 	    
-	    System.out.println(nbSurvivant);
+	    System.out.println(nbSurvivant); // check a quoi ca correspond
+	    // mettre à jour troupes si pays conquis (cf rules fonction yujie)
+	    // + boolean de victoire territoire
+	    
 	    return nbSurvivant;
 	}
 	
