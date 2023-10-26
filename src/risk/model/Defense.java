@@ -14,7 +14,7 @@ public class Defense extends Action {
 		this.defense=territoireDefenseur.getOccupant();
 		int nbTerritoireDefenseurable=territoireDefenseur.getNbRegiments();
 		this.nbRegimentDefenseur=choisirnbRegimentDefenseur(nbTerritoireDefenseurable, nbRegimentAttaquant);
-		this.des=desDefense(nbRegimentDefenseur);
+		this.desDefense=desDefense(nbRegimentDefenseur);
 	}
 
 	private int choisirnbRegimentDefenseur(int nbTerritoireDefenseurable, int nbRegimentAttaquant) {

@@ -20,7 +20,7 @@ public class Attaque extends Action {
 		int nbTerritoireAttaquantable=territoireAttaquant.getNbRegiments()-1;
 		this.nbRegimentAttaquant=choisirnbRegimentAttaquant(nbTerritoireAttaquantable);
 		this.territoireDefenseur=choisirTerritoireDefenseur(territoireAttaquant);
-		this.des=desAttaquer(nbRegimentAttaquant);
+		this.desAttaque=desAttaquer(nbRegimentAttaquant);
 	}	
 	private Territoire choisirTerritoirePartir(Joueur attaquant) {
 		ArrayList<Territoire> allTerritoires = new ArrayList<>();
