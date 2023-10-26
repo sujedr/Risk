@@ -3,6 +3,7 @@ package risk.model;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
+import java.util.Random;
 
 /**
  * Objet joueur
@@ -15,7 +16,7 @@ public class Joueur {
 	private String dtNaissance;
 	
 	private String couleur;
-	
+	private String currentmission;
 	/** Attributs spécifiques à une manche */
 	private HashMap<Continent, ArrayList<Territoire>> territoiresConquis = new HashMap<>() ;
 	private int nbRegimentsRestants;
@@ -60,12 +61,24 @@ public class Joueur {
 		this.nbTours = 0;
 	}
 	
-	// Getter and setter
-	
+	// Couleur choisie par le joueur 玩家所选的颜色
 	public String getCouleur() {
 		return couleur;
 	}
 	
+	//Distribuer les cartes de mission aux joueurs 分发任务卡牌给玩家
+	public void assignRandomMission(Mission m) {
+		Random random = new Random();
+		ArrayList<String> listeMission = m.getMissionListe();
+		int randomIndex = random.nextInt(listeMission.size());
+		this.currentmission = listeMission.remove(randomIndex);
+		System.out.println(
+		"La mission du joueur " + id + " : " + currentmission);
+	}
+	
+	
+	
+	// Getter and setter
 	
 	/** @return int */
 	public String getId() {
