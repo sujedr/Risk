@@ -11,7 +11,7 @@ public class Attaque extends Action {
 	private Territoire territoireAttaquant;
 	private Territoire territoireDefenseur;
 	private int nbRegimentAttaquant;
-	private ArrayList<Integer> des;
+	private ArrayList<Integer> desAttaque;
 	
 	public Attaque(Joueur attaquant) {
 		// TODO Auto-generated constructor stub
@@ -20,7 +20,7 @@ public class Attaque extends Action {
 		int nbTerritoireAttaquantable=territoireAttaquant.getNbRegiments()-1;
 		this.nbRegimentAttaquant=choisirnbRegimentAttaquant(nbTerritoireAttaquantable);
 		this.territoireDefenseur=choisirTerritoireDefenseur(territoireAttaquant);
-		this.des=desAttaquer(nbRegimentAttaquant);
+		this.desAttaque=desAttaquer(nbRegimentAttaquant);
 	}	
 	private Territoire choisirTerritoirePartir(Joueur attaquant) {
 		ArrayList<Territoire> allTerritoires = new ArrayList<>();

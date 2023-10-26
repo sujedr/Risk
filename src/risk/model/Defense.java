@@ -7,14 +7,14 @@ public class Defense extends Action {
 	private Territoire territoireDefenseur;
 	private Joueur defense;
 	private int nbRegimentDefenseur;
-	private ArrayList<Integer> des;
+	private ArrayList<Integer> desDefense;
 	
 	public Defense(Territoire territoireDefenseur,int nbRegimentAttaquant) {
 		// TODO Auto-generated constructor stub
 		this.defense=territoireDefenseur.getOccupant();
 		int nbTerritoireDefenseurable=territoireDefenseur.getNbRegiments();
 		this.nbRegimentDefenseur=choisirnbRegimentDefenseur(nbTerritoireDefenseurable, nbRegimentAttaquant);
-		this.des=desDefense(nbRegimentDefenseur);
+		this.desDefense=desDefense(nbRegimentDefenseur);
 	}
 
 	private int choisirnbRegimentDefenseur(int nbTerritoireDefenseurable, int nbRegimentAttaquant) {
