@@ -14,6 +14,8 @@ public class Joueur {
 	private String prenom;
 	private String dtNaissance;
 	
+	private String couleur;
+	
 	/** Attributs spécifiques à une manche */
 	private HashMap<Continent, ArrayList<Territoire>> territoiresConquis;
 	private int nbRegimentsRestants;
@@ -33,11 +35,12 @@ public class Joueur {
 	 * @param prenom
 	 * @param dtNaissance
 	 */
-	public Joueur(String id, String nom, String prenom, String dtNaissance, Continent[] Continents) {
+	public Joueur(String id, String nom, String prenom, String dtNaissance, Continent[] Continents, String couleur) {
 		this.id = id;
 		this.nom = nom;
 		this.prenom = prenom;
 		this.dtNaissance = dtNaissance;
+		this.couleur = couleur;
 		
 		/** Initialisation des continents dans la hashmap */			
 		for (int i = 0; i < Continents.length; i++) {
@@ -58,6 +61,12 @@ public class Joueur {
 	}
 	
 	// Getter and setter
+	
+	public String getCouleur() {
+		return couleur;
+	}
+	
+	
 	/** @return int */
 	public String getId() {
 		return id;
