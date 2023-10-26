@@ -66,5 +66,6 @@ public class Conflit {
 			return 0;
 		}
 	}
+	private elimination 
 
 }
