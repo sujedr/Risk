@@ -22,6 +22,15 @@ public class Attaque extends Action {
 		this.territoireDefenseur=choisirTerritoireDefenseur(territoireAttaquant);
 		this.desAttaque=desAttaquer(nbRegimentAttaquant);
 	}	
+	public ArrayList<Integer> getDesAttaque() {
+		return desAttaque;
+	}
+	public Territoire getTerritoireAttaquant() {
+		return territoireAttaquant;
+	}
+	public Territoire getTerritoireDefenseur() {
+		return territoireDefenseur;
+	}
 	private Territoire choisirTerritoirePartir(Joueur attaquant) {
 		ArrayList<Territoire> allTerritoires = new ArrayList<>();
 		allTerritoires=attaquant.getAllTerritoires();
@@ -38,6 +47,9 @@ public class Attaque extends Action {
 
 	}
 	
+	public int getNbRegimentAttaquant() {
+		return nbRegimentAttaquant;
+	}
 	private int choisirnbRegimentAttaquant(int nbTerritoireAttaquantable) {
 		int choix;
 		Scanner scanner = new Scanner(System.in);

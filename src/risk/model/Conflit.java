@@ -9,7 +9,12 @@ public class Conflit {
 	private ArrayList<Integer> desAttaque;
 	private ArrayList<Integer> desDefense;
 	
-	public Conflit(Territoire territoireAttaquant,Territoire territoireDefenseur,ArrayList<Integer> desAttaque,ArrayList<Integer> desDefense) {
+	public Conflit(Defense defense) {
+		Attaque attaque=defense.getAttaque();
+		Territoire territoireAttaquant=attaque.getTerritoireAttaquant();
+		Territoire territoireDefenseur=attaque.getTerritoireDefenseur();
+		ArrayList<Integer> desAttaque=attaque.getDesAttaque();
+		ArrayList<Integer> desDefense=defense.getDesDefense();
 		this.desAttaque=trierDesAttaqueAvecRetour(desAttaque);
 		this.desDefense=trierDesAttaqueAvecRetour(desDefense);
 		int nbSuivivant=ResultConflit(territoireAttaquant, territoireDefenseur, desAttaque, desDefense) ;

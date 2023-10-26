@@ -3,18 +3,28 @@ package risk.model;
 import java.util.ArrayList;
 
 public class Defense extends Action {
-	
+	private Attaque attaque;
 	private Territoire territoireDefenseur;
 	private Joueur defense;
 	private int nbRegimentDefenseur;
 	private ArrayList<Integer> desDefense;
 	
-	public Defense(Territoire territoireDefenseur,int nbRegimentAttaquant) {
+	public Defense(Attaque attaque) {
 		// TODO Auto-generated constructor stub
+		this.territoireDefenseur=attaque.getTerritoireDefenseur();
+		int nbRegimentAttaquant=attaque.getNbRegimentAttaquant();
 		this.defense=territoireDefenseur.getOccupant();
 		int nbTerritoireDefenseurable=territoireDefenseur.getNbRegiments();
 		this.nbRegimentDefenseur=choisirnbRegimentDefenseur(nbTerritoireDefenseurable, nbRegimentAttaquant);
 		this.desDefense=desDefense(nbRegimentDefenseur);
+	}
+
+	public ArrayList<Integer> getDesDefense() {
+		return desDefense;
+	}
+
+	public Attaque getAttaque() {
+		return attaque;
 	}
 
 	private int choisirnbRegimentDefenseur(int nbTerritoireDefenseurable, int nbRegimentAttaquant) {
