@@ -35,11 +35,8 @@ public class Joueur {
 	 * @param prenom
 	 * @param dtNaissance
 	 */
-<<<<<<< HEAD
-	public Joueur(String id, String nom, String prenom, String dtNaissance, ArrayList<Continent> Continents) {
-=======
-	public Joueur(String id, String nom, String prenom, String dtNaissance, Continent[] Continents, String couleur) {
->>>>>>> 5ab51e2cdfbe9dfe43c004fe938ce43526bf8595
+	public Joueur(String id, String nom, String prenom, String dtNaissance, ArrayList<Continent> Continents,String couleur) {
+
 		this.id = id;
 		this.nom = nom;
 		this.prenom = prenom;
