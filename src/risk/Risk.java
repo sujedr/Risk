@@ -126,6 +126,8 @@ public class Risk {
         // DEBUT DE LA MANCHE
          boolean isFirstTour = true;
          boolean isWinner = false;
+         boolean isObjectifCompleted = false;
+
          while (isWinner != true) {
         	 // POUR CHAQUE JOUEUR
         	 for (Joueur joueur : participants) {
@@ -241,7 +243,19 @@ public class Risk {
 		        		 }
 		        	 }
 	        	 }
-	        	     	 
+		         // Si le joueur a remporté tous les territoires
+		         int nbTerritoiresConquis = (int) joueur.getAllTerritoires().size();
+		         if (nbTerritoiresConquis == monde.getNbTerritoireTotal()) {
+		        	 isWinner = true;	
+		         }
+		         // Si le joueur a complété son objectif
+		         if (isObjectifCompleted == true) {
+		        	 isWinner = true;	
+		         }
+		         // Si le joueur n'a plus de territoire il est eliminé 
+		         if (nbTerritoiresConquis == 0) {
+		        	 // REMOVE JOUEUR FROM LIST
+		         }	 
         	 isWinner = true;																	// A supprimer (for testing only)
         	 // isWinner = true if all territoire conquis ou cart objectif realisee
         	 }
