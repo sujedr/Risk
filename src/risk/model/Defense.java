@@ -19,6 +19,7 @@ public class Defense extends Action {
 		this.desDefense=desDefense(nbRegimentDefenseur);
 	}
 
+
 	public ArrayList<Integer> getDesDefense() {
 		return desDefense;
 	}
