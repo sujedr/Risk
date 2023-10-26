@@ -43,6 +43,8 @@ public class Risk {
 		Joueur j6 = new Joueur("6", "FF", "ff", dn, monde.getMonde(), "vertes");
 
 		Joueur[] participants = {j1, j2, j3, j4, j5, j6};
+		
+		int nbUnitesAjout = 0; //Nombre d'unités a ajouté et enlever
 	    /** Fin - A supprimer apres test*/
 		
 //		// Enregistrement des joueurs dans la base de données
@@ -199,7 +201,10 @@ public class Risk {
 		        		 
 		        		 
 		        		 for (Territoire territoire : joueur.getAllTerritoires()) {
-		        			 vue.premierTour(joueur, territoire);
+		        			 //Affichage de l'ajout d'unités sur un territoire retourne le nombre a ajouté
+		        			 nbUnitesAjout = vue.premierTour(joueur, territoire);
+		        			 territoire.ajouterNbRegiments(nbUnitesAjout);
+		        			 joueur.enleverNbRegimentsRestants(nbUnitesAjout);
 		        		 } 
 		        		 
 		        	//	 vue.premierTour(joueur, territoire); //Permet d'effectuer les actions pour un joueur au premier tour
@@ -217,7 +222,7 @@ public class Risk {
 	        	 }
 	        	 // PROCESSUS NORMAL POUR LES AUTRES TOURS
 	        	 else {
-		        	 // VERFICATION ET MISE A JOUR DES DATA EN FIN DE TOUR DE CHAQUE JOUEUR
+		        	 // VERFICATION ET MISE A JOUR DES DATA EN DEBUT DE TOUR DE CHAQUE JOUEUR
 	        		 int nbRegimentAPlacer = joueur.calculerNbRegimentsAPlacer();
 	        		 joueur.ajouterNbRegimentsRestants(nbRegimentAPlacer);
 	        		 
@@ -303,20 +308,7 @@ public class Risk {
 		        		 }
 		        	 }
 	        	 }
-	        	 
-	        	 // PIOCHER UNE CARTE SI NOUVEAU TERRITOIRE CONQUIS
-	        	 if (isNouveauTerritoireConquis == true) {
-	        		 /** Piocher carte 
-	        		  * @Yassine 
-	        		  * Peut echanger lorsque : 
-	        		  * - 3 cartes identiques (soit 3 cavaliers, ou 3 canons, ou 3 fantassins).
-					  * - 3 cartes différentes (soit 1 cavalier, 1 canon et 1 fantassin).
-					  * - Le premier qui échange ses cartes reçoit 4 armées supplémentaires. 
-					  * --> Puis de deux en deux (jusque 15 et ensuite de 5 en 5) c'est tres wtf ahah
-	        		  */
-	        	 }   	 
-	        	 
-	        	 
+	        	     	 
         	 isWinner = true;																	// A supprimer (for testing only)
         	 // isWinner = true if all territoire conquis ou cart objectif realisee
         	 }
