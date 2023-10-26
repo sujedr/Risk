@@ -8,6 +8,7 @@ public class Conflit {
 	private Territoire territoireDefenseur;
 	private ArrayList<Integer> desAttaque;
 	private ArrayList<Integer> desDefense;
+	private int succes;
 	
 	public Conflit(Defense defense) {
 		Attaque attaque=defense.getAttaque();
@@ -18,15 +19,16 @@ public class Conflit {
 		this.desAttaque=trierDesAttaqueAvecRetour(desAttaque);
 		this.desDefense=trierDesAttaqueAvecRetour(desDefense);
 		int nbSuivivant=ResultConflit(territoireAttaquant, territoireDefenseur, desAttaque, desDefense) ;
+		succes=reglementDefaite(territoireAttaquant, territoireDefenseur,nbSuivivant);
 	}
 	
-	public ArrayList<Integer> trierDesAttaqueAvecRetour(ArrayList<Integer> desAttaque) {
+	private ArrayList<Integer> trierDesAttaqueAvecRetour(ArrayList<Integer> desAttaque) {
 	    // 创建一个新的ArrayList并进行排序
 	    ArrayList<Integer> sortedDesAttaque = new ArrayList<>(desAttaque);
 	    Collections.sort(sortedDesAttaque, Collections.reverseOrder());
 	    return sortedDesAttaque;
 	}
-	public int ResultConflit(Territoire territoireAttaquant, Territoire territoireDefenseur, ArrayList<Integer> desAttaque, ArrayList<Integer> desDefense) {
+	private int ResultConflit(Territoire territoireAttaquant, Territoire territoireDefenseur, ArrayList<Integer> desAttaque, ArrayList<Integer> desDefense) {
 	    // 循环比较desDefense的长度次
 	    int iterations = desDefense.size();
 	    int nbSurvivant = desAttaque.size();
@@ -51,10 +53,14 @@ public class Conflit {
 	    }
 	    return nbSurvivant;
 	}
-	public void reglementDefaite(Territoire territoireAttaquant, Territoire territoireDefenseur,int nbSuivivant) {
+	private int reglementDefaite(Territoire territoireAttaquant, Territoire territoireDefenseur,int nbSuivivant) {
 		if(territoireDefenseur.getNbRegiments()==0) {
 			territoireDefenseur.setOccupant(territoireAttaquant.getOccupant());
 			territoireDefenseur.setNbRegiments(nbSuivivant);
+			return 1;
+		}
+		else {
+			return 0;
 		}
 	}
 
