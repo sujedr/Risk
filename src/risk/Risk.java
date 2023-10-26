@@ -13,7 +13,7 @@ import java.util.Collections;
 import risk.controler.ConnexionDB;
 import risk.model.*;
 
-/**
+/** 
  * 
  */
 public class Risk {
