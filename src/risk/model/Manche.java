@@ -16,6 +16,7 @@ public class Manche {
 	private Chronometre duree = new Chronometre();
 	private Boolean estTerminee;
 	private String dateDebut;
+	private HistoriqueJoueurs historiqueJoueurs;
 
 	// Constructeur
 	public Manche(Joueur[] joueurs) {

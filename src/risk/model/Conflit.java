@@ -2,6 +2,7 @@ package risk.model;
 
 import java.util.ArrayList;
 import java.util.Collections;
+import risk.model.HistoriqueJoueurs;
 
 public class Conflit {
 	private Territoire territoireAttaquant;
@@ -66,6 +67,21 @@ public class Conflit {
 			return 0;
 		}
 	}
-	private elimination 
+	private void elimination (Territoire territoireAttaquant, Territoire territoireDefenseur) {
+		ArrayList <Territoire> tousTerritoireDefenseur=new ArrayList <Territoire>();
+		tousTerritoireDefenseur=territoireDefenseur.getOccupant().getAllTerritoires();
+		ArrayList <Territoire> tousterritoireAttaquant=new ArrayList <Territoire>();
+		tousterritoireAttaquant=territoireAttaquant.getOccupant().getAllTerritoires();
+		if(tousTerritoireDefenseur.size()==0) {
+			//???????
+			MaxValue=findMaxValue();
+			historiqueJoueurs.put(MaxValue,territoireDefenseur.getOccupant());
+		}
+		if(tousterritoireAttaquant.size()==0) {
+			//???????
+			MaxValue=findMaxValue();
+			historiqueJoueurs.put(MaxValue,territoireAttaquant.getOccupant());
+		}
+	}
 
 }
