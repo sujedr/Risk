@@ -17,7 +17,7 @@ public class Joueur {
 	private String couleur;
 	
 	/** Attributs spécifiques à une manche */
-	private HashMap<Continent, ArrayList<Territoire>> territoiresConquis;
+	private HashMap<Continent, ArrayList<Territoire>> territoiresConquis = new HashMap<>() ;
 	private int nbRegimentsRestants;
 	
 	/** Attributs statistiques */           // *** A peut etre supprimer ***
@@ -130,6 +130,21 @@ public class Joueur {
 		return territoiresConquis;
 	}
 	
+    /**
+     * Permet de récupérer proprement les territoires pour l'affichage
+     * @param continentTerritoires
+     * @return liste des territoires propre
+     */
+    public ArrayList<String> getTerritoireClean() {
+        ArrayList<String> territoiresClair = new ArrayList<>();
+        for (ArrayList<Territoire> territoires : territoiresConquis.values()) {
+            for (Territoire territoire : territoires) {
+                territoiresClair.add(territoire.getNumber() + " : " + territoire.getNom());
+            }
+        }
+        return territoiresClair;
+    }
+	
 	/**
 	 * @return Liste de territoires
 	 */
@@ -148,8 +163,11 @@ public class Joueur {
 	    return allTerritoires;
 	}
 	
+	/**
+	 * @return int nb de regiments que le joueur dois placer en début de tour
+	 */
 	public int calculerNbRegimentsAPlacer() {
-   	 // Continent conquis ?
+   	 // Continent conquis ?  
    	 ArrayList<Continent> continentsOccupes = new ArrayList<Continent>();
    	 int total = 0;
    	 continentsOccupes = this.consulterContinentsEntierementOccupes();
@@ -202,7 +220,7 @@ public class Joueur {
 	}
 	
 	/**
-	 * @return Arraylist <String> nom continent conquis
+	 * @return Arraylist <Continent> nom continent conquis
 	 */
 	public ArrayList<Continent> consulterContinentsEntierementOccupes() {
 		ArrayList<Continent> continentsConquis = new ArrayList<>();
