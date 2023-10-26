@@ -7,6 +7,7 @@ import java.util.ArrayList;
 
 import javax.swing.*;
 
+import risk.model.Joueur;
 import risk.model.Territoire;
 import risk.model.Tour;
 
@@ -21,7 +22,7 @@ public class Fenetre {
 	private JFrame frame = new JFrame("Risk");
     ImageIcon map = new ImageIcon("./img/map4.jpg");
     JLabel mapLabel = new JLabel(map);
-    JLabel label = new JLabel("            Tour : Joueur 1");
+    JLabel label = new JLabel("");
     ArrayList<Territoire> territoires= new ArrayList<>();
     
     /**
@@ -37,17 +38,38 @@ public class Fenetre {
         frame.setResizable(false);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setVisible(true);
-        
+    }
+    
+    /**
+     * @param tour
+     */
+    public void actualiserTour(Tour tour) {
+    	this.label.setText(tour.getJoueur().getNom());
+    }
+    
+    /**
+     * @param territoire
+     */
+    public void choixJoueur(Territoire territoire) {
+        String[] options = {"Attaquer", "Déplacer", "Passer tour"};
+        int choice = JOptionPane.showOptionDialog(frame, territoire.getNumber() + " : " + territoire.getNom() + "\n Occupant : " + territoire.getOccupant().getNom() + "\n Choisissez une action ", "Action", JOptionPane.DEFAULT_OPTION, JOptionPane.QUESTION_MESSAGE, null, options, options[0]);
+
+        if (choice == 0) {
+            JOptionPane.showMessageDialog(frame, "Vous avez choisi d'attaquer");
+        } else if (choice == 1) {
+            JOptionPane.showMessageDialog(frame, "Vous avez choisi de déplacer");
+        } else if (choice == 2) {
+            JOptionPane.showMessageDialog(frame, "Vous avez choisi de passer tour");
+        }
+    }
+    
+    /**
+     * Méthode à invoker pour permettre à un joueur d'effectuer ses actions dans un tour
+     * @param joueur
+     */
+    public void actionsTour(Joueur joueur) {
         int seuil = 20;
-        
-   /*     JDialog testAlert = new JDialog();
-        testAlert.setSize(new Dimension(100, 100));
-        testAlert.setLocationRelativeTo(frame);
-        testAlert.add(new JLabel("Test"));
-        testAlert.setModal(true);
-        testAlert.setResizable(false);
-        testAlert.setVisible(true); */
-        
+        this.label.setText("             "  + joueur.getNom());
         frame.addMouseListener(new MouseListener() {
             public void mouseClicked(MouseEvent e) {
             	
@@ -85,30 +107,7 @@ public class Fenetre {
 				// TODO Auto-generated method stub
 				
 			}
-        }); 
-    }
-    
-    /**
-     * @param tour
-     */
-    public void actualiserTour(Tour tour) {
-    	this.label.setText(tour.getJoueur().getNom());
-    }
-    
-    /**
-     * @param territoire
-     */
-    public void choixJoueur(Territoire territoire) {
-        String[] options = {"Attaquer", "Déplacer", "Passer tour"};
-        int choice = JOptionPane.showOptionDialog(frame, territoire.getNumber() + " : " + territoire.getNom() + "\n Occupant : " + territoire.getOccupant().getNom() + "\n Choisissez une action ", "Action", JOptionPane.DEFAULT_OPTION, JOptionPane.QUESTION_MESSAGE, null, options, options[0]);
-
-        if (choice == 0) {
-            JOptionPane.showMessageDialog(frame, "Vous avez choisi d'attaquer");
-        } else if (choice == 1) {
-            JOptionPane.showMessageDialog(frame, "Vous avez choisi de déplacer");
-        } else if (choice == 2) {
-            JOptionPane.showMessageDialog(frame, "Vous avez choisi de passer tour");
-        }
+        });
     }
     
     /**

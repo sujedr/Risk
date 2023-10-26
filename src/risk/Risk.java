@@ -61,6 +61,7 @@ public class Risk {
 //        }
 		
 		//Carte de mission
+		//TODO Peut être à instancier dans une classe comme les territoires dans "monde" pour clean le main
 		Mission mission1 = new Mission("Vous devez conquérir 18 territoires et occuper chacun d'eux avec deux armées au moins.");
 		Mission mission2 = new Mission("Vous devez conquérir en totalité l'Amérique du Nord et l'Afrique.");
 		Mission mission3 = new Mission("Vous devez conquérir en totalité l'Europe et l'Amérique du sud plus un troisième continent au choix.");
