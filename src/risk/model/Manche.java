@@ -14,7 +14,7 @@ public class Manche {
 	private ArrayList<Tour> tours;
 	private Joueur vainqueur;
 	private Chronometre duree = new Chronometre();
-	private Boolean estTerminee;
+	private Boolean estTerminee=false;
 	private String dateDebut;
 	private HistoriqueJoueurs historiqueJoueurs;
 
@@ -34,6 +34,10 @@ public class Manche {
         String dateCastee = dateActuelle.format(date);
 		// Fin - Récupération de la date actuelle
 		this.dateDebut = dateCastee;
+	}
+
+	public void setEstTerminee(Boolean estTerminee) {
+		this.estTerminee = estTerminee;
 	}
 
 	// Getter and setter
