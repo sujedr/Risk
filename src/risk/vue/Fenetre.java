@@ -57,10 +57,10 @@ public class Fenetre {
      */
     public int premierTour(Joueur joueur, Territoire territoire) {
     	//Actualisation de l'affichage
-        this.label.setText("             "  + joueur.getNom() + "\n" + joueur.getAllTerritoires());
+        this.label.setText("             Joueur "  + joueur.getId() + "\n" + joueur.getAllTerritoires());
         JPanel panel = new JPanel();
         JLabel terrLab = new JLabel( territoire.getNumber() + " : " + territoire.getNom());
-        JLabel label = new JLabel("\n Voulez-vous ajouter des troupes ? " + joueur.getNbRegimentsRestants() + " regiments restants");
+        JLabel label = new JLabel("Joueur" + joueur.getId() + "\n Voulez-vous ajouter des troupes ? " + joueur.getNbRegimentsRestants() + " regiments restants");
         JTextField textField = new JTextField(10);
         int nbTroupes = 0;
 
@@ -75,8 +75,12 @@ public class Fenetre {
             try {
                     String input = textField.getText();
                     nbTroupes = Integer.parseInt(input);
-                    JOptionPane.showMessageDialog(null, "Vous avez saisi " + nbTroupes + " troupes.");
-
+                    if (joueur.getNbRegimentsRestants() >= nbTroupes) {
+                    	JOptionPane.showMessageDialog(null, "Vous avez saisi " + nbTroupes + " troupes.");
+                    } else {
+                    	JOptionPane.showMessageDialog(null, "Vous n'avez plus de troupes à ajouter");
+                    	nbTroupes = 0;
+                    }
             } catch (NumberFormatException e) {
                 JOptionPane.showMessageDialog(null, "Saisie invalide. Veuillez entrer un nombre valide.");
             }
