@@ -1,6 +1,7 @@
 package risk.vue;
 
 import java.awt.BorderLayout;
+import java.awt.Dimension;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.util.ArrayList;
@@ -51,12 +52,37 @@ public class Fenetre {
     /**
      * Gestion des interraction pour le premier tour
      * @param joueur
+     * @param territoire 
+     * @return nbTroupe à ajouter
      */
-    public void premierTour(Joueur joueur, Territoire territoire) {
+    public int premierTour(Joueur joueur, Territoire territoire) {
     	//Actualisation de l'affichage
         this.label.setText("             "  + joueur.getNom() + "\n" + joueur.getAllTerritoires());
+        JPanel panel = new JPanel();
+        JLabel terrLab = new JLabel( territoire.getNumber() + " : " + territoire.getNom());
+        JLabel label = new JLabel("\n Voulez-vous ajouter des troupes ? " + joueur.getNbRegimentsRestants() + " regiments restants");
+        JTextField textField = new JTextField(10);
+        int nbTroupes = 0;
+
+        panel.add(terrLab);
+        panel.add(Box.createRigidArea(new Dimension(0, 10))); //Retour à la ligne pour le label
+        panel.add(label);
+        panel.add(textField);
+
+        int option = JOptionPane.showConfirmDialog(null, panel, "Ajouter des troupes", JOptionPane.OK_CANCEL_OPTION);
+
+        if (option == JOptionPane.OK_OPTION) {
+            try {
+                    String input = textField.getText();
+                    nbTroupes = Integer.parseInt(input);
+                    JOptionPane.showMessageDialog(null, "Vous avez saisi " + nbTroupes + " troupes.");
+
+            } catch (NumberFormatException e) {
+                JOptionPane.showMessageDialog(null, "Saisie invalide. Veuillez entrer un nombre valide.");
+            }
+        }
+        return nbTroupes;
     }
-    
     /**
      * Méthode à invoker pour permettre à un joueur d'effectuer ses actions dans un tour
      * @param joueur
