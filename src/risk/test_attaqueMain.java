@@ -37,8 +37,8 @@ public class test_attaqueMain {
 
 		////// TEST ATTAQUE /////
 		
+		/** Demander choix pays attaquant, pays attaqué, nombre de troupes */
 		Attaque attaque = new Attaque(joueur, territoireAttaquant, territoireDefenseur, nbRegimentsAttaque);
-			
 	}
 
 }

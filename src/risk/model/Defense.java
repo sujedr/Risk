@@ -2,7 +2,7 @@ package risk.model;
 
 import java.util.ArrayList;
 
-public class Defense extends Action {
+public class Defense {
 	private Attaque attaque;
 	private Territoire territoireDefenseur;
 	private Joueur defense;

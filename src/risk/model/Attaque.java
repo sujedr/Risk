@@ -5,7 +5,7 @@ import java.util.Scanner;
 import risk.model.LancerDes;
 //import RiskTest.Joueur;
 
-public class Attaque extends Action {
+public class Attaque {
 	
 	private Joueur attaquant;
 	private Territoire territoireAttaquant;
