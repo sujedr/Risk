@@ -2,6 +2,7 @@ package risk.vue;
 
 import java.awt.BorderLayout;
 import java.awt.Dimension;
+import java.awt.FlowLayout;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.util.ArrayList;
@@ -60,15 +61,14 @@ public class Fenetre {
     	boolean validationTroupe = false;
     	int nbTroupes = 0;
     	while(!validationTroupe) {
-	        this.label.setText("             Joueur "  + joueur.getId() + "\n" + joueur.getAllTerritoires());
+	        this.label.setText("             Joueur "  + joueur.getId() + "\n" + joueur.getAllTerritoiresClear());
 	        JPanel panel = new JPanel();
-	        JLabel terrLab = new JLabel( territoire.getNumber() + " : " + territoire.getNom());
-	        JLabel label = new JLabel("Joueur" + joueur.getId() + "\n Voulez-vous ajouter des troupes ? " + joueur.getNbRegimentsRestants() + " regiments restants");
+	        JLabel terrLab = new JLabel( territoire.getNumber() + " : " + territoire.getNom() + " | " );
+	        JLabel label = new JLabel("Joueur" + joueur.getId() + " | Voulez-vous ajouter des troupes ? | " + joueur.getNbRegimentsRestants() + " regiments restants");
 	        JTextField textField = new JTextField(10);
 	        
 	
 	        panel.add(terrLab);
-	        panel.add(Box.createRigidArea(new Dimension(0, 10))); //Retour à la ligne pour le label
 	        panel.add(label);
 	        if (joueur.getNbRegimentsRestants() != 0) {
 	        	panel.add(textField);

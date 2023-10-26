@@ -158,6 +158,14 @@ public class Joueur {
 	    return allTerritoires;
 	}
 	
+	public ArrayList<String> getAllTerritoiresClear() {
+		ArrayList<String>liste = new ArrayList<>();
+		for (Territoire territoire : this.getAllTerritoires()) {
+			liste.add(territoire.getNom());
+		}
+		return liste;
+	}
+	
 	/**
 	 * @return int nb de regiments que le joueur dois placer en début de tour
 	 */
