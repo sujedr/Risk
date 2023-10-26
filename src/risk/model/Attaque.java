@@ -16,23 +16,55 @@ public class Attaque extends Action {
 	public Attaque(Joueur attaquant, Territoire territoireAttaquant, Territoire territoireDefenseur, int nbRegimentAttaquant) {
 		// TODO Auto-generated constructor stub
 		this.attaquant=attaquant;
+		this.territoireAttaquant = territoireAttaquant;
 		this.territoireDefenseur = territoireDefenseur;
-		
-		
-		int nbTerritoireAttaquantable=territoireAttaquant.getNbRegiments()-1;
-		this.nbRegimentAttaquant=choisirnbRegimentAttaquant(nbTerritoireAttaquantable);
-		this.territoireDefenseur=choisirTerritoireDefenseur(territoireAttaquant);
+		this.nbRegimentAttaquant = nbRegimentAttaquant;
 		this.desAttaque=desAttaquer(nbRegimentAttaquant);
 	}	
+	
+	
+	/**
+	 * @return ArrayList<Integer> desAttaque 
+	 */
 	public ArrayList<Integer> getDesAttaque() {
 		return desAttaque;
 	}
+	/**
+	 * @return Terrtoire territoireAttaquant
+	 */
 	public Territoire getTerritoireAttaquant() {
 		return territoireAttaquant;
 	}
+	/**
+	 * @return Territoire getTerritoireDefenseur
+	 */
 	public Territoire getTerritoireDefenseur() {
 		return territoireDefenseur;
 	}
+	/**
+	 * @return int nbRegimentAttaquant
+	 */
+	public int getNbRegimentAttaquant() {
+		return nbRegimentAttaquant;
+	}
+	
+	
+    /**
+     * @param nbRegimentAttaquant
+     * @return ArrayList<Integer> resultats
+     */
+    public ArrayList<Integer> desAttaquer(int nbRegimentAttaquant) {
+        ArrayList<Integer> resultats = new ArrayList<>();
+
+        for (int i = 0; i < nbRegimentAttaquant; i++) {
+        	LancerDes lancerDes=new LancerDes();
+            int resultat = lancerDes.getResultatDes();
+            resultats.add(resultat);
+        }
+        return resultats;
+    }
+    
+	// ************** FONCTION REUTILISABLE POUR TOI RAPH ****************** //
 	private Territoire choisirTerritoirePartir(Joueur attaquant) {
 		ArrayList<Territoire> allTerritoires = new ArrayList<>();
 		allTerritoires=attaquant.getAllTerritoires();
@@ -46,12 +78,8 @@ public class Attaque extends Action {
 	    Scanner scanner = new Scanner(System.in);
 	    int choix = scanner.nextInt();
 	    return allTerritoires.get(choix - 1); // 减去1以获取正确的索引
-
 	}
 	
-	public int getNbRegimentAttaquant() {
-		return nbRegimentAttaquant;
-	}
 	private int choisirnbRegimentAttaquant(int nbTerritoireAttaquantable) {
 		int choix;
 		Scanner scanner = new Scanner(System.in);
@@ -87,16 +115,4 @@ public class Attaque extends Action {
 
 	    return voisins.get(choix - 1); 
 	}
-	
-    public ArrayList<Integer> desAttaquer(int nbRegimentAttaquant) {
-        ArrayList<Integer> resultats = new ArrayList<>();
-
-        for (int i = 0; i < nbRegimentAttaquant; i++) {
-        	LancerDes lancerDes=new LancerDes();
-            int resultat = lancerDes.getResultatDes();
-            resultats.add(resultat);
-        }
-
-        return resultats;
-    }
 }
