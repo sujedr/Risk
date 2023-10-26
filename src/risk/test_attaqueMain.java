@@ -19,7 +19,6 @@ public class test_attaqueMain {
         // Creation du plateau (objets continents et territoires)
         Monde monde = new Monde();
         ArrayList<Territoire> territoires = monde.getTerritoires();//              <======== ajouter la var territoires en input @raph 
-        Fenetre vue = new Fenetre(territoires); // Crée une instance de Fenetre
         
         System.out.println("okk");
         
@@ -36,11 +35,15 @@ public class test_attaqueMain {
 
 		Joueur[] participants = {j1, j2, j3, j4, j5, j6};
 		Joueur joueur = j1;
-		
+		Territoire territoireAttaquant = monde.getTerritoires().get(0);
+		Territoire territoireDefenseur = monde.getTerritoires().get(1);
+		int nbRegimentsAttaque = 2;
+
 		////// TEST ATTAQUE /////
 		
-		Attaque attaque = new Attaque(joueur);
-		
+		Attaque attaque = public Attaque(joueur, territoireAttaquant, territoireDefenseur, nbRegimentsAttaque) {
+
+		}
 	}
 
 }
