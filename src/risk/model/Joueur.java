@@ -178,8 +178,11 @@ public class Joueur {
         }
      int ajoutCauseTerritoire = 3;
      int totalTerritoires = this.getAllTerritoires().size();
-     ajoutCauseTerritoire = totalTerritoires / 3; ////// A finir
-     
+     // On calcul uniquement si la quantité de territoire repond au seuil min de regiments
+     // 9/9 = 3 qui est le minimum de troupe que recoit un joueur
+     if (totalTerritoires >= 9) {
+    	 ajoutCauseTerritoire = totalTerritoires / 3; 
+     }
     total = total + ajoutCauseTerritoire + ajoutCauseContinent;
 	return total;
 	}
