@@ -11,7 +11,7 @@ public class Attaque extends Action {
 	private Territoire territoireAttaquant;
 	private Territoire territoireDefenseur;
 	private int nbRegimentAttaquant;
-	private ArrayList<Integer> des;
+	private ArrayList<Integer> desAttaque;
 	
 	public Attaque(Joueur attaquant) {
 		// TODO Auto-generated constructor stub

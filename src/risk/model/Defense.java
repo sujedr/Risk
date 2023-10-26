@@ -7,7 +7,7 @@ public class Defense extends Action {
 	private Territoire territoireDefenseur;
 	private Joueur defense;
 	private int nbRegimentDefenseur;
-	private ArrayList<Integer> des;
+	private ArrayList<Integer> desDefense;
 	
 	public Defense(Territoire territoireDefenseur,int nbRegimentAttaquant) {
 		// TODO Auto-generated constructor stub
