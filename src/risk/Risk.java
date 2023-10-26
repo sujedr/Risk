@@ -141,8 +141,8 @@ public class Risk {
         		 String choixDeplacer = "null"; // variable pour stocker si il y a validation des modifications des troupes, si il veut ajouter ou encore retirer de nouvelles troupes 
 
 	        	 // CHOIX D ATTAQUER, MODIFIER SES TROUPES OU PASSER SON TOUR
-	        	 // Tant que le tour du joueur n'est pas fini (decision de passer son tour), on affiche la fenetre des choix 
-	        	 while (choixAction != "Passer tour") {
+	        	 // Tant que le tour du joueur n'est pas fini (continuer d'attaquer), on affiche la fenetre des choix 
+	        	 while (choixAction == "Attaquer") {
 		        	 /** @Raph BESOIN - Modifier ta methode choixJoueur pour qu'elle retourne le choix du joueur
 		        	  *  Genre string "Attaquer", "Déplacer" ou "Passer tour" c'est impec :)
 		        	  */
@@ -172,18 +172,33 @@ public class Risk {
 	        				 *  - pays voisins mais un peu relou :/
 	        				 */ 
 	        				
+	        				// Choix d'AJOUTER des regiments
 	        				if (choixDeplacer == "Ajouter") {
 		        				Territoire territoireModifie = monde.getTerritoires().get(0);	// A modifier (pour test)
 		        				int nbRegiments = 1;											// A modifier (pour test)
 		        				
 		        				joueur.enleverNbRegimentsRestants(nbRegiments);
+		        				territoireModifie.ajouterNbRegiments(nbRegiments);
+	        				}
+		        			// Choix d'ENLEVER des regiments
+	        				else if (choixDeplacer == "Retirer") {
+		        				Territoire territoireModifie = monde.getTerritoires().get(0);	// A modifier (pour test)
+		        				int nbRegiments = 1;											// A modifier (pour test)
+		        				
+		        				joueur.ajouterNbRegimentsRestants(nbRegiments);
 		        				territoireModifie.enleverNbRegiments(nbRegiments);
 		        				
+		        				// Si le joueur a retiré toutes ses troupes d'un territoire on met à jour les data
+		        				if (territoireModifie.getNbRegiments() == 0) {
+		        					joueur.supprimerTerritoiresConquis(territoireModifie);
+		        					territoireModifie.setOccupant(null);
+		        				}
 	        				}
-	        				
 	        			}
 	        		 }
 	        	 }
+	        	 
+	        	 
 	        	 
 	        	 
         	 isWinner = true;																	// A supprimer (for testing only)
