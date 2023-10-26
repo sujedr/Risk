@@ -8,6 +8,7 @@ import java.util.Date;
 import java.util.List;
 import java.util.Random;
 import java.util.Scanner;
+import java.util.Set;
 
 import risk.controler.ConnexionDB;
 import risk.model.*;
@@ -108,12 +109,9 @@ public class Risk {
         	 for (Joueur joueur : participants) {
 	        	 System.out.println("Joueur " + joueur.getNom());
 	        	 
-	        	 // Instanciation des variables de stockage
+	        	 // INSTANCIATION VARIABLE DE STOCKAGE
 	        	 // Variable stockant si un nouveau territoire a ete conquis ou non au cours des attaques
 	        	 Boolean isNouveauTerritoireConquis = false;
-	        	 // Variable stockant si un nouveau continent a ete conquis ou non au cours des attaques
-	        	 HashMap <String, Boolean> stockContinentsOccupes = new HashMap();
-	        	 stockContinentsOccupes = joueur.consulterContinentsEntierementOccupes();
 	        	 // Variable stockant les choix du joueur
 	        	 String choixAction = "null"; // choix du joueur dans le menu (cf plus bas)
         		 String choixDeplacer = "null"; // variable pour stocker si il y a validation des modifications des troupes, si il veut ajouter ou encore retirer de nouvelles troupes 
@@ -147,6 +145,10 @@ public class Risk {
 	        	 }
 	        	 // PROCESSUS NORMAL POUR LES AUTRES TOURS
 	        	 else {
+		        	 // VERFICATION ET MISE A JOUR DES DATA EN FIN DE TOUR DE CHAQUE JOUEUR
+	        		 int nbRegimentAPlacer = joueur.calculerNbRegimentsAPlacer();
+	        		 joueur.ajouterNbRegimentsRestants(nbRegimentAPlacer);
+	        		 
 		        	 // AJOUT NOUVEAUX REGIMENTS
 		        	 while (joueur.getNbRegimentsRestants() != 0) {
 		        		 
@@ -230,6 +232,7 @@ public class Risk {
 		        	 }
 	        	 }
 	        	 
+	        	 // PIOCHER UNE CARTE SI NOUVEAU TERRITOIRE CONQUIS
 	        	 if (isNouveauTerritoireConquis == true) {
 	        		 /** Piocher carte 
 	        		  * @Yassine 
@@ -239,9 +242,7 @@ public class Risk {
 					  * - Le premier qui échange ses cartes reçoit 4 armées supplémentaires. 
 					  * --> Puis de deux en deux (jusque 15 et ensuite de 5 en 5) c'est tres wtf ahah
 	        		  */
-	        	 }
-	        	 
-	        	 
+	        	 }   	 
 	        	 
 	        	 
         	 isWinner = true;																	// A supprimer (for testing only)
