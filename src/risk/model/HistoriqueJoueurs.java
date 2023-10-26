@@ -29,5 +29,8 @@ public class HistoriqueJoueurs {
 
 	    return maxValue;
 	}
+	public int getClassementLength() {
+	    return classement.size();
+	}
 
 }

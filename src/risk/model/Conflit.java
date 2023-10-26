@@ -60,12 +60,13 @@ public class Conflit {
 			territoireAttaquant.getOccupant().ajouterTerritoiresConquis(territoireDefenseur);
 			territoireDefenseur.setOccupant(territoireAttaquant.getOccupant());
 			territoireDefenseur.setNbRegiments(nbSuivivant);
-			
+			elimination (territoireAttaquant, territoireDefenseur);
 			return 1;
 		}
 		else {
 			return 0;
 		}
+		
 	}
 	private void elimination (Territoire territoireAttaquant, Territoire territoireDefenseur) {
 		ArrayList <Territoire> tousTerritoireDefenseur=new ArrayList <Territoire>();
@@ -76,11 +77,17 @@ public class Conflit {
 			//???????
 			MaxValue=findMaxValue();
 			historiqueJoueurs.put(MaxValue,territoireDefenseur.getOccupant());
+			if(historiqueJoueurs.getClassementLength() ==6) {
+				manche.setEstTerminee(true);
+			}
 		}
 		if(tousterritoireAttaquant.size()==0) {
 			//???????
 			MaxValue=findMaxValue();
 			historiqueJoueurs.put(MaxValue,territoireAttaquant.getOccupant());
+			if(historiqueJoueurs.getClassementLength() ==6) {
+				manche.setEstTerminee(true);
+			}
 		}
 	}
 
