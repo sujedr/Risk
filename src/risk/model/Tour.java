@@ -10,21 +10,22 @@ public class Tour {
 	// Attributs
 	private HashMap<Integer, Conflit> conflitMap;
 	private Joueur joueur;
-	private Conflit conflit;	
-	private int NbRegimentsAPiocher;
 	
 	// Constructeur 
 	public Tour(Joueur joueur) {
+		this.joueur=joueur;
 		int numero=0;
+		HashMap<Integer, Conflit> conflitMap = new HashMap<>();
 		while(numero!=-1||numero<4) {
-			numero++;
-			Attaque attaque = new Attaque(joueur);
-			Defense defense = new Defense(attaque);
-			Conflit conflit = new Conflit(defense);
-			this.conflit=conflit;
-			
+			numero=getPlayerChoice();
+			if(numero!=-1) {
+				numero++;
+				Attaque attaque = new Attaque(joueur);
+				Defense defense = new Defense(attaque);
+				Conflit conflit = new Conflit(defense);
+				conflitMap.put(numero, conflit);
+			}
 		}
-		this.joueur = joueur;
 	}
 	
 	private int getPlayerChoice() {
