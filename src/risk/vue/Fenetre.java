@@ -52,8 +52,9 @@ public class Fenetre {
      * Gestion des interraction pour le premier tour
      * @param joueur
      */
-    public void premierTour(Joueur joueur) {
-        this.label.setText("             "  + joueur.getNom() + "\n" + joueur.getTerritoireClean());
+    public void premierTour(Joueur joueur, Territoire territoire) {
+    	//Actualisation de l'affichage
+        this.label.setText("             "  + joueur.getNom() + "\n" + joueur.getAllTerritoires());
     }
     
     /**

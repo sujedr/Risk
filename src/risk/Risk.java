@@ -185,7 +185,12 @@ public class Risk {
 			        	  *  genre, il pose 2, puis 1 , quand il en a plus ca passe à autre chose :3
 			        	  */
 		        		 
-		        		 vue.premierTour(joueur);
+		        		 
+		        		 for (Territoire territoire : joueur.getAllTerritoires()) {
+		        			 vue.premierTour(joueur, territoire);
+		        		 } 
+		        		 
+		        	//	 vue.premierTour(joueur, territoire); //Permet d'effectuer les actions pour un joueur au premier tour
 			    
 			        	 Territoire destTerritoireAjout = monde.getTerritoires().get(0);                    //    <== changer valeur
 			        	 int nbRegimentsAjoutes = 1;														//    <== changer valeur
