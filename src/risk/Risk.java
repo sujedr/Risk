@@ -107,9 +107,9 @@ public class Risk {
 		}
 		
 		// instances régiment pour infanterie, cavalerie et artillerie
-		Regiment infanterie = new Regiment("infanterie",1);
-		Regiment cavalerie = new Regiment("cavalerie",5);
-		Regiment artilleire = new Regiment("artilleire",10);
+		Regiment infanterie = new Regiment("Infanterie",1);
+		Regiment cavalerie = new Regiment("Cavalerie",5);
+		Regiment artilleire = new Regiment("Artillerie",10);
 		
 		// générer les cartes en associant chaque carte à un territoire 
 		List<String> nomsTerritoires = new ArrayList<>();
