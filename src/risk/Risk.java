@@ -207,6 +207,8 @@ public class Risk {
 				        	  * Attaque / Défense
 				        	  * integrer dans le code : Si nouveau territoire conquis => isNouveauTerritoireConquis = true;
 				        	  */
+		        			 Attaque attaque = new Attaque(joueur);
+		        			 
 		        		 }
 		        		 // DEPLACER CERTAINS DE SES REGIMENTS
 		        		 // Si le joueur clique sur l'option deplacer, il choisie autant de deplacement qu'il souhaite (tant que les territoires sont voisins)
