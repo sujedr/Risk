@@ -62,19 +62,18 @@ public class Joueur {
 	}
 	
 	// Couleur choisie par le joueur 玩家所选的颜色
-	public String getCouleur() {
-		return couleur;
-	}
-	
-	//Distribuer les cartes de mission aux joueurs 分发任务卡牌给玩家
-	public void assignRandomMission(Mission m) {
-		Random random = new Random();
-		ArrayList<String> listeMission = m.getMissionListe();
-		int randomIndex = random.nextInt(listeMission.size());
-		this.currentmission = listeMission.remove(randomIndex);
-		System.out.println(
-		"La mission du joueur " + id + " : " + currentmission);
-	}
+		public String getCouleur() {
+			return couleur;
+		}
+		
+		//Distribuer les cartes de mission aux joueurs 分发任务卡牌给玩家
+		public void DistribuerRandomMission(ArrayList<String> listeMission) {
+			Random random = new Random();
+			int randomIndex = random.nextInt(listeMission.size());
+			this.currentmission = listeMission.remove(randomIndex);
+			System.out.println(
+			"La mission du joueur " + id + " : " + currentmission);
+		}
 	
 	
 	

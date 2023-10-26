@@ -62,6 +62,15 @@ public class Risk {
 //            }
 //        }
 		
+		//Mélanger les cartes de mission 打乱卡牌
+		Mission m = new Mission();
+		Collections.shuffle(m.getMissionListe(), new Random());
+		
+		//Distribution des cartes de mission aux joueurs 随机分配任务卡牌给玩家
+		for(int i=0;i<participants.length;i++) {
+			participants[i].DistribuerRandomMission(m.getMissionListe());
+		}
+		
 		
 		
 		// DEBUT - ATTRIBUTION DES CARTES TERRITOIRES AUX JOUEURS
