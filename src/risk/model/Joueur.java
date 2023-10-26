@@ -244,9 +244,9 @@ public class Joueur {
 	@Override
 	public String toString() {
 		return "Joueur [id=" + id + ", nom=" + nom + ", prenom=" + prenom + ", dtNaissance=" + dtNaissance
-				+ ", territoiresConquis=" + territoiresConquis + ", nbRegimentsRestants=" + nbRegimentsRestants
-				+ ", nbTirageDes=" + Arrays.toString(nbTirageDes) + ", nbAttaque=" + nbAttaque + ", nbDefense="
-				+ nbDefense + ", nbTerritoire=" + nbTerritoire + ", nbRegiments=" + nbRegiments + ", nbTours=" + nbTours
-				+ "]";
+				+ ", couleur=" + couleur + ", territoiresConquis=" + territoiresConquis + ", nbRegimentsRestants="
+				+ nbRegimentsRestants + ", nbTirageDes=" + Arrays.toString(nbTirageDes) + ", nbAttaque=" + nbAttaque
+				+ ", nbDefense=" + nbDefense + ", nbTerritoire=" + nbTerritoire + ", nbRegiments=" + nbRegiments
+				+ ", nbTours=" + nbTours + "]";
 	}
 }

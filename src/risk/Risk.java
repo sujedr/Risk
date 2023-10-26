@@ -111,13 +111,7 @@ public class Risk {
 		Regiment infanterie = new Regiment("Infanterie",1);
 		Regiment cavalerie = new Regiment("Cavalerie",5);
 		Regiment artilleire = new Regiment("Artillerie",10);
-		
-		// générer les cartes en associant chaque carte à un territoire 
-		List<String> nomsTerritoires = new ArrayList<>();
-		for (Territoire nomTerritoire : territoires) {
-			nomsTerritoires.add(nomTerritoire.getNom());
-		}
-		
+				
 		List<String> typesRegiments = new ArrayList<>();
         typesRegiments.add("Infanterie");
         typesRegiments.add("Cavalerie");
@@ -125,7 +119,7 @@ public class Risk {
         
         List<Carte> cartes = new ArrayList<>();
         Random random = new Random();
-        for (String territoire : nomsTerritoires) {
+        for (Territoire territoire : territoires) {
             int randRegiment = random.nextInt(typesRegiments.size());
             String typeRegiment = typesRegiments.get(randRegiment);
             cartes.add(new Carte(territoire, typeRegiment));

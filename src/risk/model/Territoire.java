@@ -121,9 +121,8 @@ public class Territoire {
 	@Override
 	public String toString() {
 		return "Territoire [numero=" + numero + ", nom=" + nom + ", centreX=" + centreX + ", centreY=" + centreY
-				+ ", voisins=" + voisins + ", occupant=" + occupant + ", nbRegiments=" + nbRegiments + ", getNumber()="
-				+ getNumber() + ", getNom()=" + getNom() + ", getOccupant()=" + getOccupant() + ", getNbRegiments()="
-				+ getNbRegiments() + "]";
+				+ ", voisins=" + voisins + ", occupant=" + occupant + ", nbRegiments=" + nbRegiments + ", continent="
+				+ continent + "]";
 	}
 
 

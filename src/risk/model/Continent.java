@@ -43,7 +43,6 @@ public class Continent {
 
 	@Override
 	public String toString() {
-		return "Continent [nom=" + nom + ", territoires=" + territoires + ", getNom()=" + getNom()
-				+ ", getTerritoires()=" + getTerritoires() + "]";
+		return "Continent [nom=" + nom + "]";
 	}
 }
