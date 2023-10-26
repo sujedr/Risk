@@ -21,5 +21,9 @@ public class Carte {
     public String getTypeRegiment() {
         return typeRegiment;
     }
+    
+    public String toString() {
+        return "|RISK| Territoire : " + this.territoire + ", Type de Régiment : " + this.typeRegiment;
+    }
 
 }

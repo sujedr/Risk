@@ -3,6 +3,7 @@ package risk;
 import risk.vue.Fenetre;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Date;
 import java.util.List;
 import java.util.Random;
@@ -85,6 +86,18 @@ public class Risk {
         // afficher toutes les cartes
         for (Carte carte : cartes) {
             System.out.println("CARTE : Territoire : " + carte.getTerritoire() + ", Type de Régiment : " + carte.getTypeRegiment());
+        }
+        
+        // déterminer le nombre de personnes à jouer et le nombre de cartes à distribuer par personne
+        int nbParticipants = participants.length;
+        System.out.println(nbParticipants);
+        int carteJoueur = cartes.size() / nbParticipants;
+        System.out.println(carteJoueur);
+        // distribution des cartes
+        Collections.shuffle(cartes);
+        for (int i = 0; i < nbParticipants; i++) {
+            List<Carte> mainJoueur = cartes.subList(i * carteJoueur, (i + 1) * carteJoueur);
+            System.out.println("Joueur " + (i + 1) + " a reçu les cartes : " + mainJoueur);
         }
 		
 		// Creation d'une manche 
