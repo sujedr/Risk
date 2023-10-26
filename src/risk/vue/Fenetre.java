@@ -53,7 +53,7 @@ public class Fenetre {
      * @param joueur
      */
     public void premierTour(Joueur joueur) {
-        this.label.setText("             "  + joueur.getNom() + "\n" + joueur.getTerritoiresConquis());
+        this.label.setText("             "  + joueur.getNom() + "\n" + joueur.getTerritoireClean());
     }
     
     /**
