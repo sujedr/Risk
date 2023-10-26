@@ -231,7 +231,14 @@ public class Risk {
 	        	 }
 	        	 
 	        	 if (isNouveauTerritoireConquis == true) {
-	        		 
+	        		 /** Piocher carte 
+	        		  * @Yassine 
+	        		  * Peut echanger lorsque : 
+	        		  * - 3 cartes identiques (soit 3 cavaliers, ou 3 canons, ou 3 fantassins).
+					  * - 3 cartes différentes (soit 1 cavalier, 1 canon et 1 fantassin).
+					  * - Le premier qui échange ses cartes reçoit 4 armées supplémentaires. 
+					  * --> Puis de deux en deux (jusque 15 et ensuite de 5 en 5) c'est tres wtf ahah
+	        		  */
 	        	 }
 	        	 
 	        	 
