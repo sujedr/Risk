@@ -43,8 +43,7 @@ public class Joueur {
 		for (int i = 0; i < nomsContinents.length; i++) {
 			this.territoiresConquis.put(nomsContinents[i], new ArrayList<Territoire>());
 		}
-		this.nbRegimentsRestants = 0;
-		this.ajouterNbRegimentsRestants(3);
+		this.nbRegimentsRestants = 20; // Nombre de régiments en début de jeu pour une partie à 6
 		
 		/** Initialisation des attributs statistique à zero */         //*** A peut etre supprimer ***
 		for (int i=0; i<6; i++) {
