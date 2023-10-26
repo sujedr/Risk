@@ -288,7 +288,7 @@ public class Joueur {
 		}
 		if (ConquerirAmNord&&ConquerirAfri&&ConquerirEurope&&ConquerirAsie
 				&&ConquerirOceanie&&ConquerirAmSud) {
-			System.out.println("Félicitations au joueur "+id+" : Vous avez gagné !");
+			System.out.println("Félicitations au joueur "+id+" : Vous avez gagné et conquis tous les territoires !!");
 		}
 	}
 	
@@ -314,7 +314,7 @@ public class Joueur {
 		//您必须征服 18 块领土，并至少用两支军队占领其中的每一块领土
 		if(this.currentmission == "Vous devez conquérir 18 territoires et occuper chacun d'eux avec deux armées au moins.") {
 			if(allTerritoires.size()>=18 ||nbRegimentsAterritoires>=2) {
-				System.out.println("Vous avez gagné !");
+				System.out.println("Félicitations au joueur "+id+"Vous avez gagné !");
 			}
 		}
 		
@@ -322,7 +322,7 @@ public class Joueur {
 		//完成任务征服整个北美洲和非洲
 		else if(this.currentmission == "Vous devez conquérir en totalité l'Asie et l'Amérique du sud.") {
 			if (ConquerirAmNord&&ConquerirAfri) {
-				System.out.println("Vous avez gagné !");
+				System.out.println("Félicitations au joueur "+id+"Vous avez gagné !");
 			}
 		}
 		
@@ -331,7 +331,7 @@ public class Joueur {
 		//您必须征服整个欧洲和南美洲，外加您选择的第三个洲
 		else if(this.currentmission == "Vous devez conquérir en totalité l'Europe et l'Amérique du sud plus un troisième continent au choix.") {
 			if ((ConquerirEurope&&ConquerirAmSud)||ConquerirAmNord||ConquerirAfri||ConquerirAsie||ConquerirOceanie) {
-				System.out.println("Vous avez gagné !");
+				System.out.println("Félicitations au joueur "+id+"Vous avez gagné !");
 			}
 		}
 		
@@ -340,7 +340,7 @@ public class Joueur {
 		//您必须征服整个欧洲和大洋洲，外加您选择的第三个洲
 		else if(this.currentmission == "Vous devez conquérir en totalité l'Europe et l'Océanie plus un troisième continent au choix.") {
 			if ((ConquerirEurope&&ConquerirOceanie)||ConquerirAmNord||ConquerirAfri||ConquerirAsie||ConquerirAmSud) {
-				System.out.println("Vous avez gagné !");
+				System.out.println("Félicitations au joueur "+id+"Vous avez gagné !");
 			}
 		}
 		
@@ -349,7 +349,7 @@ public class Joueur {
 		//您必须征服您选择的 24 个领土
 		else if(this.currentmission == "Vous devez conquérir 24 territoires aux choix.") {
 			if(allTerritoires.size()>=24) {
-				System.out.println("Vous avez gagné !");
+				System.out.println("Félicitations au joueur "+id+"Vous avez gagné !");
 			}
 		}
 		
@@ -358,7 +358,7 @@ public class Joueur {
 		//您必须征服整个北美洲和大洋洲
 		else if(this.currentmission == "Vous devez conquérir en totalité l'Amérique du Nord et l'Océanie.") {
 			if (ConquerirAmNord&&ConquerirOceanie) {
-				System.out.println("Vous avez gagné !");
+				System.out.println("Félicitations au joueur "+id+"Vous avez gagné !");
 			}
 		}
 		
@@ -367,7 +367,7 @@ public class Joueur {
 		//您必须征服整个亚洲和非洲
 		else if(this.currentmission == "Vous devez conquérir en totalité l'Asie et l'Afrique.") {
 			if (ConquerirAsie&&ConquerirAfri) {
-				System.out.println("Vous avez gagné !");
+				System.out.println("Félicitations au joueur "+id+"Vous avez gagné !");
 			}
 		}
 		
@@ -376,7 +376,7 @@ public class Joueur {
 		//您必须征服整个亚洲和南美洲
 		else if(this.currentmission == "Vous devez conquérir en totalité l'Asie et l'Amérique du sud.") {
 			if (ConquerirAsie&&ConquerirAmSud) {
-				System.out.println("Vous avez gagné !");
+				System.out.println("Félicitations au joueur "+id+"Vous avez gagné !");
 			}
 		}
 		
