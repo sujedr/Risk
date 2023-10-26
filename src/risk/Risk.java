@@ -100,6 +100,13 @@ public class Risk {
         //Mélanger les cartes de mission
 		Collections.shuffle(missions);
 		
+		//Attribuer une mission randomisée à chaque joueur
+		for (int i = 0; i < participants.length; i++) {
+			Joueur joueur = participants[i];
+			String mission = missions.get(i);
+            System.out.println("La mission du joueur " + joueur.getId() + " : " + mission);
+		}
+		
 		// instances régiment pour infanterie, cavalerie et artillerie
 		Regiment infanterie = new Regiment("infanterie",1);
 		Regiment cavalerie = new Regiment("cavalerie",5);
