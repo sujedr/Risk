@@ -1,35 +1,88 @@
 package risk.model;
-
 import java.util.ArrayList;
-import java.util.Collections;
-import risk.model.HistoriqueJoueurs;
+import risk.model.LancerDes;
 
+/**
+ * Class Clonflit à jour
+ * Archive (version scanner => old version)
+ *
+ */
 public class Conflit {
+	
+	private Joueur attaquant;
+	private Joueur defenseur;
 	private Territoire territoireAttaquant;
 	private Territoire territoireDefenseur;
+	private int nbRegimentAttaquant;
+	private int nbRegimentDefenseur;
 	private ArrayList<Integer> desAttaque;
 	private ArrayList<Integer> desDefense;
-	private int succes;
+
 	
-	public Conflit(Defense defense) {
-		Attaque attaque=defense.getAttaque();
-		Territoire territoireAttaquant=attaque.getTerritoireAttaquant();
-		Territoire territoireDefenseur=attaque.getTerritoireDefenseur();
-		ArrayList<Integer> desAttaque=attaque.getDesAttaque();
-		ArrayList<Integer> desDefense=defense.getDesDefense();
-		this.desAttaque=trierDesAttaqueAvecRetour(desAttaque);
-		this.desDefense=trierDesAttaqueAvecRetour(desDefense);
-		int nbSuivivant=ResultConflit(territoireAttaquant, territoireDefenseur, desAttaque, desDefense) ;
-		succes=reglementDefaite(territoireAttaquant, territoireDefenseur,nbSuivivant);
+	public Conflit(Joueur attaquant, Territoire territoireAttaquant, Territoire territoireDefenseur, int nbRegimentAttaquant) {
+		this.attaquant = attaquant;
+		this.territoireAttaquant = territoireAttaquant;
+		this.territoireDefenseur = territoireDefenseur;
+		this.nbRegimentAttaquant = nbRegimentAttaquant;
+		this.defenseur = territoireDefenseur.getOccupant();
+	}	
+	
+	/**
+	 * @return ArrayList<Integer> desAttaque 
+	 */
+	public ArrayList<Integer> getDesAttaque() {
+		return desAttaque;
+	}
+	/**
+	 * @return Terrtoire territoireAttaquant
+	 */
+	public Territoire getTerritoireAttaquant() {
+		return territoireAttaquant;
+	}
+	/**
+	 * @return Territoire getTerritoireDefenseur
+	 */
+	public Territoire getTerritoireDefenseur() {
+		return territoireDefenseur;
+	}
+	/**
+	 * @return int nbRegimentAttaquant
+	 */
+	public int getNbRegimentAttaquant() {
+		return nbRegimentAttaquant;
+	}
+	/**
+	 * @return joueur defenseur
+	 */
+	public Joueur getDefenseur() {
+		return defenseur;
+	}
+	/**
+	 * @return joueur attaquant
+	 */
+	public Joueur getAttaquant() {
+		return attaquant;
+	}    
+	/**
+	 * @return int nbRegimentDefenseur
+	 */
+	public int getNbRegimentDefenseur() {
+		return nbRegimentDefenseur;
 	}
 	
-	private ArrayList<Integer> trierDesAttaqueAvecRetour(ArrayList<Integer> desAttaque) {
-	    // 创建一个新的ArrayList并进行排序
-	    ArrayList<Integer> sortedDesAttaque = new ArrayList<>(desAttaque);
-	    Collections.sort(sortedDesAttaque, Collections.reverseOrder());
-	    return sortedDesAttaque;
-	}
-	private int ResultConflit(Territoire territoireAttaquant, Territoire territoireDefenseur, ArrayList<Integer> desAttaque, ArrayList<Integer> desDefense) {
+	/**
+	 * @param nbRegimentsRiposte
+	 * @return .... a definir ....
+	 */
+	public int resultatConflit(int nbRegimentsRiposte) {
+		// Setting nb regiment attaquant
+		this.nbRegimentDefenseur = nbRegimentsRiposte;
+		// Lancer dès attaquant et enregistrer resultat pour traitement data en BD
+		this.desAttaque = desAttaquer();
+		// Lancer dès défenseur et enregistrer resultat pour traitement data en BD
+		this.desDefense = desDefenseur();
+		
+		// Gestion des resultats des lancés de dès
 	    // 循环比较desDefense的长度次
 	    int iterations = desDefense.size();
 	    int nbSurvivant = desAttaque.size();
@@ -52,46 +105,36 @@ public class Conflit {
 	            nbSurvivant=nbSurvivant-1;
 	        }
 	    }
+	    System.out.println(this.desAttaque);
+	    System.out.println(this.desDefense);
+	    System.out.println(nbSurvivant);
 	    return nbSurvivant;
 	}
-	private int reglementDefaite(Territoire territoireAttaquant, Territoire territoireDefenseur,int nbSuivivant) {
-		if(territoireDefenseur.getNbRegiments()==0) {
-			territoireDefenseur.getOccupant().supprimerTerritoiresConquis(territoireDefenseur);
-			territoireAttaquant.getOccupant().ajouterTerritoiresConquis(territoireDefenseur);
-			territoireDefenseur.setOccupant(territoireAttaquant.getOccupant());
-			territoireDefenseur.setNbRegiments(nbSuivivant);
-			//TODO commentaire car erreur
-			//elimination (territoireAttaquant, territoireDefenseur);
-			return 1;
-		}
-		else {
-			return 0;
-		}
-		
-	}
-	//TODO j'ai mis en commentaire car ça fait des erreurs
-	/*
-	private void elimination (Territoire territoireAttaquant, Territoire territoireDefenseur) {
-		ArrayList <Territoire> tousTerritoireDefenseur=new ArrayList <Territoire>();
-		tousTerritoireDefenseur=territoireDefenseur.getOccupant().getAllTerritoires();
-		ArrayList <Territoire> tousterritoireAttaquant=new ArrayList <Territoire>();
-		tousterritoireAttaquant=territoireAttaquant.getOccupant().getAllTerritoires();
-		if(tousTerritoireDefenseur.size()==0) {
-			//???????
-			MaxValue=findMaxValue();
-			historiqueJoueurs.put(MaxValue,territoireDefenseur.getOccupant());
-			if(historiqueJoueurs.getClassementLength() ==6) {
-				manche.setEstTerminee(true);
-			}
-		}
-		if(tousterritoireAttaquant.size()==0) {
-			//???????
-			MaxValue=findMaxValue();
-			historiqueJoueurs.put(MaxValue,territoireAttaquant.getOccupant());
-			if(historiqueJoueurs.getClassementLength() ==6) {
-				manche.setEstTerminee(true);
-			}
-		}
-	} */
+	
+    /**
+     * @return ArrayList<Integer> resultats
+     */
+    public ArrayList<Integer> desAttaquer() {
+        ArrayList<Integer> resultats = new ArrayList<>();
 
+        for (int i = 0; i < this.nbRegimentAttaquant; i++) {
+        	LancerDes lancerDes=new LancerDes();
+            int resultat = lancerDes.getResultatDes();
+            resultats.add(resultat);
+        }
+        return resultats;
+    }
+    
+    /**
+     * @return ArrayList<Integer> resultats
+     */
+    public ArrayList<Integer> desDefenseur() {
+        ArrayList<Integer> resultats = new ArrayList<>();
+        for (int i = 0; i < this.nbRegimentDefenseur; i++) {
+        	LancerDes lancerDes=new LancerDes();
+            int resultat = lancerDes.getResultatDes();
+            resultats.add(resultat);
+        }
+        return resultats;
+    }
 }

@@ -2,11 +2,11 @@ package risk;
 
 import java.util.ArrayList;
 
-import risk.model.Attaque;
+import risk.model.Conflit;
 import risk.model.Joueur;
 import risk.model.Monde;
 import risk.model.Territoire;
-import risk.vue.Fenetre;
+
 
 public class test_attaqueMain {
 
@@ -34,11 +34,22 @@ public class test_attaqueMain {
 		Territoire territoireAttaquant = monde.getTerritoires().get(0);
 		Territoire territoireDefenseur = monde.getTerritoires().get(1);
 		int nbRegimentsAttaque = 2;
+		int nbRegimentsRiposte = 1;
 
 		////// TEST ATTAQUE /////
 		
-		/** Demander choix pays attaquant, pays attaqué, nombre de troupes */
-		Attaque attaque = new Attaque(joueur, territoireAttaquant, territoireDefenseur, nbRegimentsAttaque);
+		/** @Raph Demander choix pays attaquant, pays attaqué, nombre de troupes 
+		 *  Output : territoireAttaquant, territoireDefenseur, nbRegimentsAttaque
+		 */
+		Conflit conflit = new Conflit(joueur, territoireAttaquant, territoireDefenseur, nbRegimentsAttaque);
+		/** @Raph Demander defenseur nb de troupes riposte
+		 *  Input : conflit.getBlablabla...
+		 *  Output : nbRegimentsRiposte
+		 */
+		conflit.resultatConflit(nbRegimentsRiposte);
 	}
-
 }
+
+
+
+

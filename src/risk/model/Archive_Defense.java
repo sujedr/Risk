@@ -1,15 +1,17 @@
 package risk.model;
 
 import java.util.ArrayList;
-
-public class Defense {
-	private Attaque attaque;
+/**
+ *  CLASSE DEFENSE **** QUIPROQUO *** CLASSE PAS UTILISEE 
+ */
+public class Archive_Defense {
+	private Archive_Attaque attaque;
 	private Territoire territoireDefenseur;
 	private Joueur defense;
 	private int nbRegimentDefenseur;
 	private ArrayList<Integer> desDefense;
 	
-	public Defense(Attaque attaque) {
+	public Archive_Defense(Archive_Attaque attaque) {
 		// TODO Auto-generated constructor stub
 		this.territoireDefenseur=attaque.getTerritoireDefenseur();
 		int nbRegimentAttaquant=attaque.getNbRegimentAttaquant();
@@ -24,7 +26,7 @@ public class Defense {
 		return desDefense;
 	}
 
-	public Attaque getAttaque() {
+	public Archive_Attaque getAttaque() {
 		return attaque;
 	}
 

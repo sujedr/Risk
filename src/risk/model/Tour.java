@@ -1,28 +1,28 @@
 package risk.model;
 import java.util.HashMap;
 import java.util.Scanner;
-import risk.model.Attaque;
-import risk.model.Defense;
+import risk.model.Archive_Attaque;
+import risk.model.Archive_Defense;
 
 
 public class Tour {
 	
 	// Attributs
-	private HashMap<Integer, Conflit> conflitMap;
+	private HashMap<Integer, Archive_Conflit> conflitMap;
 	private Joueur joueur;
 
 	// Constructeur 
 	public Tour(Joueur joueur) {
 		this.joueur=joueur;
 		int numero=0;
-		HashMap<Integer, Conflit> conflitMap = new HashMap<>();
+		HashMap<Integer, Archive_Conflit> conflitMap = new HashMap<>();
 		while(numero!=-1||numero<4) {
 			numero=getPlayerChoice();
 			if(numero!=-1) {
 				numero++;
-				Attaque attaque = new Attaque(joueur);
-				Defense defense = new Defense(attaque);
-				Conflit conflit = new Conflit(defense);
+				Archive_Attaque attaque = new Archive_Attaque(joueur);
+				Archive_Defense defense = new Archive_Defense(attaque);
+				Archive_Conflit conflit = new Archive_Conflit(defense);
 				conflitMap.put(numero, conflit);
 			}
 		}
