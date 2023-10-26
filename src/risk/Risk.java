@@ -149,9 +149,8 @@ public class Risk {
 	        	 // Variable stockant les choix du joueur
 	        	 String choixAction = "null"; // choix du joueur dans le menu (cf plus bas)
         		 String choixDeplacer = "null"; // variable pour stocker si il y a validation des modifications des troupes, si il veut ajouter ou encore retirer de nouvelles troupes 
-        		 /** @Moi pas fini a ajouter autres verif dont nb regiments*/
         		 
-	        	 // PLACEMENT DES 20 REGIMENTS POUR LE PREMIER TOUR
+	        	 // PLACEMENT DES 20 REGIMENTS POUR LE PREMIER TOUR (7 DEJA PLACES)
 	        	 if (isFirstTour == true) {
         			 while (joueur.getNbRegimentsRestants() != 0) {
 		        		 for (Territoire territoire : joueur.getAllTerritoires()) {

@@ -22,7 +22,6 @@ public class Attaque extends Action {
 		this.desAttaque=desAttaquer(nbRegimentAttaquant);
 	}	
 	
-	
 	/**
 	 * @return ArrayList<Integer> desAttaque 
 	 */

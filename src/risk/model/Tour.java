@@ -28,6 +28,7 @@ public class Tour {
 		}
 	}
 	
+	//////////////////////  INTERFACE CF RAPHH //////////////////////
 	public int getPlayerChoice() {
 	    Scanner scanner = new Scanner(System.in);
 	    System.out.print("Veuillez entrer votre choix (-1 signifie abandonner l'attaque) : ");

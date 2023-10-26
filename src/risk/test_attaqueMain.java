@@ -10,10 +10,6 @@ import risk.vue.Fenetre;
 
 public class test_attaqueMain {
 
-	public test_attaqueMain() {
-		// TODO Auto-generated constructor stub
-	}
-
 	public static void main(String[] args) {
 		
         // Creation du plateau (objets continents et territoires)
@@ -41,9 +37,8 @@ public class test_attaqueMain {
 
 		////// TEST ATTAQUE /////
 		
-		Attaque attaque = public Attaque(joueur, territoireAttaquant, territoireDefenseur, nbRegimentsAttaque) {
-
-		}
+		Attaque attaque = new Attaque(joueur, territoireAttaquant, territoireDefenseur, nbRegimentsAttaque);
+			
 	}
 
 }
