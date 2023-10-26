@@ -1,0 +1,46 @@
+package risk;
+
+import java.util.ArrayList;
+
+import risk.model.Attaque;
+import risk.model.Joueur;
+import risk.model.Monde;
+import risk.model.Territoire;
+import risk.vue.Fenetre;
+
+public class test_attaqueMain {
+
+	public test_attaqueMain() {
+		// TODO Auto-generated constructor stub
+	}
+
+	public static void main(String[] args) {
+		
+        // Creation du plateau (objets continents et territoires)
+        Monde monde = new Monde();
+        ArrayList<Territoire> territoires = monde.getTerritoires();//              <======== ajouter la var territoires en input @raph 
+        Fenetre vue = new Fenetre(territoires); // Crée une instance de Fenetre
+        
+        System.out.println("okk");
+        
+        // INITIALISATION D'UNE MANCHE
+	    /** Deb - A supprimer apres test*/
+		String dn = "2020-10-10";
+
+		Joueur j1 = new Joueur("1", "AA", "aa", dn, monde.getMonde(), "jaunes");
+		Joueur j2 = new Joueur("2", "BB", "bb", dn, monde.getMonde(), "rouges");
+		Joueur j3 = new Joueur("3", "CC", "cc", dn, monde.getMonde(), "bleues");
+		Joueur j4 = new Joueur("4", "DD", "dd", dn, monde.getMonde(), "noires");
+		Joueur j5 = new Joueur("5", "EE", "ee", dn, monde.getMonde(), "violettes");
+		Joueur j6 = new Joueur("6", "FF", "ff", dn, monde.getMonde(), "vertes");
+
+		Joueur[] participants = {j1, j2, j3, j4, j5, j6};
+		Joueur joueur = j1;
+		
+		////// TEST ATTAQUE /////
+		
+		Attaque attaque = new Attaque(joueur);
+		
+	}
+
+}
