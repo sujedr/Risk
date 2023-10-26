@@ -130,21 +130,6 @@ public class Joueur {
 		return territoiresConquis;
 	}
 	
-    /**
-     * Permet de récupérer proprement les territoires pour l'affichage
-     * @param continentTerritoires
-     * @return liste des territoires propre
-     */
-    public ArrayList<String> getTerritoireClean() {
-        ArrayList<String> territoiresClair = new ArrayList<>();
-        for (ArrayList<Territoire> territoires : territoiresConquis.values()) {
-            for (Territoire territoire : territoires) {
-                territoiresClair.add(territoire.getNumber() + " : " + territoire.getNom());
-            }
-        }
-        return territoiresClair;
-    }
-	
 	/**
 	 * @return Liste de territoires
 	 */
@@ -159,7 +144,6 @@ public class Joueur {
 	            allTerritoires.add(territoire);
 	        }
 	    }
-
 	    return allTerritoires;
 	}
 	
