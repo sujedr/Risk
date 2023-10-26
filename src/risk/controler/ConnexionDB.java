@@ -1,5 +1,6 @@
 package risk.controler;
 import java.sql.*;
+import java.time.LocalDate;
 import java.util.Scanner;
 
 public class ConnexionDB {
@@ -17,6 +18,33 @@ public class ConnexionDB {
         }
     }
 
+//    public void generateTable() {
+//        try {
+//            Statement statement = conn.createStatement();
+//
+//            // vérification table existe
+//            ResultSet resultSetJoueur = statement.executeQuery("SHOW TABLES LIKE 'joueur'");
+//            if (!resultSetJoueur.next()) {
+//                String generateJoueur = "CREATE TABLE joueur ("
+//                        + "id INT AUTO_INCREMENT PRIMARY KEY,"
+//                        + "vNomJoueur VARCHAR(50),"
+//                        + "vPrenomJoueur VARCHAR(50),"
+//                        + "dtNaissance VARCHAR(50)"
+//                        + ")";
+//                statement.executeUpdate(generateJoueur);
+//            }
+//
+//            // Ajoutez des blocs similaires pour les autres tables que vous avez besoin de créer
+//
+//            // Fermez le statement
+//            statement.close();
+//
+//            System.out.println("Tables créées avec succès.");
+//        } catch (SQLException e) {
+//            System.err.println("Erreur lors de la création des tables : " + e.getMessage());
+//        }
+//    }
+    
     // méthode permettant la lecture d'une requete sql
     public void readQuery(String sql) {
         try {
@@ -44,17 +72,16 @@ public class ConnexionDB {
 
     
     // méthode permettant l'insertion de joueurs
-    public void insertJoueur(String nom, String prenom, Date dateNaissance, String nomEquipe) {
+    public void insertJoueur(String nom, String prenom, String dateNaissance) {
         try {
             // requete paramétrée
-            String insertSQL = "INSERT INTO joueur (nom, prenom, dateNaissance, nomEquipe ) VALUES (?, ?, ?, ?)";
+            String insertSQL = "INSERT INTO joueur (nom, prenom, dateNaissance) VALUES (?, ?, ?)";
             PreparedStatement preparedStatement = conn.prepareStatement(insertSQL);
 
             // associer paramêtres
             preparedStatement.setString(1, nom);
             preparedStatement.setString(2, prenom);
-            preparedStatement.setDate(3, dateNaissance);
-            preparedStatement.setString(4, nomEquipe);
+            preparedStatement.setString(3, dateNaissance);
 
             // execute query
             preparedStatement.executeUpdate();
@@ -77,17 +104,13 @@ public class ConnexionDB {
             String prenom = scanner.nextLine();
 
             System.out.print("Date de naissance (format YYYY-MM-DD) : ");
-            String dateNaissanceStr = scanner.nextLine();
-            Date dateNaissance = Date.valueOf(dateNaissanceStr);
-
-            System.out.print("Nom d'Equipe du joueur : ");
-            String nomEquipe = scanner.nextLine();
+            String dateNaissance = scanner.nextLine();
             
             System.out.println("Enregistrer la saisie ? (oui/non)");
             String confirmation = scanner.next();
 
             if (confirmation.equalsIgnoreCase("oui")) {
-                insertJoueur(nom, prenom, dateNaissance, nomEquipe);
+                insertJoueur(nom, prenom, dateNaissance);
                 System.out.println("Joueur enregistré");
             } else {
                 System.out.println("Enregistrement annulé");
@@ -160,7 +183,29 @@ public class ConnexionDB {
             System.err.println("Erreur de fin de connexion : " + e.getMessage());
         }
     }
-/*
+    
+    // vérifier si le joueur existe déja
+    public boolean joueurExiste(String nom, String prenom) {
+        try {
+            String query = "SELECT COUNT(*) FROM joueur WHERE nom = ? AND prenom = ?";
+            PreparedStatement preparedStatement = conn.prepareStatement(query);
+            preparedStatement.setString(1, nom);
+            preparedStatement.setString(2, prenom);
+            ResultSet resultSet = preparedStatement.executeQuery();
+
+            if (resultSet.next()) {
+                int count = resultSet.getInt(1);
+                return count > 0;
+            }
+
+        } catch (SQLException e) {
+            System.err.println("Erreur lors de la vérification de l'existence du joueur : " + e.getMessage());
+        }
+
+        return false;
+    }
+    
+    
     public static void main(String[] args) {
         String url = "jdbc:mysql://localhost:3306/risk";
         String user = "root";
@@ -177,10 +222,13 @@ public class ConnexionDB {
         // creation d'équipe
         //dbRisk.createEquipe("Kikou", 1, 2, 3, 4);
 
-        // creation de la compétition du mois de novembre
+        // creation de la compétition
         //dbRisk.createCompetition(2023, Date.valueOf("2023-11-01"), Date.valueOf("2023-11-30"));
+        
+        // display classement
+        dbRisk.readQuery("select nom, prenom, score from joueur order by score DESC;");
         
         // close connexion
         dbRisk.closeConnexion();
-    } */
+    } 
 }
