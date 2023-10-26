@@ -49,11 +49,52 @@ public class Fenetre {
     }
     
     /**
+     * Gestion des interraction pour le premier tour
+     * @param joueur
+     */
+    public void premierTour(Joueur joueur) {
+        this.label.setText("             "  + joueur.getNom() + "\n" + joueur.getTerritoiresConquis());
+    }
+    
+    /**
+     * Méthode à invoker pour permettre à un joueur d'effectuer ses actions dans un tour
+     * @param joueur
+     */
+    public void actionsTour(Joueur joueur) {
+        this.label.setText("             "  + joueur.getNom());
+        frame.addMouseListener(new MouseListener() {
+            public void mouseClicked(MouseEvent e) {
+            	
+                int x = e.getX();
+                int y = e.getY();
+                
+                for (Territoire territoire : territoires) {
+                	if (territoire.isInTerritory(x, y, seuil) ) {
+                		choixJoueurTour(territoire, joueur);
+                	};
+                }  
+            }
+			@Override
+			public void mousePressed(MouseEvent e) {}
+
+			@Override
+			public void mouseReleased(MouseEvent e) {}
+
+			@Override
+			public void mouseEntered(MouseEvent e) {}
+
+			@Override
+			public void mouseExited(MouseEvent e) {}
+        });
+    }
+    
+    /**
      * @param territoire
      */
-    public void choixJoueur(Territoire territoire, Joueur joueur) {
+    public void choixJoueurTour(Territoire territoire, Joueur joueur) {
         String[] options = {"Attaquer", "Déplacer", "Passer tour"};
-        int choice = JOptionPane.showOptionDialog(frame, territoire.getNumber() + " : " + territoire.getNom() + "\n Occupant : " + territoire.getOccupant().getNom() + "\n Choisissez une action ", "Action", JOptionPane.DEFAULT_OPTION, JOptionPane.QUESTION_MESSAGE, null, options, options[0]);
+        int choice = JOptionPane.showOptionDialog(frame, territoire.getNumber() + " : " + territoire.getNom() + "\n Occupant : " 
+        + /* TODO remettre apres test territoire.getOccupant().getNom() + */ "\n Choisissez une action ", "Action", JOptionPane.DEFAULT_OPTION, JOptionPane.QUESTION_MESSAGE, null, options, options[0]);
 
         if (choice == 0) {
             JOptionPane.showMessageDialog(frame, "Vous avez choisi d'attaquer \n Cliquez maintenant sur le pays que vous souhaitez attaquer");
@@ -94,37 +135,7 @@ public class Fenetre {
         }
     }
     
-    /**
-     * Méthode à invoker pour permettre à un joueur d'effectuer ses actions dans un tour
-     * @param joueur
-     */
-    public void actionsTour(Joueur joueur) {
-        this.label.setText("             "  + joueur.getNom());
-        frame.addMouseListener(new MouseListener() {
-            public void mouseClicked(MouseEvent e) {
-            	
-                int x = e.getX();
-                int y = e.getY();
-                
-                for (Territoire territoire : territoires) {
-                	if (territoire.isInTerritory(x, y, seuil) ) {
-                		choixJoueur(territoire, joueur);
-                	};
-                }  
-            }
-			@Override
-			public void mousePressed(MouseEvent e) {}
 
-			@Override
-			public void mouseReleased(MouseEvent e) {}
-
-			@Override
-			public void mouseEntered(MouseEvent e) {}
-
-			@Override
-			public void mouseExited(MouseEvent e) {}
-        });
-    }
     
     /**
      * setter des territoires

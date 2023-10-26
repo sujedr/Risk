@@ -181,24 +181,26 @@ public class Risk {
 		        	 // Tant que le joueur n'a pas ajouter tous ses regiments, il ajoute les regiments restants
 		        	 while (joueur.getNbRegimentsRestants() != 0) {
 		        		 
-		        	 /** @Raph BESOIN - Methode retournant un territoire et une quantité pour choisir le territoire où ajouter les troupes
-		        	  *  >> Rappel condition : territoire.occupant == null || territoire.occupant == joueur
-		        	  *  Sinon retourner fenetre message erreur territoire deja occupé 
-		        	  *  OU
-		        	  *  Si galere je le bloque à la mano dans le main 
-		        	  *  
-		        	  *  Pour simplifier, l'algo c'est qu'à la phase d'ajout, il peuvent pas enlever quand ils posent ahah 
-		        	  *  genre, il pose 2, puis 1 , quand il en a plus ca passe à autre chose :3
-		        	  */	        	 
-		    
-		        	 Territoire destTerritoireAjout = monde.getTerritoires().get(0);                    //    <== changer valeur
-		        	 int nbRegimentsAjoutes = 1;														//    <== changer valeur
-		        	 System.out.println("*Debut* Territoire : "+destTerritoireAjout.getNom()+" - Nb : "+destTerritoireAjout.getNbRegiments());
-		        	 System.out.println("*Debut* Joueur : "+joueur.getNom()+" - Nb : "+joueur.getNbRegimentsRestants());
-		        	 destTerritoireAjout.ajouterNbRegiments(nbRegimentsAjoutes); // Ajout régiment au territoire
-		        	 joueur.enleverNbRegimentsRestants(nbRegimentsAjoutes); // Retrait nb au nb de regiment à placer
-		        	 System.out.println("*Fin* Territoire : "+destTerritoireAjout.getNom()+" - Nb : "+destTerritoireAjout.getNbRegiments());
-		        	 System.out.println("*Fin* Joueur : "+joueur.getNom()+" - Nb : "+joueur.getNbRegimentsRestants());
+			        	 /** @Raph BESOIN - Methode retournant un territoire et une quantité pour choisir le territoire où ajouter les troupes
+			        	  *  >> Rappel condition : territoire.occupant == null || territoire.occupant == joueur
+			        	  *  Sinon retourner fenetre message erreur territoire deja occupé 
+			        	  *  OU
+			        	  *  Si galere je le bloque à la mano dans le main 
+			        	  *  
+			        	  *  Pour simplifier, l'algo c'est qu'à la phase d'ajout, il peuvent pas enlever quand ils posent ahah 
+			        	  *  genre, il pose 2, puis 1 , quand il en a plus ca passe à autre chose :3
+			        	  */
+		        		 
+		        		 vue.premierTour(joueur);
+			    
+			        	 Territoire destTerritoireAjout = monde.getTerritoires().get(0);                    //    <== changer valeur
+			        	 int nbRegimentsAjoutes = 1;														//    <== changer valeur
+			        	 System.out.println("*Debut* Territoire : "+destTerritoireAjout.getNom()+" - Nb : "+destTerritoireAjout.getNbRegiments());
+			        	 System.out.println("*Debut* Joueur : "+joueur.getNom()+" - Nb : "+joueur.getNbRegimentsRestants());
+			        	 destTerritoireAjout.ajouterNbRegiments(nbRegimentsAjoutes); // Ajout régiment au territoire
+			        	 joueur.enleverNbRegimentsRestants(nbRegimentsAjoutes); // Retrait nb au nb de regiment à placer
+			        	 System.out.println("*Fin* Territoire : "+destTerritoireAjout.getNom()+" - Nb : "+destTerritoireAjout.getNbRegiments());
+			        	 System.out.println("*Fin* Joueur : "+joueur.getNom()+" - Nb : "+joueur.getNbRegimentsRestants());
 		        	 }
 	        		 isFirstTour = false;
 	        	 }
