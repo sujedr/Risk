@@ -43,6 +43,8 @@ public class Risk {
 		Joueur j6 = new Joueur("6", "FF", "ff", dn, monde.getMonde(), "vertes");
 
 		Joueur[] participants = {j1, j2, j3, j4, j5, j6};
+		
+		int nbUnitesAjout = 0; //Nombre d'unités a ajouté et enlever
 	    /** Fin - A supprimer apres test*/
 		
 //		// Enregistrement des joueurs dans la base de données
@@ -199,7 +201,10 @@ public class Risk {
 		        		 
 		        		 
 		        		 for (Territoire territoire : joueur.getAllTerritoires()) {
-		        			 vue.premierTour(joueur, territoire);
+		        			 //Affichage de l'ajout d'unités sur un territoire retourne le nombre a ajouté
+		        			 nbUnitesAjout = vue.premierTour(joueur, territoire);
+		        			 territoire.ajouterNbRegiments(nbUnitesAjout);
+		        			 joueur.enleverNbRegimentsRestants(nbUnitesAjout);
 		        		 } 
 		        		 
 		        	//	 vue.premierTour(joueur, territoire); //Permet d'effectuer les actions pour un joueur au premier tour
