@@ -264,6 +264,28 @@ public class Joueur {
         return continentsConquis;
 	}
 	
+	
+	public void ComprtitionRussie() {
+		boolean ConquerirAmNord = false;
+		boolean ConquerirAfri = false;
+		boolean ConquerirEurope = false;
+		boolean ConquerirAsie = false;
+		boolean ConquerirOceanie = false;
+		boolean ConquerirAmSud = false;
+		for(int i=0;i<this.continentsConquis.size();i++) {
+			if(continentsConquis.get(i).getNom()=="AmeriqueDuNord") {ConquerirAmNord=true;}
+			if(continentsConquis.get(i).getNom()=="Afrique") {ConquerirAfri=true;}
+			if(continentsConquis.get(i).getNom()=="Europe") {ConquerirEurope=true;}
+			if(continentsConquis.get(i).getNom()=="Asie") {ConquerirAsie=true;}
+			if(continentsConquis.get(i).getNom()=="Oceanie") {ConquerirOceanie=true;}
+			if(continentsConquis.get(i).getNom()=="AmeriqueDuSud") {ConquerirAmSud=true;}
+		}
+		if (ConquerirAmNord&&ConquerirAfri&&ConquerirEurope&&ConquerirAsie
+				&&ConquerirOceanie&&ConquerirAmSud) {
+			System.out.println("Vous avez gagné !");
+		}
+	}
+	
 	public void MissionRussie() {
 		//MissionRussie : conquérir toute l'Amérique du Nord et l'Afrique 
 		//完成任务征服整个北美洲和非洲
