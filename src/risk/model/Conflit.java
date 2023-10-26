@@ -76,6 +76,7 @@ public class Conflit {
 	 * @return .... a definir ....
 	 */
 	public int resultatConflit(int nbRegimentsRiposte) {
+	    
 		// Setting nb regiment attaquant
 		this.nbRegimentDefenseur = nbRegimentsRiposte;
 		// Lancer dès attaquant et enregistrer resultat pour traitement data en BD
@@ -87,7 +88,14 @@ public class Conflit {
 		// Classement des dès du plus grand au plus petit
         Collections.sort(desAttaque, Collections.reverseOrder());
         Collections.sort(desDefense, Collections.reverseOrder());
-       
+        
+	    System.out.println("ATTAQUANT : "+ this.desAttaque);
+	    System.out.println("DEFENDEUR : "+ this.desDefense);
+	    
+	    System.out.println("\nAVANT");
+	    System.out.println("ATTAQUANT : "+ this.territoireAttaquant.getNbRegiments());
+	    System.out.println("DEFENDEUR : "+this.territoireDefenseur.getNbRegiments());
+	    
 	    // 循环比较desDefense的长度次
 	    int iterations = desDefense.size();
 	    int nbSurvivant = desAttaque.size();
@@ -103,6 +111,7 @@ public class Conflit {
 	            int nbRegimentsDefenseur = territoireDefenseur.getNbRegiments();
 	            if (nbRegimentsDefenseur > 0) {
 	                territoireDefenseur.setNbRegiments(nbRegimentsDefenseur - 1);
+	                
 	            }
 	        // 否则territoireAttaquant上的兵数减去1
 		    // Pour chaque dès, si le resultat de l'attaquant est égale ou plus petit que celui de la défense, l' attaquant perd un regiment
@@ -114,8 +123,10 @@ public class Conflit {
 	            nbSurvivant=nbSurvivant-1;
 	        }
 	    }
-	    System.out.println(this.desAttaque);
-	    System.out.println(this.desDefense);
+	    System.out.println("\nAPRES");
+	    System.out.println("ATTAQUANT : "+this.territoireAttaquant.getNbRegiments());
+	    System.out.println("DEFENDEUR : "+this.territoireDefenseur.getNbRegiments());
+	    
 	    System.out.println(nbSurvivant);
 	    return nbSurvivant;
 	}

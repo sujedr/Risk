@@ -15,9 +15,7 @@ public class test_attaqueMain {
         // Creation du plateau (objets continents et territoires)
         Monde monde = new Monde();
         ArrayList<Territoire> territoires = monde.getTerritoires();//              <======== ajouter la var territoires en input @raph 
-        
-        System.out.println("okk");
-        
+                
         // INITIALISATION D'UNE MANCHE
 	    /** Deb - A supprimer apres test*/
 		String dn = "2020-10-10";
@@ -30,13 +28,26 @@ public class test_attaqueMain {
 		Joueur j6 = new Joueur("6", "FF", "ff", dn, monde.getMonde(), "vertes");
 
 		Joueur[] participants = {j1, j2, j3, j4, j5, j6};
+    	j1.ajouterTerritoiresConquis(monde.getTerritoires().get(0));
+    	monde.getTerritoires().get(0).setOccupant(j1);
+    	monde.getTerritoires().get(0).ajouterNbRegiments(4);
+    	// Check combat classique ...
+    	j2.ajouterTerritoiresConquis(monde.getTerritoires().get(1));
+    	monde.getTerritoires().get(1).setOccupant(j2);
+    	monde.getTerritoires().get(1).ajouterNbRegiments(3);
+    	// Check si plus de troupes dutout => ....
+    	j3.ajouterTerritoiresConquis(monde.getTerritoires().get(2));
+    	monde.getTerritoires().get(2).setOccupant(j3);
+    	monde.getTerritoires().get(2).ajouterNbRegiments(1);
+    			
 		Joueur joueur = j1;
 		Territoire territoireAttaquant = monde.getTerritoires().get(0);
 		Territoire territoireDefenseur = monde.getTerritoires().get(1);
-		int nbRegimentsAttaque = 2;
-		int nbRegimentsRiposte = 1;
+		int nbRegimentsAttaque = 3;
+		int nbRegimentsRiposte = 2;
 
 		////// TEST ATTAQUE /////
+		
 		
 		/** @Raph Demander choix pays attaquant, pays attaqué, nombre de troupes 
 		 *  Output : territoireAttaquant, territoireDefenseur, nbRegimentsAttaque
@@ -47,6 +58,7 @@ public class test_attaqueMain {
 		 *  Output : nbRegimentsRiposte
 		 */
 		conflit.resultatConflit(nbRegimentsRiposte);
+		
 	}
 }
 
