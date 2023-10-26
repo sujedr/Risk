@@ -85,8 +85,14 @@ public class Territoire {
 	/** Setter nombre de régiment qu'à un joueur occupant sur un territoire donné, ajout du nombre regiments à la valeur initiale
 	 * @param nbRegiments
 	 */
-	public void setNbRegiments(int nbRegimentsAjoutes) {
+	public void ajouterNbRegiments(int nbRegimentsAjoutes) {
 		this.nbRegiments = this.nbRegiments + nbRegimentsAjoutes ;
+	}
+	/** Setter nombre de régiment qu'à un joueur occupant sur un territoire donné, retrait du nombre regiments à la valeur initiale
+	 * @param nbRegiments
+	 */
+	public void enleverNbRegiments(int nbRegimentsAjoutes) {
+		this.nbRegiments = this.nbRegiments - nbRegimentsAjoutes ;
 	}
 	/**
 	 * Retourne le continent auquel appartient le territoire

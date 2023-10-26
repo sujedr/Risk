@@ -124,7 +124,7 @@ public class Risk {
 	        	 int nbRegimentsAjoutes = 1;														//    <== changer valeur
 	        	 System.out.println("*Debut* Territoire : "+destTerritoireAjout.getNom()+" - Nb : "+destTerritoireAjout.getNbRegiments());
 	        	 System.out.println("*Debut* Joueur : "+joueur.getNom()+" - Nb : "+joueur.getNbRegimentsRestants());
-	        	 destTerritoireAjout.setNbRegiments(nbRegimentsAjoutes); // Ajout régiment au territoire
+	        	 destTerritoireAjout.ajouterNbRegiments(nbRegimentsAjoutes); // Ajout régiment au territoire
 	        	 joueur.enleverNbRegimentsRestants(nbRegimentsAjoutes); // Retrait nb au nb de regiment à placer
 	        	 System.out.println("*Fin* Territoire : "+destTerritoireAjout.getNom()+" - Nb : "+destTerritoireAjout.getNbRegiments());
 	        	 System.out.println("*Fin* Joueur : "+joueur.getNom()+" - Nb : "+joueur.getNbRegimentsRestants());
@@ -137,18 +137,18 @@ public class Risk {
 	        	 stockContinentsOccupes = joueur.consulterContinentsEntierementOccupes();
 
 
-	        	 String choix = "null"; // choix du joueur dans le menu (cf plus bas)
-        		 Boolean valider = false; // variable pour stocker si il y a validation des modifications des troupes ou non 
+	        	 String choixAction = "null"; // choix du joueur dans le menu (cf plus bas)
+        		 String choixDeplacer = "null"; // variable pour stocker si il y a validation des modifications des troupes, si il veut ajouter ou encore retirer de nouvelles troupes 
 
 	        	 // CHOIX D ATTAQUER, MODIFIER SES TROUPES OU PASSER SON TOUR
 	        	 // Tant que le tour du joueur n'est pas fini (decision de passer son tour), on affiche la fenetre des choix 
-	        	 while (choix != "Passer tour") {
+	        	 while (choixAction != "Passer tour") {
 		        	 /** @Raph BESOIN - Modifier ta methode choixJoueur pour qu'elle retourne le choix du joueur
 		        	  *  Genre string "Attaquer", "Déplacer" ou "Passer tour" c'est impec :)
 		        	  */
 	        		 // LANCER UNE ATTAQUE
 	        		 // Si le joueur clique sur l'option d'attaquer, il choisie le territoire d'attaque, de defense et le nombre de regiments pour attaquer
-	        		 if (choix == "Attaquer") {
+	        		 if (choixAction == "Attaquer") {
 			        	 /** @Kun / @Yujie 
 			        	  * Attaque / Défense
 			        	  */
@@ -159,8 +159,27 @@ public class Risk {
 		        	 /** @Raph BESOIN - Modifier ta methode choixJoueur pour qu'elle retourne le choix du joueur
 		        	  *  Genre string "Attaquer", "Déplacer" ou "Passer tour" c'est impec :)
 		        	  */
-	        		 else if (choix == "Déplacer") {
-	        			while (valider != true) {
+	        		 else if (choixAction == "Déplacer") {
+	        			while (choixDeplacer != "Valider") {
+	        				/** @Raph choix joueur AJOUTER ou RETIRER (a chaque fin de choix si faisable) ou VALIDER
+	        				 * => AJOUTER : territoire + nb regiments
+	        				 * => RETIRER : territoire + nb regiments
+	        				 *  >> Rappel conditions : 
+	        				 *  - joueur occupe le territoire (cf Territoire.occupant == Joueur)
+	        				 *  - pour le RETRAIT de troupes : nb de troupes retirées <= nb de troupes presentes (cd Territoire.nbRegiments)
+	        				 *  - pour l'AJOUT : nb de troupes en stock >= nb de troupe à ajouter 
+	        				 *  - pour VALIDER : nb de troupes en stock == 0 ? (franchement optionnel ahah, au pire le joueur prend de l'avance hein)
+	        				 *  - pays voisins mais un peu relou :/
+	        				 */ 
+	        				
+	        				if (choixDeplacer == "Ajouter") {
+		        				Territoire territoireModifie = monde.getTerritoires().get(0);	// A modifier (pour test)
+		        				int nbRegiments = 1;											// A modifier (pour test)
+		        				
+		        				joueur.enleverNbRegimentsRestants(nbRegiments);
+		        				territoireModifie.enleverNbRegiments(nbRegiments);
+		        				
+	        				}
 	        				
 	        			}
 	        		 }
