@@ -265,6 +265,8 @@ public class Joueur {
 	}
 	
 	
+	//Compétition gagnant : Conquérir tous les continents
+	//获胜竞赛：征服所有大洲
 	public void ComprtitionRussie() {
 		boolean ConquerirAmNord = false;
 		boolean ConquerirAfri = false;
@@ -282,7 +284,7 @@ public class Joueur {
 		}
 		if (ConquerirAmNord&&ConquerirAfri&&ConquerirEurope&&ConquerirAsie
 				&&ConquerirOceanie&&ConquerirAmSud) {
-			System.out.println("Vous avez gagné !");
+			System.out.println("Félicitations au joueur "+id+" : Vous avez gagné !");
 		}
 	}
 	
