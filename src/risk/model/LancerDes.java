@@ -24,7 +24,7 @@ public class LancerDes {
 	/**
 	 * @return int : résultat du tirage du dès (entre 1 et 6)
 	 */
-	private int lancerDes() {
+	public int lancerDes() {
         Random random = new Random();
         return random.nextInt(6)+1; 
     }
