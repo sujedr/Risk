@@ -34,12 +34,21 @@ public class Risk {
         // INITIALISATION D'UNE MANCHE
 	    /** Deb - A supprimer apres test*/
 		String dn = "2020-10-10";
+<<<<<<< HEAD
 		Joueur j1 = new Joueur("1", "AA", "aa", dn, monde.getMonde());
 		Joueur j2 = new Joueur("2", "BB", "bb", dn, monde.getMonde());
 		Joueur j3 = new Joueur("3", "CC", "cc", dn, monde.getMonde());
 		Joueur j4 = new Joueur("4", "DD", "dd", dn, monde.getMonde());
 		Joueur j5 = new Joueur("5", "EE", "ee", dn, monde.getMonde());
 		Joueur j6 = new Joueur("6", "FF", "ff", dn, monde.getMonde());
+=======
+		Joueur j1 = new Joueur("1", "AA", "aa", dn, nomsContinents,"jaunes");
+		Joueur j2 = new Joueur("2", "BB", "bb", dn, nomsContinents,"rouges");
+		Joueur j3 = new Joueur("3", "CC", "cc", dn, nomsContinents,"bleues");
+		Joueur j4 = new Joueur("4", "DD", "dd", dn, nomsContinents,"noires");
+		Joueur j5 = new Joueur("5", "EE", "ee", dn, nomsContinents,"violettes");
+		Joueur j6 = new Joueur("6", "FF", "ff", dn, nomsContinents,"vertes");
+>>>>>>> 5ab51e2cdfbe9dfe43c004fe938ce43526bf8595
 		Joueur[] participants = {j1, j2, j3, j4, j5, j6};
 	    /** Fin - A supprimer apres test*/
 		
@@ -57,6 +66,29 @@ public class Risk {
 //                System.out.println("Le joueur " + joueur.getNom() + " " + joueur.getPrenom() + " existe déjà.");
 //            }
 //        }
+		
+		//Carte de mission
+				Mission mission1 = new Mission("Vous devez conquérir 18 territoires et occuper chacun d'eux avec deux armées au moins.");
+				Mission mission2 = new Mission("Vous devez conquérir en totalité l'Amérique du Nord et l'Afrique.");
+				Mission mission3 = new Mission("Vous devez conquérir en totalité l'Europe et l'Amérique du sud plus un troisième continent au choix.");
+				Mission mission4 = new Mission("Vous devez conquérir en totalité l'Europe et l'Océanie plus un troisième continent au choix.");
+				Mission mission5 = new Mission("Vous devez conquérir 24 territoires aux choix.");
+				Mission mission6 = new Mission("Vous devez conquérir en totalité l'Amérique du Nord et l'Océanie.");
+				Mission mission7 = new Mission("Vous devez conquérir en totalité l'Asie et l'Afrique.");
+				Mission mission8 = new Mission("Vous devez conquérir en totalité l'Asie et l'Amérique du sud.");
+				Mission mission9 = new Mission("Vous devez détruire les armées jaunes. Si vous êtes vous même le propriétaire des armées jaunes ou si le joueur qui en est\r\n"
+						+ "  propriétaire est éliminé par un autre joueur, votre but devient automatiquement de conquérir 24 territoires.");
+				Mission mission10 = new Mission("Vous devez détruire les armées rouges. Si vous êtes vous même le propriétaire des armées rouges ou si le joueur qui en est\r\n"
+						+ "  propriétaire est éliminé par un autre joueur, votre but devient automatiquement de conquérir 24 territoires.");
+				Mission mission11 = new Mission("Vous devez détruire les armées bleues. Si vous êtes vous même le propriétaire des armées bleues ou si le joueur qui en est\r\n"
+						+ "  propriétaire est éliminé par un autre joueur, votre but devient automatiquement de conquérir 24 territoires.");
+				Mission mission12 = new Mission("Vous devez détruire les armées noires. Si vous êtes vous même le propriétaire des armées noires ou si le joueur qui en est\r\n"
+						+ "  propriétaire est éliminé par un autre joueur, votre but devient automatiquement de conquérir 24 territoires.");
+				Mission mission13 = new Mission("Vous devez détruire les armées violettes. Si vous êtes vous même le propriétaire des armées violettes ou si le joueur qui en est\r\n"
+						+ "  propriétaire est éliminé par un autre joueur, votre but devient automatiquement de conquérir 24 territoires.");
+				Mission mission14 = new Mission("Vous devez détruire les armées vertes. Si vous êtes vous même le propriétaire des armées vertes ou si le joueur qui en est\r\n"
+						+ "  propriétaire est éliminé par un autre joueur, votre but devient automatiquement de conquérir 24 territoires.");
+				
 		
 		
 		// instances régiment pour infanterie, cavalerie et artillerie
