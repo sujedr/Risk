@@ -55,8 +55,11 @@ public class Conflit {
 	}
 	private int reglementDefaite(Territoire territoireAttaquant, Territoire territoireDefenseur,int nbSuivivant) {
 		if(territoireDefenseur.getNbRegiments()==0) {
+			territoireDefenseur.getOccupant().supprimerTerritoiresConquis(territoireDefenseur);
+			territoireAttaquant.getOccupant().ajouterTerritoiresConquis(territoireDefenseur);
 			territoireDefenseur.setOccupant(territoireAttaquant.getOccupant());
 			territoireDefenseur.setNbRegiments(nbSuivivant);
+			
 			return 1;
 		}
 		else {
