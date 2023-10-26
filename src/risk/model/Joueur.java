@@ -387,7 +387,7 @@ public class Joueur {
 		
 		
 		else {
-			System.out.println("Bon courage !");
+//			System.out.println("Bon courage !");
 		}
 		
 		
