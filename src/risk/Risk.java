@@ -33,14 +33,13 @@ public class Risk {
         
         // INITIALISATION D'UNE MANCHE
 	    /** Deb - A supprimer apres test*/
-        String[] nomsContinents = monde.getNomContinent();
 		String dn = "2020-10-10";
-		Joueur j1 = new Joueur("1", "AA", "aa", dn, nomsContinents);
-		Joueur j2 = new Joueur("2", "BB", "bb", dn, nomsContinents);
-		Joueur j3 = new Joueur("3", "CC", "cc", dn, nomsContinents);
-		Joueur j4 = new Joueur("4", "DD", "dd", dn, nomsContinents);
-		Joueur j5 = new Joueur("5", "EE", "ee", dn, nomsContinents);
-		Joueur j6 = new Joueur("6", "FF", "ff", dn, nomsContinents);
+		Joueur j1 = new Joueur("1", "AA", "aa", dn, monde.getMonde());
+		Joueur j2 = new Joueur("2", "BB", "bb", dn, monde.getMonde());
+		Joueur j3 = new Joueur("3", "CC", "cc", dn, monde.getMonde());
+		Joueur j4 = new Joueur("4", "DD", "dd", dn, monde.getMonde());
+		Joueur j5 = new Joueur("5", "EE", "ee", dn, monde.getMonde());
+		Joueur j6 = new Joueur("6", "FF", "ff", dn, monde.getMonde());
 		Joueur[] participants = {j1, j2, j3, j4, j5, j6};
 	    /** Fin - A supprimer apres test*/
 		
