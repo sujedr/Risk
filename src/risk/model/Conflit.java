@@ -60,7 +60,8 @@ public class Conflit {
 			territoireAttaquant.getOccupant().ajouterTerritoiresConquis(territoireDefenseur);
 			territoireDefenseur.setOccupant(territoireAttaquant.getOccupant());
 			territoireDefenseur.setNbRegiments(nbSuivivant);
-			elimination (territoireAttaquant, territoireDefenseur);
+			//TODO commentaire car erreur
+			//elimination (territoireAttaquant, territoireDefenseur);
 			return 1;
 		}
 		else {
@@ -68,6 +69,8 @@ public class Conflit {
 		}
 		
 	}
+	//TODO j'ai mis en commentaire car ça fait des erreurs
+	/*
 	private void elimination (Territoire territoireAttaquant, Territoire territoireDefenseur) {
 		ArrayList <Territoire> tousTerritoireDefenseur=new ArrayList <Territoire>();
 		tousTerritoireDefenseur=territoireDefenseur.getOccupant().getAllTerritoires();
@@ -89,6 +92,6 @@ public class Conflit {
 				manche.setEstTerminee(true);
 			}
 		}
-	}
+	} */
 
 }
