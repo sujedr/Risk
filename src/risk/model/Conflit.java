@@ -1,6 +1,7 @@
 package risk.model;
 import java.util.ArrayList;
-import risk.model.LancerDes;
+import java.util.Collections;
+import java.util.Comparator;
 
 /**
  * Class Clonflit à jour
@@ -83,21 +84,29 @@ public class Conflit {
 		this.desDefense = desDefenseur();
 		
 		// Gestion des resultats des lancés de dès
+		// Classement des dès du plus grand au plus petit
+        Collections.sort(desAttaque, Collections.reverseOrder());
+        Collections.sort(desDefense, Collections.reverseOrder());
+       
 	    // 循环比较desDefense的长度次
 	    int iterations = desDefense.size();
 	    int nbSurvivant = desAttaque.size();
+	    
+	    // Comparaison des dès par ordre de grandeur
 	    for (int i = 0; i < iterations; i++) {
 	        int attaque = desAttaque.get(i);
 	        int defense = desDefense.get(i);
 
 	        // 如果desAttaque的值大于desDefense，则territoireDefenseur上的兵数减去1
+	        // Pour chaque dès, si le resultat de l'attaquant est plus grand que celui de la défense, le defenseur perd un regiment
 	        if (attaque > defense) {
 	            int nbRegimentsDefenseur = territoireDefenseur.getNbRegiments();
 	            if (nbRegimentsDefenseur > 0) {
 	                territoireDefenseur.setNbRegiments(nbRegimentsDefenseur - 1);
 	            }
+	        // 否则territoireAttaquant上的兵数减去1
+		    // Pour chaque dès, si le resultat de l'attaquant est égale ou plus petit que celui de la défense, l' attaquant perd un regiment
 	        } else {
-	            // 否则territoireAttaquant上的兵数减去1
 	            int nbRegimentsAttaquant = territoireAttaquant.getNbRegiments();
 	            if (nbRegimentsAttaquant > 0) {
 	                territoireAttaquant.setNbRegiments(nbRegimentsAttaquant - 1);
