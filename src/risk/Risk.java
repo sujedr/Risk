@@ -166,7 +166,8 @@ public class Risk {
 	        	 }
 	        	 // PROCESSUS NORMAL POUR LES AUTRES TOURS
 	        	 else {
-		        	 // VERFICATION ET MISE A JOUR DES DATA EN DEBUT DE TOUR DE CHAQUE JOUEUR
+		        	 // MISE A JOUR DU NOMBRE DE REGIMENTS QUE PEUT POSITIONNER UN JOUEUR EN DEBUT DE TOUR
+	        		 // => selon nombre de territoires occupés et de continents complets occupés
 	        		 int nbRegimentAPlacer = joueur.calculerNbRegimentsAPlacer();
 	        		 joueur.ajouterNbRegimentsRestants(nbRegimentAPlacer);
 	        		 
@@ -197,16 +198,29 @@ public class Risk {
 		        	 // Tant que le tour du joueur n'est pas fini (continuer d'attaquer), on affiche la fenetre des choix 
 		        	 while (choixAction == "Attaquer") {
 			        	 /** @Raph BESOIN - Modifier ta methode choixJoueur pour qu'elle retourne le choix du joueur
-			        	  *  Genre string "Attaquer", "Déplacer" ou "Passer tour" c'est impec :)
+			        	  *  Genre string "Attaquer", "Déplacer" ou "Passer tour"  par exeple 
+			        	  *  OUTPUT : choixAction 
 			        	  */
+		        			
 		        		 // LANCER UNE ATTAQUE
+				            /** @Kun / @Yujie integrer dans le code : Si nouveau territoire conquis => isNouveauTerritoireConquis = true;*/
 		        		 // Si le joueur clique sur l'option d'attaquer, il choisie le territoire d'attaque, de defense et le nombre de regiments pour attaquer
 		        		 if (choixAction == "Attaquer") {
-				        	 /** @Kun / @Yujie 
-				        	  * Attaque / Défense
-				        	  * integrer dans le code : Si nouveau territoire conquis => isNouveauTerritoireConquis = true;
-				        	  */
-		        			 
+			        		   /** @Raph Demander choix pays attaquant, pays attaqué, nombre de troupes 
+			        			*  OUTPUT : territoireAttaquant, territoireDefenseur, nbRegimentsAttaque
+			        			*/
+			        			Territoire territoireAttaquant = monde.getTerritoires().get(0);      // Données tests à mettre à jour avec output !!!!
+			        			Territoire territoireDefenseur = monde.getTerritoires().get(1);
+			        			int nbRegimentsAttaque = 2;
+			        			int nbRegimentsRiposte = 1;
+			        			// Creation du conflit 
+			        			Conflit conflit = new Conflit(joueur, territoireAttaquant, territoireDefenseur, nbRegimentsAttaque);
+			        			/** @Raph Demander defenseur nb de troupes riposte
+			        			 *  Input : conflit.getBlablabla...
+			        			 *  Output : nbRegimentsRiposte
+			        			 */
+			        			// Resultat du conflit
+			        			conflit.resultatConflit(nbRegimentsRiposte);
 		        		 }
 		        		 // DEPLACER CERTAINS DE SES REGIMENTS
 		        		 // Si le joueur clique sur l'option deplacer, il choisie autant de deplacement qu'il souhaite (tant que les territoires sont voisins)
