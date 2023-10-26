@@ -47,8 +47,7 @@ public class Joueur {
 		for (int i = 0; i < Continents.size(); i++) {
 			this.territoiresConquis.put(Continents.get(i), new ArrayList<Territoire>());
 		}
-		this.nbRegimentsRestants = 0;
-		this.ajouterNbRegimentsRestants(3);
+		this.nbRegimentsRestants = 20;
 		
 		/** Initialisation des attributs statistique à zero */         //*** A peut etre supprimer ***
 		for (int i=0; i<6; i++) {
@@ -242,10 +241,6 @@ public class Joueur {
 
 	@Override
 	public String toString() {
-		return "Joueur [id=" + id + ", nom=" + nom + ", prenom=" + prenom + ", dtNaissance=" + dtNaissance
-				+ ", couleur=" + couleur + ", territoiresConquis=" + territoiresConquis + ", nbRegimentsRestants="
-				+ nbRegimentsRestants + ", nbTirageDes=" + Arrays.toString(nbTirageDes) + ", nbAttaque=" + nbAttaque
-				+ ", nbDefense=" + nbDefense + ", nbTerritoire=" + nbTerritoire + ", nbRegiments=" + nbRegiments
-				+ ", nbTours=" + nbTours + "]";
+		return "Joueur [nom=" + nom + ", prenom=" + prenom + "]";
 	}
 }

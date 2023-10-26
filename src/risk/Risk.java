@@ -107,6 +107,7 @@ public class Risk {
             System.out.println("La mission du joueur " + joueur.getId() + " : " + mission);
 		}
 		
+		// DEBUT - ATTRIBUTION DES CARTES TERRITOIRES AUX JOUEURS
 		// instances régiment pour infanterie, cavalerie et artillerie
 		Regiment infanterie = new Regiment("Infanterie",1);
 		Regiment cavalerie = new Regiment("Cavalerie",5);
@@ -140,180 +141,192 @@ public class Risk {
         for (int i = 0; i < nbParticipants; i++) {
             List<Carte> mainJoueur = cartes.subList(i * carteJoueur, (i + 1) * carteJoueur);
             System.out.println("Joueur " + (i + 1) + " a reçu les cartes : " + mainJoueur);
+            // Mise à jour des data 
+            for (Carte carte : mainJoueur) {
+            	participants[i].ajouterTerritoiresConquis(carte.getTerritoire());
+            	participants[i].enleverNbRegimentsRestants(1);
+            	carte.getTerritoire().ajouterNbRegiments(1);
+            	carte.getTerritoire().setOccupant(participants[i]);
+            	System.out.println("liste territoire :"+participants[i].getAllTerritoires());
+            	System.out.println("Nb troupes a placer :"+participants[i].getNbRegimentsRestants());
+            	System.out.println("Territoire occupé par :"+carte.getTerritoire().getOccupant()+" , nb de troupes : "+carte.getTerritoire().getNbRegiments());
+            }
         }
+		// DEBUT - ATTRIBUTION DES CARTES TERRITOIRES AUX JOUEURS
+	} // A SUPPRIMER
 		
-		// Creation d'une manche 
-		Manche manche1 = new Manche(participants);
-        System.out.println(manche1.toString());  
-        
-        // Determination du joueur qui commencera le tour et oganisation de l'ordre des joueurs dans la manche
-        LancerDes des = new LancerDes();
-        int resultatDes = des.lancerDes();
-        System.out.println(resultatDes);        
-        manche1.definirOrdreJoueur(resultatDes);
-        System.out.println(manche1.toString());  
-        System.out.println("--------------------------");  
-
-        // DEBUT DE LA MANCHE
-         boolean isFirstTour = true;
-         boolean isWinner = false;
-         while (isWinner != true) {
-        	 // POUR CHAQUE JOUEUR
-        	 for (Joueur joueur : participants) {
-	        	 System.out.println("Joueur " + joueur.getNom());
-	        	 
-	        	 // INSTANCIATION VARIABLE DE STOCKAGE
-	        	 // Variable stockant si un nouveau territoire a ete conquis ou non au cours des attaques
-	        	 Boolean isNouveauTerritoireConquis = false;
-	        	 // Variable stockant les choix du joueur
-	        	 String choixAction = "null"; // choix du joueur dans le menu (cf plus bas)
-        		 String choixDeplacer = "null"; // variable pour stocker si il y a validation des modifications des troupes, si il veut ajouter ou encore retirer de nouvelles troupes 
-        		 /** @Moi pas fini a ajouter autres verif dont nb regiments*/
-        		 
-	        	 // PLACEMENT DES 20 REGIMENTS POUR LE PREMIER TOUR
-	        	 if (isFirstTour == true) {
-		        	 // Tant que le joueur n'a pas ajouter tous ses regiments, il ajoute les regiments restants
-		        	 while (joueur.getNbRegimentsRestants() != 0) {
-		        		 
-			        	 /** @Raph BESOIN - Methode retournant un territoire et une quantité pour choisir le territoire où ajouter les troupes
-			        	  *  >> Rappel condition : territoire.occupant == null || territoire.occupant == joueur
-			        	  *  Sinon retourner fenetre message erreur territoire deja occupé 
-			        	  *  OU
-			        	  *  Si galere je le bloque à la mano dans le main 
-			        	  *  
-			        	  *  Pour simplifier, l'algo c'est qu'à la phase d'ajout, il peuvent pas enlever quand ils posent ahah 
-			        	  *  genre, il pose 2, puis 1 , quand il en a plus ca passe à autre chose :3
-			        	  */
-		        		 
-		        		 
-		        		 for (Territoire territoire : joueur.getAllTerritoires()) {
-		        			 vue.premierTour(joueur, territoire);
-		        		 } 
-		        		 
-		        	//	 vue.premierTour(joueur, territoire); //Permet d'effectuer les actions pour un joueur au premier tour
-			    
-			        	 Territoire destTerritoireAjout = monde.getTerritoires().get(0);                    //    <== changer valeur
-			        	 int nbRegimentsAjoutes = 1;														//    <== changer valeur
-			        	 System.out.println("*Debut* Territoire : "+destTerritoireAjout.getNom()+" - Nb : "+destTerritoireAjout.getNbRegiments());
-			        	 System.out.println("*Debut* Joueur : "+joueur.getNom()+" - Nb : "+joueur.getNbRegimentsRestants());
-			        	 destTerritoireAjout.ajouterNbRegiments(nbRegimentsAjoutes); // Ajout régiment au territoire
-			        	 joueur.enleverNbRegimentsRestants(nbRegimentsAjoutes); // Retrait nb au nb de regiment à placer
-			        	 System.out.println("*Fin* Territoire : "+destTerritoireAjout.getNom()+" - Nb : "+destTerritoireAjout.getNbRegiments());
-			        	 System.out.println("*Fin* Joueur : "+joueur.getNom()+" - Nb : "+joueur.getNbRegimentsRestants());
-		        	 }
-	        		 isFirstTour = false;
-	        	 }
-	        	 // PROCESSUS NORMAL POUR LES AUTRES TOURS
-	        	 else {
-		        	 // VERFICATION ET MISE A JOUR DES DATA EN FIN DE TOUR DE CHAQUE JOUEUR
-	        		 int nbRegimentAPlacer = joueur.calculerNbRegimentsAPlacer();
-	        		 joueur.ajouterNbRegimentsRestants(nbRegimentAPlacer);
-	        		 
-		        	 // AJOUT NOUVEAUX REGIMENTS
-		        	 while (joueur.getNbRegimentsRestants() != 0) {
-		        		 
-		        	 /** @Raph BESOIN - Methode retournant un territoire et une quantité pour choisir le territoire où ajouter les troupes
-		        	  *  >> Rappel condition : territoire.occupant == null || territoire.occupant == joueur
-		        	  *  Sinon retourner fenetre message erreur territoire deja occupé 
-		        	  *  OU
-		        	  *  Si galere je le bloque à la mano dans le main 
-		        	  *  
-		        	  *  Pour simplifier, l'algo c'est qu'à la phase d'ajout, il peuvent pas enlever quand ils posent ahah 
-		        	  *  genre, il pose 2, puis 1 , quand il en a plus ca passe à autre chose :3
-		        	  */	        	 
-		    
-		        	 Territoire destTerritoireAjout = monde.getTerritoires().get(0);                    //    <== changer valeur
-		        	 int nbRegimentsAjoutes = 1;														//    <== changer valeur
-		        	 System.out.println("*Debut* Territoire : "+destTerritoireAjout.getNom()+" - Nb : "+destTerritoireAjout.getNbRegiments());
-		        	 System.out.println("*Debut* Joueur : "+joueur.getNom()+" - Nb : "+joueur.getNbRegimentsRestants());
-		        	 destTerritoireAjout.ajouterNbRegiments(nbRegimentsAjoutes); // Ajout régiment au territoire
-		        	 joueur.enleverNbRegimentsRestants(nbRegimentsAjoutes); // Retrait nb au nb de regiment à placer
-		        	 System.out.println("*Fin* Territoire : "+destTerritoireAjout.getNom()+" - Nb : "+destTerritoireAjout.getNbRegiments());
-		        	 System.out.println("*Fin* Joueur : "+joueur.getNom()+" - Nb : "+joueur.getNbRegimentsRestants());
-		        	 }
-		        	 
-		        	 // CHOIX D ATTAQUER, MODIFIER SES TROUPES OU PASSER SON TOUR
-		        	 // Tant que le tour du joueur n'est pas fini (continuer d'attaquer), on affiche la fenetre des choix 
-		        	 while (choixAction == "Attaquer") {
-			        	 /** @Raph BESOIN - Modifier ta methode choixJoueur pour qu'elle retourne le choix du joueur
-			        	  *  Genre string "Attaquer", "Déplacer" ou "Passer tour" c'est impec :)
-			        	  */
-		        		 // LANCER UNE ATTAQUE
-		        		 // Si le joueur clique sur l'option d'attaquer, il choisie le territoire d'attaque, de defense et le nombre de regiments pour attaquer
-		        		 if (choixAction == "Attaquer") {
-				        	 /** @Kun / @Yujie 
-				        	  * Attaque / Défense
-				        	  * integrer dans le code : Si nouveau territoire conquis => isNouveauTerritoireConquis = true;
-				        	  */
-		        		 }
-		        		 // DEPLACER CERTAINS DE SES REGIMENTS
-		        		 // Si le joueur clique sur l'option deplacer, il choisie autant de deplacement qu'il souhaite (tant que les territoires sont voisins)
-		        		 // Lorsque qu'il valide les changements, son tour est automatiquement terminé
-			        	 /** @Raph BESOIN - Modifier ta methode choixJoueur pour qu'elle retourne le choix du joueur
-			        	  *  Genre string "Attaquer", "Déplacer" ou "Passer tour" c'est impec :)
-			        	  */
-		        		 else if (choixAction == "Déplacer") {
-		        			while (choixDeplacer != "Valider") {
-		        				/** @Raph choix joueur AJOUTER ou RETIRER (a chaque fin de choix si faisable) ou VALIDER
-		        				 * => AJOUTER : territoire + nb regiments
-		        				 * => RETIRER : territoire + nb regiments
-		        				 *  >> Rappel conditions : 
-		        				 *  - joueur occupe le territoire (cf Territoire.occupant == Joueur)
-		        				 *  - pour le RETRAIT de troupes : nb de troupes retirées <= nb de troupes presentes (cd Territoire.nbRegiments)
-		        				 *  - pour l'AJOUT : nb de troupes en stock >= nb de troupe à ajouter 
-		        				 *  - pour VALIDER : nb de troupes en stock == 0 ? (franchement optionnel ahah, au pire le joueur prend de l'avance hein)
-		        				 *  - pays voisins mais un peu relou :/
-		        				 */ 
-		        				
-		        				// Choix d'AJOUTER des regiments
-		        				if (choixDeplacer == "Ajouter") {
-			        				Territoire territoireModifie = monde.getTerritoires().get(0);	// A modifier (pour test)
-			        				int nbRegiments = 1;											// A modifier (pour test)
-			        				
-			        				joueur.enleverNbRegimentsRestants(nbRegiments);
-			        				territoireModifie.ajouterNbRegiments(nbRegiments);
-		        				}
-			        			// Choix d'ENLEVER des regiments
-		        				else if (choixDeplacer == "Retirer") {
-			        				Territoire territoireModifie = monde.getTerritoires().get(0);	// A modifier (pour test)
-			        				int nbRegiments = 1;											// A modifier (pour test)
-			        				
-			        				joueur.ajouterNbRegimentsRestants(nbRegiments);
-			        				territoireModifie.enleverNbRegiments(nbRegiments);
-			        				
-			        				// Si le joueur a retiré toutes ses troupes d'un territoire on met à jour les data
-			        				if (territoireModifie.getNbRegiments() == 0) {
-			        					joueur.supprimerTerritoiresConquis(territoireModifie);
-			        					territoireModifie.setOccupant(null);
-			        				}
-		        				}
-		        			}
-		        		 }
-		        	 }
-	        	 }
-	        	 
-	        	 // PIOCHER UNE CARTE SI NOUVEAU TERRITOIRE CONQUIS
-	        	 if (isNouveauTerritoireConquis == true) {
-	        		 /** Piocher carte 
-	        		  * @Yassine 
-	        		  * Peut echanger lorsque : 
-	        		  * - 3 cartes identiques (soit 3 cavaliers, ou 3 canons, ou 3 fantassins).
-					  * - 3 cartes différentes (soit 1 cavalier, 1 canon et 1 fantassin).
-					  * - Le premier qui échange ses cartes reçoit 4 armées supplémentaires. 
-					  * --> Puis de deux en deux (jusque 15 et ensuite de 5 en 5) c'est tres wtf ahah
-	        		  */
-	        	 }   	 
-	        	 
-	        	 
-        	 isWinner = true;																	// A supprimer (for testing only)
-        	 // isWinner = true if all territoire conquis ou cart objectif realisee
-        	 }
-         }
-        
-        //TODO Pour l'actualisation de l'affichage du jouer à qui c'est le tour
-        //vue.actualiserTour(tour);
-         
-        System.out.println("end");
-	}
+//		// Creation d'une manche 
+//		Manche manche1 = new Manche(participants);
+//        System.out.println(manche1.toString());  
+//        
+//        // Determination du joueur qui commencera le tour et oganisation de l'ordre des joueurs dans la manche
+//        LancerDes des = new LancerDes();
+//        int resultatDes = des.lancerDes();
+//        System.out.println(resultatDes);        
+//        manche1.definirOrdreJoueur(resultatDes);
+//        System.out.println(manche1.toString());  
+//        System.out.println("--------------------------");  
+//
+//        // DEBUT DE LA MANCHE
+//         boolean isFirstTour = true;
+//         boolean isWinner = false;
+//         while (isWinner != true) {
+//        	 // POUR CHAQUE JOUEUR
+//        	 for (Joueur joueur : participants) {
+//	        	 System.out.println("Joueur " + joueur.getNom());
+//	        	 
+//	        	 // INSTANCIATION VARIABLE DE STOCKAGE
+//	        	 // Variable stockant si un nouveau territoire a ete conquis ou non au cours des attaques
+//	        	 Boolean isNouveauTerritoireConquis = false;
+//	        	 // Variable stockant les choix du joueur
+//	        	 String choixAction = "null"; // choix du joueur dans le menu (cf plus bas)
+//        		 String choixDeplacer = "null"; // variable pour stocker si il y a validation des modifications des troupes, si il veut ajouter ou encore retirer de nouvelles troupes 
+//        		 /** @Moi pas fini a ajouter autres verif dont nb regiments*/
+//        		 
+//	        	 // PLACEMENT DES 20 REGIMENTS POUR LE PREMIER TOUR
+//	        	 if (isFirstTour == true) {
+//		        	 // Tant que le joueur n'a pas ajouter tous ses regiments, il ajoute les regiments restants
+//		        	 while (joueur.getNbRegimentsRestants() != 0) {
+//		        		 
+//			        	 /** @Raph BESOIN - Methode retournant un territoire et une quantité pour choisir le territoire où ajouter les troupes
+//			        	  *  >> Rappel condition : territoire.occupant == null || territoire.occupant == joueur
+//			        	  *  Sinon retourner fenetre message erreur territoire deja occupé 
+//			        	  *  OU
+//			        	  *  Si galere je le bloque à la mano dans le main 
+//			        	  *  
+//			        	  *  Pour simplifier, l'algo c'est qu'à la phase d'ajout, il peuvent pas enlever quand ils posent ahah 
+//			        	  *  genre, il pose 2, puis 1 , quand il en a plus ca passe à autre chose :3
+//			        	  */
+//		        		 
+//		        		 
+//		        		 for (Territoire territoire : joueur.getAllTerritoires()) {
+//		        			 vue.premierTour(joueur, territoire);
+//		        		 } 
+//		        		 
+//		        	//	 vue.premierTour(joueur, territoire); //Permet d'effectuer les actions pour un joueur au premier tour
+//			    
+//			        	 Territoire destTerritoireAjout = monde.getTerritoires().get(0);                    //    <== changer valeur
+//			        	 int nbRegimentsAjoutes = 1;														//    <== changer valeur
+//			        	 System.out.println("*Debut* Territoire : "+destTerritoireAjout.getNom()+" - Nb : "+destTerritoireAjout.getNbRegiments());
+//			        	 System.out.println("*Debut* Joueur : "+joueur.getNom()+" - Nb : "+joueur.getNbRegimentsRestants());
+//			        	 destTerritoireAjout.ajouterNbRegiments(nbRegimentsAjoutes); // Ajout régiment au territoire
+//			        	 joueur.enleverNbRegimentsRestants(nbRegimentsAjoutes); // Retrait nb au nb de regiment à placer
+//			        	 System.out.println("*Fin* Territoire : "+destTerritoireAjout.getNom()+" - Nb : "+destTerritoireAjout.getNbRegiments());
+//			        	 System.out.println("*Fin* Joueur : "+joueur.getNom()+" - Nb : "+joueur.getNbRegimentsRestants());
+//		        	 }
+//	        		 isFirstTour = false;
+//	        	 }
+//	        	 // PROCESSUS NORMAL POUR LES AUTRES TOURS
+//	        	 else {
+//		        	 // VERFICATION ET MISE A JOUR DES DATA EN FIN DE TOUR DE CHAQUE JOUEUR
+//	        		 int nbRegimentAPlacer = joueur.calculerNbRegimentsAPlacer();
+//	        		 joueur.ajouterNbRegimentsRestants(nbRegimentAPlacer);
+//	        		 
+//		        	 // AJOUT NOUVEAUX REGIMENTS
+//		        	 while (joueur.getNbRegimentsRestants() != 0) {
+//		        		 
+//		        	 /** @Raph BESOIN - Methode retournant un territoire et une quantité pour choisir le territoire où ajouter les troupes
+//		        	  *  >> Rappel condition : territoire.occupant == null || territoire.occupant == joueur
+//		        	  *  Sinon retourner fenetre message erreur territoire deja occupé 
+//		        	  *  OU
+//		        	  *  Si galere je le bloque à la mano dans le main 
+//		        	  *  
+//		        	  *  Pour simplifier, l'algo c'est qu'à la phase d'ajout, il peuvent pas enlever quand ils posent ahah 
+//		        	  *  genre, il pose 2, puis 1 , quand il en a plus ca passe à autre chose :3
+//		        	  */	        	 
+//		    
+//		        	 Territoire destTerritoireAjout = monde.getTerritoires().get(0);                    //    <== changer valeur
+//		        	 int nbRegimentsAjoutes = 1;														//    <== changer valeur
+//		        	 System.out.println("*Debut* Territoire : "+destTerritoireAjout.getNom()+" - Nb : "+destTerritoireAjout.getNbRegiments());
+//		        	 System.out.println("*Debut* Joueur : "+joueur.getNom()+" - Nb : "+joueur.getNbRegimentsRestants());
+//		        	 destTerritoireAjout.ajouterNbRegiments(nbRegimentsAjoutes); // Ajout régiment au territoire
+//		        	 joueur.enleverNbRegimentsRestants(nbRegimentsAjoutes); // Retrait nb au nb de regiment à placer
+//		        	 System.out.println("*Fin* Territoire : "+destTerritoireAjout.getNom()+" - Nb : "+destTerritoireAjout.getNbRegiments());
+//		        	 System.out.println("*Fin* Joueur : "+joueur.getNom()+" - Nb : "+joueur.getNbRegimentsRestants());
+//		        	 }
+//		        	 
+//		        	 // CHOIX D ATTAQUER, MODIFIER SES TROUPES OU PASSER SON TOUR
+//		        	 // Tant que le tour du joueur n'est pas fini (continuer d'attaquer), on affiche la fenetre des choix 
+//		        	 while (choixAction == "Attaquer") {
+//			        	 /** @Raph BESOIN - Modifier ta methode choixJoueur pour qu'elle retourne le choix du joueur
+//			        	  *  Genre string "Attaquer", "Déplacer" ou "Passer tour" c'est impec :)
+//			        	  */
+//		        		 // LANCER UNE ATTAQUE
+//		        		 // Si le joueur clique sur l'option d'attaquer, il choisie le territoire d'attaque, de defense et le nombre de regiments pour attaquer
+//		        		 if (choixAction == "Attaquer") {
+//				        	 /** @Kun / @Yujie 
+//				        	  * Attaque / Défense
+//				        	  * integrer dans le code : Si nouveau territoire conquis => isNouveauTerritoireConquis = true;
+//				        	  */
+//		        		 }
+//		        		 // DEPLACER CERTAINS DE SES REGIMENTS
+//		        		 // Si le joueur clique sur l'option deplacer, il choisie autant de deplacement qu'il souhaite (tant que les territoires sont voisins)
+//		        		 // Lorsque qu'il valide les changements, son tour est automatiquement terminé
+//			        	 /** @Raph BESOIN - Modifier ta methode choixJoueur pour qu'elle retourne le choix du joueur
+//			        	  *  Genre string "Attaquer", "Déplacer" ou "Passer tour" c'est impec :)
+//			        	  */
+//		        		 else if (choixAction == "Déplacer") {
+//		        			while (choixDeplacer != "Valider") {
+//		        				/** @Raph choix joueur AJOUTER ou RETIRER (a chaque fin de choix si faisable) ou VALIDER
+//		        				 * => AJOUTER : territoire + nb regiments
+//		        				 * => RETIRER : territoire + nb regiments
+//		        				 *  >> Rappel conditions : 
+//		        				 *  - joueur occupe le territoire (cf Territoire.occupant == Joueur)
+//		        				 *  - pour le RETRAIT de troupes : nb de troupes retirées <= nb de troupes presentes (cd Territoire.nbRegiments)
+//		        				 *  - pour l'AJOUT : nb de troupes en stock >= nb de troupe à ajouter 
+//		        				 *  - pour VALIDER : nb de troupes en stock == 0 ? (franchement optionnel ahah, au pire le joueur prend de l'avance hein)
+//		        				 *  - pays voisins mais un peu relou :/
+//		        				 */ 
+//		        				
+//		        				// Choix d'AJOUTER des regiments
+//		        				if (choixDeplacer == "Ajouter") {
+//			        				Territoire territoireModifie = monde.getTerritoires().get(0);	// A modifier (pour test)
+//			        				int nbRegiments = 1;											// A modifier (pour test)
+//			        				
+//			        				joueur.enleverNbRegimentsRestants(nbRegiments);
+//			        				territoireModifie.ajouterNbRegiments(nbRegiments);
+//		        				}
+//			        			// Choix d'ENLEVER des regiments
+//		        				else if (choixDeplacer == "Retirer") {
+//			        				Territoire territoireModifie = monde.getTerritoires().get(0);	// A modifier (pour test)
+//			        				int nbRegiments = 1;											// A modifier (pour test)
+//			        				
+//			        				joueur.ajouterNbRegimentsRestants(nbRegiments);
+//			        				territoireModifie.enleverNbRegiments(nbRegiments);
+//			        				
+//			        				// Si le joueur a retiré toutes ses troupes d'un territoire on met à jour les data
+//			        				if (territoireModifie.getNbRegiments() == 0) {
+//			        					joueur.supprimerTerritoiresConquis(territoireModifie);
+//			        					territoireModifie.setOccupant(null);
+//			        				}
+//		        				}
+//		        			}
+//		        		 }
+//		        	 }
+//	        	 }
+//	        	 
+//	        	 // PIOCHER UNE CARTE SI NOUVEAU TERRITOIRE CONQUIS
+//	        	 if (isNouveauTerritoireConquis == true) {
+//	        		 /** Piocher carte 
+//	        		  * @Yassine 
+//	        		  * Peut echanger lorsque : 
+//	        		  * - 3 cartes identiques (soit 3 cavaliers, ou 3 canons, ou 3 fantassins).
+//					  * - 3 cartes différentes (soit 1 cavalier, 1 canon et 1 fantassin).
+//					  * - Le premier qui échange ses cartes reçoit 4 armées supplémentaires. 
+//					  * --> Puis de deux en deux (jusque 15 et ensuite de 5 en 5) c'est tres wtf ahah
+//	        		  */
+//	        	 }   	 
+//	        	 
+//	        	 
+//        	 isWinner = true;																	// A supprimer (for testing only)
+//        	 // isWinner = true if all territoire conquis ou cart objectif realisee
+//        	 }
+//         }
+//        
+//        //TODO Pour l'actualisation de l'affichage du jouer à qui c'est le tour
+//        //vue.actualiserTour(tour);
+//         
+//        System.out.println("end");
+//	}
 }
 
