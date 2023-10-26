@@ -97,4 +97,5 @@ public class Attaque extends Action {
 
         return resultats;
     }
+
 }
