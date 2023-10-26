@@ -110,9 +110,14 @@ public class Risk {
 	        	 // AJOUT NOUVEAUX REGIMENTS
 	        	 while (joueur.getNbRegimentsRestants() != 0) {
 	        		 
-	        	 /** NEEDED - Fonction retournant un territoire et une quantité au click 
-	        	  *  Condition : territoire.occupant == null || territoire.occupant == joueur
-	        	  *  Sinon retourner fenetre message erreur territoire deja occupé
+	        	 /** @Raph BESOIN - Methode retournant un territoire et une quantité pour choisir le territoire où ajouter les troupes
+	        	  *  >> Rappel condition : territoire.occupant == null || territoire.occupant == joueur
+	        	  *  Sinon retourner fenetre message erreur territoire deja occupé 
+	        	  *  OU
+	        	  *  Si galere je le bloque à la mano dans le main 
+	        	  *  
+	        	  *  Pour simplifier, l'algo c'est qu'à la phase d'ajout, il peuvent pas enlever quand ils posent ahah 
+	        	  *  genre, il pose 2, puis 1 , quand il en a plus ca passe à autre chose :3
 	        	  */	        	 
 	    
 	        	 Territoire destTerritoireAjout = monde.getTerritoires().get(0);                    //    <== changer valeur
@@ -131,6 +136,36 @@ public class Risk {
 	        	 HashMap <String, Boolean> stockContinentsOccupes = new HashMap();
 	        	 stockContinentsOccupes = joueur.consulterContinentsEntierementOccupes();
 
+
+	        	 String choix = "null"; // choix du joueur dans le menu (cf plus bas)
+        		 Boolean valider = false; // variable pour stocker si il y a validation des modifications des troupes ou non 
+
+	        	 // CHOIX D ATTAQUER, MODIFIER SES TROUPES OU PASSER SON TOUR
+	        	 // Tant que le tour du joueur n'est pas fini (decision de passer son tour), on affiche la fenetre des choix 
+	        	 while (choix != "Passer tour") {
+		        	 /** @Raph BESOIN - Modifier ta methode choixJoueur pour qu'elle retourne le choix du joueur
+		        	  *  Genre string "Attaquer", "Déplacer" ou "Passer tour" c'est impec :)
+		        	  */
+	        		 // LANCER UNE ATTAQUE
+	        		 // Si le joueur clique sur l'option d'attaquer, il choisie le territoire d'attaque, de defense et le nombre de regiments pour attaquer
+	        		 if (choix == "Attaquer") {
+			        	 /** @Kun / @Yujie 
+			        	  * Attaque / Défense
+			        	  */
+	        		 }
+	        		 // DEPLACER CERTAINS DE SES REGIMENTS
+	        		 // Si le joueur clique sur l'option deplacer, il choisie autant de deplacement qu'il souhaite (tant que les territoires sont voisins)
+	        		 // Lorsque qu'il valide les changements, son tour est automatiquement terminé
+		        	 /** @Raph BESOIN - Modifier ta methode choixJoueur pour qu'elle retourne le choix du joueur
+		        	  *  Genre string "Attaquer", "Déplacer" ou "Passer tour" c'est impec :)
+		        	  */
+	        		 else if (choix == "Déplacer") {
+	        			while (valider != true) {
+	        				
+	        			}
+	        		 }
+	        	 }
+	        	 
 	        	 
         	 isWinner = true;																	// A supprimer (for testing only)
         	 // isWinner = true if all territoire conquis ou cart objectif realisee
