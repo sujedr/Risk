@@ -207,7 +207,6 @@ public class Risk {
 				        	  * Attaque / Défense
 				        	  * integrer dans le code : Si nouveau territoire conquis => isNouveauTerritoireConquis = true;
 				        	  */
-		        			 Attaque attaque = new Attaque(joueur);
 		        			 
 		        		 }
 		        		 // DEPLACER CERTAINS DE SES REGIMENTS
