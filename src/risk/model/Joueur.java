@@ -29,6 +29,8 @@ public class Joueur {
 	private int nbRegiments;
 	private int nbTours;
 
+	ArrayList<Continent> continentsConquis = new ArrayList<>();
+	
 	/**
 	 * Constructeur
 	 * @param id
@@ -229,7 +231,7 @@ public class Joueur {
 	 * @return Arraylist <Continent> nom continent conquis
 	 */
 	public ArrayList<Continent> consulterContinentsEntierementOccupes() {
-		ArrayList<Continent> continentsConquis = new ArrayList<>();
+
 		// Parcours de chaque continent dans le dico de stockage des territoires conquis
         for (Continent continent : this.territoiresConquis.keySet()) {
             int countContinents = this.territoiresConquis.get(continent).size();
@@ -261,7 +263,28 @@ public class Joueur {
         }
         return continentsConquis;
 	}
-
+	
+	public void MissionRussie() {
+		//MissionRussie : conquérir toute l'Amérique du Nord et l'Afrique 
+		//完成任务征服整个北美洲和非洲
+		if(this.currentmission == "Vous devez conquérir en totalité l'Asie et l'Amérique du sud.") {
+			boolean ConquerirAmNord = false;
+			boolean ConquerirAfri = false;
+			for(int i=0;i<this.continentsConquis.size();i++) {
+				if(continentsConquis.get(i).getNom()=="AmeriqueDuNord") {ConquerirAmNord=true;}
+				if(continentsConquis.get(i).getNom()=="Afrique") {ConquerirAfri=true;}
+			}
+			if (ConquerirAmNord&&ConquerirAfri) {
+				System.out.println("Vous avez gagné !");
+			}
+		}
+		
+		
+		
+	}
+	
+	
+	
 	@Override
 	public String toString() {
 		return "Joueur [nom=" + nom + ", prenom=" + prenom + "]";
