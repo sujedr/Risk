@@ -43,6 +43,8 @@ public class Conflit {
 	        }
 	    }
 	}
-	
+	public void reglementDefaite() {
+		
+	}
 
 }

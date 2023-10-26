@@ -82,6 +82,10 @@ public class Territoire {
 		return nbRegiments;
 	}
 
+	public void setNbRegiments(int nbRegiments) {
+		this.nbRegiments = nbRegiments;
+	}
+
 	/** Setter nombre de régiment qu'à un joueur occupant sur un territoire donné, ajout du nombre regiments à la valeur initiale
 	 * @param nbRegiments
 	 */
