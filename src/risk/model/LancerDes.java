@@ -10,7 +10,7 @@ public class LancerDes {
 	 * 
 	 */
 	public LancerDes() {
-		this.resultatDes = resultatDes;
+		this.resultatDes = lancerDes();
 	}
 	
 	

@@ -2,20 +2,20 @@ package risk.model;
 
 public class Regiment {
 	
-	private String type;
+	private TypeRegiment typeRegiment;
 	private int nbRegiment;
 
-	public Regiment(String type, int nbRegiment) {
-		this.type = type;
+	public Regiment(TypeRegiment type, int nbRegiment) {
+		this.typeRegiment = type;
 		this.nbRegiment = nbRegiment;
 	}
 
-	public String getType() {
-		return type;
+	public TypeRegiment getType() {
+		return typeRegiment;
 	}
 
-	public void setType(String type) {
-		this.type = type;
+	public void setType(TypeRegiment type) {
+		this.typeRegiment = typeRegiment;
 	}
 
 	public int getNbRegiment() {

@@ -14,8 +14,10 @@ public class Joueur {
 	private String prenom;
 	private String dtNaissance;
 	
+	private String couleur;
+	
 	/** Attributs spécifiques à une manche */
-	private HashMap<String, ArrayList<Territoire>> territoiresConquis = new HashMap<>();
+	private HashMap<Continent, ArrayList<Territoire>> territoiresConquis;
 	private int nbRegimentsRestants;
 	
 	/** Attributs statistiques */           // *** A peut etre supprimer ***
@@ -33,15 +35,17 @@ public class Joueur {
 	 * @param prenom
 	 * @param dtNaissance
 	 */
-	public Joueur(String id, String nom, String prenom, String dtNaissance, String[] nomsContinents) {
+	public Joueur(String id, String nom, String prenom, String dtNaissance, ArrayList<Continent> Continents,String couleur) {
+
 		this.id = id;
 		this.nom = nom;
 		this.prenom = prenom;
 		this.dtNaissance = dtNaissance;
+		this.couleur = couleur;
 		
 		/** Initialisation des continents dans la hashmap */			
-		for (int i = 0; i < nomsContinents.length; i++) {
-			this.territoiresConquis.put(nomsContinents[i], new ArrayList<Territoire>());
+		for (int i = 0; i < Continents.size(); i++) {
+			this.territoiresConquis.put(Continents.get(i), new ArrayList<Territoire>());
 		}
 		this.nbRegimentsRestants = 0;
 		this.ajouterNbRegimentsRestants(3);
@@ -58,6 +62,12 @@ public class Joueur {
 	}
 	
 	// Getter and setter
+	
+	public String getCouleur() {
+		return couleur;
+	}
+	
+	
 	/** @return int */
 	public String getId() {
 		return id;
@@ -116,12 +126,15 @@ public class Joueur {
 	 * Retourne les territoires conquis par le joueur classés par continents
 	 * @return HashMap<String, ArrayList<Territoire>>
 	 */
-	public HashMap<String, ArrayList<Territoire>> getTerritoiresConquis() {
+	public HashMap<Continent, ArrayList<Territoire>> getTerritoiresConquis() {
 		return territoiresConquis;
 	}
 	
+	/**
+	 * @return Liste de territoires
+	 */
 	public ArrayList<Territoire> getAllTerritoires() {
-		HashMap<String, ArrayList<Territoire>> map = new HashMap<>(this.territoiresConquis);
+		HashMap<Continent, ArrayList<Territoire>> map = new HashMap<>(this.territoiresConquis);
 		ArrayList<Territoire> allTerritoires = new ArrayList<>();
 
 	    // 遍历HashMap中的所有值（ArrayList<Territoire>）
@@ -134,17 +147,49 @@ public class Joueur {
 
 	    return allTerritoires;
 	}
+	
+	public int calculerNbRegimentsAPlacer() {
+   	 // Continent conquis ?
+   	 ArrayList<Continent> continentsOccupes = new ArrayList<Continent>();
+   	 int total = 0;
+   	 continentsOccupes = this.consulterContinentsEntierementOccupes();
+   	 int ajoutCauseContinent = 0;	        	 
+   	 // Parcours de continent de la liste (conquis)
+     for (Continent continent : continentsOccupes) {
+        	if (continent.getNom() == "Europe") {
+        		ajoutCauseContinent = 7;
+            }
+            else if (continent.getNom() == "Asie") {
+            	ajoutCauseContinent = 12;
+            }
+            else if (continent.getNom() == "Amerique du Nord") {
+            	ajoutCauseContinent = 9;
+            }
+            else if (continent.getNom() == "Amerique du Sud") {
+            	ajoutCauseContinent = 4;
+            }
+            else if (continent.getNom() == "Afrique") {
+            	ajoutCauseContinent = 6;
+            }
+            else if (continent.getNom() == "Oceanie") {
+            	ajoutCauseContinent = 4;
+            }
+        }
+     int ajoutCauseTerritoire = 3;
+     int totalTerritoires = this.getAllTerritoires().size();
+     ajoutCauseTerritoire = totalTerritoires / 3; ////// A finir
+     
+    total = total + ajoutCauseTerritoire + ajoutCauseContinent;
+	return total;
+	}
 
 	/**
 	 * Ajoute un territoire conquis à la HashMap<Continent, Territoire> alias territoiresConquis du joueur 
 	 * @param territoiresConquis
 	 */
 	public void ajouterTerritoiresConquis(Territoire territoire) {
-		String nomContinent = territoire.getContinent().getNom();
-        ArrayList<Territoire> territoiresParContinent = territoiresConquis.get(nomContinent);
-        territoiresParContinent = new ArrayList<>();
-        territoiresConquis.put(nomContinent, territoiresParContinent);
-        territoiresParContinent.add(territoire);
+		Continent continent = territoire.getContinent();
+        territoiresConquis.get(continent).add(territoire);
 	}
 	
 	/**
@@ -152,9 +197,45 @@ public class Joueur {
 	 * @param territoiresConquis
 	 */
 	public void supprimerTerritoiresConquis(Territoire territoire) {
-	    String nomContinent = territoire.getContinent().getNom();
-	    ArrayList<Territoire> territoiresParContinent = territoiresConquis.get(nomContinent);
-	    territoiresParContinent.remove(territoire);
+		Continent continent = territoire.getContinent();
+		territoiresConquis.get(continent).remove(territoire);
+	}
+	
+	/**
+	 * @return Arraylist <String> nom continent conquis
+	 */
+	public ArrayList<Continent> consulterContinentsEntierementOccupes() {
+		ArrayList<Continent> continentsConquis = new ArrayList<>();
+		// Parcours de chaque continent dans le dico de stockage des territoires conquis
+        for (Continent continent : this.territoiresConquis.keySet()) {
+            int countContinents = this.territoiresConquis.get(continent).size();
+            int totalContinents = 0;
+            // Vérfication du nombre de territoires par continents
+            if (continent.getNom() == "Europe") {
+            	totalContinents = 7;
+            }
+            else if (continent.getNom() == "Asie") {
+            	totalContinents = 12;
+            }
+            else if (continent.getNom() == "AmeriqueDuNord") {
+            	totalContinents = 9;
+            }
+            else if (continent.getNom() == "AmeriqueDuSud") {
+            	totalContinents = 4;
+            }
+            else if (continent.getNom() == "Afrique") {
+            	totalContinents = 6;
+            }
+            else if (continent.getNom() == "Oceanie") {
+            	totalContinents = 4;
+            }
+            // Si le joueur à tous les territoires d'un continent on note la conquete du continent dans le dico
+            System.out.println("count "+countContinents+" vs. total "+totalContinents);
+            if (countContinents == totalContinents) {
+            	continentsConquis.add(continent);
+            }
+        }
+        return continentsConquis;
 	}
 
 	@Override
