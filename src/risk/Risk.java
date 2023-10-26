@@ -34,21 +34,14 @@ public class Risk {
         // INITIALISATION D'UNE MANCHE
 	    /** Deb - A supprimer apres test*/
 		String dn = "2020-10-10";
-<<<<<<< HEAD
-		Joueur j1 = new Joueur("1", "AA", "aa", dn, monde.getMonde());
-		Joueur j2 = new Joueur("2", "BB", "bb", dn, monde.getMonde());
-		Joueur j3 = new Joueur("3", "CC", "cc", dn, monde.getMonde());
-		Joueur j4 = new Joueur("4", "DD", "dd", dn, monde.getMonde());
-		Joueur j5 = new Joueur("5", "EE", "ee", dn, monde.getMonde());
-		Joueur j6 = new Joueur("6", "FF", "ff", dn, monde.getMonde());
-=======
-		Joueur j1 = new Joueur("1", "AA", "aa", dn, nomsContinents,"jaunes");
-		Joueur j2 = new Joueur("2", "BB", "bb", dn, nomsContinents,"rouges");
-		Joueur j3 = new Joueur("3", "CC", "cc", dn, nomsContinents,"bleues");
-		Joueur j4 = new Joueur("4", "DD", "dd", dn, nomsContinents,"noires");
-		Joueur j5 = new Joueur("5", "EE", "ee", dn, nomsContinents,"violettes");
-		Joueur j6 = new Joueur("6", "FF", "ff", dn, nomsContinents,"vertes");
->>>>>>> 5ab51e2cdfbe9dfe43c004fe938ce43526bf8595
+
+		Joueur j1 = new Joueur("1", "AA", "aa", dn, monde.getMonde(), "jaunes");
+		Joueur j2 = new Joueur("2", "BB", "bb", dn, monde.getMonde(), "rouges");
+		Joueur j3 = new Joueur("3", "CC", "cc", dn, monde.getMonde(), "bleues");
+		Joueur j4 = new Joueur("4", "DD", "dd", dn, monde.getMonde(), "noires");
+		Joueur j5 = new Joueur("5", "EE", "ee", dn, monde.getMonde(), "violettes");
+		Joueur j6 = new Joueur("6", "FF", "ff", dn, monde.getMonde(), "vertes");
+
 		Joueur[] participants = {j1, j2, j3, j4, j5, j6};
 	    /** Fin - A supprimer apres test*/
 		

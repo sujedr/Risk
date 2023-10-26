@@ -10,7 +10,7 @@ public class Tour {
 	// Attributs
 	private HashMap<Integer, Conflit> conflitMap;
 	private Joueur joueur;
-	
+
 	// Constructeur 
 	public Tour(Joueur joueur) {
 		this.joueur=joueur;
@@ -28,7 +28,7 @@ public class Tour {
 		}
 	}
 	
-	private int getPlayerChoice() {
+	public int getPlayerChoice() {
 	    Scanner scanner = new Scanner(System.in);
 	    System.out.print("Veuillez entrer votre choix (-1 signifie abandonner l'attaque) : ");
 	    
@@ -45,6 +45,19 @@ public class Tour {
 	        System.out.println("Saisie invalide, veuillez saisir un entier ou -1 pour abandonner l'attaque.");
 	        return getPlayerChoice(); // 递归调用，直到得到有效输入
 	    }
+	}
+	
+	/**
+	 * @return Joueur
+	 */
+	public Joueur getJoueur() {
+		return joueur;
+	}
+	/**
+	 * @param joueur
+	 */
+	public void setJoueur(Joueur joueur) {
+		this.joueur = joueur;
 	}
 	
 	
