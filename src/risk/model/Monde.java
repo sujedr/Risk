@@ -10,6 +10,7 @@ public class Monde {
 	
 	/** Attribut liste de Continent */
 	private ArrayList<Continent> monde = new ArrayList<>(); 
+	final private int nbTerritoireTotal = 42;
 	
 	/**
 	 * Constructeur Monde
@@ -186,6 +187,12 @@ public class Monde {
 			nomContinents[i] = this.monde.get(i).getNom();
 		}
 		return nomContinents;
+	}
+	/**
+	 * @return int nbTerritoireTotal
+	 */
+	public int getNbTerritoireTotal() {
+		return nbTerritoireTotal;
 	}
 	
 	/** 

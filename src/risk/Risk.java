@@ -62,52 +62,16 @@ public class Risk {
 //            }
 //        }
 		
-		//Carte de mission
-		//TODO Peut être à instancier dans une classe comme les territoires dans "monde" pour clean le main
-		Mission mission1 = new Mission("Vous devez conquérir 18 territoires et occuper chacun d'eux avec deux armées au moins.");
-		Mission mission2 = new Mission("Vous devez conquérir en totalité l'Amérique du Nord et l'Afrique.");
-		Mission mission3 = new Mission("Vous devez conquérir en totalité l'Europe et l'Amérique du sud plus un troisième continent au choix.");
-		Mission mission4 = new Mission("Vous devez conquérir en totalité l'Europe et l'Océanie plus un troisième continent au choix.");
-		Mission mission5 = new Mission("Vous devez conquérir 24 territoires aux choix.");
-		Mission mission6 = new Mission("Vous devez conquérir en totalité l'Amérique du Nord et l'Océanie.");
-		Mission mission7 = new Mission("Vous devez conquérir en totalité l'Asie et l'Afrique.");
-		Mission mission8 = new Mission("Vous devez conquérir en totalité l'Asie et l'Amérique du sud.");
-		Mission mission9 = new Mission("Vous devez détruire les armées jaunes. Si vous êtes vous même le propriétaire des armées jaunes ou si le joueur qui en est\r\n"
-				+ "  propriétaire est éliminé par un autre joueur, votre but devient automatiquement de conquérir 24 territoires.");
-		Mission mission10 = new Mission("Vous devez détruire les armées rouges. Si vous êtes vous même le propriétaire des armées rouges ou si le joueur qui en est\r\n"
-				+ "  propriétaire est éliminé par un autre joueur, votre but devient automatiquement de conquérir 24 territoires.");
-		Mission mission11 = new Mission("Vous devez détruire les armées bleues. Si vous êtes vous même le propriétaire des armées bleues ou si le joueur qui en est\r\n"
-				+ "  propriétaire est éliminé par un autre joueur, votre but devient automatiquement de conquérir 24 territoires.");
-		Mission mission12 = new Mission("Vous devez détruire les armées noires. Si vous êtes vous même le propriétaire des armées noires ou si le joueur qui en est\r\n"
-				+ "  propriétaire est éliminé par un autre joueur, votre but devient automatiquement de conquérir 24 territoires.");
-		Mission mission13 = new Mission("Vous devez détruire les armées violettes. Si vous êtes vous même le propriétaire des armées violettes ou si le joueur qui en est\r\n"
-				+ "  propriétaire est éliminé par un autre joueur, votre but devient automatiquement de conquérir 24 territoires.");
-		Mission mission14 = new Mission("Vous devez détruire les armées vertes. Si vous êtes vous même le propriétaire des armées vertes ou si le joueur qui en est\r\n"
-				+ "  propriétaire est éliminé par un autre joueur, votre but devient automatiquement de conquérir 24 territoires.");
-		List<String> missions = new ArrayList<>();
-        missions.add(mission1.getMission());
-        missions.add(mission2.getMission());
-        missions.add(mission3.getMission());
-        missions.add(mission4.getMission());
-        missions.add(mission5.getMission());
-        missions.add(mission6.getMission());
-        missions.add(mission7.getMission());
-        missions.add(mission8.getMission());
-        missions.add(mission9.getMission());
-        missions.add(mission10.getMission());
-        missions.add(mission11.getMission());
-        missions.add(mission12.getMission());
-        missions.add(mission13.getMission());
-        missions.add(mission14.getMission());
-        //Mélanger les cartes de mission
-		Collections.shuffle(missions);
+		//Mélanger les cartes de mission 打乱卡牌
+		Mission m = new Mission();
+		Collections.shuffle(m.getMissionListe(), new Random());
 		
-		//Attribuer une mission randomisée à chaque joueur
-		for (int i = 0; i < participants.length; i++) {
-			Joueur joueur = participants[i];
-			String mission = missions.get(i);
-            System.out.println("La mission du joueur " + joueur.getId() + " : " + mission);
+		//Distribution des cartes de mission aux joueurs 随机分配任务卡牌给玩家
+		for(int i=0;i<participants.length;i++) {
+			participants[i].DistribuerRandomMission(m.getMissionListe());
 		}
+		
+		
 		
 		// DEBUT - ATTRIBUTION DES CARTES TERRITOIRES AUX JOUEURS
 		// instances régiment pour infanterie, cavalerie et artillerie
@@ -171,8 +135,11 @@ public class Risk {
         // DEBUT DE LA MANCHE
          boolean isFirstTour = true;
          boolean isWinner = false;
+         boolean isObjectifCompleted = false;
+
          while (isWinner != true) {
         	 // POUR CHAQUE JOUEUR
+        	 int indiceJoueur = 0;
         	 for (Joueur joueur : participants) {
 	        	 System.out.println("Joueur " + joueur.getNom());
 	        	 
@@ -182,47 +149,25 @@ public class Risk {
 	        	 // Variable stockant les choix du joueur
 	        	 String choixAction = "null"; // choix du joueur dans le menu (cf plus bas)
         		 String choixDeplacer = "null"; // variable pour stocker si il y a validation des modifications des troupes, si il veut ajouter ou encore retirer de nouvelles troupes 
-        		 /** @Moi pas fini a ajouter autres verif dont nb regiments*/
         		 
-	        	 // PLACEMENT DES 20 REGIMENTS POUR LE PREMIER TOUR
+	        	 // PLACEMENT DES 20 REGIMENTS POUR LE PREMIER TOUR (7 DEJA PLACES)
 	        	 if (isFirstTour == true) {
-		        	 // Tant que le joueur n'a pas ajouter tous ses regiments, il ajoute les regiments restants
-		        	 while (joueur.getNbRegimentsRestants() != 0) {
-		        		 
-			        	 /** @Raph BESOIN - Methode retournant un territoire et une quantité pour choisir le territoire où ajouter les troupes
-			        	  *  >> Rappel condition : territoire.occupant == null || territoire.occupant == joueur
-			        	  *  Sinon retourner fenetre message erreur territoire deja occupé 
-			        	  *  OU
-			        	  *  Si galere je le bloque à la mano dans le main 
-			        	  *  
-			        	  *  Pour simplifier, l'algo c'est qu'à la phase d'ajout, il peuvent pas enlever quand ils posent ahah 
-			        	  *  genre, il pose 2, puis 1 , quand il en a plus ca passe à autre chose :3
-			        	  */
-		        		 
-		        		 
+        			 while (joueur.getNbRegimentsRestants() != 0) {
 		        		 for (Territoire territoire : joueur.getAllTerritoires()) {
 		        			 //Affichage de l'ajout d'unités sur un territoire retourne le nombre a ajouté
 		        			 nbUnitesAjout = vue.premierTour(joueur, territoire);
 		        			 territoire.ajouterNbRegiments(nbUnitesAjout);
 		        			 joueur.enleverNbRegimentsRestants(nbUnitesAjout);
 		        		 } 
-		        		 
-		        	//	 vue.premierTour(joueur, territoire); //Permet d'effectuer les actions pour un joueur au premier tour
-			    
-			        	 Territoire destTerritoireAjout = monde.getTerritoires().get(0);                    //    <== changer valeur
-			        	 int nbRegimentsAjoutes = 1;														//    <== changer valeur
-			        	 System.out.println("*Debut* Territoire : "+destTerritoireAjout.getNom()+" - Nb : "+destTerritoireAjout.getNbRegiments());
-			        	 System.out.println("*Debut* Joueur : "+joueur.getNom()+" - Nb : "+joueur.getNbRegimentsRestants());
-			        	 destTerritoireAjout.ajouterNbRegiments(nbRegimentsAjoutes); // Ajout régiment au territoire
-			        	 joueur.enleverNbRegimentsRestants(nbRegimentsAjoutes); // Retrait nb au nb de regiment à placer
-			        	 System.out.println("*Fin* Territoire : "+destTerritoireAjout.getNom()+" - Nb : "+destTerritoireAjout.getNbRegiments());
-			        	 System.out.println("*Fin* Joueur : "+joueur.getNom()+" - Nb : "+joueur.getNbRegimentsRestants());
 		        	 }
-	        		 isFirstTour = false;
+		        	 if (joueur == participants[5]) {
+		        		 isFirstTour = false;
+		        	 }
 	        	 }
 	        	 // PROCESSUS NORMAL POUR LES AUTRES TOURS
 	        	 else {
-		        	 // VERFICATION ET MISE A JOUR DES DATA EN DEBUT DE TOUR DE CHAQUE JOUEUR
+		        	 // MISE A JOUR DU NOMBRE DE REGIMENTS QUE PEUT POSITIONNER UN JOUEUR EN DEBUT DE TOUR
+	        		 // => selon nombre de territoires occupés et de continents complets occupés
 	        		 int nbRegimentAPlacer = joueur.calculerNbRegimentsAPlacer();
 	        		 joueur.ajouterNbRegimentsRestants(nbRegimentAPlacer);
 	        		 
@@ -253,15 +198,29 @@ public class Risk {
 		        	 // Tant que le tour du joueur n'est pas fini (continuer d'attaquer), on affiche la fenetre des choix 
 		        	 while (choixAction == "Attaquer") {
 			        	 /** @Raph BESOIN - Modifier ta methode choixJoueur pour qu'elle retourne le choix du joueur
-			        	  *  Genre string "Attaquer", "Déplacer" ou "Passer tour" c'est impec :)
+			        	  *  Genre string "Attaquer", "Déplacer" ou "Passer tour"  par exeple 
+			        	  *  OUTPUT : choixAction 
 			        	  */
+		        			
 		        		 // LANCER UNE ATTAQUE
+				            /** @Kun / @Yujie integrer dans le code : Si nouveau territoire conquis => isNouveauTerritoireConquis = true;*/
 		        		 // Si le joueur clique sur l'option d'attaquer, il choisie le territoire d'attaque, de defense et le nombre de regiments pour attaquer
 		        		 if (choixAction == "Attaquer") {
-				        	 /** @Kun / @Yujie 
-				        	  * Attaque / Défense
-				        	  * integrer dans le code : Si nouveau territoire conquis => isNouveauTerritoireConquis = true;
-				        	  */
+			        		   /** @Raph Demander choix pays attaquant, pays attaqué, nombre de troupes 
+			        			*  OUTPUT : territoireAttaquant, territoireDefenseur, nbRegimentsAttaque
+			        			*/
+			        			Territoire territoireAttaquant = monde.getTerritoires().get(0);      // Données tests à mettre à jour avec output !!!!
+			        			Territoire territoireDefenseur = monde.getTerritoires().get(1);
+			        			int nbRegimentsAttaque = 2;
+			        			int nbRegimentsRiposte = 1;
+			        			// Creation du conflit 
+			        			Conflit conflit = new Conflit(joueur, territoireAttaquant, territoireDefenseur, nbRegimentsAttaque);
+			        			/** @Raph Demander defenseur nb de troupes riposte
+			        			 *  Input : conflit.getBlablabla...
+			        			 *  Output : nbRegimentsRiposte
+			        			 */
+			        			// Resultat du conflit
+			        			conflit.resultatConflit(nbRegimentsRiposte);
 		        		 }
 		        		 // DEPLACER CERTAINS DE SES REGIMENTS
 		        		 // Si le joueur clique sur l'option deplacer, il choisie autant de deplacement qu'il souhaite (tant que les territoires sont voisins)
@@ -308,9 +267,32 @@ public class Risk {
 		        		 }
 		        	 }
 	        	 }
-	        	     	 
+		         // Si le joueur a remporté tous les territoires
+		         int nbTerritoiresConquis = (int) joueur.getAllTerritoires().size();
+		         if (nbTerritoiresConquis == monde.getNbTerritoireTotal()) {
+		        	 isWinner = true;	
+		         }
+		         // Si le joueur a complété son objectif
+		         if (isObjectifCompleted == true) {
+		        	 isWinner = true;	
+		         }
+		         // Si le joueur n'a plus de territoire il est eliminé 
+		         if (nbTerritoiresConquis == 0) {
+		        	int nouvelIndiceTableau = 0;
+		        	// Copie des joueurs dans un tableau à jour (sans le joueur eliminé)
+		        	Joueur[] participantsMaj = new Joueur[participants.length - 1];
+		        	for (int k = 0; k < participants.length; k++) {
+		        	    if (k != indiceJoueur) {
+		        	    	participantsMaj[nouvelIndiceTableau] = participants[k];
+		        	    	nouvelIndiceTableau = nouvelIndiceTableau+1;
+		        	    }
+		        	}
+		        	// Mise à jour du tableau des participants
+		        	participants = participantsMaj;
+		         }	 
         	 isWinner = true;																	// A supprimer (for testing only)
-        	 // isWinner = true if all territoire conquis ou cart objectif realisee
+        	 // Incrementation indice joueur de 1
+        	 indiceJoueur = indiceJoueur+1;
         	 }
          }
         

@@ -3,6 +3,7 @@ package risk.model;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
+import java.util.Random;
 
 /**
  * Objet joueur
@@ -15,7 +16,7 @@ public class Joueur {
 	private String dtNaissance;
 	
 	private String couleur;
-	
+	private String currentmission;
 	/** Attributs spécifiques à une manche */
 	private HashMap<Continent, ArrayList<Territoire>> territoiresConquis = new HashMap<>() ;
 	private int nbRegimentsRestants;
@@ -28,6 +29,10 @@ public class Joueur {
 	private int nbRegiments;
 	private int nbTours;
 
+	private ArrayList<Continent> continentsConquis = new ArrayList<>();
+	private ArrayList<Territoire> allTerritoires = new ArrayList<>();
+	private int nbRegimentsAterritoires;
+	
 	/**
 	 * Constructeur
 	 * @param id
@@ -60,12 +65,23 @@ public class Joueur {
 		this.nbTours = 0;
 	}
 	
+	// Couleur choisie par le joueur 玩家所选的颜色
+		public String getCouleur() {
+			return couleur;
+		}
+		
+		//Distribuer les cartes de mission aux joueurs 分发任务卡牌给玩家
+		public void DistribuerRandomMission(ArrayList<String> listeMission) {
+			Random random = new Random();
+			int randomIndex = random.nextInt(listeMission.size());
+			this.currentmission = listeMission.remove(randomIndex);
+			System.out.println(
+			"La mission du joueur " + id + " : " + currentmission);
+		}
+	
+	
+	
 	// Getter and setter
-	
-	public String getCouleur() {
-		return couleur;
-	}
-	
 	
 	/** @return int */
 	public String getId() {
@@ -134,8 +150,6 @@ public class Joueur {
 	 */
 	public ArrayList<Territoire> getAllTerritoires() {
 		HashMap<Continent, ArrayList<Territoire>> map = new HashMap<>(this.territoiresConquis);
-		ArrayList<Territoire> allTerritoires = new ArrayList<>();
-
 	    // 遍历HashMap中的所有值（ArrayList<Territoire>）
 	    for (ArrayList<Territoire> territoriesList : map.values()) {
 	        // 遍历每个ArrayList<Territoire>，将其中的Territoire添加到allTerritoires中
@@ -144,6 +158,14 @@ public class Joueur {
 	        }
 	    }
 	    return allTerritoires;
+	}
+	
+	public ArrayList<String> getAllTerritoiresClear() {
+		ArrayList<String>liste = new ArrayList<>();
+		for (Territoire territoire : this.getAllTerritoires()) {
+			liste.add(territoire.getNom());
+		}
+		return liste;
 	}
 	
 	/**
@@ -209,7 +231,7 @@ public class Joueur {
 	 * @return Arraylist <Continent> nom continent conquis
 	 */
 	public ArrayList<Continent> consulterContinentsEntierementOccupes() {
-		ArrayList<Continent> continentsConquis = new ArrayList<>();
+
 		// Parcours de chaque continent dans le dico de stockage des territoires conquis
         for (Continent continent : this.territoiresConquis.keySet()) {
             int countContinents = this.territoiresConquis.get(continent).size();
@@ -241,7 +263,140 @@ public class Joueur {
         }
         return continentsConquis;
 	}
-
+	
+	
+	public int calculerNbRegimentsATerritoires(Territoire t) {
+		return nbRegimentsAterritoires=t.getNbRegiments();
+	}
+	
+	//Compétition gagnant : Conquérir tous les continents
+	//获胜竞赛：征服所有大洲（打败所有人）
+	public void ComprtitionRussie() {
+		boolean ConquerirAmNord = false;
+		boolean ConquerirAfri = false;
+		boolean ConquerirEurope = false;
+		boolean ConquerirAsie = false;
+		boolean ConquerirOceanie = false;
+		boolean ConquerirAmSud = false;
+		for(int i=0;i<this.continentsConquis.size();i++) {
+			if(continentsConquis.get(i).getNom()=="AmeriqueDuNord") {ConquerirAmNord=true;}
+			if(continentsConquis.get(i).getNom()=="Afrique") {ConquerirAfri=true;}
+			if(continentsConquis.get(i).getNom()=="Europe") {ConquerirEurope=true;}
+			if(continentsConquis.get(i).getNom()=="Asie") {ConquerirAsie=true;}
+			if(continentsConquis.get(i).getNom()=="Oceanie") {ConquerirOceanie=true;}
+			if(continentsConquis.get(i).getNom()=="AmeriqueDuSud") {ConquerirAmSud=true;}
+		}
+		if (ConquerirAmNord&&ConquerirAfri&&ConquerirEurope&&ConquerirAsie
+				&&ConquerirOceanie&&ConquerirAmSud) {
+			System.out.println("Félicitations au joueur "+id+" : Vous avez gagné et conquis tous les territoires !!");
+		}
+	}
+	
+	//Compétition gagnant : reussi mission
+	//获胜竞赛：完成任务mission
+	public void MissionRussie() {
+		boolean ConquerirAmNord = false;
+		boolean ConquerirAfri = false;
+		boolean ConquerirEurope = false;
+		boolean ConquerirAsie = false;
+		boolean ConquerirOceanie = false;
+		boolean ConquerirAmSud = false;
+		for(int i=0;i<this.continentsConquis.size();i++) {
+			if(continentsConquis.get(i).getNom()=="AmeriqueDuNord") {ConquerirAmNord=true;}
+			if(continentsConquis.get(i).getNom()=="Afrique") {ConquerirAfri=true;}
+			if(continentsConquis.get(i).getNom()=="Europe") {ConquerirEurope=true;}
+			if(continentsConquis.get(i).getNom()=="Asie") {ConquerirAsie=true;}
+			if(continentsConquis.get(i).getNom()=="Oceanie") {ConquerirOceanie=true;}
+			if(continentsConquis.get(i).getNom()=="AmeriqueDuSud") {ConquerirAmSud=true;}
+		}
+		//0 MissionRussie : 
+		//Vous devez conquérir 18 territoires et occuper chacun d'eux avec deux armées au moins
+		//您必须征服 18 块领土，并至少用两支军队占领其中的每一块领土
+		if(this.currentmission == "Vous devez conquérir 18 territoires et occuper chacun d'eux avec deux armées au moins.") {
+			if(allTerritoires.size()>=18 ||nbRegimentsAterritoires>=2) {
+				System.out.println("Félicitations au joueur "+id+"Vous avez gagné !");
+			}
+		}
+		
+		//1 MissionRussie : conquérir toute l'Amérique du Nord et l'Afrique 
+		//完成任务征服整个北美洲和非洲
+		else if(this.currentmission == "Vous devez conquérir en totalité l'Asie et l'Amérique du sud.") {
+			if (ConquerirAmNord&&ConquerirAfri) {
+				System.out.println("Félicitations au joueur "+id+"Vous avez gagné !");
+			}
+		}
+		
+		//2 MissionRussie : 
+		//Vous devez conquérir en totalité l'Europe et l'Amérique du sud plus un troisième continent au choix
+		//您必须征服整个欧洲和南美洲，外加您选择的第三个洲
+		else if(this.currentmission == "Vous devez conquérir en totalité l'Europe et l'Amérique du sud plus un troisième continent au choix.") {
+			if ((ConquerirEurope&&ConquerirAmSud)||ConquerirAmNord||ConquerirAfri||ConquerirAsie||ConquerirOceanie) {
+				System.out.println("Félicitations au joueur "+id+"Vous avez gagné !");
+			}
+		}
+		
+		//3 MissionRussie : 
+		//Vous devez conquérir en totalité l'Europe et l'Océanie plus un troisième continent au choix
+		//您必须征服整个欧洲和大洋洲，外加您选择的第三个洲
+		else if(this.currentmission == "Vous devez conquérir en totalité l'Europe et l'Océanie plus un troisième continent au choix.") {
+			if ((ConquerirEurope&&ConquerirOceanie)||ConquerirAmNord||ConquerirAfri||ConquerirAsie||ConquerirAmSud) {
+				System.out.println("Félicitations au joueur "+id+"Vous avez gagné !");
+			}
+		}
+		
+		//4 MissionRussie : 
+		//Vous devez conquérir 24 territoires aux choix
+		//您必须征服您选择的 24 个领土
+		else if(this.currentmission == "Vous devez conquérir 24 territoires aux choix.") {
+			if(allTerritoires.size()>=24) {
+				System.out.println("Félicitations au joueur "+id+"Vous avez gagné !");
+			}
+		}
+		
+		//5 MissionRussie : 
+		//Vous devez conquérir en totalité l'Amérique du Nord et l'Océanie
+		//您必须征服整个北美洲和大洋洲
+		else if(this.currentmission == "Vous devez conquérir en totalité l'Amérique du Nord et l'Océanie.") {
+			if (ConquerirAmNord&&ConquerirOceanie) {
+				System.out.println("Félicitations au joueur "+id+"Vous avez gagné !");
+			}
+		}
+		
+		//6 MissionRussie : 
+		//Vous devez conquérir en totalité l'Asie et l'Afrique
+		//您必须征服整个亚洲和非洲
+		else if(this.currentmission == "Vous devez conquérir en totalité l'Asie et l'Afrique.") {
+			if (ConquerirAsie&&ConquerirAfri) {
+				System.out.println("Félicitations au joueur "+id+"Vous avez gagné !");
+			}
+		}
+		
+		//7 MissionRussie : 
+		//Vous devez conquérir en totalité l'Asie et l'Amérique du sud
+		//您必须征服整个亚洲和南美洲
+		else if(this.currentmission == "Vous devez conquérir en totalité l'Asie et l'Amérique du sud.") {
+			if (ConquerirAsie&&ConquerirAmSud) {
+				System.out.println("Félicitations au joueur "+id+"Vous avez gagné !");
+			}
+		}
+		
+		//8 MissionRussie : 
+		//
+		//	
+		
+		
+		
+		else {
+//			System.out.println("Bon courage !");
+		}
+		
+		
+		
+		
+	}
+	
+	
+	
 	@Override
 	public String toString() {
 		return "Joueur [nom=" + nom + ", prenom=" + prenom + "]";

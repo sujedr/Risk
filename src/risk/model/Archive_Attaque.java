@@ -4,8 +4,10 @@ import java.util.ArrayList;
 import java.util.Scanner;
 import risk.model.LancerDes;
 //import RiskTest.Joueur;
-
-public class Attaque extends Action {
+/**
+ *  CLASSE ATTAQUE **** QUIPROQUO *** CLASSE PAS UTILISEE 
+ */
+public class Archive_Attaque {
 	
 	private Joueur attaquant;
 	private Territoire territoireAttaquant;
@@ -13,7 +15,7 @@ public class Attaque extends Action {
 	private int nbRegimentAttaquant;
 	private ArrayList<Integer> desAttaque;
 	
-	public Attaque(Joueur attaquant) {
+	public Archive_Attaque(Joueur attaquant) {
 		// TODO Auto-generated constructor stub
 		this.attaquant=attaquant;
 		this.territoireAttaquant=choisirTerritoirePartir(attaquant);

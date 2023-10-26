@@ -225,6 +225,9 @@ public class ConnexionDB {
         // creation de la compétition
         //dbRisk.createCompetition(2023, Date.valueOf("2023-11-01"), Date.valueOf("2023-11-30"));
         
+        // display classement
+        dbRisk.readQuery("select nom, prenom, score from joueur order by score DESC;");
+        
         // close connexion
         dbRisk.closeConnexion();
     } 
