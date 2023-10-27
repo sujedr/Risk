@@ -17,6 +17,7 @@ public class Manche {
 	private Chronometre duree = new Chronometre();
 	private Boolean estTerminee=false;
 	private String dateDebut;
+	private HashMap<Joueur,Joueur> vaincre;//joueurVaincu,joueurVaincre
 	private HashMap<Integer,Joueur> classement;
 
 	// Constructeur
@@ -86,6 +87,10 @@ public class Manche {
 	public void addClassement(Joueur joueur) {
 		int rank=getClassementLength();
 		this.classement.put(rank,joueur);
+	}
+	
+	public void addVaincre(Joueur joueurVaincu,Joueur joueurVaincre) {
+		this.vaincre.put(joueurVaincu,joueurVaincre);
 	}
 
 	private int findMaxValue() {

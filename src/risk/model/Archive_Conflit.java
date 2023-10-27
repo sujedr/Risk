@@ -99,17 +99,13 @@ public class Archive_Conflit {
 		tousterritoireAttaquant=territoireAttaquant.getOccupant().getAllTerritoires();
 		if(tousTerritoireDefenseur.size()==0) {
 			this.tour.getManche().addClassement(territoireDefenseur.getOccupant());
+			this.tour.getManche().addVaincre(territoireDefenseur.getOccupant(),territoireAttaquant.getOccupant());
 			if(this.tour.getManche().getClassementLength() ==6) {
 				this.tour.getManche().setEstTerminee(true);
 			}
 		}
-		if(tousterritoireAttaquant.size()==0) {
-			this.tour.getManche().addClassement(territoireAttaquant.getOccupant());
-			if(this.tour.getManche().getClassementLength() ==6) {
-				this.tour.getManche().setEstTerminee(true);
-			}
 			
-		}
+	
 	} 
 
 }
