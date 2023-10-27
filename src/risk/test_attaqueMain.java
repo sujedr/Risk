@@ -42,7 +42,7 @@ public class test_attaqueMain {
     			
 		Joueur joueur = j1;
 		Territoire territoireAttaquant = monde.getTerritoires().get(0);
-		Territoire territoireDefenseur = monde.getTerritoires().get(1);
+		Territoire territoireDefenseur = monde.getTerritoires().get(2);
 		int nbRegimentsAttaque = 3;
 		int nbRegimentsRiposte = 2;
 
