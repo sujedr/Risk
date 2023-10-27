@@ -299,7 +299,8 @@ public class Risk {
 		         }
 		         
 		         // Si le joueur a complÃ©tÃ© son objectif
-//		         isObjectifCompleted = joueur.MissionReussie(participants); // check dans test_Main avant d'insérer
+		         joueur.MissionReussie(participants); // check dans test_Main avant d'insérer
+		         isObjectifCompleted = joueur.getMissionAchievement();
 		         if (isObjectifCompleted == true) {
 		        	 isWinner = true;	
 		         }
