@@ -210,9 +210,6 @@ public class Risk {
 					        			isNouveauTerritoireConquis = conflit.resultatConflit(nbRegimentsRiposte);
 					        			vue.afficherDes(conflit.getDesAttaque(), conflit.getDesDefense(), territoireAttaquant, territoireDefenseur);
 					        			
-					        			
-					        			
-					        			
 					        			vue.afficherResultats(conflit.getTerritoireAttaquant().getNbRegiments(), conflit.getTerritoireDefenseur().getNbRegiments(), territoireAttaquant, territoireDefenseur);
 					        			
 					        			

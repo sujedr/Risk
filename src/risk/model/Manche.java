@@ -2,6 +2,7 @@ package risk.model;
 
 import java.util.Date;
 import java.util.HashMap;
+import java.util.Map.Entry;
 import java.text.SimpleDateFormat;
 import java.util.Random;
 import java.util.ArrayList;
@@ -93,6 +94,17 @@ public class Manche {
 		this.vaincre.put(joueurVaincu,joueurVaincre);
 	}
 
+	public Joueur findWinnerOf(Joueur defeatedJoueur) {
+	    for (Entry<Joueur, Joueur> entry : vaincre.entrySet()) {
+	        Joueur defeated = entry.getKey();
+	        Joueur winner = entry.getValue();
+	        if (defeated.equals(defeatedJoueur)) {
+	            return winner;
+	        }
+	    }
+	    return null;//Le joueur n'a pas encore été battu
+	}
+	
 	private int findMaxValue() {
 	    int maxValue = 0;
 
