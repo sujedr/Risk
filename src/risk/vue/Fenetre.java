@@ -105,7 +105,8 @@ public class Fenetre {
      * Méthode à invoker pour permettre à un joueur d'effectuer ses actions dans un tour
      * @param joueur
      */
-    public void actionsTour(Joueur joueur) {
+    public int actionsTour(Joueur joueur) {
+    	final int[] choix = { 0 };
         this.label.setText("             "  + joueur.getNom());
         frame.addMouseListener(new MouseListener() {
             public void mouseClicked(MouseEvent e) {
@@ -115,7 +116,9 @@ public class Fenetre {
                 
                 for (Territoire territoire : territoires) {
                 	if (territoire.isInTerritory(x, y, seuil) ) {
-                		choixJoueurTour(territoire, joueur);
+                		choix[0] = choixJoueurTour(territoire, joueur);
+                	} else {
+                		choix[0] = 0;
                 	};
                 }  
             }
@@ -131,18 +134,20 @@ public class Fenetre {
 			@Override
 			public void mouseExited(MouseEvent e) {}
         });
+        return choix[0];
     }
     
     /**
      * @param territoire
      */
-    public void choixJoueurTour(Territoire territoire, Joueur joueur) {
+    public int choixJoueurTour(Territoire territoire, Joueur joueur) {
         String[] options = {"Attaquer", "Déplacer", "Passer tour"};
         int choice = JOptionPane.showOptionDialog(frame, territoire.getNumber() + " : " + territoire.getNom() + "\n Occupant : " 
-        + /* TODO remettre apres test territoire.getOccupant().getNom() + */ "\n Choisissez une action ", "Action", JOptionPane.DEFAULT_OPTION, JOptionPane.QUESTION_MESSAGE, null, options, options[0]);
+        + territoire.getOccupant().getNom() + "\n Choisissez une action ", "Action", JOptionPane.DEFAULT_OPTION, JOptionPane.QUESTION_MESSAGE, null, options, options[0]);
 
         if (choice == 0) {
             JOptionPane.showMessageDialog(frame, "Vous avez choisi d'attaquer \n Cliquez maintenant sur le pays que vous souhaitez attaquer");
+            int option = JOptionPane.showConfirmDialog(null, frame, "Ajouter des troupes", JOptionPane.OK_CANCEL_OPTION);
             frame.addMouseListener(new MouseListener() {
                 public void mouseClicked(MouseEvent e) {
                 	
@@ -173,11 +178,15 @@ public class Fenetre {
     			@Override
     			public void mouseExited(MouseEvent e) {}
             });
+            return 1;
         } else if (choice == 1) {
             JOptionPane.showMessageDialog(frame, "Vous avez choisi de déplacer \n Cliquez maintenant sur le pays depuis lequel vous voulez déplacer");
+            return 2;
         } else if (choice == 2) {
             JOptionPane.showMessageDialog(frame, "Vous avez choisi de passer votre tour");
+            return 3;
         }
+        return 0;
     }
     
 
