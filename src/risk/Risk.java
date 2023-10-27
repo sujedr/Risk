@@ -160,8 +160,10 @@ public class Risk {
 		        			 nbUnitesAjout = vue.premierTour(joueur, territoire);
 		        			 territoire.ajouterNbRegiments(nbUnitesAjout);
 		        			 joueur.enleverNbRegimentsRestants(nbUnitesAjout);
+		        			 System.out.println("bloque1");
 		        		 } 
 		        	 }
+        			 System.out.println("bloque2");
         			 nbJouer +=1;
 	        	 }
 	        	 // PROCESSUS NORMAL POUR LES AUTRES TOURS
@@ -170,19 +172,9 @@ public class Risk {
 	        		 // => selon nombre de territoires occupés et de continents complets occupés
 	        		 int nbRegimentAPlacer = joueur.calculerNbRegimentsAPlacer();
 	        		 joueur.ajouterNbRegimentsRestants(nbRegimentAPlacer);
+	        		 System.out.println("regiment a placer : " + nbRegimentAPlacer);
 	        		 
-		        	 // AJOUT NOUVEAUX REGIMENTS
-		        	 while (joueur.getNbRegimentsRestants() != 0) {
-		        		 
-		        	 /** @Raph BESOIN - Methode retournant un territoire et une quantité pour choisir le territoire où ajouter les troupes
-		        	  *  >> Rappel condition : territoire.occupant == null || territoire.occupant == joueur
-		        	  *  Sinon retourner fenetre message erreur territoire deja occupé 
-		        	  *  OU
-		        	  *  Si galere je le bloque à la mano dans le main 
-		        	  *  
-		        	  *  Pour simplifier, l'algo c'est qu'à la phase d'ajout, il peuvent pas enlever quand ils posent ahah 
-		        	  *  genre, il pose 2, puis 1 , quand il en a plus ca passe à autre chose :3
-		        	  */	    
+		        	 // AJOUT NOUVEAUX REGIMENTS   
 	        			 while (joueur.getNbRegimentsRestants() != 0) {
 			        		 for (Territoire territoire : joueur.getAllTerritoires()) {
 			        			 //Affichage de l'ajout d'unités sur un territoire retourne le nombre a ajouté
@@ -191,17 +183,6 @@ public class Risk {
 			        			 joueur.enleverNbRegimentsRestants(nbUnitesAjout);
 			        		 } 
 			        	 }
-		        		 
-		        	 /*
-		        	 Territoire destTerritoireAjout = monde.getTerritoires().get(0);                    //    <== changer valeur
-		        	 int nbRegimentsAjoutes = 1;														//    <== changer valeur
-		        	 System.out.println("*Debut* Territoire : "+destTerritoireAjout.getNom()+" - Nb : "+destTerritoireAjout.getNbRegiments());
-		        	 System.out.println("*Debut* Joueur : "+joueur.getNom()+" - Nb : "+joueur.getNbRegimentsRestants());
-		        	 destTerritoireAjout.ajouterNbRegiments(nbRegimentsAjoutes); // Ajout régiment au territoire
-		        	 joueur.enleverNbRegimentsRestants(nbRegimentsAjoutes); // Retrait nb au nb de regiment à placer
-		        	 System.out.println("*Fin* Territoire : "+destTerritoireAjout.getNom()+" - Nb : "+destTerritoireAjout.getNbRegiments());
-		        	 System.out.println("*Fin* Joueur : "+joueur.getNom()+" - Nb : "+joueur.getNbRegimentsRestants()); */
-		        	 }
 		        	 
 		        	 // CHOIX D ATTAQUER, MODIFIER SES TROUPES OU PASSER SON TOUR
 		        	 // Tant que le tour du joueur n'est pas fini (continuer d'attaquer), on affiche la fenetre des choix 
@@ -299,7 +280,7 @@ public class Risk {
 		        	// Mise à jour du tableau des participants
 		        	participants = participantsMaj;
 		         }	 
-        	 isWinner = true;																	// A supprimer (for testing only)
+        	 //isWinner = true;																	// A supprimer (for testing only)
         	 // Incrementation indice joueur de 1
         	 indiceJoueur = indiceJoueur+1;
         	 }
