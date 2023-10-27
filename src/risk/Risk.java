@@ -196,8 +196,9 @@ public class Risk {
 					        			*  OUTPUT : territoireAttaquant, territoireDefenseur, nbRegimentsAttaque
 					        			*/
 					        			Territoire territoireAttaquant = vue.attaque(joueur);
-					        			System.out.println(territoireAttaquant.getNom());
-					        			Territoire territoireDefenseur = monde.getTerritoires().get(1);
+					        			System.out.println("Attaquant : "  + territoireAttaquant.getNom());
+					        			Territoire territoireDefenseur = vue.defense(joueur, territoireAttaquant);
+					        			System.out.println("Defenseur : " + territoireAttaquant.getNom());
 					        			int nbRegimentsAttaque = 2;
 					        			int nbRegimentsRiposte = 1;
 					        			// Creation du conflit 
