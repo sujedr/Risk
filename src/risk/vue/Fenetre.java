@@ -189,6 +189,44 @@ public class Fenetre {
         return 0;
     }
     
+    /**
+     * Gestion des interraction pour le premier tour
+     * @param joueur
+     * @param territoire 
+     * @return nbTroupe à ajouter
+     */
+    public int tour(Joueur joueur) {
+        // Actualisation de l'affichage
+        boolean validationTroupe = false;
+        int choix = 0;
+        
+        while (!validationTroupe) {
+            this.label.setText("             Joueur " + joueur.getId() + "\n" + joueur.getAllTerritoiresClear());
+
+            // Utilisation de JOptionPane pour afficher les options
+            Object[] options = {"Déplacer", "Attaquer", "Passer tour"};
+            int choice = JOptionPane.showOptionDialog(null, "Que voulez-vous faire ?", "Choix d'action",
+                    JOptionPane.YES_NO_CANCEL_OPTION, JOptionPane.QUESTION_MESSAGE, null, options, options[2]);
+
+            // Traitement de la sélection de l'utilisateur
+            if (choice == 0) {
+                // Déplacer
+            	choix = 1;
+                validationTroupe = true; // Remplacez cela par la logique appropriée
+            } else if (choice == 1) {
+                // Attaquer
+                choix = 2;
+                validationTroupe = true; // Remplacez cela par la logique appropriée
+            } else if (choice == 2) {
+                // Passer tour
+                choix = 3; // Mettez le nombre de troupes à 0 (ou autre logique)
+                validationTroupe = true;
+            }
+        }
+        return choix;
+    }
+
+    
 
     
     /**

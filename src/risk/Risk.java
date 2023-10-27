@@ -187,8 +187,12 @@ public class Risk {
 				        		 } 
 				        	 }
 		        		while (!tourPassed) {
-		        			int choix = vue.actionsTour(joueur); //1 = Déplacer, 2 = Attaquer, 3 = Défendre
+		        			int choix = vue.tour(joueur); //1 = Déplacer, 2 = Attaquer, 3 = Passer tour
+		        			if (choix == 3) {
+		        				tourPassed = true;
+		        			}
 		        		}
+		        		System.out.println("Félicitations ça marche");
 	        		
 		        	 
 		        	 // CHOIX D ATTAQUER, MODIFIER SES TROUPES OU PASSER SON TOUR
