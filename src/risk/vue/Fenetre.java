@@ -6,6 +6,7 @@ import java.awt.FlowLayout;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.util.ArrayList;
+import java.util.concurrent.CountDownLatch;
 
 import javax.swing.*;
 
@@ -216,6 +217,7 @@ public class Fenetre {
             } else if (choice == 1) {
                 // Attaquer
                 choix = 2;
+                //attaque(joueur); //TODO Enlevé pour le test
                 validationTroupe = true; // Remplacez cela par la logique appropriée
             } else if (choice == 2) {
                 // Passer tour
@@ -224,6 +226,57 @@ public class Fenetre {
             }
         }
         return choix;
+    }
+    
+    public void attaque(Joueur joueur) {
+        this.label.setText("             " + joueur.getNom());
+
+        while (true) {
+            CountDownLatch clickWait = new CountDownLatch(1); // Attendre le click
+
+            frame.addMouseListener(new MouseListener() {
+                public void mouseClicked(MouseEvent e) {
+                    int x = e.getX();
+                    int y = e.getY();
+
+                    for (Territoire territoire : territoires) {
+                        if (territoire.isInTerritory(x, y, seuil)) {
+                            System.out.println(territoire.getNumber() + " : " + territoire.getNom());
+                            clickWait.countDown();
+                        }
+                    }
+                }
+
+                @Override
+                public void mousePressed(MouseEvent e) {
+                }
+
+                @Override
+                public void mouseReleased(MouseEvent e) {
+                }
+
+                @Override
+                public void mouseEntered(MouseEvent e) {
+                }
+
+                @Override
+                public void mouseExited(MouseEvent e) {
+                }
+            });
+
+            try {
+                // Attende de l'action utilisateur
+                clickWait.await();
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+
+            // Suite du code
+            System.out.println("Suite du code après le clic.");
+
+            // Sortie de boucle
+            break;
+        }
     }
 
     

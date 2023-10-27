@@ -191,6 +191,9 @@ public class Risk {
 		        			if (choix == 3) {
 		        				tourPassed = true;
 		        			}
+		        			if (choix == 2) {
+		        				vue.attaque(joueur);
+		        			}
 		        		}
 		        		System.out.println("Félicitations ça marche");
 	        		
