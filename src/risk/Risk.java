@@ -61,6 +61,8 @@ public class Risk {
 //            }
 //        }
 		
+		
+		/** ATTRIBUTION DES CARTES OBJECTIFS AUX JOUEURS */
 		//MÃ©langer les cartes de mission æ‰“ä¹±å�¡ç‰Œ
 		Mission m = new Mission();
 		Collections.shuffle(m.getMissionListe(), new Random());
@@ -69,10 +71,9 @@ public class Risk {
 		for(int i=0;i<participants.length;i++) {
 			participants[i].DistribuerRandomMission(m.getMissionListe());
 		}
+	
 		
-		
-		
-		// DEBUT - ATTRIBUTION DES CARTES TERRITOIRES AUX JOUEURS
+		/** ATTRIBUTION DES CARTES TERRITOIRES AUX JOUEURS */
 		// instances rÃ©giment pour infanterie, cavalerie et artillerie
 		Regiment infanterie = new Regiment("Infanterie",1);
 		Regiment cavalerie = new Regiment("Cavalerie",5);
@@ -117,8 +118,8 @@ public class Risk {
             	System.out.println("Territoire occupé par :"+carte.getTerritoire().getOccupant()+" , nb de troupes : "+carte.getTerritoire().getNbRegiments());
             }
         }
-		// DEBUT - ATTRIBUTION DES CARTES TERRITOIRES AUX JOUEURS
-		
+
+		/** PREPARATION DE LA GESTION D UNE MANCHE */
 		// Creation d'une manche 
 		Manche manche1 = new Manche(participants);
         System.out.println(manche1.toString());  
@@ -130,7 +131,9 @@ public class Risk {
         manche1.definirOrdreJoueur(resultatDes);
         System.out.println(manche1.toString());  
         System.out.println("--------------------------");  
-
+		
+        
+        /** LANCEMENT DE LA MANCHE */
         // DEBUT DE LA MANCHE
          boolean isWinner = false;
          boolean isObjectifCompleted = false;
