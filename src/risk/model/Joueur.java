@@ -332,6 +332,7 @@ public class Joueur {
 			//完成任务征服整个北美洲和非洲
 			else if(this.currentmission == "Vous devez conquérir en totalité l'Asie et l'Amérique du sud.") {
 				if (ConquerirAmNord&&ConquerirAfri) {
+				if (ConquerirAsie&&ConquerirAmSud) {
 					reussi=true;
 					System.out.println("Vous avez gagné !");
 				}
