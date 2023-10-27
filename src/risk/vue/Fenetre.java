@@ -228,9 +228,9 @@ public class Fenetre {
         return choix;
     }
     
-    public void attaque(Joueur joueur) {
-        this.label.setText("             " + joueur.getNom());
-
+    public Territoire attaque(Joueur joueur) {
+        this.label.setText("             Joueur " + joueur.getId() + "\n" + joueur.getAllTerritoiresClearNumero() + " Choisissez le territoire attaquant");
+        Territoire terAttaque = null;
         while (true) {
             CountDownLatch clickWait = new CountDownLatch(1); // Attendre le click
 
@@ -242,6 +242,7 @@ public class Fenetre {
                     for (Territoire territoire : territoires) {
                         if (territoire.isInTerritory(x, y, seuil)) {
                             System.out.println(territoire.getNumber() + " : " + territoire.getNom());
+                            Territoire terAttaque = territoire;
                             clickWait.countDown();
                         }
                     }
@@ -273,10 +274,9 @@ public class Fenetre {
 
             // Suite du code
             System.out.println("Suite du code après le clic.");
-
-            // Sortie de boucle
             break;
         }
+        return terAttaque;
     }
 
     
