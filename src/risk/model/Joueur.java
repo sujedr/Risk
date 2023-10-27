@@ -115,6 +115,23 @@ public class Joueur {
 	public int getNbRegimentsRestants() {
 		return nbRegimentsRestants;
 	}
+	
+	/**
+	 * Getter mission du joueur
+	 * @return String mission description
+	 */
+	public String getCurrentmission() {
+		return currentmission;
+	}
+
+	/**
+	 * Setter mission du joueur
+	 * @param currentmission 
+	 */
+	public void setCurrentmission(String currentmission) {
+		this.currentmission = currentmission;
+	}
+
 	/**
 	 * Ajoute des rÃ©giments au nombre initial
 	 * @param nbRegimentsRestants
@@ -129,6 +146,7 @@ public class Joueur {
 	public void enleverNbRegimentsRestants(int nbRegimentsMalus) {
 		this.nbRegimentsRestants =  this.nbRegimentsRestants - nbRegimentsMalus;
 	}
+	
 	/**
 	 * Retourne les territoires conquis par le joueur classÃ©s par continents
 	 * @return HashMap<String, ArrayList<Territoire>>
