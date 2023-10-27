@@ -229,10 +229,10 @@ public class Risk {
 			        		   /** @Raph Demander choix pays attaquant, pays attaquÃ©, nombre de troupes 
 			        			*  OUTPUT : territoireAttaquant, territoireDefenseur, nbRegimentsAttaque
 			        			*/
-			        			Territoire territoireAttaquant = monde.getTerritoires().get(0);      // DonnÃ©es tests Ã  mettre Ã  jour avec output !!!!
-			        			Territoire territoireDefenseur = monde.getTerritoires().get(1);
+		        			 	Territoire territoireAttaquant = vue.attaque(joueur);
+			        			Territoire territoireDefenseur = vue.defense(joueur, territoireAttaquant);
 			        			int nbRegimentsAttaque = vue.choisirNbTroupes(joueur, territoireAttaquant, true); //true pour attaquant
-			        			int nbRegimentsRiposte = vue.choisirNbTroupes(joueur, territoireAttaquant, false); //false pour défenseur
+			        			int nbRegimentsRiposte = vue.choisirNbTroupes(territoireDefenseur.getOccupant(), territoireDefenseur, false); //false pour défenseur
 			        			// Creation du conflit 
 			        			Conflit conflit = new Conflit(joueur, territoireAttaquant, territoireDefenseur, nbRegimentsAttaque);
 			        			/** @Raph Demander defenseur nb de troupes riposte
