@@ -19,7 +19,7 @@ public class test_attaqueMain {
         // Creation du plateau (objets continents et territoires)
         Monde monde = new Monde();
         ArrayList<Territoire> territoires = monde.getTerritoires();//              <======== ajouter la var territoires en input @raph 
-                
+        
         // INITIALISATION D'UNE MANCHE
 	    /** Deb - A supprimer apres test*/
 		String dn = "2020-10-10";
