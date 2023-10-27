@@ -165,7 +165,6 @@ public class Monde {
 		for (Territoire territoire : asie.getTerritoires()) {
 			territoire.setContinent(asie);
 		}
-		System.out.println("ok");
 	}
 
 	// Methodes

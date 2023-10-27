@@ -341,12 +341,12 @@ public class Joueur {
 			//Vous devez conquérir en totalité l'Europe et l'Amérique du sud plus un troisième continent au choix
 			//您必须征服整个欧洲和南美洲，外加您选择的第三个洲
 			else if(this.currentmission == "Vous devez conquérir en totalité l'Europe et l'Amérique du sud plus un troisième continent au choix.") {
-				if ((ConquerirEurope&&ConquerirAmSud)||ConquerirAmNord||ConquerirAfri||ConquerirAsie||ConquerirOceanie) {
+				if ((ConquerirEurope&&ConquerirAmSud)&(ConquerirAmNord||ConquerirAfri||ConquerirAsie||ConquerirOceanie)) {
 					reussi=true;
 					System.out.println("Vous avez gagné !");
 				}
 			}
-			
+			 
 			//3 MissionReussie : 
 			//Vous devez conquérir en totalité l'Europe et l'Océanie plus un troisième continent au choix
 			//您必须征服整个欧洲和大洋洲，外加您选择的第三个洲
