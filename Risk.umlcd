@@ -15,6 +15,7 @@
     </sourceRole>
     <targetRole xmi:id="_wB09VnStEe6vtI5bcBbkXg" aggregationKind="NONE" name="conn" navigable="true">
       <modelElement href="Risk.uml#_uyCwcHStEe6vtI5bcBbkXg"/>
+      <stereotypes xmi:id="___KjxHStEe6vtI5bcBbkXg" name="LegacyStyledElement"/>
       <visibility xmi:id="_wB09V3StEe6vtI5bcBbkXg" label="-"/>
       <cardinality xmi:id="_wB09WHStEe6vtI5bcBbkXg" label="1" max="1" min="1"/>
     </targetRole>
@@ -38,6 +39,7 @@
     <targetRole xmi:id="_wB-HRnStEe6vtI5bcBbkXg" aggregationKind="NONE" name="attaquant" navigable="true">
       <modelElement href="Risk.uml#_uyDXgXStEe6vtI5bcBbkXg"/>
       <visualProperties xmi:id="_wMptQXStEe6vtI5bcBbkXg" position="-325.04467112455177,459.4599905508494"/>
+      <stereotypes xmi:id="___Kjw3StEe6vtI5bcBbkXg" name="LegacyStyledElement"/>
       <visibility xmi:id="_wB-HR3StEe6vtI5bcBbkXg" label="-"/>
       <cardinality xmi:id="_wB-HSHStEe6vtI5bcBbkXg" label="1" max="1" min="1"/>
     </targetRole>
@@ -99,6 +101,7 @@
     </sourceRole>
     <targetRole xmi:id="_wB_8dnStEe6vtI5bcBbkXg" aggregationKind="NONE" name="desAttaque" navigable="true">
       <modelElement href="Risk.uml#_uyD-knStEe6vtI5bcBbkXg"/>
+      <stereotypes xmi:id="___KjwnStEe6vtI5bcBbkXg" name="Generics"/>
       <visibility xmi:id="_wB_8d3StEe6vtI5bcBbkXg" label="+"/>
       <cardinality xmi:id="_wB_8eHStEe6vtI5bcBbkXg" label="1" max="1" min="1"/>
     </targetRole>
@@ -160,6 +163,8 @@
     </sourceRole>
     <targetRole xmi:id="_wCK7mnStEe6vtI5bcBbkXg" aggregationKind="NONE" name="desAttaque" navigable="true">
       <modelElement href="Risk.uml#_uyElonStEe6vtI5bcBbkXg"/>
+      <stereotypes xmi:id="___KjwHStEe6vtI5bcBbkXg" name="Generics"/>
+      <stereotypes xmi:id="___KjwXStEe6vtI5bcBbkXg" name="LegacyStyledElement"/>
       <visibility xmi:id="_wCLiq3StEe6vtI5bcBbkXg" label="-"/>
       <cardinality xmi:id="_wCLiqnStEe6vtI5bcBbkXg" label="1" max="1" min="1"/>
     </targetRole>
@@ -177,6 +182,8 @@
     </sourceRole>
     <targetRole xmi:id="_wCK7nnStEe6vtI5bcBbkXg" aggregationKind="NONE" name="desDefense" navigable="true">
       <modelElement href="Risk.uml#_uyElpXStEe6vtI5bcBbkXg"/>
+      <stereotypes xmi:id="___J8tHStEe6vtI5bcBbkXg" name="Generics"/>
+      <stereotypes xmi:id="___J8tXStEe6vtI5bcBbkXg" name="LegacyStyledElement"/>
       <visibility xmi:id="_wCMJtXStEe6vtI5bcBbkXg" label="-"/>
       <cardinality xmi:id="_wCMJtHStEe6vtI5bcBbkXg" label="1" max="1" min="1"/>
     </targetRole>
@@ -199,6 +206,7 @@
     <targetRole xmi:id="_wCMwx3StEe6vtI5bcBbkXg" aggregationKind="NONE" name="tour" navigable="true">
       <modelElement href="Risk.uml#_uyFMtHStEe6vtI5bcBbkXg"/>
       <visualProperties xmi:id="_wMswknStEe6vtI5bcBbkXg" position="-1255.6914587743686,19.46387738159035"/>
+      <stereotypes xmi:id="___J8s3StEe6vtI5bcBbkXg" name="LegacyStyledElement"/>
       <visibility xmi:id="_wCMwyHStEe6vtI5bcBbkXg" label="-"/>
       <cardinality xmi:id="_wCMwyXStEe6vtI5bcBbkXg" label="1" max="1" min="1"/>
     </targetRole>
@@ -245,6 +253,7 @@
     <targetRole xmi:id="_wCSQUHStEe6vtI5bcBbkXg" aggregationKind="NONE" name="territoireDefenseur" navigable="true">
       <modelElement href="Risk.uml#_uyFMt3StEe6vtI5bcBbkXg"/>
       <visualProperties xmi:id="_wMt-sHStEe6vtI5bcBbkXg" position="1300.637790333284,1313.001986054334"/>
+      <stereotypes xmi:id="___J8snStEe6vtI5bcBbkXg" name="LegacyStyledElement"/>
       <visibility xmi:id="_wCSQXXStEe6vtI5bcBbkXg" label="-"/>
       <cardinality xmi:id="_wCSQXHStEe6vtI5bcBbkXg" label="1" max="1" min="1"/>
     </targetRole>
@@ -266,6 +275,7 @@
     <targetRole xmi:id="_wCSQVHStEe6vtI5bcBbkXg" aggregationKind="NONE" name="defense" navigable="true">
       <modelElement href="Risk.uml#_uyFzwXStEe6vtI5bcBbkXg"/>
       <visualProperties xmi:id="_wMt-s3StEe6vtI5bcBbkXg" position="-39.58770145927389,297.36104333115645"/>
+      <stereotypes xmi:id="___J8sXStEe6vtI5bcBbkXg" name="LegacyStyledElement"/>
       <visibility xmi:id="_wCSQYnStEe6vtI5bcBbkXg" label="-"/>
       <cardinality xmi:id="_wCSQYXStEe6vtI5bcBbkXg" label="1" max="1" min="1"/>
     </targetRole>
@@ -283,6 +293,7 @@
     </sourceRole>
     <targetRole xmi:id="_wCSQWHStEe6vtI5bcBbkXg" aggregationKind="NONE" name="desDefense" navigable="true">
       <modelElement href="Risk.uml#_uyFzxXStEe6vtI5bcBbkXg"/>
+      <stereotypes xmi:id="___J8sHStEe6vtI5bcBbkXg" name="Generics"/>
       <visibility xmi:id="_wCSQZ3StEe6vtI5bcBbkXg" label="+"/>
       <cardinality xmi:id="_wCSQZnStEe6vtI5bcBbkXg" label="1" max="1" min="1"/>
     </targetRole>
@@ -324,6 +335,7 @@
     </sourceRole>
     <targetRole xmi:id="_wCivBnStEe6vtI5bcBbkXg" aggregationKind="NONE" name="timer" navigable="true">
       <modelElement href="Risk.uml#_uyGa0nStEe6vtI5bcBbkXg"/>
+      <stereotypes xmi:id="___JVo3StEe6vtI5bcBbkXg" name="LegacyStyledElement"/>
       <visibility xmi:id="_wCivB3StEe6vtI5bcBbkXg" label="-"/>
       <cardinality xmi:id="_wCivCHStEe6vtI5bcBbkXg" label="1" max="1" min="1"/>
     </targetRole>
@@ -430,6 +442,7 @@
     </sourceRole>
     <targetRole xmi:id="_wCnAfHStEe6vtI5bcBbkXg" aggregationKind="NONE" name="desAttaque" navigable="true">
       <modelElement href="Risk.uml#_uyHB5nStEe6vtI5bcBbkXg"/>
+      <stereotypes xmi:id="___JVonStEe6vtI5bcBbkXg" name="Generics"/>
       <visibility xmi:id="_wCnnlXStEe6vtI5bcBbkXg" label="+"/>
       <cardinality xmi:id="_wCnnlHStEe6vtI5bcBbkXg" label="1" max="1" min="1"/>
     </targetRole>
@@ -447,6 +460,7 @@
     </sourceRole>
     <targetRole xmi:id="_wCnngHStEe6vtI5bcBbkXg" aggregationKind="NONE" name="desDefense" navigable="true">
       <modelElement href="Risk.uml#_uyHo8XStEe6vtI5bcBbkXg"/>
+      <stereotypes xmi:id="___JVoXStEe6vtI5bcBbkXg" name="Generics"/>
       <visibility xmi:id="_wCoOkXStEe6vtI5bcBbkXg" label="+"/>
       <cardinality xmi:id="_wCoOkHStEe6vtI5bcBbkXg" label="1" max="1" min="1"/>
     </targetRole>
@@ -484,6 +498,7 @@
     </sourceRole>
     <targetRole xmi:id="_wCr49XStEe6vtI5bcBbkXg" aggregationKind="NONE" name="territoires" navigable="true">
       <modelElement href="Risk.uml#_uyIQAXStEe6vtI5bcBbkXg"/>
+      <stereotypes xmi:id="___JVoHStEe6vtI5bcBbkXg" name="Generics"/>
       <visibility xmi:id="_wCr4_nStEe6vtI5bcBbkXg" label="+"/>
       <cardinality xmi:id="_wCr4_XStEe6vtI5bcBbkXg" label="1" max="1" min="1"/>
     </targetRole>
@@ -505,6 +520,7 @@
     <targetRole xmi:id="_wCtuI3StEe6vtI5bcBbkXg" aggregationKind="NONE" name="joueurs" navigable="true">
       <modelElement href="Risk.uml#_uyI3EXStEe6vtI5bcBbkXg"/>
       <visualProperties xmi:id="_wMxCBHStEe6vtI5bcBbkXg" position="-37.81743189244554,61.57617846466542"/>
+      <stereotypes xmi:id="___IulXStEe6vtI5bcBbkXg" name="Array"/>
       <visibility xmi:id="_wCuVMHStEe6vtI5bcBbkXg" label="+"/>
       <cardinality xmi:id="_wCtuJ3StEe6vtI5bcBbkXg" label="1..*" max="-1" min="1"/>
     </targetRole>
@@ -522,6 +538,8 @@
     </sourceRole>
     <targetRole xmi:id="_wCwKZnStEe6vtI5bcBbkXg" aggregationKind="NONE" name="classement" navigable="true">
       <modelElement href="Risk.uml#_uyI3FXStEe6vtI5bcBbkXg"/>
+      <stereotypes xmi:id="___Iuk3StEe6vtI5bcBbkXg" name="LegacyStyledElement"/>
+      <stereotypes xmi:id="___IulHStEe6vtI5bcBbkXg" name="Generics"/>
       <visibility xmi:id="_wCwKZ3StEe6vtI5bcBbkXg" label="+"/>
       <cardinality xmi:id="_wCwKaHStEe6vtI5bcBbkXg" label="1" max="1" min="1"/>
     </targetRole>
@@ -578,6 +596,7 @@
     </sourceRole>
     <targetRole xmi:id="_wC1C5nStEe6vtI5bcBbkXg" aggregationKind="NONE" name="territoiresConquis" navigable="true">
       <modelElement href="Risk.uml#_uyKFNXStEe6vtI5bcBbkXg"/>
+      <stereotypes xmi:id="___IuknStEe6vtI5bcBbkXg" name="Generics"/>
       <visibility xmi:id="_wC1p-3StEe6vtI5bcBbkXg" label="+"/>
       <cardinality xmi:id="_wC1p-nStEe6vtI5bcBbkXg" label="1" max="1" min="1"/>
     </targetRole>
@@ -595,6 +614,8 @@
     </sourceRole>
     <targetRole xmi:id="_wC1C6nStEe6vtI5bcBbkXg" aggregationKind="NONE" name="allTerritoires" navigable="true">
       <modelElement href="Risk.uml#_uyLTWXStEe6vtI5bcBbkXg"/>
+      <stereotypes xmi:id="___IukHStEe6vtI5bcBbkXg" name="Generics"/>
+      <stereotypes xmi:id="___IukXStEe6vtI5bcBbkXg" name="LegacyStyledElement"/>
       <visibility xmi:id="_wC2RAHStEe6vtI5bcBbkXg" label="-"/>
       <cardinality xmi:id="_wC1p_3StEe6vtI5bcBbkXg" label="1" max="1" min="1"/>
     </targetRole>
@@ -636,6 +657,7 @@
     <targetRole xmi:id="_wDCeQ3StEe6vtI5bcBbkXg" aggregationKind="NONE" name="joueurs" navigable="true">
       <modelElement href="Risk.uml#_uyMhcXStEe6vtI5bcBbkXg"/>
       <visualProperties xmi:id="_wMyQIXStEe6vtI5bcBbkXg" position="-172.78210812718544,551.4991779177942"/>
+      <stereotypes xmi:id="___IHhnStEe6vtI5bcBbkXg" name="Array"/>
       <visibility xmi:id="_wDDsZ3StEe6vtI5bcBbkXg" label="+"/>
       <cardinality xmi:id="_wDDsZnStEe6vtI5bcBbkXg" label="1..*" max="-1" min="1"/>
     </targetRole>
@@ -658,6 +680,7 @@
     <targetRole xmi:id="_wDCeSHStEe6vtI5bcBbkXg" aggregationKind="NONE" name="vainqueur" navigable="true">
       <modelElement href="Risk.uml#_uyMhd3StEe6vtI5bcBbkXg"/>
       <visualProperties xmi:id="_wMy3MXStEe6vtI5bcBbkXg" position="-825.3112621186458,-382.9613820269942"/>
+      <stereotypes xmi:id="___IHhXStEe6vtI5bcBbkXg" name="LegacyStyledElement"/>
       <visibility xmi:id="_wDETcHStEe6vtI5bcBbkXg" label="-"/>
       <cardinality xmi:id="_wDDsb3StEe6vtI5bcBbkXg" label="1" max="1" min="1"/>
     </targetRole>
@@ -721,6 +744,7 @@
     </sourceRole>
     <targetRole xmi:id="_wDDsa3StEe6vtI5bcBbkXg" aggregationKind="NONE" name="tours" navigable="true">
       <modelElement href="Risk.uml#_uyMhdXStEe6vtI5bcBbkXg"/>
+      <stereotypes xmi:id="___IHhHStEe6vtI5bcBbkXg" name="Generics"/>
       <visibility xmi:id="_wDE6g3StEe6vtI5bcBbkXg" label="+"/>
       <cardinality xmi:id="_wDE6gnStEe6vtI5bcBbkXg" label="1" max="1" min="1"/>
     </targetRole>
@@ -738,6 +762,8 @@
     </sourceRole>
     <targetRole xmi:id="_wDETeHStEe6vtI5bcBbkXg" aggregationKind="NONE" name="vaincre" navigable="true">
       <modelElement href="Risk.uml#_uyNIhXStEe6vtI5bcBbkXg"/>
+      <stereotypes xmi:id="___IHgnStEe6vtI5bcBbkXg" name="Generics"/>
+      <stereotypes xmi:id="___IHg3StEe6vtI5bcBbkXg" name="LegacyStyledElement"/>
       <visibility xmi:id="_wDE6iHStEe6vtI5bcBbkXg" label="-"/>
       <cardinality xmi:id="_wDE6h3StEe6vtI5bcBbkXg" label="1" max="1" min="1"/>
     </targetRole>
@@ -755,6 +781,8 @@
     </sourceRole>
     <targetRole xmi:id="_wDETfHStEe6vtI5bcBbkXg" aggregationKind="NONE" name="classement" navigable="true">
       <modelElement href="Risk.uml#_uyNvkHStEe6vtI5bcBbkXg"/>
+      <stereotypes xmi:id="___IHgHStEe6vtI5bcBbkXg" name="LegacyStyledElement"/>
+      <stereotypes xmi:id="___IHgXStEe6vtI5bcBbkXg" name="Generics"/>
       <visibility xmi:id="_wDE6jnStEe6vtI5bcBbkXg" label="+"/>
       <cardinality xmi:id="_wDE6jXStEe6vtI5bcBbkXg" label="1" max="1" min="1"/>
     </targetRole>
@@ -776,6 +804,8 @@
     </sourceRole>
     <targetRole xmi:id="_wDLBInStEe6vtI5bcBbkXg" aggregationKind="NONE" name="missions" navigable="true">
       <modelElement href="Risk.uml#_uyOWonStEe6vtI5bcBbkXg"/>
+      <stereotypes xmi:id="___HgdHStEe6vtI5bcBbkXg" name="Generics"/>
+      <stereotypes xmi:id="___HgdXStEe6vtI5bcBbkXg" name="LegacyStyledElement"/>
       <visibility xmi:id="_wDLBJ3StEe6vtI5bcBbkXg" label="-"/>
       <cardinality xmi:id="_wDLBJnStEe6vtI5bcBbkXg" label="1" max="1" min="1"/>
     </targetRole>
@@ -794,6 +824,7 @@
     </sourceRole>
     <targetRole xmi:id="_wDNdYHStEe6vtI5bcBbkXg" aggregationKind="NONE" name="monde" navigable="true">
       <modelElement href="Risk.uml#_uyO9sXStEe6vtI5bcBbkXg"/>
+      <stereotypes xmi:id="___Hgc3StEe6vtI5bcBbkXg" name="Generics"/>
       <visibility xmi:id="_wDNdZXStEe6vtI5bcBbkXg" label="+"/>
       <cardinality xmi:id="_wDNdZHStEe6vtI5bcBbkXg" label="1" max="1" min="1"/>
     </targetRole>
@@ -816,6 +847,7 @@
     </sourceRole>
     <targetRole xmi:id="_wDSV4XStEe6vtI5bcBbkXg" aggregationKind="NONE" name="voisins" navigable="true">
       <modelElement href="Risk.uml#_uyQL0HStEe6vtI5bcBbkXg"/>
+      <stereotypes xmi:id="___HgcnStEe6vtI5bcBbkXg" name="Generics"/>
       <visibility xmi:id="_wDSV5nStEe6vtI5bcBbkXg" label="+"/>
       <cardinality xmi:id="_wDSV5XStEe6vtI5bcBbkXg" label="1" max="1" min="1"/>
     </targetRole>
@@ -839,6 +871,7 @@
     </sourceRole>
     <targetRole xmi:id="_wDX1c3StEe6vtI5bcBbkXg" aggregationKind="NONE" name="conflitMap" navigable="true">
       <modelElement href="Risk.uml#_uyQy4HStEe6vtI5bcBbkXg"/>
+      <stereotypes xmi:id="___HgcXStEe6vtI5bcBbkXg" name="Generics"/>
       <visibility xmi:id="_wDYcg3StEe6vtI5bcBbkXg" label="+"/>
       <cardinality xmi:id="_wDYcgnStEe6vtI5bcBbkXg" label="1" max="1" min="1"/>
     </targetRole>
@@ -857,6 +890,8 @@
     </sourceRole>
     <targetRole xmi:id="_wDg_YnStEe6vtI5bcBbkXg" aggregationKind="NONE" name="territoires" navigable="true">
       <modelElement href="Risk.uml#_uyRZ-nStEe6vtI5bcBbkXg"/>
+      <stereotypes xmi:id="___G5Y3StEe6vtI5bcBbkXg" name="Generics"/>
+      <stereotypes xmi:id="___HgcHStEe6vtI5bcBbkXg" name="LegacyStyledElement"/>
       <visibility xmi:id="_wDhmc3StEe6vtI5bcBbkXg" label="~"/>
       <cardinality xmi:id="_wDhmcnStEe6vtI5bcBbkXg" label="1" max="1" min="1"/>
     </targetRole>
@@ -881,6 +916,7 @@
     </sourceRole>
     <targetRole xmi:id="_wDiNhnStEe6vtI5bcBbkXg" aggregationKind="NONE" name="frame" navigable="true">
       <modelElement href="Risk.uml#_uyQy5HStEe6vtI5bcBbkXg"/>
+      <stereotypes xmi:id="___G5YnStEe6vtI5bcBbkXg" name="LegacyStyledElement"/>
       <visibility xmi:id="_wDiNh3StEe6vtI5bcBbkXg" label="-"/>
       <cardinality xmi:id="_wDiNiHStEe6vtI5bcBbkXg" label="1" max="1" min="1"/>
     </targetRole>
@@ -898,6 +934,7 @@
     </sourceRole>
     <targetRole xmi:id="_wDi0lXStEe6vtI5bcBbkXg" aggregationKind="NONE" name="map" navigable="true">
       <modelElement href="Risk.uml#_uyRZ8XStEe6vtI5bcBbkXg"/>
+      <stereotypes xmi:id="___G5YXStEe6vtI5bcBbkXg" name="LegacyStyledElement"/>
       <visibility xmi:id="_wDi0lnStEe6vtI5bcBbkXg" label="~"/>
       <cardinality xmi:id="_wDi0l3StEe6vtI5bcBbkXg" label="1" max="1" min="1"/>
     </targetRole>
@@ -915,6 +952,7 @@
     </sourceRole>
     <targetRole xmi:id="_wDi0nnStEe6vtI5bcBbkXg" aggregationKind="NONE" name="mapLabel" navigable="true">
       <modelElement href="Risk.uml#_uyRZ9HStEe6vtI5bcBbkXg"/>
+      <stereotypes xmi:id="___G5YHStEe6vtI5bcBbkXg" name="LegacyStyledElement"/>
       <visibility xmi:id="_wDi0n3StEe6vtI5bcBbkXg" label="~"/>
       <cardinality xmi:id="_wDi0oHStEe6vtI5bcBbkXg" label="1" max="1" min="1"/>
     </targetRole>
@@ -932,6 +970,7 @@
     </sourceRole>
     <targetRole xmi:id="_wDi0p3StEe6vtI5bcBbkXg" aggregationKind="NONE" name="label" navigable="true">
       <modelElement href="Risk.uml#_uyRZ93StEe6vtI5bcBbkXg"/>
+      <stereotypes xmi:id="___GSUHStEe6vtI5bcBbkXg" name="LegacyStyledElement"/>
       <visibility xmi:id="_wDi0qHStEe6vtI5bcBbkXg" label="~"/>
       <cardinality xmi:id="_wDi0qXStEe6vtI5bcBbkXg" label="1" max="1" min="1"/>
     </targetRole>
