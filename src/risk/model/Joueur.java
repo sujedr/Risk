@@ -12,11 +12,12 @@ public class Joueur {
 	private String prenom;
 	private String dtNaissance;
 	
-	private String couleur;
-	private String currentmission;
 	/** Attributs spÃ©cifiques Ã  une manche */
 	private HashMap<Continent, ArrayList<Territoire>> territoiresConquis = new HashMap<>() ;
 	private int nbRegimentsRestants;
+	private Boolean missionAchievement;
+	private String couleur;
+	private String currentmission;
 	
 	/** Attributs statistiques */           // *** A peut etre supprimer ***
 	private int[] nbTirageDes = new int[6];
@@ -39,13 +40,14 @@ public class Joueur {
 		this.nom = nom;
 		this.prenom = prenom;
 		this.dtNaissance = dtNaissance;
-		this.couleur = couleur;
-		
+
 		/** Initialisation des continents dans la hashmap */			
 		for (int i = 0; i < Continents.size(); i++) {
 			this.territoiresConquis.put(Continents.get(i), new ArrayList<Territoire>());
 		}
 		this.nbRegimentsRestants = 20;
+		this.couleur = couleur;
+		this.setMissionAchievement(false);
 		
 		/** Initialisation des attributs statistique Ã  zero */         //*** A peut etre supprimer ***
 		for (int i=0; i<6; i++) {
@@ -129,6 +131,21 @@ public class Joueur {
 	 */
 	public void setCurrentmission(String currentmission) {
 		this.currentmission = currentmission;
+	}
+	/**
+	 * Getter missionAchievement
+	 * @return boolean true for mission success
+	 */
+	public Boolean getMissionAchievement() {
+		return missionAchievement;
+	}
+
+	/**
+	 * Setter missionAchievement
+	 * @param missionAchievement
+	 */
+	public void setMissionAchievement(Boolean missionAchievement) {
+		this.missionAchievement = missionAchievement;
 	}
 
 	/**
@@ -304,7 +321,7 @@ public class Joueur {
 	 * @param participants
 	 * @return boolean true pour succes , false pour pas succes
 	 */
-	public boolean MissionReussie(Joueur[] participants) {
+	public void MissionReussie(Joueur[] participants) {
 			ArrayList<Territoire> allTerritoires = this.getAllTerritoires();
 			ArrayList<Continent> continentsConquis = new ArrayList<>();
 			continentsConquis = consulterContinentsEntierementOccupes();
@@ -509,7 +526,7 @@ public class Joueur {
 			else {
 				reussi=false;
 			}
-		return reussi;
+		this.missionAchievement = reussi;
 	}
 	
 	@Override

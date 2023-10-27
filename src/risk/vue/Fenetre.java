@@ -379,6 +379,18 @@ public class Fenetre {
         return nbTroupes;
     }
     
+    public void afficherDes(ArrayList<Integer> TirageAttaque, ArrayList<Integer> TirageDefense, Territoire terAtt, Territoire terDef) {
+        JOptionPane.showMessageDialog(null, "Tirages \n " + "Tirage attaquant : " + TirageAttaque + "\n" + "Tirage Défense : " + TirageDefense , "Tirage", JOptionPane.INFORMATION_MESSAGE);
+    }
+    
+    public void afficherResultats(int NbRegimentsAtk, int NbRegimentsDef, Territoire terAtq, Territoire terDef) {
+        JOptionPane.showMessageDialog(null, "Bilan attaque \n " + 
+							    "Territoire attaquant : " + terAtq.getNom() + " : " + NbRegimentsAtk + " troupes restantes"  +  "\n" + 
+							    "Territoire defense : " + terDef.getNom() + " : " + NbRegimentsDef + " troupes restantes"  +  "\n"
+							    , "Bilan attaque", JOptionPane.INFORMATION_MESSAGE);
+    }
+
+    
     /**
      * setter des territoires
      * @param territoires
