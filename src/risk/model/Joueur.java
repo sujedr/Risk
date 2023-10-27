@@ -1,61 +1,55 @@
 package risk.model;
-
 import java.util.ArrayList;
-import java.util.Arrays;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.HashMap;
 import java.util.Random;
 
-/**
- * Objet joueur
- */
 public class Joueur {
 	/** Attributs informations joueur */
-	private String id;
+	private String id; 
 	private String nom;
 	private String prenom;
 	private String dtNaissance;
-
+	
 	private String couleur;
 	private String currentmission;
-	/** Attributs spÃ©cifiques Ã  une manche */
-	private HashMap<Continent, ArrayList<Territoire>> territoiresConquis = new HashMap<>();
+	/** Attributs spÃ©cifiques Ã  une manche */
+	private HashMap<Continent, ArrayList<Territoire>> territoiresConquis = new HashMap<>() ;
 	private int nbRegimentsRestants;
-
-	/** Attributs statistiques */ // *** A peut etre supprimer ***
+	
+	/** Attributs statistiques */           // *** A peut etre supprimer ***
 	private int[] nbTirageDes = new int[6];
 	private int nbAttaque;
 	private int nbDefense;
 	private int nbTerritoire;
 	private int nbRegiments;
 	private int nbTours;
-
-//	ArrayList<Continent> continentsConquis = new ArrayList<>();
-
+	private ArrayList<Continent> continentsConquis = new ArrayList<>();
+	private ArrayList<Territoire> allTerritoires = new ArrayList<>();
+	private int nbRegimentsAterritoires;
 	/**
 	 * Constructeur
-	 * 
 	 * @param id
 	 * @param nom
 	 * @param prenom
 	 * @param dtNaissance
 	 */
-	public Joueur(String id, String nom, String prenom, String dtNaissance, ArrayList<Continent> Continents,
-			String couleur) {
-
+	public Joueur(String id, String nom, String prenom, String dtNaissance, ArrayList<Continent> Continents,String couleur) {
 		this.id = id;
 		this.nom = nom;
 		this.prenom = prenom;
 		this.dtNaissance = dtNaissance;
 		this.couleur = couleur;
-
-		/** Initialisation des continents dans la hashmap */
+		
+		/** Initialisation des continents dans la hashmap */			
 		for (int i = 0; i < Continents.size(); i++) {
 			this.territoiresConquis.put(Continents.get(i), new ArrayList<Territoire>());
 		}
 		this.nbRegimentsRestants = 20;
-
-		/** Initialisation des attributs statistique Ã  zero */ // *** A peut etre supprimer ***
-		for (int i = 0; i < 6; i++) {
+		
+		/** Initialisation des attributs statistique Ã  zero */         //*** A peut etre supprimer ***
+		for (int i=0; i<6; i++) {
 			this.nbTirageDes[i] = 0;
 		}
 		this.nbAttaque = 0;
@@ -64,21 +58,6 @@ public class Joueur {
 		this.nbRegiments = 0;
 		this.nbTours = 0;
 	}
-
-	// Couleur choisie par le joueur çŽ©å®¶æ‰€é€‰çš„é¢œè‰²
-	public String getCouleur() {
-		return couleur;
-	}
-
-	// Distribuer les cartes de mission aux joueurs åˆ†å ‘ä»»åŠ¡å ¡ç‰Œç»™çŽ©å®¶
-	public void DistribuerRandomMission(ArrayList<String> listeMission) {
-		Random random = new Random();
-		int randomIndex = random.nextInt(listeMission.size());
-		this.currentmission = listeMission.remove(randomIndex);
-		System.out.println("La mission du joueur " + id + " : " + currentmission);
-	}
-
-=======
 	
 	// Couleur choisie par le joueur 
 		// 玩家所选的颜色
@@ -96,260 +75,185 @@ public class Joueur {
 				"La mission du joueur " + id + " : " + currentmission);
 			}
 	// Getter and setter
-
+	
 	/** @return int */
 	public String getId() {
 		return id;
 	}
-
 	/** @param id */
 	public void setId(String id) {
 		this.id = id;
 	}
-
 	/** @return String */
 	public String getNom() {
 		return nom;
 	}
-
 	/** @param nom */
 	public void setNom(String nom) {
 		this.nom = nom;
 	}
-
 	/** @return String */
 	public String getPrenom() {
 		return prenom;
 	}
-
 	/** @param prenom */
 	public void setPrenom(String prenom) {
 		this.prenom = prenom;
 	}
-
 	/** @return Date */
 	public String getDtNaissance() {
 		return dtNaissance;
 	}
-
 	/** @param dtNaissance */
 	public void setDtNaissance(String dtNaissance) {
 		this.dtNaissance = dtNaissance;
 	}
-
 	/**
-	 * Nombre de rÃ©giments Ã  placer sur la carte
-	 * 
+	 * Nombre de rÃ©giments Ã  placer sur la carte
 	 * @return nbRegimentsRestants
 	 */
 	public int getNbRegimentsRestants() {
 		return nbRegimentsRestants;
 	}
-
 	/**
 	 * Ajoute des rÃ©giments au nombre initial
-	 * 
 	 * @param nbRegimentsRestants
 	 */
 	public void ajouterNbRegimentsRestants(int nbRegimentsBonus) {
-		this.nbRegimentsRestants = this.nbRegimentsRestants + nbRegimentsBonus;
+		this.nbRegimentsRestants =  this.nbRegimentsRestants + nbRegimentsBonus;
 	}
-
 	/**
 	 * EnlÃ¨ve des rÃ©giments au nombre initial
-	 * 
 	 * @param nbRegimentsRestants
 	 */
 	public void enleverNbRegimentsRestants(int nbRegimentsMalus) {
-		this.nbRegimentsRestants = this.nbRegimentsRestants - nbRegimentsMalus;
+		this.nbRegimentsRestants =  this.nbRegimentsRestants - nbRegimentsMalus;
 	}
-
 	/**
 	 * Retourne les territoires conquis par le joueur classÃ©s par continents
-	 * 
 	 * @return HashMap<String, ArrayList<Territoire>>
 	 */
 	public HashMap<Continent, ArrayList<Territoire>> getTerritoiresConquis() {
 		return territoiresConquis;
 	}
-
+	
 	/**
 	 * @return Liste de territoires
 	 */
 	public ArrayList<Territoire> getAllTerritoires() {
 		HashMap<Continent, ArrayList<Territoire>> map = new HashMap<>(this.territoiresConquis);
 		ArrayList<Territoire> allTerritoires = new ArrayList<>();
-
-		// é åŽ†HashMapä¸­çš„æ‰€æœ‰å€¼ï¼ˆArrayList<Territoire>ï¼‰
-		for (ArrayList<Territoire> territoriesList : map.values()) {
-			// é åŽ†æ¯
-			// ä¸ªArrayList<Territoire>ï¼Œå°†å…¶ä¸­çš„Territoireæ·»åŠ åˆ°allTerritoiresä¸­
-			for (Territoire territoire : territoriesList) {
-				allTerritoires.add(territoire);
-			}
-		}
-		return allTerritoires;
+	    // é  åŽ†HashMapä¸­çš„æ‰€æœ‰å€¼ï¼ˆArrayList<Territoire>ï¼‰
+	    for (ArrayList<Territoire> territoriesList : map.values()) {
+	        // é  åŽ†æ¯ ä¸ªArrayList<Territoire>ï¼Œå°†å…¶ä¸­çš„Territoireæ·»åŠ åˆ°allTerritoiresä¸­
+	        for (Territoire territoire : territoriesList) {
+	            allTerritoires.add(territoire);
+	        }
+	    }
+	    return allTerritoires;
 	}
-
+	
 	public ArrayList<String> getAllTerritoiresClear() {
-		ArrayList<String> liste = new ArrayList<>();
+		ArrayList<String>liste = new ArrayList<>();
 		for (Territoire territoire : this.getAllTerritoires()) {
 			liste.add(territoire.getNom());
 		}
 		return liste;
 	}
-
+	
 	/**
 	 * @return int nb de regiments que le joueur dois placer en dÃ©but de tour
 	 */
 	public int calculerNbRegimentsAPlacer() {
-		// Continent conquis ?
-		ArrayList<Continent> continentsOccupes = new ArrayList<Continent>();
-		int total = 0;
-		continentsOccupes = this.consulterContinentsEntierementOccupes();
-		int ajoutCauseContinent = 0;
-		// Parcours de continent de la liste (conquis)
-		for (Continent continent : continentsOccupes) {
-			if (continent.getNom() == "Europe") {
-				ajoutCauseContinent = 7;
-			} else if (continent.getNom() == "Asie") {
-				ajoutCauseContinent = 12;
-			} else if (continent.getNom() == "Amerique du Nord") {
-				ajoutCauseContinent = 9;
-			} else if (continent.getNom() == "Amerique du Sud") {
-				ajoutCauseContinent = 4;
-			} else if (continent.getNom() == "Afrique") {
-				ajoutCauseContinent = 6;
-			} else if (continent.getNom() == "Oceanie") {
-				ajoutCauseContinent = 4;
-			}
-		}
-		int ajoutCauseTerritoire = 3;
-		int totalTerritoires = this.getAllTerritoires().size();
-		// On calcul uniquement si la quantitÃ© de territoire repond au seuil min de
-		// regiments
-		// 9/9 = 3 qui est le minimum de troupe que recoit un joueur
-		if (totalTerritoires >= 9) {
-			ajoutCauseTerritoire = totalTerritoires / 3;
-		}
-		total = ajoutCauseTerritoire + ajoutCauseContinent;
-		System.out.println(ajoutCauseTerritoire + " " + ajoutCauseContinent);
-		return total;
+   	 // Continent conquis ?  
+   	 ArrayList<Continent> continentsOccupes = new ArrayList<Continent>();
+   	 int total = 0;
+   	 continentsOccupes = this.consulterContinentsEntierementOccupes();
+   	 int ajoutCauseContinent = 0;	        	 
+   	 // Parcours de continent de la liste (conquis)
+     for (Continent continent : continentsOccupes) {
+        	if (continent.getNom() == "Europe") {
+        		ajoutCauseContinent = 7;
+            }
+            else if (continent.getNom() == "Asie") {
+            	ajoutCauseContinent = 12;
+            }
+            else if (continent.getNom() == "Amerique du Nord") {
+            	ajoutCauseContinent = 9;
+            }
+            else if (continent.getNom() == "Amerique du Sud") {
+            	ajoutCauseContinent = 4;
+            }
+            else if (continent.getNom() == "Afrique") {
+            	ajoutCauseContinent = 6;
+            }
+            else if (continent.getNom() == "Oceanie") {
+            	ajoutCauseContinent = 4;
+            }
+        }
+     int ajoutCauseTerritoire = 3;
+     int totalTerritoires = this.getAllTerritoires().size();
+     // On calcul uniquement si la quantitÃ© de territoire repond au seuil min de regiments
+     // 9/9 = 3 qui est le minimum de troupe que recoit un joueur
+     if (totalTerritoires >= 9) {
+    	 ajoutCauseTerritoire = totalTerritoires / 3; 
+     }
+    total = ajoutCauseTerritoire + ajoutCauseContinent;
+	return total;
 	}
-
 	/**
-	 * Ajoute un territoire conquis Ã  la HashMap<Continent, Territoire> alias
-	 * territoiresConquis du joueur
-	 * 
+	 * Ajoute un territoire conquis Ã  la HashMap<Continent, Territoire> alias territoiresConquis du joueur 
 	 * @param territoiresConquis
 	 */
 	public void ajouterTerritoiresConquis(Territoire territoire) {
 		Continent continent = territoire.getContinent();
-		territoiresConquis.get(continent).add(territoire);
+        territoiresConquis.get(continent).add(territoire);
 	}
-
+	
 	/**
-	 * Supprimer un territoire conquis Ã  la HashMap<Continent, Territoire> alias
-	 * territoiresConquis du joueur
-	 * 
+	 * Supprimer un territoire conquis Ã  la HashMap<Continent, Territoire> alias territoiresConquis du joueur 
 	 * @param territoiresConquis
 	 */
 	public void supprimerTerritoiresConquis(Territoire territoire) {
 		Continent continent = territoire.getContinent();
 		territoiresConquis.get(continent).remove(territoire);
 	}
-
+	
 	/**
 	 * @return Arraylist <Continent> nom continent conquis
 	 */
 	public ArrayList<Continent> consulterContinentsEntierementOccupes() {
-
 		// Parcours de chaque continent dans le dico de stockage des territoires conquis
-		
-//		HashMap<Continent, ArrayList<Territoire>> map = new HashMap<>(this.territoiresConquis); // a delete
-//		for (ArrayList<Territoire> territoriesList : this.territoiresConquis.values()) {
-		ArrayList<Continent> continentsConquis = new ArrayList<>();
-		for (Continent continent : this.territoiresConquis.keySet()) {
-			int countContinents = this.territoiresConquis.get(continent).size();
-			
-			int totalTerritoires = 0;
-			// VÃ©rfication du nombre de territoires par continents
-			if (continent.getNom() == "Europe") {
-				totalTerritoires = 7;
-			} else if (continent.getNom() == "Asie") {
-				totalTerritoires = 12;
-			} else if (continent.getNom() == "Amerique du Nord") {
-				totalTerritoires = 9;
-			} else if (continent.getNom() == "Amerique du Sud") {
-				totalTerritoires = 4;
-			} else if (continent.getNom() == "Afrique") {
-				totalTerritoires = 6;
-			} else if (continent.getNom() == "Oceanie") {
-				totalTerritoires = 4;
-			}
-			// Si le joueur Ã  tous les territoires d'un continent on note la conquete du
-			// continent dans le dico
-			System.out.println("count " + countContinents + " vs. total " + totalTerritoires);
-			if ((int)countContinents == totalTerritoires) {
-				continentsConquis.add(continent);
-				System.out.println(continent);
-				System.out.println(continentsConquis);
-			}
-		}
-		return continentsConquis;
+        for (Continent continent : this.territoiresConquis.keySet()) {
+            int countContinents = this.territoiresConquis.get(continent).size();
+            int totalContinents = 0;
+            // VÃ©rfication du nombre de territoires par continents
+            if (continent.getNom() == "Europe") {
+            	totalContinents = 7;
+            }
+            else if (continent.getNom() == "Asie") {
+            	totalContinents = 12;
+            }
+            else if (continent.getNom() == "AmeriqueDuNord") {
+            	totalContinents = 9;
+            }
+            else if (continent.getNom() == "AmeriqueDuSud") {
+            	totalContinents = 4;
+            }
+            else if (continent.getNom() == "Afrique") {
+            	totalContinents = 6;
+            }
+            else if (continent.getNom() == "Oceanie") {
+            	totalContinents = 4;
+            }
+            // Si le joueur Ã  tous les territoires d'un continent on note la conquete du continent dans le dico
+            System.out.println("count "+countContinents+" vs. total "+totalContinents);
+            if ((int)countContinents == totalContinents) {
+            	continentsConquis.add(continent);
+            }
+        }
+        return continentsConquis;
 	}
-
-	// CompÃ©tition gagnant : ConquÃ©rir tous les continents
-	// èŽ·èƒœç«žèµ›ï¼šå¾ æœ æ‰€æœ‰å¤§æ´²
-	public void ComprtitionRussie(ArrayList<Continent> continentsConquis) {
-		boolean ConquerirAmNord = false;
-		boolean ConquerirAfri = false;
-		boolean ConquerirEurope = false;
-		boolean ConquerirAsie = false;
-		boolean ConquerirOceanie = false;
-		boolean ConquerirAmSud = false;
-		for (int i = 0; i < continentsConquis.size(); i++) {
-			if (continentsConquis.get(i).getNom() == "AmeriqueDuNord") {
-				ConquerirAmNord = true;
-			}
-			if (continentsConquis.get(i).getNom() == "Afrique") {
-				ConquerirAfri = true;
-			}
-			if (continentsConquis.get(i).getNom() == "Europe") {
-				ConquerirEurope = true;
-			}
-			if (continentsConquis.get(i).getNom() == "Asie") {
-				ConquerirAsie = true;
-			}
-			if (continentsConquis.get(i).getNom() == "Oceanie") {
-				ConquerirOceanie = true;
-			}
-			if (continentsConquis.get(i).getNom() == "AmeriqueDuSud") {
-				ConquerirAmSud = true;
-			}
-		}
-		if (ConquerirAmNord && ConquerirAfri && ConquerirEurope && ConquerirAsie && ConquerirOceanie
-				&& ConquerirAmSud) {
-			System.out.println("FÃ©licitations au joueur " + id + " : Vous avez gagnÃ© !");
-		}
-	}
-
-	public void MissionRussie(ArrayList<Continent> continentsConquis) {
-		// MissionRussie : conquÃ©rir toute l'AmÃ©rique du Nord et l'Afrique
-		// å®Œæˆ ä»»åŠ¡å¾ æœ æ•´ä¸ªåŒ—ç¾Žæ´²å’Œé žæ´²
-		if (this.currentmission == "Vous devez conquÃ©rir en totalitÃ© l'Asie et l'AmÃ©rique du sud.") {
-			boolean ConquerirAmNord = false;
-			boolean ConquerirAfri = false;
-			for (int i = 0; i < continentsConquis.size(); i++) {
-				if (continentsConquis.get(i).getNom() == "AmeriqueDuNord") {
-					ConquerirAmNord = true;
-				}
-				if (continentsConquis.get(i).getNom() == "Afrique") {
-					ConquerirAfri = true;
-				}
-			}
-			if (ConquerirAmNord && ConquerirAfri) {
-				System.out.println("Vous avez gagnÃ© !");
 	
 	public int calculerNbRegimentsATerritoires(Territoire t) {
 		return nbRegimentsAterritoires=t.getNbRegiments();
@@ -383,15 +287,9 @@ public class Joueur {
 					&&ConquerirOceanie&&ConquerirAmSud) {
 				reussi=true;
 				System.out.println("Félicitations au joueur "+id+" : Vous avez gagné !");
->>>>>>> 057c6e922e837bcc5231309be9f48a39e7c0aa4d
 			}
 			return reussi;
 		}
-<<<<<<< HEAD
-
-	}
-
-=======
 		
 		//Compétition gagnant : reussi mission
 		//获胜竞赛：完成任务mission
@@ -604,8 +502,8 @@ public class Joueur {
 			
 			
 			
-			return reussi;
-		}
+		return reussi;
+	}
 	@Override
 	public String toString() {
 		return "Joueur [nom=" + nom + ", prenom=" + prenom + "]";
