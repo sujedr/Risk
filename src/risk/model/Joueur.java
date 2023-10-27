@@ -29,7 +29,9 @@ public class Joueur {
 	private int nbRegiments;
 	private int nbTours;
 
-	ArrayList<Continent> continentsConquis = new ArrayList<>();
+	private ArrayList<Continent> continentsConquis = new ArrayList<>();
+	private ArrayList<Territoire> allTerritoires = new ArrayList<>();
+	private int nbRegimentsAterritoires;
 	
 	/**
 	 * Constructeur
@@ -265,9 +267,17 @@ public class Joueur {
 	}
 	
 	
+	//Compétition échoué
+		//竞赛失败：所以领土都被占领（没有军队了）
+		public boolean ComprtitionEchoue() {
+			System.out.println("Joueur "+id+" : Malheureusement, tous vos territoires ont été confisqués ! Vous avez échoué !");
+			return nbRegiments==0;
+		}
+	
 	//Compétition gagnant : Conquérir tous les continents
-	//获胜竞赛：征服所有大洲
-	public void ComprtitionRussie() {
+	//获胜竞赛：征服所有大洲（打败所有人）
+	public boolean ComprtitionReussie() {
+		boolean reussi = false;
 		boolean ConquerirAmNord = false;
 		boolean ConquerirAfri = false;
 		boolean ConquerirEurope = false;
@@ -284,29 +294,221 @@ public class Joueur {
 		}
 		if (ConquerirAmNord&&ConquerirAfri&&ConquerirEurope&&ConquerirAsie
 				&&ConquerirOceanie&&ConquerirAmSud) {
+			reussi=true;
 			System.out.println("Félicitations au joueur "+id+" : Vous avez gagné !");
 		}
+		return reussi;
 	}
 	
-	public void MissionRussie() {
-		//MissionRussie : conquérir toute l'Amérique du Nord et l'Afrique 
-		//完成任务征服整个北美洲和非洲
-		if(this.currentmission == "Vous devez conquérir en totalité l'Asie et l'Amérique du sud.") {
-			boolean ConquerirAmNord = false;
-			boolean ConquerirAfri = false;
-			for(int i=0;i<this.continentsConquis.size();i++) {
-				if(continentsConquis.get(i).getNom()=="AmeriqueDuNord") {ConquerirAmNord=true;}
-				if(continentsConquis.get(i).getNom()=="Afrique") {ConquerirAfri=true;}
+//Compétition gagnant : reussi mission
+	//获胜竞赛：完成任务mission
+	public boolean MissionReussie(Joueur[] participants) {
+		boolean reussi = false;
+		boolean ConquerirAmNord = false;
+		boolean ConquerirAfri = false;
+		boolean ConquerirEurope = false;
+		boolean ConquerirAsie = false;
+		boolean ConquerirOceanie = false;
+		boolean ConquerirAmSud = false;
+		for(int i=0;i<this.continentsConquis.size();i++) {
+			if(continentsConquis.get(i).getNom()=="AmeriqueDuNord") {ConquerirAmNord=true;}
+			if(continentsConquis.get(i).getNom()=="Afrique") {ConquerirAfri=true;}
+			if(continentsConquis.get(i).getNom()=="Europe") {ConquerirEurope=true;}
+			if(continentsConquis.get(i).getNom()=="Asie") {ConquerirAsie=true;}
+			if(continentsConquis.get(i).getNom()=="Oceanie") {ConquerirOceanie=true;}
+			if(continentsConquis.get(i).getNom()=="AmeriqueDuSud") {ConquerirAmSud=true;}
+		}
+		//0 MissionReussie : 
+		//Vous devez conquérir 18 territoires et occuper chacun d'eux avec deux armées au moins
+		//您必须征服 18 块领土，并至少用两支军队占领其中的每一块领土
+		if(this.currentmission == "Vous devez conquérir 18 territoires et occuper chacun d'eux avec deux armées au moins.") {
+			if(allTerritoires.size()>=18 ||nbRegimentsAterritoires>=2) {
+				reussi=true;
+				System.out.println("Vous avez gagné !");
 			}
+		}
+		
+		//1 MissionReussie : conquérir toute l'Amérique du Nord et l'Afrique 
+		//完成任务征服整个北美洲和非洲
+		else if(this.currentmission == "Vous devez conquérir en totalité l'Asie et l'Amérique du sud.") {
 			if (ConquerirAmNord&&ConquerirAfri) {
+				reussi=true;
+				System.out.println("Vous avez gagné !");
+			}
+		}
+		
+		//2 MissionReussie : 
+		//Vous devez conquérir en totalité l'Europe et l'Amérique du sud plus un troisième continent au choix
+		//您必须征服整个欧洲和南美洲，外加您选择的第三个洲
+		else if(this.currentmission == "Vous devez conquérir en totalité l'Europe et l'Amérique du sud plus un troisième continent au choix.") {
+			if ((ConquerirEurope&&ConquerirAmSud)||ConquerirAmNord||ConquerirAfri||ConquerirAsie||ConquerirOceanie) {
+				reussi=true;
+				System.out.println("Vous avez gagné !");
+			}
+		}
+		
+		//3 MissionReussie : 
+		//Vous devez conquérir en totalité l'Europe et l'Océanie plus un troisième continent au choix
+		//您必须征服整个欧洲和大洋洲，外加您选择的第三个洲
+		else if(this.currentmission == "Vous devez conquérir en totalité l'Europe et l'Océanie plus un troisième continent au choix.") {
+			if ((ConquerirEurope&&ConquerirOceanie)||ConquerirAmNord||ConquerirAfri||ConquerirAsie||ConquerirAmSud) {
+				reussi=true;
+				System.out.println("Vous avez gagné !");
+			}
+		}
+		
+		//4 MissionReussie : 
+		//Vous devez conquérir 24 territoires aux choix
+		//您必须征服您选择的 24 个领土
+		else if(this.currentmission == "Vous devez conquérir 24 territoires aux choix.") {
+			if(allTerritoires.size()>=24) {
+				reussi=true;
+				System.out.println("Vous avez gagné !");
+			}
+		}
+		
+		//5 MissionReussie : 
+		//Vous devez conquérir en totalité l'Amérique du Nord et l'Océanie
+		//您必须征服整个北美洲和大洋洲
+		else if(this.currentmission == "Vous devez conquérir en totalité l'Amérique du Nord et l'Océanie.") {
+			if (ConquerirAmNord&&ConquerirOceanie) {
+				reussi=true;
+				System.out.println("Vous avez gagné !");
+			}
+		}
+		
+		//6 MissionReussie : 
+		//Vous devez conquérir en totalité l'Asie et l'Afrique
+		//您必须征服整个亚洲和非洲
+		else if(this.currentmission == "Vous devez conquérir en totalité l'Asie et l'Afrique.") {
+			if (ConquerirAsie&&ConquerirAfri) {
+				reussi=true;
+				System.out.println("Vous avez gagné !");
+			}
+		}
+		
+		//7 MissionReussie : 
+		//Vous devez conquérir en totalité l'Asie et l'Amérique du sud
+		//您必须征服整个亚洲和南美洲
+		else if(this.currentmission == "Vous devez conquérir en totalité l'Asie et l'Amérique du sud.") {
+			if (ConquerirAsie&&ConquerirAmSud) {
+				reussi=true;
 				System.out.println("Vous avez gagné !");
 			}
 		}
 		
 		
+		//8 MissionReussie : 
+		//Vous devez détruire les armées jaunes. Si vous êtes vous même le propriétaire des armées jaunes ou si le joueur qui en est propriétaire est éliminé par un autre joueur, votre but devient automatiquement de conquérir 24 territoires.
+		//您必须摧毁黄色军队。如果您自己是黄色军队的拥有者，或者拥有黄色军队的玩家被其他玩家淘汰，您的目标就会自动变为征服 24 个领土
+		else if(this.currentmission == "Vous devez détruire les armées jaunes. Si vous êtes vous même le propriétaire des armées jaunes ou si le joueur qui en est propriétaire est éliminé par un autre joueur, votre but devient automatiquement de conquérir 24 territoires.") {
+			if (couleur!="jaunes") {
+				for(int i=0;i<participants.length;i++) {
+					if(participants[i].getCouleur()=="jaunes"&&participants[i].ComprtitionEchoue()==true) {
+						reussi=true;
+						System.out.println("Vous avez gagné !");
+					}
+				}
+			}else {
+				if(allTerritoires.size()>=24) {
+					reussi=true;
+					System.out.println("Vous avez gagné !");		
+				}
+			}
+		}
 		
+		//Vous devez détruire les armées bleues. Si vous êtes vous même le propriétaire des armées bleues ou si le joueur qui en est propriétaire est éliminé par un autre joueur, votre but devient automatiquement de conquérir 24 territoires.
+		else if(this.currentmission == "Vous devez détruire les armées bleues. Si vous êtes vous même le propriétaire des armées bleues ou si le joueur qui en est propriétaire est éliminé par un autre joueur, votre but devient automatiquement de conquérir 24 territoires.") {
+			if (couleur!="bleues") {
+				for(int i=0;i<participants.length;i++) {
+					if(participants[i].getCouleur()=="bleues"&&participants[i].ComprtitionEchoue()==true) {
+						reussi=true;
+						System.out.println("Vous avez gagné !");
+					}
+				}
+			}else {
+				if(allTerritoires.size()>=24) {
+					reussi=true;
+					System.out.println("Vous avez gagné !");		
+				}
+			}
+		}
+		
+		//Vous devez détruire les armées noires. Si vous êtes vous même le propriétaire des armées jaunes ou si le joueur qui en est propriétaire est éliminé par un autre joueur, votre but devient automatiquement de conquérir 24 territoires.
+		else if(this.currentmission == "Vous devez détruire les armées noires. Si vous êtes vous même le propriétaire des armées noires ou si le joueur qui en est propriétaire est éliminé par un autre joueur, votre but devient automatiquement de conquérir 24 territoires.") {
+			if (couleur!="noires") {
+				for(int i=0;i<participants.length;i++) {
+					if(participants[i].getCouleur()=="noires"&&participants[i].ComprtitionEchoue()==true) {
+						reussi=true;
+						System.out.println("Vous avez gagné !");
+					}
+				}
+			}else {
+				if(allTerritoires.size()>=24) {
+					reussi=true;
+					System.out.println("Vous avez gagné !");		
+				}
+			}
+		}
+		
+		//Vous devez détruire les armées violettes. Si vous êtes vous même le propriétaire des armées jaunes ou si le joueur qui en est propriétaire est éliminé par un autre joueur, votre but devient automatiquement de conquérir 24 territoires.
+		else if(this.currentmission == "Vous devez détruire les armées violettes. Si vous êtes vous même le propriétaire des armées violettes ou si le joueur qui en est propriétaire est éliminé par un autre joueur, votre but devient automatiquement de conquérir 24 territoires.") {
+			if (couleur!="violettes") {
+				for(int i=0;i<participants.length;i++) {
+					if(participants[i].getCouleur()=="violettes"&&participants[i].ComprtitionEchoue()==true) {
+						reussi=true;
+						System.out.println("Vous avez gagné !");
+					}
+				}
+			}else {
+				if(allTerritoires.size()>=24) {
+					reussi=true;
+					System.out.println("Vous avez gagné !");		
+				}
+			}
+		}
+		
+		//Vous devez détruire les armées vertes. Si vous êtes vous même le propriétaire des armées jaunes ou si le joueur qui en est propriétaire est éliminé par un autre joueur, votre but devient automatiquement de conquérir 24 territoires.		//您必须摧毁黄色军队。如果您自己是黄色军队的拥有者，或者拥有黄色军队的玩家被其他玩家淘汰，您的目标就会自动变为征服 24 个领土
+		else if(this.currentmission == "Vous devez détruire les armées vertes. Si vous êtes vous même le propriétaire des armées vertes ou si le joueur qui en est propriétaire est éliminé par un autre joueur, votre but devient automatiquement de conquérir 24 territoires.") {
+			if (couleur!="vertes") {
+				for(int i=0;i<participants.length;i++) {
+					if(participants[i].getCouleur()=="vertes"&&participants[i].ComprtitionEchoue()==true) {
+						reussi=true;
+						System.out.println("Vous avez gagné !");
+					}
+				}
+			}else {
+				if(allTerritoires.size()>=24) {
+					reussi=true;
+					System.out.println("Vous avez gagné !");		
+				}
+			}
+		}
+		
+		//Vous devez détruire les armées rouges. Si vous êtes vous même le propriétaire des armées jaunes ou si le joueur qui en est propriétaire est éliminé par un autre joueur, votre but devient automatiquement de conquérir 24 territoires.
+		else if(this.currentmission == "Vous devez détruire les armées rouges. Si vous êtes vous même le propriétaire des armées rouges ou si le joueur qui en est propriétaire est éliminé par un autre joueur, votre but devient automatiquement de conquérir 24 territoires.") {
+			if (couleur!="rouges") {
+				for(int i=0;i<participants.length;i++) {
+					if(participants[i].getCouleur()=="rouges"&&participants[i].ComprtitionEchoue()==true) {
+						reussi=true;
+						System.out.println("Vous avez gagné !");
+					}
+				}
+			}else {
+				if(allTerritoires.size()>=24) {
+					reussi=true;
+					System.out.println("Vous avez gagné !");		
+				}
+			}
+		}
+
+		else {
+			reussi=false;
+//				System.out.println("Bon courage !");
+		}
+		return reussi;
 	}
-	
+
 	
 	
 	@Override
