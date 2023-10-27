@@ -4,7 +4,7 @@ import java.util.Collections;
 import java.util.Comparator;
 
 /**
- * Class Clonflit à jour
+ * Class Clonflit Ã  jour
  * Archive (version scanner => old version)
  *
  */
@@ -73,65 +73,81 @@ public class Conflit {
 	
 	/**
 	 * @param nbRegimentsRiposte
-	 * @return .... a definir ....
+	 * @return Boolean isNouveauTerritoireConquis
 	 */
-	public int resultatConflit(int nbRegimentsRiposte) {
+	public Boolean resultatConflit(int nbRegimentsRiposte) {
 	    
 		// Setting nb regiment attaquant
 		this.nbRegimentDefenseur = nbRegimentsRiposte;
-		// Lancer dès attaquant et enregistrer resultat pour traitement data en BD
+		// Lancer dÃ¨s attaquant et enregistrer resultat pour traitement data en BD
 		this.desAttaque = desAttaquer();
-		// Lancer dès défenseur et enregistrer resultat pour traitement data en BD
+		// Lancer dÃ¨s dÃ©fenseur et enregistrer resultat pour traitement data en BD
 		this.desDefense = desDefenseur();
 		
-		// Gestion des resultats des lancés de dès
-		// Classement des dès du plus grand au plus petit
+		// Gestion des resultats des lancÃ©s de dÃ¨s
+		// Classement des dÃ¨s du plus grand au plus petit
         Collections.sort(desAttaque, Collections.reverseOrder());
         Collections.sort(desDefense, Collections.reverseOrder());
         
 	    System.out.println("ATTAQUANT : "+ this.desAttaque);
 	    System.out.println("DEFENDEUR : "+ this.desDefense);
 	    
-	    System.out.println("\nAVANT");
+	    System.out.println("\nAVANT : Territoire attaqué = "+this.territoireDefenseur+" - Occupant = "+this.territoireDefenseur.getOccupant());
 	    System.out.println("ATTAQUANT : "+ this.territoireAttaquant.getNbRegiments());
 	    System.out.println("DEFENDEUR : "+this.territoireDefenseur.getNbRegiments());
 	    
-	    // 循环比较desDefense的长度次
 	    int iterations = desDefense.size();
-	    int nbSurvivant = desAttaque.size();
+	    int nbRegimentsAttaquantRestant = desAttaque.size();
 	    
-	    // Comparaison des dès par ordre de grandeur
+	    // Comparaison des dÃ¨s par ordre de grandeur
 	    for (int i = 0; i < iterations; i++) {
 	        int attaque = desAttaque.get(i);
 	        int defense = desDefense.get(i);
 
-	        // 如果desAttaque的值大于desDefense，则territoireDefenseur上的兵数减去1
-	        // Pour chaque dès, si le resultat de l'attaquant est plus grand que celui de la défense, le defenseur perd un regiment
+	        // Pour chaque dÃ¨s, si le resultat de l'attaquant est plus grand que celui de la dÃ©fense, le defenseur perd un regiment
 	        if (attaque > defense) {
 	            int nbRegimentsDefenseur = territoireDefenseur.getNbRegiments();
 	            if (nbRegimentsDefenseur > 0) {
 	                territoireDefenseur.setNbRegiments(nbRegimentsDefenseur - 1);
 	                
 	            }
-	        // 否则territoireAttaquant上的兵数减去1
-		    // Pour chaque dès, si le resultat de l'attaquant est égale ou plus petit que celui de la défense, l' attaquant perd un regiment
+		    // Pour chaque dÃ¨s, si le resultat de l'attaquant est Ã©gale ou plus petit que celui de la dÃ©fense, l' attaquant perd un regiment
 	        } else {
 	            int nbRegimentsAttaquant = territoireAttaquant.getNbRegiments();
 	            if (nbRegimentsAttaquant > 0) {
 	                territoireAttaquant.setNbRegiments(nbRegimentsAttaquant - 1);
 	            }
-	            nbSurvivant=nbSurvivant-1;
+	            nbRegimentsAttaquantRestant=nbRegimentsAttaquantRestant-1;
 	        }
 	    }
-	    System.out.println("\nAPRES");
+	    System.out.println("\nAPRES : Territoire attaqué = "+this.territoireDefenseur+" - Occupant = "+this.territoireDefenseur.getOccupant());
 	    System.out.println("ATTAQUANT : "+this.territoireAttaquant.getNbRegiments());
 	    System.out.println("DEFENDEUR : "+this.territoireDefenseur.getNbRegiments());
 	    
-	    System.out.println(nbSurvivant); // check a quoi ca correspond
-	    // mettre à jour troupes si pays conquis (cf rules fonction yujie)
-	    // + boolean de victoire territoire
+	    System.out.println("\nNb de régiment de l'attaquant déplacable : "+nbRegimentsAttaquantRestant); 
 	    
-	    return nbSurvivant;
+	    // Si le defenseur a perdu toutes ses troupes, on update le statut du territoire
+	    Boolean isNouveauTerritoireConquis = false;
+		if(this.territoireDefenseur.getNbRegiments()==0) {
+			
+			// UPDATE CLASSE TERRITOIRE
+			// Retrait des troupes du territoire attaquant pour les deplacer dans le territoire conquis
+//			this.territoireAttaquant.enleverNbRegiments(this.nbRegimentAttaquant);
+			this.territoireDefenseur.setNbRegiments(nbRegimentsAttaquantRestant);
+			// Mise à jour du joueur occupant le territoire conquis
+			this.territoireDefenseur.setOccupant(this.territoireAttaquant.getOccupant());
+			
+			// UPDATE CLASSE JOUEUR
+			// Mise à jour de la liste des territoires occupés par les deux joueurs 
+			this.defenseur.supprimerTerritoiresConquis(this.territoireDefenseur);
+			this.attaquant.ajouterTerritoiresConquis(this.territoireDefenseur);
+			// Declaration qu'un nouveau territoire a ete conquis par le joueur attaquant
+			isNouveauTerritoireConquis = true;
+		}
+	    System.out.println("\nAPRES MAJ : Territoire attaqué = "+this.territoireDefenseur+" - Occupant = "+this.territoireDefenseur.getOccupant()+" - Nb Troupes : "+this.territoireDefenseur.getNbRegiments());
+	    System.out.println("ATTAQUANT : "+this.territoireAttaquant.getNbRegiments());
+	    System.out.println("DEFENDEUR : "+this.territoireDefenseur.getNbRegiments());
+	    return isNouveauTerritoireConquis;
 	}
 	
     /**
