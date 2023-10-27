@@ -65,6 +65,7 @@ public class Risk {
 		/** ATTRIBUTION DES CARTES OBJECTIFS AUX JOUEURS */
 		//MÃ©langer les cartes de mission æ‰“ä¹±å�¡ç‰Œ
 		Mission m = new Mission();
+		// Uniquement les missions de conquetes de continents ou de territoires implémentées (toutes les cartes hors vaincre un joueur)
 		Collections.shuffle(m.getMissionListe(), new Random());
 		
 		//Distribution des cartes de mission aux joueurs éš�æœºåˆ†é…�ä»»åŠ¡å�¡ç‰Œç»™çŽ©å®¶
@@ -306,7 +307,8 @@ public class Risk {
 		         }
 		         
 		         // Si le joueur a complÃ©tÃ© son objectif
-//		         isObjectifCompleted = joueur.MissionReussie(participants); // check dans test_Main avant d'insérer
+		         joueur.MissionReussie(participants); // check dans test_Main avant d'insérer
+		         isObjectifCompleted = joueur.getMissionAchievement();
 		         if (isObjectifCompleted == true) {
 		        	 isWinner = true;	
 		         }
@@ -354,7 +356,6 @@ public class Risk {
              }
              System.out.println("Le joueur " + classement.get(i).getNom() + " termine à la position " + (i+1) + " avec " + classement.get(i).getAllTerritoires().size() + " territoires.");
          }
-
 	}
 }
 

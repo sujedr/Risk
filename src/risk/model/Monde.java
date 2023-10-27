@@ -68,6 +68,170 @@ public class Monde {
         Territoire ter602 = new Territoire(602, "Nouvelle Guinee", 1146, 420);
         Territoire ter603 = new Territoire(603, "Australie Occidentale", 1052, 517);
         Territoire ter604 = new Territoire(604, "Australie Orientale", 1147, 515);
+        
+        // Territoires voisin
+        
+        // Alaska
+        ter101.ajouterVoisin(ter102); // Territoire du Nord Ouest
+        ter101.ajouterVoisin(ter103); // Etat de l'Ouest
+        ter101.ajouterVoisin(ter511); // Etat de l'Ouest
+
+        // Territoire du Nord Ouest
+        ter102.ajouterVoisin(ter101); // Alaska
+        ter102.ajouterVoisin(ter103); // Alberta
+        ter102.ajouterVoisin(ter104); // Etat de l'Ouest
+        ter102.ajouterVoisin(ter109); // Etat de l'Est
+
+        // Alberta
+        ter103.ajouterVoisin(ter101); 
+        ter103.ajouterVoisin(ter102); 
+        ter103.ajouterVoisin(ter104); 
+        ter103.ajouterVoisin(ter106);
+        ter103.ajouterVoisin(ter107);
+
+        // Ontario
+        ter104.ajouterVoisin(ter102);
+        ter104.ajouterVoisin(ter103); 
+        ter104.ajouterVoisin(ter105);
+        ter104.ajouterVoisin(ter106);
+        ter104.ajouterVoisin(ter107);
+        ter104.ajouterVoisin(ter109);
+
+        // Quebec
+        ter105.ajouterVoisin(ter109); 
+        ter105.ajouterVoisin(ter104);
+        ter105.ajouterVoisin(ter107);
+
+        // Etat de l'Ouest
+        ter106.ajouterVoisin(ter103); // Alaska
+        ter106.ajouterVoisin(ter104); // Territoire du Nord Ouest
+        ter106.ajouterVoisin(ter107); // Etat de l'Est
+        ter106.ajouterVoisin(ter108); // Amerique Centrale
+
+        // Etat de l'Est
+        ter107.ajouterVoisin(ter104); // Territoire du Nord Ouest
+        ter107.ajouterVoisin(ter105); // Etat de l'Ouest
+        ter107.ajouterVoisin(ter106);
+        ter107.ajouterVoisin(ter108); // Amerique Centrale
+
+        // Amerique Centrale
+        ter108.ajouterVoisin(ter106); // Etat de l'Ouest
+        ter108.ajouterVoisin(ter107); // Etat de l'Est
+        ter108.ajouterVoisin(ter201); // Perou
+        
+     // Perou
+        ter201.ajouterVoisin(ter108); //  
+        ter201.ajouterVoisin(ter203); // 
+        ter201.ajouterVoisin(ter202); // 
+
+        // Bresil
+        ter203.ajouterVoisin(ter201); // 
+        ter203.ajouterVoisin(ter202); // 
+        ter203.ajouterVoisin(ter204); // 
+        ter203.ajouterVoisin(ter301); 
+        
+        // Argentine
+        ter204.ajouterVoisin(ter203); // 
+        ter204.ajouterVoisin(ter202); // 
+
+        // Afrique du Nord
+        ter301.ajouterVoisin(ter203); // 
+        ter301.ajouterVoisin(ter401); // 
+        ter301.ajouterVoisin(ter303); // 
+        ter301.ajouterVoisin(ter304); //  
+        ter301.ajouterVoisin(ter302); // 
+        
+        ter303.ajouterVoisin(ter301);
+        ter303.ajouterVoisin(ter304);
+        ter303.ajouterVoisin(ter305);
+        
+        ter302.ajouterVoisin(ter301);
+        ter302.ajouterVoisin(ter304);
+        ter302.ajouterVoisin(ter507);
+        ter302.ajouterVoisin(ter406);
+        
+     // Oural
+        ter503.ajouterVoisin(ter501); // Afghanistan
+        ter503.ajouterVoisin(ter502); // Inde
+        ter503.ajouterVoisin(ter504); // Siberie
+
+        // Siberie
+        ter504.ajouterVoisin(ter502); // Inde
+        ter504.ajouterVoisin(ter503); // Oural
+        ter504.ajouterVoisin(ter505); // Chine
+        ter504.ajouterVoisin(ter506); // Japon
+        ter504.ajouterVoisin(ter510); // Yakoutie
+        ter504.ajouterVoisin(ter511); // Kamchatka
+
+        // Chine
+        ter505.ajouterVoisin(ter502); // Inde
+        ter505.ajouterVoisin(ter504); // Siberie
+        ter505.ajouterVoisin(ter506); // Japon
+        ter505.ajouterVoisin(ter507); // Moyen Orient
+        ter505.ajouterVoisin(ter508); // Mongolie
+
+        // Japon
+        ter506.ajouterVoisin(ter502); // Inde
+        ter506.ajouterVoisin(ter504); // Siberie
+        ter506.ajouterVoisin(ter505); // Chine
+
+        // Moyen Orient
+        ter507.ajouterVoisin(ter505); // Chine
+        ter507.ajouterVoisin(ter508); // Mongolie
+        ter507.ajouterVoisin(ter510); // Yakoutie
+        ter507.ajouterVoisin(ter512); // Siam
+
+        // Mongolie
+        ter508.ajouterVoisin(ter501); // Afghanistan
+        ter508.ajouterVoisin(ter505); // Chine
+        ter508.ajouterVoisin(ter507); // Moyen Orient
+        ter508.ajouterVoisin(ter509); // Tchita
+        ter508.ajouterVoisin(ter511); // Kamchatka
+
+        // Tchita
+        ter509.ajouterVoisin(ter508); // Mongolie
+        ter509.ajouterVoisin(ter510); // Yakoutie
+        ter509.ajouterVoisin(ter511); // Kamchatka
+
+        // Yakoutie
+        ter510.ajouterVoisin(ter504); // Siberie
+        ter510.ajouterVoisin(ter507); // Moyen Orient
+        ter510.ajouterVoisin(ter509); // Tchita
+        ter510.ajouterVoisin(ter511); // Kamchatka
+
+        // Kamchatka
+        ter511.ajouterVoisin(ter504); // Siberie
+        ter511.ajouterVoisin(ter508); // Mongolie
+        ter511.ajouterVoisin(ter509); // Tchita
+        ter511.ajouterVoisin(ter510); // Yakoutie
+        ter511.ajouterVoisin(ter512); // Siam
+
+        // Siam
+        ter512.ajouterVoisin(ter507); // Moyen Orient
+        ter512.ajouterVoisin(ter511); // Kamchatka
+
+        // Indonesie
+        ter601.ajouterVoisin(ter306); // Madagascar
+        ter601.ajouterVoisin(ter602); // Nouvelle Guinee
+        ter601.ajouterVoisin(ter603); // Australie Occidentale
+
+        // Nouvelle Guinee
+        ter602.ajouterVoisin(ter306); // Madagascar
+        ter602.ajouterVoisin(ter601); // Indonesie
+        ter602.ajouterVoisin(ter603); // Australie Occidentale
+
+        // Australie Occidentale
+        ter603.ajouterVoisin(ter601); // Indonesie
+        ter603.ajouterVoisin(ter602); // Nouvelle Guinee
+        ter603.ajouterVoisin(ter604); // Australie Orientale
+
+        // Australie Orientale
+        ter604.ajouterVoisin(ter603); // Australie Occidentale
+        ter604.ajouterVoisin(ter504); // Siberie
+
+        
+        
+
        		
 		/** Creation des listes de territoires par continents */
         // Amerique du Nord
@@ -219,5 +383,7 @@ public class Monde {
 	public String toString() {
 		return "Monde [monde=" + monde + ", getMonde()=" + getMonde() + ", getTerritoires()=" + getTerritoires() + "]";
 	}
+	
+	
 
 }

@@ -12,7 +12,7 @@ import risk.model.Monde;
 import risk.model.Territoire;
 
 
-public class test_attaqueMain {
+public class MainForTesting {
 
 	public static void main(String[] args) {
 		
@@ -95,7 +95,8 @@ public class test_attaqueMain {
 		System.out.println(joueur.consulterContinentsEntierementOccupes());
 
         // Si le joueur a complÃ©tÃ© son objectif
-        Boolean isObjectifCompleted = joueur.MissionReussie(participants); // check dans test_Main avant d'insérer
+        joueur.MissionReussie(participants); // check dans test_Main avant d'insérer
+        Boolean isObjectifCompleted = joueur.getMissionAchievement();
         if (isObjectifCompleted == true) {
        	 System.out.println("FIN PARTIE, OBJETCIF COMPLETE PAR "+joueur+" : \n"+joueur.getCurrentmission());
         }
