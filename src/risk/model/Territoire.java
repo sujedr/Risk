@@ -28,6 +28,7 @@ public class Territoire {
 		this.centreX = centreX;
 		this.centreY = centreY;
 		this.nbRegiments = 0;
+		this.voisins = new ArrayList<Territoire>();
 	}
 	
     /**
@@ -114,6 +115,10 @@ public class Territoire {
 		this.continent = continent;
 	}
 	
+	public void ajouterVoisin(Territoire voisin) {
+        // Ajoute le territoire voisin à la liste des voisins
+        this.voisins.add(voisin);
+    }
 	
 	/**
 	 * Fonction non terminée par manque de temps
