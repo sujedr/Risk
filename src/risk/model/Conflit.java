@@ -34,6 +34,13 @@ public class Conflit {
 	public ArrayList<Integer> getDesAttaque() {
 		return desAttaque;
 	}
+	
+	/**
+	 * @return ArrayList<Integer> desDefense
+	 */
+	public ArrayList<Integer> getDesDefense() {
+		return desDefense;
+	}
 	/**
 	 * @return Terrtoire territoireAttaquant
 	 */
@@ -104,7 +111,7 @@ public class Conflit {
 	        int attaque = desAttaque.get(i);
 	        int defense = desDefense.get(i);
 
-	        // Pour chaque dÃ¨s, si le resultat de l'attaquant est plus grand que celui de la dÃ©fense, le defenseur perd un regiment
+	        // Pour chaque dés, si le resultat de l'attaquant est plus grand que celui de la dÃ©fense, le defenseur perd un regiment
 	        if (attaque > defense) {
 	            int nbRegimentsDefenseur = territoireDefenseur.getNbRegiments();
 	            if (nbRegimentsDefenseur > 0) {

@@ -325,7 +325,6 @@ public class Fenetre {
             }
 
             // Suite du code
-            System.out.println("Suite du code après le clic.");
             break;
         }
         return terDefense[0];
@@ -362,11 +361,10 @@ public class Fenetre {
 	                    String input = textField.getText();
 	        	        nbTroupes = Integer.parseInt(input);
 	        	        if (!isAttaque) {
-	        	        	if (territoire.getNbRegiments() <= 3) {
+	        	        	if (nbTroupes <= 2) {
 	                    		JOptionPane.showMessageDialog(null, "Vous défendez avec " + nbTroupes + " troupes.");
 	                    		validationTroupe = true;
 	        	        	}
-	        	        	
 	        	        } else if (territoire.getNbRegiments() > nbTroupes && nbTroupes <= 3) {
 	                    	if (nbTroupes != 0) {
 	                    		JOptionPane.showMessageDialog(null, "Vous attaquez avec " + nbTroupes + " troupes.");
