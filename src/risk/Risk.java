@@ -30,8 +30,6 @@ public class Risk {
         ArrayList<Territoire> territoires = monde.getTerritoires();//              <======== ajouter la var territoires en input @raph 
         Fenetre vue = new Fenetre(territoires); // CrÃ©e une instance de Fenetre
         
-        System.out.println("okk");
-        
         // INITIALISATION D'UNE MANCHE
 	    /** Deb - A supprimer apres test*/
 		String dn = "2020-10-10";
@@ -116,7 +114,7 @@ public class Risk {
             	carte.getTerritoire().setOccupant(participants[i]);
             	System.out.println("liste territoire :"+participants[i].getAllTerritoires());
             	System.out.println("Nb troupes a placer :"+participants[i].getNbRegimentsRestants());
-            	System.out.println("Territoire occupÃ© par :"+carte.getTerritoire().getOccupant()+" , nb de troupes : "+carte.getTerritoire().getNbRegiments());
+            	System.out.println("Territoire occupé par :"+carte.getTerritoire().getOccupant()+" , nb de troupes : "+carte.getTerritoire().getNbRegiments());
             }
         }
 		// DEBUT - ATTRIBUTION DES CARTES TERRITOIRES AUX JOUEURS
@@ -134,10 +132,12 @@ public class Risk {
         System.out.println("--------------------------");  
 
         // DEBUT DE LA MANCHE
-         boolean isFirstTour = true;
          boolean isWinner = false;
          boolean isObjectifCompleted = false;
-         int nbJouer = 0; //On vÃ©rifie que tous les joueurs on placÃ© leurs pions
+
+         boolean tourPassed = false;
+         int nbJouer = 0; //On vérifie que tous les joueurs on placé leurs pions
+
 
          while (isWinner != true) {
         	 // POUR CHAQUE JOUEUR
@@ -167,25 +167,25 @@ public class Risk {
 	        	 }
 	        	 // PROCESSUS NORMAL POUR LES AUTRES TOURS
 	        	 else {
-		        	 // MISE A JOUR DU NOMBRE DE REGIMENTS QUE PEUT POSITIONNER UN JOUEUR EN DEBUT DE TOUR
-	        		 // => selon nombre de territoires occupÃ©s et de continents complets occupÃ©s
-	        		 int nbRegimentAPlacer = joueur.calculerNbRegimentsAPlacer();
-	        		 joueur.ajouterNbRegimentsRestants(nbRegimentAPlacer);
-	        		 System.out.println("regiment a placer : " + nbRegimentAPlacer);
-	        		 
-		        	 // AJOUT NOUVEAUX REGIMENTS   
-	        			 while (joueur.getNbRegimentsRestants() != 0) {
-			        		 for (Territoire territoire : joueur.getAllTerritoires()) {
-			        			 //Affichage de l'ajout d'unitÃ©s sur un territoire retourne le nombre a ajoutÃ©
-			        			 nbUnitesAjout = vue.premierTour(joueur, territoire);
-			        			 territoire.ajouterNbRegiments(nbUnitesAjout);
-			        			 joueur.enleverNbRegimentsRestants(nbUnitesAjout);
-			        		 } 
-			        	 }
-	        			 
-	        		vue.actionsTour(joueur);
-	        		
-	        		System.out.println("Test de pause");
+			        	 // MISE A JOUR DU NOMBRE DE REGIMENTS QUE PEUT POSITIONNER UN JOUEUR EN DEBUT DE TOUR
+		        		 // => selon nombre de territoires occupés et de continents complets occupés
+		        		 int nbRegimentAPlacer = joueur.calculerNbRegimentsAPlacer();
+		        		 joueur.ajouterNbRegimentsRestants(nbRegimentAPlacer);
+		        		 System.out.println("regiment a placer : " + nbRegimentAPlacer);
+		        		 
+		        		 
+			        	 // AJOUT NOUVEAUX REGIMENTS   
+		        			 while (joueur.getNbRegimentsRestants() != 0) {
+				        		 for (Territoire territoire : joueur.getAllTerritoires()) {
+				        			 //Affichage de l'ajout d'unités sur un territoire retourne le nombre a ajouté
+				        			 nbUnitesAjout = vue.premierTour(joueur, territoire);
+				        			 territoire.ajouterNbRegiments(nbUnitesAjout);
+				        			 joueur.enleverNbRegimentsRestants(nbUnitesAjout);
+				        		 } 
+				        	 }
+		        		while (!tourPassed) {
+		        			int choix = vue.actionsTour(joueur); //1 = Déplacer, 2 = Attaquer, 3 = Défendre
+		        		}
 	        		
 		        	 
 		        	 // CHOIX D ATTAQUER, MODIFIER SES TROUPES OU PASSER SON TOUR
