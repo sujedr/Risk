@@ -335,8 +335,10 @@ public class Fenetre {
     	//Actualisation de l'affichage
     	boolean validationTroupe = false;
     	String word = "attaque";
+    	String max = " (max 3) ";
     	if (!isAttaque) {
-    		word = "attaque";
+    		word = "defense";
+    		max = " (max 2) ";
     	}
     	
     	int nbTroupes = 0;
@@ -344,7 +346,7 @@ public class Fenetre {
 	        this.label.setText("             Joueur "  + joueur.getId() + "\n" + joueur.getAllTerritoiresClear());
 	        JPanel panel = new JPanel();
 	        JLabel terrLab = new JLabel( territoire.getNumber() + " : " + territoire.getNom() + " | " );
-	        JLabel label = new JLabel("Joueur" + joueur.getId() + " | Nombre de troupes pour " + word + " (max 3) | " + territoire.getNbRegiments() + " regiments disponibles");
+	        JLabel label = new JLabel("Joueur" + joueur.getId() + " | Nombre de troupes pour " + word + max + " | " + territoire.getNbRegiments() + " regiments disponibles");
 	        JTextField textField = new JTextField(10);
 	        
 	
@@ -359,12 +361,18 @@ public class Fenetre {
 	            try {
 	                    String input = textField.getText();
 	        	        nbTroupes = Integer.parseInt(input);
-	                    if (territoire.getNbRegiments() > nbTroupes && nbTroupes <= 3) {
+	        	        if (!isAttaque) {
+	        	        	if (territoire.getNbRegiments() <= 3) {
+	                    		JOptionPane.showMessageDialog(null, "Vous défendez avec " + nbTroupes + " troupes.");
+	                    		validationTroupe = true;
+	        	        	}
+	        	        	
+	        	        } else if (territoire.getNbRegiments() > nbTroupes && nbTroupes <= 3) {
 	                    	if (nbTroupes != 0) {
 	                    		JOptionPane.showMessageDialog(null, "Vous attaquez avec " + nbTroupes + " troupes.");
+	                    		validationTroupe = true;
 	                    	}
-	                    	validationTroupe = true;
-	                    }else {
+	                    } else {
 	                    	JOptionPane.showMessageDialog(null, "Vous n'avez pas assez de troupes ou le nombre saisi est trop élevé");
 	                    }
 	            } catch (NumberFormatException e) {
@@ -374,9 +382,6 @@ public class Fenetre {
     	}
         return nbTroupes;
     }
-
-    
-
     
     /**
      * setter des territoires
