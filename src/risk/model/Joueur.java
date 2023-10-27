@@ -267,10 +267,10 @@ public class Joueur {
             else if (continent.getNom() == "Asie") {
             	totalContinents = 12;
             }
-            else if (continent.getNom() == "AmeriqueDuNord") {
+            else if (continent.getNom() == "Amerique du Nord") {
             	totalContinents = 9;
             }
-            else if (continent.getNom() == "AmeriqueDuSud") {
+            else if (continent.getNom() == "Amerique du Sud") {
             	totalContinents = 4;
             }
             else if (continent.getNom() == "Afrique") {
@@ -281,7 +281,8 @@ public class Joueur {
             }
             // Si le joueur Ã  tous les territoires d'un continent on note la conquete du continent dans le dico
             System.out.println("count "+countContinents+" vs. total "+totalContinents);
-            if ((int)countContinents == totalContinents) {
+            if ((int)countContinents == (int)totalContinents) {
+            	System.out.println("/nAjout de "+continent+" à la liste des pays conquis");
             	continentsConquis.add(continent);
             }
         }
