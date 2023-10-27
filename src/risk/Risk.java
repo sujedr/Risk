@@ -192,7 +192,23 @@ public class Risk {
 		        				tourPassed = true;
 		        			}
 		        			if (choix == 2) {
-		        				vue.attaque(joueur);
+				        		   /** @Raph Demander choix pays attaquant, pays attaquÃ©, nombre de troupes 
+					        			*  OUTPUT : territoireAttaquant, territoireDefenseur, nbRegimentsAttaque
+					        			*/
+					        			Territoire territoireAttaquant = vue.attaque(joueur);
+					        			System.out.println("Attaquant : "  + territoireAttaquant.getNom());
+					        			Territoire territoireDefenseur = vue.defense(joueur, territoireAttaquant);
+					        			System.out.println("Defenseur : " + territoireAttaquant.getNom());
+					        			int nbRegimentsAttaque = 2;
+					        			int nbRegimentsRiposte = 1;
+					        			// Creation du conflit 
+					        			Conflit conflit = new Conflit(joueur, territoireAttaquant, territoireDefenseur, nbRegimentsAttaque);
+					        			/** @Raph Demander defenseur nb de troupes riposte
+					        			 *  Input : conflit.getBlablabla...
+					        			 *  Output : nbRegimentsRiposte
+					        			 */
+					        			// Resultat du conflit
+					        			isNouveauTerritoireConquis = conflit.resultatConflit(nbRegimentsRiposte);
 		        			}
 		        		}
 		        		System.out.println("Félicitations ça marche");

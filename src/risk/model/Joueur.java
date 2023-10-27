@@ -183,6 +183,17 @@ public class Joueur {
 	}
 	
 	/**
+	 * @return ArrayList<String> liste nom des territoires occupés par le joueur
+	 */
+	public ArrayList<String> getAllTerritoiresClearNumero() {
+		ArrayList<String>liste = new ArrayList<>();
+		for (Territoire territoire : this.getAllTerritoires()) {
+			liste.add(territoire.getNumber() + " : " + territoire.getNom());
+		}
+		return liste;
+	}
+	
+	/**
 	 * @return int nb de regiments que le joueur dois placer en dÃ©but de tour
 	 */
 	public int calculerNbRegimentsAPlacer() {

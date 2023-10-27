@@ -228,9 +228,62 @@ public class Fenetre {
         return choix;
     }
     
-    public void attaque(Joueur joueur) {
-        this.label.setText("             " + joueur.getNom());
+    public Territoire attaque(Joueur joueur) {
+        this.label.setText("             Joueur " + joueur.getId() + "\n" + joueur.getAllTerritoiresClearNumero() + " Choisissez le territoire attaquant");
+        final Territoire[] terAttaque = new Territoire[1]; // Utilisation d'un tableau pour stocker le résultat
 
+        while (true) {
+            CountDownLatch clickWait = new CountDownLatch(1); // Attendre le clic
+
+            frame.addMouseListener(new MouseListener() {
+                public void mouseClicked(MouseEvent e) {
+                    int x = e.getX();
+                    int y = e.getY();
+
+                    for (Territoire territoire : territoires) {
+                        if (territoire.isInTerritory(x, y, seuil) && (territoire.getOccupant() == joueur)) {
+                            System.out.println(territoire.getNumber() + " : " + territoire.getNom());
+                            terAttaque[0] = territoire;
+                            clickWait.countDown();
+                        }
+                    }
+                }
+
+                @Override
+                public void mousePressed(MouseEvent e) {
+                }
+
+                @Override
+                public void mouseReleased(MouseEvent e) {
+                }
+
+                @Override
+                public void mouseEntered(MouseEvent e) {
+                }
+
+                @Override
+                public void mouseExited(MouseEvent e) {
+                }
+            });
+
+            try {
+                // Attente de l'action utilisateur
+                clickWait.await();
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+
+            // Suite du code
+            System.out.println("Suite du code après le clic.");
+            break;
+        }
+        return terAttaque[0];
+    }
+
+    
+    public Territoire defense(Joueur joueur, Territoire attaquant) {
+        this.label.setText("             Joueur " + joueur.getId() + "\n" + joueur.getAllTerritoiresClearNumero() + " Choisissez le territoire attaqué");
+        final Territoire[] terDefense = new Territoire[1]; // Utilisation d'un tableau pour stocker le résultat
         while (true) {
             CountDownLatch clickWait = new CountDownLatch(1); // Attendre le click
 
@@ -240,8 +293,8 @@ public class Fenetre {
                     int y = e.getY();
 
                     for (Territoire territoire : territoires) {
-                        if (territoire.isInTerritory(x, y, seuil)) {
-                            System.out.println(territoire.getNumber() + " : " + territoire.getNom());
+                        if (territoire.isInTerritory(x, y, seuil) && territoire.getVoisins().contains(attaquant)) {
+                        	terDefense[0] = territoire;
                             clickWait.countDown();
                         }
                     }
@@ -273,10 +326,9 @@ public class Fenetre {
 
             // Suite du code
             System.out.println("Suite du code après le clic.");
-
-            // Sortie de boucle
             break;
         }
+        return terDefense[0];
     }
 
     
