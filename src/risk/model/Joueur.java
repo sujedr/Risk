@@ -28,6 +28,7 @@ public class Joueur {
 	private int nbTours;
 	private ArrayList<Territoire> allTerritoires = new ArrayList<>();
 	private int nbRegimentsAterritoires;
+	private Manche elimine;
 	/**
 	 * Constructeur
 	 * @param id
@@ -84,6 +85,9 @@ public class Joueur {
 	/** @param id */
 	public void setId(String id) {
 		this.id = id;
+	}
+	public Manche getElimine() {
+		return elimine;
 	}
 	/** @return String */
 	public String getNom() {
@@ -427,8 +431,15 @@ public class Joueur {
 				if (couleur!="jaunes") {
 					for(int i=0;i<participants.length;i++) {
 						if(participants[i].getCouleur()=="jaunes"&&participants[i].ComprtitionEchoue()==true) {
-							reussi=true;
-							System.out.println("Vous avez gagné !");
+							if(participants[i].getElimine().findWinnerOf(participants[i]).getId()==id) {
+								reussi=true;
+								System.out.println("Vous avez gagné !");
+							}else {
+								if(allTerritoires.size()>=24) {
+								reussi=true;
+								System.out.println("Vous avez gagné !");
+								}	
+							}
 						}
 					}
 				}else {
@@ -444,12 +455,19 @@ public class Joueur {
 				if (couleur!="bleues") {
 					for(int i=0;i<participants.length;i++) {
 						if(participants[i].getCouleur()=="bleues"&&participants[i].ComprtitionEchoue()==true) {
-							reussi=true;
-							System.out.println("Vous avez gagné !");
+							if(participants[i].getElimine().findWinnerOf(participants[i]).getId()==id) {
+								reussi=true;
+								System.out.println("Vous avez gagné !");
+							}else {
+								if(allTerritoires.size()>=24) {
+								reussi=true;
+								System.out.println("Vous avez gagné !");
+								}	
+							}
 						}
 					}
 				}else {
-					if((int)allTerritoires.size()>=24) {
+					if(allTerritoires.size()>=24) {
 						reussi=true;
 						System.out.println("Vous avez gagné !");		
 					}
@@ -461,12 +479,19 @@ public class Joueur {
 				if (couleur!="noires") {
 					for(int i=0;i<participants.length;i++) {
 						if(participants[i].getCouleur()=="noires"&&participants[i].ComprtitionEchoue()==true) {
-							reussi=true;
-							System.out.println("Vous avez gagné !");
+							if(participants[i].getElimine().findWinnerOf(participants[i]).getId()==id) {
+								reussi=true;
+								System.out.println("Vous avez gagné !");
+							}else {
+								if(allTerritoires.size()>=24) {
+								reussi=true;
+								System.out.println("Vous avez gagné !");
+								}	
+							}
 						}
 					}
 				}else {
-					if((int)allTerritoires.size()>=24) {
+					if(allTerritoires.size()>=24) {
 						reussi=true;
 						System.out.println("Vous avez gagné !");		
 					}
@@ -478,12 +503,19 @@ public class Joueur {
 				if (couleur!="violettes") {
 					for(int i=0;i<participants.length;i++) {
 						if(participants[i].getCouleur()=="violettes"&&participants[i].ComprtitionEchoue()==true) {
-							reussi=true;
-							System.out.println("Vous avez gagné !");
+							if(participants[i].getElimine().findWinnerOf(participants[i]).getId()==id) {
+								reussi=true;
+								System.out.println("Vous avez gagné !");
+							}else {
+								if(allTerritoires.size()>=24) {
+								reussi=true;
+								System.out.println("Vous avez gagné !");
+								}	
+							}
 						}
 					}
 				}else {
-					if((int)allTerritoires.size()>=24) {
+					if(allTerritoires.size()>=24) {
 						reussi=true;
 						System.out.println("Vous avez gagné !");		
 					}
@@ -495,12 +527,19 @@ public class Joueur {
 				if (couleur!="vertes") {
 					for(int i=0;i<participants.length;i++) {
 						if(participants[i].getCouleur()=="vertes"&&participants[i].ComprtitionEchoue()==true) {
-							reussi=true;
-							System.out.println("Vous avez gagné !");
+							if(participants[i].getElimine().findWinnerOf(participants[i]).getId()==id) {
+								reussi=true;
+								System.out.println("Vous avez gagné !");
+							}else {
+								if(allTerritoires.size()>=24) {
+								reussi=true;
+								System.out.println("Vous avez gagné !");
+								}	
+							}
 						}
 					}
 				}else {
-					if((int)allTerritoires.size()>=24) {
+					if(allTerritoires.size()>=24) {
 						reussi=true;
 						System.out.println("Vous avez gagné !");		
 					}
@@ -512,12 +551,19 @@ public class Joueur {
 				if (couleur!="rouges") {
 					for(int i=0;i<participants.length;i++) {
 						if(participants[i].getCouleur()=="rouges"&&participants[i].ComprtitionEchoue()==true) {
-							reussi=true;
-							System.out.println("Vous avez gagné !");
+							if(participants[i].getElimine().findWinnerOf(participants[i]).getId()==id) {
+								reussi=true;
+								System.out.println("Vous avez gagné !");
+							}else {
+								if(allTerritoires.size()>=24) {
+								reussi=true;
+								System.out.println("Vous avez gagné !");
+								}	
+							}
 						}
 					}
 				}else {
-					if((int)allTerritoires.size()>=24) {
+					if(allTerritoires.size()>=24) {
 						reussi=true;
 						System.out.println("Vous avez gagné !");		
 					}
