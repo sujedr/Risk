@@ -330,6 +330,55 @@ public class Fenetre {
         }
         return terDefense[0];
     }
+    
+    public int choisirNbTroupes(Joueur joueur, Territoire territoire, boolean isAttaque) {
+    	//Actualisation de l'affichage
+    	boolean validationTroupe = false;
+    	String word = "attaque";
+    	if (!isAttaque) {
+    		word = "attaque";
+    	}
+    	
+    	int nbTroupes = 0;
+    	while(!validationTroupe) {
+	        this.label.setText("             Joueur "  + joueur.getId() + "\n" + joueur.getAllTerritoiresClear());
+	        JPanel panel = new JPanel();
+	        JLabel terrLab = new JLabel( territoire.getNumber() + " : " + territoire.getNom() + " | " );
+	        JLabel label = new JLabel("Joueur" + joueur.getId() + " | Nombre de troupes pour " + word + " (max 3) | " + territoire.getNbRegiments() + " regiments disponibles");
+	        JTextField textField = new JTextField(10);
+	        
+	
+	        panel.add(terrLab);
+	        panel.add(label);
+	        if (joueur.getNbRegimentsRestants() != 0) {
+	        	panel.add(textField);
+	        }
+	        
+	
+	        int option = JOptionPane.showConfirmDialog(null, panel, "", JOptionPane.OK_CANCEL_OPTION);
+	
+	        if (option == JOptionPane.OK_OPTION) {
+	            try {
+	                    String input = textField.getText();
+	        	        nbTroupes = Integer.parseInt(input);
+	                    if (territoire.getNbRegiments() > nbTroupes && nbTroupes < 3) {
+	                    	if (nbTroupes != 0) {
+	                    		JOptionPane.showMessageDialog(null, "Vous attaquez avec " + nbTroupes + " troupes.");
+	                    	}
+	                    	validationTroupe = true;
+	                    } else if(joueur.getNbRegimentsRestants() == 0) {
+	                    	nbTroupes = 0;
+	                    	validationTroupe = true;
+	                    } else {
+	                    	JOptionPane.showMessageDialog(null, "Vous n'avez pas assez de troupes ou le nombre saisi est trop élevé");
+	                    }
+	            } catch (NumberFormatException e) {
+	                JOptionPane.showMessageDialog(null, "Saisie invalide. Veuillez entrer un nombre valide.");
+	            }
+	        }
+    	}
+        return nbTroupes;
+    }
 
     
 

@@ -199,8 +199,8 @@ public class Risk {
 					        			System.out.println("Attaquant : "  + territoireAttaquant.getNom());
 					        			Territoire territoireDefenseur = vue.defense(joueur, territoireAttaquant);
 					        			System.out.println("Defenseur : " + territoireAttaquant.getNom());
-					        			int nbRegimentsAttaque = 2;
-					        			int nbRegimentsRiposte = 1;
+					        			int nbRegimentsAttaque = vue.choisirNbTroupes(joueur, territoireAttaquant, true);
+					        			int nbRegimentsRiposte = vue.choisirNbTroupes(territoireDefenseur.getOccupant(), territoireAttaquant, false);
 					        			// Creation du conflit 
 					        			Conflit conflit = new Conflit(joueur, territoireAttaquant, territoireDefenseur, nbRegimentsAttaque);
 					        			/** @Raph Demander defenseur nb de troupes riposte
