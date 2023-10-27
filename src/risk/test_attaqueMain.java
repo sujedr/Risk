@@ -83,20 +83,15 @@ public class test_attaqueMain {
 //				}
 //			}
 //		}
-		System.out.println(monde.getTerritoires());
 		joueur = j6;
 		joueur.setCurrentmission("Vous devez conquérir en totalité l'Europe et l'Amérique du sud plus un troisième continent au choix.");
 		for (Continent continent : monde.getMonde()) {
-			System.out.println(continent);
 		    for (Territoire territoire : continent.getTerritoires()) {
-				System.out.println(continent.getNom());
-				
 		        if (continent.getNom().equals("Asie") || continent.getNom().equals("Amerique du Sud") || continent.getNom().equals("Europe")) {
 		            joueur.ajouterTerritoiresConquis(territoire);
 		        }
 		    }
 		}
-//		System.out.println(joueur.calculerNbRegimentsAPlacer());
 		System.out.println(joueur.consulterContinentsEntierementOccupes());
 
         // Si le joueur a complÃ©tÃ© son objectif

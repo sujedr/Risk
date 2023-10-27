@@ -351,7 +351,7 @@ public class Joueur {
 			//Vous devez conquérir en totalité l'Europe et l'Océanie plus un troisième continent au choix
 			//您必须征服整个欧洲和大洋洲，外加您选择的第三个洲
 			else if(this.currentmission == "Vous devez conquérir en totalité l'Europe et l'Océanie plus un troisième continent au choix.") {
-				if ((ConquerirEurope&&ConquerirOceanie)||ConquerirAmNord||ConquerirAfri||ConquerirAsie||ConquerirAmSud) {
+				if ((ConquerirEurope&&ConquerirOceanie)&(ConquerirAmNord||ConquerirAfri||ConquerirAsie||ConquerirAmSud)) {
 					reussi=true;
 					System.out.println("Vous avez gagné !");
 				}
@@ -511,6 +511,9 @@ public class Joueur {
 	public String toString() {			
 		return "Joueur [nom=" + nom + ", prenom=" + prenom + "]";
 	}		
+	
+	// __________________________________________  ARCHIVE  ___________________________________________________
+	
 	
 	/**
 	 * ARCHIVE_METHODE_ComprtitionEchoue()
