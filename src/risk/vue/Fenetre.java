@@ -241,7 +241,7 @@ public class Fenetre {
                     int y = e.getY();
 
                     for (Territoire territoire : territoires) {
-                        if (territoire.isInTerritory(x, y, seuil) && (territoire.getOccupant() == joueur)) {
+                        if (territoire.isInTerritory(x, y, seuil) && (territoire.getOccupant() == joueur) && territoire.getNbRegiments() > 1) {
                             System.out.println(territoire.getNumber() + " : " + territoire.getNom());
                             terAttaque[0] = territoire;
                             clickWait.countDown();
@@ -350,9 +350,7 @@ public class Fenetre {
 	
 	        panel.add(terrLab);
 	        panel.add(label);
-	        if (joueur.getNbRegimentsRestants() != 0) {
-	        	panel.add(textField);
-	        }
+	        panel.add(textField);
 	        
 	
 	        int option = JOptionPane.showConfirmDialog(null, panel, "", JOptionPane.OK_CANCEL_OPTION);
