@@ -1,13 +1,10 @@
 package risk.model;
-
 import java.util.ArrayList;
-import java.util.Arrays;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.HashMap;
 import java.util.Random;
 
-/**
- * Objet joueur
- */
 public class Joueur {
 	/** Attributs informations joueur */
 	private String id; 
@@ -17,7 +14,7 @@ public class Joueur {
 	
 	private String couleur;
 	private String currentmission;
-	/** Attributs spÃ©cifiques Ã  une manche */
+	/** Attributs spÃ©cifiques Ã  une manche */
 	private HashMap<Continent, ArrayList<Territoire>> territoiresConquis = new HashMap<>() ;
 	private int nbRegimentsRestants;
 	
@@ -28,7 +25,6 @@ public class Joueur {
 	private int nbTerritoire;
 	private int nbRegiments;
 	private int nbTours;
-
 	private ArrayList<Continent> continentsConquis = new ArrayList<>();
 	private ArrayList<Territoire> allTerritoires = new ArrayList<>();
 	private int nbRegimentsAterritoires;
@@ -40,7 +36,6 @@ public class Joueur {
 	 * @param dtNaissance
 	 */
 	public Joueur(String id, String nom, String prenom, String dtNaissance, ArrayList<Continent> Continents,String couleur) {
-
 		this.id = id;
 		this.nom = nom;
 		this.prenom = prenom;
@@ -53,7 +48,7 @@ public class Joueur {
 		}
 		this.nbRegimentsRestants = 20;
 		
-		/** Initialisation des attributs statistique Ã  zero */         //*** A peut etre supprimer ***
+		/** Initialisation des attributs statistique Ã  zero */         //*** A peut etre supprimer ***
 		for (int i=0; i<6; i++) {
 			this.nbTirageDes[i] = 0;
 		}
@@ -114,13 +109,12 @@ public class Joueur {
 		this.dtNaissance = dtNaissance;
 	}
 	/**
-	 * Nombre de rÃ©giments Ã  placer sur la carte
+	 * Nombre de rÃ©giments Ã  placer sur la carte
 	 * @return nbRegimentsRestants
 	 */
 	public int getNbRegimentsRestants() {
 		return nbRegimentsRestants;
 	}
-
 	/**
 	 * Ajoute des rÃ©giments au nombre initial
 	 * @param nbRegimentsRestants
@@ -144,15 +138,14 @@ public class Joueur {
 	}
 	
 	/**
-	 * @return Liste de territoires
+	 * @return ArrayList<Territoire> Liste de territoires
 	 */
 	public ArrayList<Territoire> getAllTerritoires() {
 		HashMap<Continent, ArrayList<Territoire>> map = new HashMap<>(this.territoiresConquis);
 		ArrayList<Territoire> allTerritoires = new ArrayList<>();
-
 	    // é  åŽ†HashMapä¸­çš„æ‰€æœ‰å€¼ï¼ˆArrayList<Territoire>ï¼‰
 	    for (ArrayList<Territoire> territoriesList : map.values()) {
-	        // é  åŽ†æ¯ ä¸ªArrayList<Territoire>ï¼Œå°†å…¶ä¸­çš„Territoireæ·»åŠ åˆ°allTerritoiresä¸­
+	        // é  åŽ†æ¯ ä¸ªArrayList<Territoire>ï¼Œå°†å…¶ä¸­çš„Territoireæ·»åŠ åˆ°allTerritoiresä¸­
 	        for (Territoire territoire : territoriesList) {
 	            allTerritoires.add(territoire);
 	        }
@@ -160,6 +153,9 @@ public class Joueur {
 	    return allTerritoires;
 	}
 	
+	/**
+	 * @return ArrayList<String> liste nom des territoires occupés par le joueur
+	 */
 	public ArrayList<String> getAllTerritoiresClear() {
 		ArrayList<String>liste = new ArrayList<>();
 		for (Territoire territoire : this.getAllTerritoires()) {
@@ -208,9 +204,9 @@ public class Joueur {
     total = ajoutCauseTerritoire + ajoutCauseContinent;
 	return total;
 	}
-
+	
 	/**
-	 * Ajoute un territoire conquis Ã  la HashMap<Continent, Territoire> alias territoiresConquis du joueur 
+	 * Ajoute un territoire conquis Ã  la HashMap<Continent, Territoire> alias territoiresConquis du joueur 
 	 * @param territoiresConquis
 	 */
 	public void ajouterTerritoiresConquis(Territoire territoire) {
@@ -219,7 +215,7 @@ public class Joueur {
 	}
 	
 	/**
-	 * Supprimer un territoire conquis Ã  la HashMap<Continent, Territoire> alias territoiresConquis du joueur 
+	 * Supprimer un territoire conquis Ã  la HashMap<Continent, Territoire> alias territoiresConquis du joueur 
 	 * @param territoiresConquis
 	 */
 	public void supprimerTerritoiresConquis(Territoire territoire) {
@@ -231,7 +227,6 @@ public class Joueur {
 	 * @return Arraylist <Continent> nom continent conquis
 	 */
 	public ArrayList<Continent> consulterContinentsEntierementOccupes() {
-
 		// Parcours de chaque continent dans le dico de stockage des territoires conquis
         for (Continent continent : this.territoiresConquis.keySet()) {
             int countContinents = this.territoiresConquis.get(continent).size();
@@ -255,51 +250,24 @@ public class Joueur {
             else if (continent.getNom() == "Oceanie") {
             	totalContinents = 4;
             }
-            // Si le joueur Ã  tous les territoires d'un continent on note la conquete du continent dans le dico
+            // Si le joueur Ã  tous les territoires d'un continent on note la conquete du continent dans le dico
             System.out.println("count "+countContinents+" vs. total "+totalContinents);
-            if (countContinents == totalContinents) {
+            if ((int)countContinents == totalContinents) {
             	continentsConquis.add(continent);
             }
         }
         return continentsConquis;
 	}
 	
+	/**
+	 * @param t
+	 * @return int nbRegimentsAterritoires
+	 * Nobre de régiments présent sur un territoire donné
+	 */
 	public int calculerNbRegimentsATerritoires(Territoire t) {
 		return nbRegimentsAterritoires=t.getNbRegiments();
 	}
 	
-	//Compétition échoué
-	//竞赛失败：所以领土都被占领（没有军队了）
-	public boolean ComprtitionEchoue() {
-		System.out.println("Joueur "+id+" : Malheureusement, tous vos territoires ont été confisqués ! Vous avez échoué !");
-		return nbRegiments==0;
-	}
-	//Compétition gagnant : Conquérir tous les continents
-		//获胜竞赛：征服所有大洲（打败所有人）
-		public boolean ComprtitionReussie() {
-			boolean reussi = false;
-			boolean ConquerirAmNord = false;
-			boolean ConquerirAfri = false;
-			boolean ConquerirEurope = false;
-			boolean ConquerirAsie = false;
-			boolean ConquerirOceanie = false;
-			boolean ConquerirAmSud = false;
-			for(int i=0;i<this.continentsConquis.size();i++) {
-				if(continentsConquis.get(i).getNom()=="AmeriqueDuNord") {ConquerirAmNord=true;}
-				if(continentsConquis.get(i).getNom()=="Afrique") {ConquerirAfri=true;}
-				if(continentsConquis.get(i).getNom()=="Europe") {ConquerirEurope=true;}
-				if(continentsConquis.get(i).getNom()=="Asie") {ConquerirAsie=true;}
-				if(continentsConquis.get(i).getNom()=="Oceanie") {ConquerirOceanie=true;}
-				if(continentsConquis.get(i).getNom()=="AmeriqueDuSud") {ConquerirAmSud=true;}
-			}
-			if (ConquerirAmNord&&ConquerirAfri&&ConquerirEurope&&ConquerirAsie
-					&&ConquerirOceanie&&ConquerirAmSud) {
-				reussi=true;
-				System.out.println("Félicitations au joueur "+id+" : Vous avez gagné !");
-			}
-			return reussi;
-		}
-		
 		//Compétition gagnant : reussi mission
 		//获胜竞赛：完成任务mission
 		public boolean MissionReussie(Joueur[] participants) {
@@ -501,20 +469,58 @@ public class Joueur {
 					}
 				}
 			}
-			
-			
-			
 			else {
 				reussi=false;
-//				System.out.println("Bon courage !");
 			}
-			
-			
-			
-			return reussi;
-		}
+		return reussi;
+	}
+	
 	@Override
-	public String toString() {
+	public String toString() {			
 		return "Joueur [nom=" + nom + ", prenom=" + prenom + "]";
+	}		
+	
+	/**
+	 * ARCHIVE_METHODE_ComprtitionEchoue()
+	 * @return boolean 
+	 * true si nbRegiments==0 
+	 * c'est a dire que le joueur n'a plus de regiment sur la carte
+	 */
+	//Compétition échoué
+	//竞赛失败：所以领土都被占领（没有军队了）
+	public boolean ComprtitionEchoue() {
+		System.out.println("Joueur "+id+" : Malheureusement, tous vos territoires ont été confisqués ! Vous avez échoué !");
+		return nbRegiments==0;
+	}
+	/**
+	 * ARCHIVE_METHODE_ComprtitionReussie()
+	 * @return boolean 
+	 * true si le joueur possède tous les territoires
+	 * [fonction doublon mais conservé pour archive]
+	 */
+	//Compétition gagnant : Conquérir tous les continents
+	//获胜竞赛：征服所有大洲（打败所有人）
+	public boolean ComprtitionReussie() {
+		boolean reussi = false;
+		boolean ConquerirAmNord = false;
+		boolean ConquerirAfri = false;
+		boolean ConquerirEurope = false;
+		boolean ConquerirAsie = false;
+		boolean ConquerirOceanie = false;
+		boolean ConquerirAmSud = false;
+		for(int i=0;i<this.continentsConquis.size();i++) {
+			if(continentsConquis.get(i).getNom()=="AmeriqueDuNord") {ConquerirAmNord=true;}
+			if(continentsConquis.get(i).getNom()=="Afrique") {ConquerirAfri=true;}
+			if(continentsConquis.get(i).getNom()=="Europe") {ConquerirEurope=true;}
+			if(continentsConquis.get(i).getNom()=="Asie") {ConquerirAsie=true;}
+			if(continentsConquis.get(i).getNom()=="Oceanie") {ConquerirOceanie=true;}
+			if(continentsConquis.get(i).getNom()=="AmeriqueDuSud") {ConquerirAmSud=true;}
+		}
+		if (ConquerirAmNord&&ConquerirAfri&&ConquerirEurope&&ConquerirAsie
+				&&ConquerirOceanie&&ConquerirAmSud) {
+			reussi=true;
+			System.out.println("Félicitations au joueur "+id+" : Vous avez gagné !");
+		}
+		return reussi;
 	}
 }

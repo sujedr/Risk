@@ -6,6 +6,7 @@ import java.awt.FlowLayout;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.util.ArrayList;
+import java.util.concurrent.CountDownLatch;
 
 import javax.swing.*;
 
@@ -188,6 +189,96 @@ public class Fenetre {
         }
         return 0;
     }
+    
+    /**
+     * Gestion des interraction pour le premier tour
+     * @param joueur
+     * @param territoire 
+     * @return nbTroupe à ajouter
+     */
+    public int tour(Joueur joueur) {
+        // Actualisation de l'affichage
+        boolean validationTroupe = false;
+        int choix = 0;
+        
+        while (!validationTroupe) {
+            this.label.setText("             Joueur " + joueur.getId() + "\n" + joueur.getAllTerritoiresClear());
+
+            // Utilisation de JOptionPane pour afficher les options
+            Object[] options = {"Déplacer", "Attaquer", "Passer tour"};
+            int choice = JOptionPane.showOptionDialog(null, "Que voulez-vous faire ?", "Choix d'action",
+                    JOptionPane.YES_NO_CANCEL_OPTION, JOptionPane.QUESTION_MESSAGE, null, options, options[2]);
+
+            // Traitement de la sélection de l'utilisateur
+            if (choice == 0) {
+                // Déplacer
+            	choix = 1;
+                validationTroupe = true; // Remplacez cela par la logique appropriée
+            } else if (choice == 1) {
+                // Attaquer
+                choix = 2;
+                //attaque(joueur); //TODO Enlevé pour le test
+                validationTroupe = true; // Remplacez cela par la logique appropriée
+            } else if (choice == 2) {
+                // Passer tour
+                choix = 3; // Mettez le nombre de troupes à 0 (ou autre logique)
+                validationTroupe = true;
+            }
+        }
+        return choix;
+    }
+    
+    public void attaque(Joueur joueur) {
+        this.label.setText("             " + joueur.getNom());
+
+        while (true) {
+            CountDownLatch clickWait = new CountDownLatch(1); // Attendre le click
+
+            frame.addMouseListener(new MouseListener() {
+                public void mouseClicked(MouseEvent e) {
+                    int x = e.getX();
+                    int y = e.getY();
+
+                    for (Territoire territoire : territoires) {
+                        if (territoire.isInTerritory(x, y, seuil)) {
+                            System.out.println(territoire.getNumber() + " : " + territoire.getNom());
+                            clickWait.countDown();
+                        }
+                    }
+                }
+
+                @Override
+                public void mousePressed(MouseEvent e) {
+                }
+
+                @Override
+                public void mouseReleased(MouseEvent e) {
+                }
+
+                @Override
+                public void mouseEntered(MouseEvent e) {
+                }
+
+                @Override
+                public void mouseExited(MouseEvent e) {
+                }
+            });
+
+            try {
+                // Attende de l'action utilisateur
+                clickWait.await();
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+
+            // Suite du code
+            System.out.println("Suite du code après le clic.");
+
+            // Sortie de boucle
+            break;
+        }
+    }
+
     
 
     

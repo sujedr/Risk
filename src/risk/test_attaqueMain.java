@@ -59,6 +59,9 @@ public class test_attaqueMain {
 		 */
 		conflit.resultatConflit(nbRegimentsRiposte);
 		
+		
+		
+		
 	}
 }
 
