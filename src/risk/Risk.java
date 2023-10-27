@@ -188,8 +188,8 @@ public class Risk {
 				        	 }
 		        		while (!tourPassed) {
 		        			int choix = vue.tour(joueur); //1 = Déplacer, 2 = Attaquer, 3 = Passer tour
-		        			if (choix == 3) {
-		        				tourPassed = true;
+		        			if (choix == 1) {
+		        				
 		        			}
 		        			if (choix == 2) {
 				        		   /** @Raph Demander choix pays attaquant, pays attaquÃ©, nombre de troupes 
@@ -203,15 +203,13 @@ public class Risk {
 					        			int nbRegimentsRiposte = vue.choisirNbTroupes(territoireDefenseur.getOccupant(), territoireDefenseur, false);
 					        			// Creation du conflit 
 					        			Conflit conflit = new Conflit(joueur, territoireAttaquant, territoireDefenseur, nbRegimentsAttaque);
-					        			/** @Raph Demander defenseur nb de troupes riposte
-					        			 *  Input : conflit.getBlablabla...
-					        			 *  Output : nbRegimentsRiposte
-					        			 */
 					        			// Resultat du conflit
-					        			isNouveauTerritoireConquis = conflit.resultatConflit(nbRegimentsRiposte);
+					        			isNouveauTerritoireConquis = conflit.resultatConflit(nbRegimentsRiposte);			
+		        			}
+		        			if (choix == 3) {
+		        				tourPassed = true;
 		        			}
 		        		}
-		        		System.out.println("Félicitations ça marche");
 	        		
 		        	 
 		        	 // CHOIX D ATTAQUER, MODIFIER SES TROUPES OU PASSER SON TOUR
