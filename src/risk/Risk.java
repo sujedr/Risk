@@ -203,11 +203,18 @@ public class Risk {
 					        			int nbRegimentsRiposte = vue.choisirNbTroupes(territoireDefenseur.getOccupant(), territoireDefenseur, false);
 					        			// Creation du conflit 
 					        			Conflit conflit = new Conflit(joueur, territoireAttaquant, territoireDefenseur, nbRegimentsAttaque);
+					        			
+					        			
 					        			// Resultat du conflit
-					        			isNouveauTerritoireConquis = conflit.resultatConflit(nbRegimentsRiposte);		
-					        			System.out.println("--------TEST-------");
-					        			System.out.println(conflit.getDesAttaque());
-					        			System.out.println(conflit.getDesDefense());
+					        			isNouveauTerritoireConquis = conflit.resultatConflit(nbRegimentsRiposte);
+					        			vue.afficherDes(conflit.getDesAttaque(), conflit.getDesDefense(), territoireAttaquant, territoireDefenseur);
+					        			
+					        			
+					        			
+					        			
+					        			vue.afficherResultats(conflit.getTerritoireAttaquant().getNbRegiments(), conflit.getTerritoireDefenseur().getNbRegiments(), territoireAttaquant, territoireDefenseur);
+					        			
+					        			
 		        			}
 		        			if (choix == 3) {
 		        				tourPassed = true;
