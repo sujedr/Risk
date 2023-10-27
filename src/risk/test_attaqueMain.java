@@ -84,10 +84,10 @@ public class test_attaqueMain {
 //			}
 //		}
 		joueur = j6;
-		joueur.setCurrentmission("Vous devez conquérir en totalité l'Europe et l'Amérique du sud plus un troisième continent au choix.");
+		joueur.setCurrentmission("Vous devez conquérir 24 territoires aux choix.");
 		for (Continent continent : monde.getMonde()) {
 		    for (Territoire territoire : continent.getTerritoires()) {
-		        if (continent.getNom().equals("Asie") || continent.getNom().equals("Amerique du Sud") || continent.getNom().equals("Europe")) {
+		        if (continent.getNom().equals("Asie") || continent.getNom().equals("Amerique du Nord") || continent.getNom().equals("Europe")) {
 		            joueur.ajouterTerritoiresConquis(territoire);
 		        }
 		    }

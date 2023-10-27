@@ -298,9 +298,14 @@ public class Joueur {
 		return nbRegimentsAterritoires=t.getNbRegiments();
 	}
 	
-		//Compétition gagnant : reussi mission
-		//获胜竞赛：完成任务mission
-		public boolean MissionReussie(Joueur[] participants) {
+	//Compétition gagnant : reussi mission
+	//获胜竞赛：完成任务mission
+	/**
+	 * @param participants
+	 * @return boolean true pour succes , false pour pas succes
+	 */
+	public boolean MissionReussie(Joueur[] participants) {
+			ArrayList<Territoire> allTerritoires = this.getAllTerritoires();
 			ArrayList<Continent> continentsConquis = new ArrayList<>();
 			continentsConquis = consulterContinentsEntierementOccupes();
 			boolean reussi = false;
@@ -322,7 +327,7 @@ public class Joueur {
 			//Vous devez conquérir 18 territoires et occuper chacun d'eux avec deux armées au moins
 			//您必须征服 18 块领土，并至少用两支军队占领其中的每一块领土
 			if(this.currentmission == "Vous devez conquérir 18 territoires et occuper chacun d'eux avec deux armées au moins.") {
-				if(allTerritoires.size()>=18 ||nbRegimentsAterritoires>=2) {
+				if((int)allTerritoires.size()>=18 ||nbRegimentsAterritoires>=2) {
 					reussi=true;
 					System.out.println("Vous avez gagné !");
 				}
@@ -361,7 +366,7 @@ public class Joueur {
 			//Vous devez conquérir 24 territoires aux choix
 			//您必须征服您选择的 24 个领土
 			else if(this.currentmission == "Vous devez conquérir 24 territoires aux choix.") {
-				if(allTerritoires.size()>=24) {
+				if((int)allTerritoires.size()>=24) {
 					reussi=true;
 					System.out.println("Vous avez gagné !");
 				}
@@ -427,7 +432,7 @@ public class Joueur {
 						}
 					}
 				}else {
-					if(allTerritoires.size()>=24) {
+					if((int)allTerritoires.size()>=24) {
 						reussi=true;
 						System.out.println("Vous avez gagné !");		
 					}
@@ -444,7 +449,7 @@ public class Joueur {
 						}
 					}
 				}else {
-					if(allTerritoires.size()>=24) {
+					if((int)allTerritoires.size()>=24) {
 						reussi=true;
 						System.out.println("Vous avez gagné !");		
 					}
@@ -461,7 +466,7 @@ public class Joueur {
 						}
 					}
 				}else {
-					if(allTerritoires.size()>=24) {
+					if((int)allTerritoires.size()>=24) {
 						reussi=true;
 						System.out.println("Vous avez gagné !");		
 					}
@@ -478,7 +483,7 @@ public class Joueur {
 						}
 					}
 				}else {
-					if(allTerritoires.size()>=24) {
+					if((int)allTerritoires.size()>=24) {
 						reussi=true;
 						System.out.println("Vous avez gagné !");		
 					}
@@ -495,7 +500,7 @@ public class Joueur {
 						}
 					}
 				}else {
-					if(allTerritoires.size()>=24) {
+					if((int)allTerritoires.size()>=24) {
 						reussi=true;
 						System.out.println("Vous avez gagné !");		
 					}
