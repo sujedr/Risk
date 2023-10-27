@@ -160,10 +160,8 @@ public class Risk {
 		        			 nbUnitesAjout = vue.premierTour(joueur, territoire);
 		        			 territoire.ajouterNbRegiments(nbUnitesAjout);
 		        			 joueur.enleverNbRegimentsRestants(nbUnitesAjout);
-		        			 System.out.println("bloque1");
 		        		 } 
 		        	 }
-        			 System.out.println("bloque2");
         			 nbJouer +=1;
 	        	 }
 	        	 // PROCESSUS NORMAL POUR LES AUTRES TOURS
@@ -183,6 +181,11 @@ public class Risk {
 			        			 joueur.enleverNbRegimentsRestants(nbUnitesAjout);
 			        		 } 
 			        	 }
+	        			 
+	        		vue.actionsTour(joueur);
+	        		
+	        		System.out.println("Test de pause");
+	        		
 		        	 
 		        	 // CHOIX D ATTAQUER, MODIFIER SES TROUPES OU PASSER SON TOUR
 		        	 // Tant que le tour du joueur n'est pas fini (continuer d'attaquer), on affiche la fenetre des choix 

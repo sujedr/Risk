@@ -77,7 +77,7 @@ public class Joueur {
 			"La mission du joueur " + id + " : " + currentmission);
 		}
 	
-	
+		
 	
 	// Getter and setter
 	
