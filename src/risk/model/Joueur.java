@@ -68,7 +68,7 @@ public class Joueur {
 			return couleur;
 		}
 		
-		//Distribuer les cartes de mission aux joueurs åˆ†å�‘ä»»åŠ¡å�¡ç‰Œç»™çŽ©å®¶
+		//Distribuer les cartes de mission aux joueurs åˆ†å ‘ä»»åŠ¡å ¡ç‰Œç»™çŽ©å®¶
 		public void DistribuerRandomMission(ArrayList<String> listeMission) {
 			Random random = new Random();
 			int randomIndex = random.nextInt(listeMission.size());
@@ -77,6 +77,7 @@ public class Joueur {
 			"La mission du joueur " + id + " : " + currentmission);
 		}
 	
+		
 	
 	// Getter and setter
 	
@@ -149,9 +150,9 @@ public class Joueur {
 		HashMap<Continent, ArrayList<Territoire>> map = new HashMap<>(this.territoiresConquis);
 		ArrayList<Territoire> allTerritoires = new ArrayList<>();
 
-	    // é��åŽ†HashMapä¸­çš„æ‰€æœ‰å€¼ï¼ˆArrayList<Territoire>ï¼‰
+	    // é  åŽ†HashMapä¸­çš„æ‰€æœ‰å€¼ï¼ˆArrayList<Territoire>ï¼‰
 	    for (ArrayList<Territoire> territoriesList : map.values()) {
-	        // é��åŽ†æ¯�ä¸ªArrayList<Territoire>ï¼Œå°†å…¶ä¸­çš„Territoireæ·»åŠ åˆ°allTerritoiresä¸­
+	        // é  åŽ†æ¯ ä¸ªArrayList<Territoire>ï¼Œå°†å…¶ä¸­çš„Territoireæ·»åŠ åˆ°allTerritoiresä¸­
 	        for (Territoire territoire : territoriesList) {
 	            allTerritoires.add(territoire);
 	        }
@@ -265,7 +266,7 @@ public class Joueur {
 	
 	
 	//CompÃ©tition gagnant : ConquÃ©rir tous les continents
-	//èŽ·èƒœç«žèµ›ï¼šå¾�æœ�æ‰€æœ‰å¤§æ´²
+	//èŽ·èƒœç«žèµ›ï¼šå¾ æœ æ‰€æœ‰å¤§æ´²
 	public void ComprtitionRussie() {
 		boolean ConquerirAmNord = false;
 		boolean ConquerirAfri = false;
@@ -289,7 +290,7 @@ public class Joueur {
 	
 	public void MissionRussie() {
 		//MissionRussie : conquÃ©rir toute l'AmÃ©rique du Nord et l'Afrique 
-		//å®Œæˆ�ä»»åŠ¡å¾�æœ�æ•´ä¸ªåŒ—ç¾Žæ´²å’Œé�žæ´²
+		//å®Œæˆ ä»»åŠ¡å¾ æœ æ•´ä¸ªåŒ—ç¾Žæ´²å’Œé žæ´²
 		if(this.currentmission == "Vous devez conquÃ©rir en totalitÃ© l'Asie et l'AmÃ©rique du sud.") {
 			boolean ConquerirAmNord = false;
 			boolean ConquerirAfri = false;
