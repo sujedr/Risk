@@ -113,7 +113,12 @@ public class Territoire {
 	public void setContinent(Continent continent) {
 		this.continent = continent;
 	}
-
+	
+	
+	/**
+	 * Fonction non terminée par manque de temps
+	 * @return voisin d'un territoire donné
+	 */
 	public ArrayList<Territoire> getVoisins() {
 		return voisins;
 	}

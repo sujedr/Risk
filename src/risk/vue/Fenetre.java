@@ -197,7 +197,6 @@ public class Fenetre {
      * @return nbTroupe à ajouter
      */
     public int tour(Joueur joueur) {
-        // Actualisation de l'affichage
         boolean validationTroupe = false;
         int choix = 0;
         
@@ -213,12 +212,11 @@ public class Fenetre {
             if (choice == 0) {
                 // Déplacer
             	choix = 1;
-                validationTroupe = true; // Remplacez cela par la logique appropriée
+                validationTroupe = true;
             } else if (choice == 1) {
                 // Attaquer
                 choix = 2;
-                //attaque(joueur); //TODO Enlevé pour le test
-                validationTroupe = true; // Remplacez cela par la logique appropriée
+                validationTroupe = true;
             } else if (choice == 2) {
                 // Passer tour
                 choix = 3; // Mettez le nombre de troupes à 0 (ou autre logique)
@@ -228,9 +226,62 @@ public class Fenetre {
         return choix;
     }
     
-    public void attaque(Joueur joueur) {
-        this.label.setText("             " + joueur.getNom());
+    public Territoire attaque(Joueur joueur) {
+        this.label.setText("             Joueur " + joueur.getId() + "\n" + joueur.getAllTerritoiresClearNumero() + " Choisissez le territoire attaquant");
+        final Territoire[] terAttaque = new Territoire[1]; // Utilisation d'un tableau pour stocker le résultat
 
+        while (true) {
+            CountDownLatch clickWait = new CountDownLatch(1); // Attendre le clic
+
+            frame.addMouseListener(new MouseListener() {
+                public void mouseClicked(MouseEvent e) {
+                    int x = e.getX();
+                    int y = e.getY();
+
+                    for (Territoire territoire : territoires) {
+                        if (territoire.isInTerritory(x, y, seuil) && (territoire.getOccupant() == joueur) && territoire.getNbRegiments() > 1) {
+                            System.out.println(territoire.getNumber() + " : " + territoire.getNom());
+                            terAttaque[0] = territoire;
+                            clickWait.countDown();
+                        }
+                    }
+                }
+
+                @Override
+                public void mousePressed(MouseEvent e) {
+                }
+
+                @Override
+                public void mouseReleased(MouseEvent e) {
+                }
+
+                @Override
+                public void mouseEntered(MouseEvent e) {
+                }
+
+                @Override
+                public void mouseExited(MouseEvent e) {
+                }
+            });
+
+            try {
+                // Attente de l'action utilisateur
+                clickWait.await();
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+
+            // Suite du code
+            System.out.println("Suite du code après le clic.");
+            break;
+        }
+        return terAttaque[0];
+    }
+
+    
+    public Territoire defense(Joueur joueur, Territoire attaquant) {
+        this.label.setText("             Joueur " + joueur.getId() + "\n" + joueur.getAllTerritoiresClearNumero() + " Choisissez le territoire attaqué");
+        final Territoire[] terDefense = new Territoire[1]; // Utilisation d'un tableau pour stocker le résultat
         while (true) {
             CountDownLatch clickWait = new CountDownLatch(1); // Attendre le click
 
@@ -240,8 +291,8 @@ public class Fenetre {
                     int y = e.getY();
 
                     for (Territoire territoire : territoires) {
-                        if (territoire.isInTerritory(x, y, seuil)) {
-                            System.out.println(territoire.getNumber() + " : " + territoire.getNom());
+                        if (territoire.isInTerritory(x, y, seuil)) { //&& territoire.getVoisins().contains(attaquant) TODO ajouter ça lorsque les voisins sont config
+                        	terDefense[0] = territoire;
                             clickWait.countDown();
                         }
                     }
@@ -272,15 +323,61 @@ public class Fenetre {
             }
 
             // Suite du code
-            System.out.println("Suite du code après le clic.");
-
-            // Sortie de boucle
             break;
         }
+        return terDefense[0];
     }
-
     
-
+    public int choisirNbTroupes(Joueur joueur, Territoire territoire, boolean isAttaque) {
+    	//Actualisation de l'affichage
+    	boolean validationTroupe = false;
+    	String word = "attaque";
+    	String max = " (max 3) ";
+    	if (!isAttaque) {
+    		word = "defense";
+    		max = " (max 2) ";
+    	}
+    	
+    	int nbTroupes = 0;
+    	while(!validationTroupe) {
+	        this.label.setText("             Joueur "  + joueur.getId() + "\n" + joueur.getAllTerritoiresClear());
+	        JPanel panel = new JPanel();
+	        JLabel terrLab = new JLabel( territoire.getNumber() + " : " + territoire.getNom() + " | " );
+	        JLabel label = new JLabel("Joueur" + joueur.getId() + " | Nombre de troupes pour " + word + max + " | " + territoire.getNbRegiments() + " regiments disponibles");
+	        JTextField textField = new JTextField(10);
+	        
+	
+	        panel.add(terrLab);
+	        panel.add(label);
+	        panel.add(textField);
+	        
+	
+	        int option = JOptionPane.showConfirmDialog(null, panel, "Paramètres " + word, JOptionPane.OK_CANCEL_OPTION);
+	
+	        if (option == JOptionPane.OK_OPTION) {
+	            try {
+	                    String input = textField.getText();
+	        	        nbTroupes = Integer.parseInt(input);
+	        	        if (!isAttaque) {
+	        	        	if (nbTroupes <= 2) {
+	                    		JOptionPane.showMessageDialog(null, "Vous défendez avec " + nbTroupes + " troupes.");
+	                    		validationTroupe = true;
+	        	        	}
+	        	        } else if (territoire.getNbRegiments() > nbTroupes && nbTroupes <= 3) {
+	                    	if (nbTroupes != 0) {
+	                    		JOptionPane.showMessageDialog(null, "Vous attaquez avec " + nbTroupes + " troupes.");
+	                    		validationTroupe = true;
+	                    	}
+	                    } else {
+	                    	JOptionPane.showMessageDialog(null, "Vous n'avez pas assez de troupes ou le nombre saisi est trop élevé");
+	                    }
+	            } catch (NumberFormatException e) {
+	                JOptionPane.showMessageDialog(null, "Saisie invalide. Veuillez entrer un nombre valide.");
+	            }
+	        }
+    	}
+        return nbTroupes;
+    }
     
     /**
      * setter des territoires

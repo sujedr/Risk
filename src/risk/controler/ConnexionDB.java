@@ -121,25 +121,6 @@ public class ConnexionDB {
         }
     }
     
-    // méthode permettant la création d'une équipe
-    public void createEquipe(String nomEquipe, int idJoueur1, int idJoueur2, int idJoueur3, int idJoueur4) {
-        try {
-            String insertSQL = "INSERT INTO Equipe (nomEquipe, idJoueur1, idJoueur2, idJoueur3, idJoueur4) VALUES (?, ?, ?, ?, ?)";
-            PreparedStatement preparedStatement = conn.prepareStatement(insertSQL);
-
-            preparedStatement.setString(1, nomEquipe);
-            preparedStatement.setInt(2, idJoueur1);
-            preparedStatement.setInt(3, idJoueur2);
-            preparedStatement.setInt(4, idJoueur3);
-            preparedStatement.setInt(5, idJoueur4);
-
-            preparedStatement.executeUpdate();
-            System.out.println("Équipe créée !");
-        } catch (SQLException e) {
-            System.err.println("Erreur de création d'équipe : " + e.getMessage());
-        }
-    }
-    
     public void createCompetition(int annee, Date dateDebut, Date dateFin) {
         try {
             // select last id

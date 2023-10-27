@@ -188,14 +188,31 @@ public class Risk {
 				        	 }
 		        		while (!tourPassed) {
 		        			int choix = vue.tour(joueur); //1 = Déplacer, 2 = Attaquer, 3 = Passer tour
+		        			if (choix == 1) {
+		        				
+		        			}
+		        			if (choix == 2) {
+				        		   /** @Raph Demander choix pays attaquant, pays attaquÃ©, nombre de troupes 
+					        			*  OUTPUT : territoireAttaquant, territoireDefenseur, nbRegimentsAttaque
+					        			*/
+					        			Territoire territoireAttaquant = vue.attaque(joueur);
+					        			System.out.println("Attaquant : "  + territoireAttaquant.getNom());
+					        			Territoire territoireDefenseur = vue.defense(joueur, territoireAttaquant);
+					        			System.out.println("Defenseur : " + territoireDefenseur.getNom());
+					        			int nbRegimentsAttaque = vue.choisirNbTroupes(joueur, territoireAttaquant, true);
+					        			int nbRegimentsRiposte = vue.choisirNbTroupes(territoireDefenseur.getOccupant(), territoireDefenseur, false);
+					        			// Creation du conflit 
+					        			Conflit conflit = new Conflit(joueur, territoireAttaquant, territoireDefenseur, nbRegimentsAttaque);
+					        			// Resultat du conflit
+					        			isNouveauTerritoireConquis = conflit.resultatConflit(nbRegimentsRiposte);		
+					        			System.out.println("--------TEST-------");
+					        			System.out.println(conflit.getDesAttaque());
+					        			System.out.println(conflit.getDesDefense());
+		        			}
 		        			if (choix == 3) {
 		        				tourPassed = true;
 		        			}
-		        			if (choix == 2) {
-		        				vue.attaque(joueur);
-		        			}
 		        		}
-		        		System.out.println("Félicitations ça marche");
 	        		
 		        	 
 		        	 // CHOIX D ATTAQUER, MODIFIER SES TROUPES OU PASSER SON TOUR
@@ -213,10 +230,10 @@ public class Risk {
 			        		   /** @Raph Demander choix pays attaquant, pays attaquÃ©, nombre de troupes 
 			        			*  OUTPUT : territoireAttaquant, territoireDefenseur, nbRegimentsAttaque
 			        			*/
-			        			Territoire territoireAttaquant = monde.getTerritoires().get(0);      // DonnÃ©es tests Ã  mettre Ã  jour avec output !!!!
-			        			Territoire territoireDefenseur = monde.getTerritoires().get(1);
-			        			int nbRegimentsAttaque = 2;
-			        			int nbRegimentsRiposte = 1;
+		        			 	Territoire territoireAttaquant = vue.attaque(joueur);
+			        			Territoire territoireDefenseur = vue.defense(joueur, territoireAttaquant);
+			        			int nbRegimentsAttaque = vue.choisirNbTroupes(joueur, territoireAttaquant, true); //true pour attaquant
+			        			int nbRegimentsRiposte = vue.choisirNbTroupes(territoireDefenseur.getOccupant(), territoireDefenseur, false); //false pour défenseur
 			        			// Creation du conflit 
 			        			Conflit conflit = new Conflit(joueur, territoireAttaquant, territoireDefenseur, nbRegimentsAttaque);
 			        			/** @Raph Demander defenseur nb de troupes riposte
@@ -225,6 +242,8 @@ public class Risk {
 			        			 */
 			        			// Resultat du conflit
 			        			isNouveauTerritoireConquis = conflit.resultatConflit(nbRegimentsRiposte);
+
+			        			
 		        		 }
 		        		 // DEPLACER CERTAINS DE SES REGIMENTS
 		        		 // Si le joueur clique sur l'option deplacer, il choisie autant de deplacement qu'il souhaite (tant que les territoires sont voisins)
@@ -232,7 +251,7 @@ public class Risk {
 			        	 /** @Raph BESOIN - Modifier ta methode choixJoueur pour qu'elle retourne le choix du joueur
 			        	  *  Genre string "Attaquer", "DÃ©placer" ou "Passer tour" c'est impec :)
 			        	  */
-		        		 else if (choixAction == "DÃ©placer") {
+		        		 else if (choixAction == "Déplacer") {
 		        			while (choixDeplacer != "Valider") {
 		        				/** @Raph choix joueur AJOUTER ou RETIRER (a chaque fin de choix si faisable) ou VALIDER
 		        				 * => AJOUTER : territoire + nb regiments

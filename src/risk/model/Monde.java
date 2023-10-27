@@ -100,13 +100,13 @@ public class Monde {
         
         // Europe
         ArrayList<Territoire> territoiresEurope = new ArrayList<>();
-        territoiresAfrique.add(ter401);
-        territoiresAfrique.add(ter402);
-        territoiresAfrique.add(ter403);
-        territoiresAfrique.add(ter404);
-        territoiresAfrique.add(ter405);
-        territoiresAfrique.add(ter406);
-        territoiresAfrique.add(ter407);
+        territoiresEurope.add(ter401);
+        territoiresEurope.add(ter402);
+        territoiresEurope.add(ter403);
+        territoiresEurope.add(ter404);
+        territoiresEurope.add(ter405);
+        territoiresEurope.add(ter406);
+        territoiresEurope.add(ter407);
         
         // Asie
         ArrayList<Territoire> territoiresAsie = new ArrayList<>();
@@ -138,6 +138,7 @@ public class Monde {
 		Continent ameriqueNord = new Continent("Amerique du Nord", territoiresAmeriqueNord);
 		Continent ameriqueSud = new Continent("Amerique du Sud", territoiresAmeriqueSud);
 		
+		System.out.println(territoiresEurope);
 		/** Ajout des continents à la liste finale (attribut monde) */
 		this.monde.add(ameriqueSud);
 		this.monde.add(ameriqueNord);
@@ -165,7 +166,6 @@ public class Monde {
 		for (Territoire territoire : asie.getTerritoires()) {
 			territoire.setContinent(asie);
 		}
-		System.out.println("ok");
 	}
 
 	// Methodes
