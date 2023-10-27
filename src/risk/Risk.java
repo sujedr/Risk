@@ -236,7 +236,9 @@ public class Risk {
 		        			while (choixDeplacer != "Valider") {
 		        				/** @Raph choix joueur AJOUTER ou RETIRER (a chaque fin de choix si faisable) ou VALIDER
 		        				 * => AJOUTER : territoire + nb regiments
+		        				 *    OUTPUT : nbRegiments
 		        				 * => RETIRER : territoire + nb regiments
+		        				 *    OUTPUT : nbRegiments
 		        				 *  >> Rappel conditions : 
 		        				 *  - joueur occupe le territoire (cf Territoire.occupant == Joueur)
 		        				 *  - pour le RETRAIT de troupes : nb de troupes retirÃ©es <= nb de troupes presentes (cd Territoire.nbRegiments)
@@ -276,7 +278,9 @@ public class Risk {
 		         if (nbTerritoiresConquis == monde.getNbTerritoireTotal()) {
 		        	 isWinner = true;	
 		         }
+		         
 		         // Si le joueur a complÃ©tÃ© son objectif
+//		         isObjectifCompleted = joueur.MissionReussie(participants); // check dans test_Main avant d'insérer
 		         if (isObjectifCompleted == true) {
 		        	 isWinner = true;	
 		         }
@@ -294,7 +298,7 @@ public class Risk {
 		        	// Mise Ã  jour du tableau des participants
 		        	participants = participantsMaj;
 		         }	 
-        	 //isWinner = true;																	// A supprimer (for testing only)
+		         
         	 // Incrementation indice joueur de 1
         	 indiceJoueur = indiceJoueur+1;
         	 }
