@@ -138,7 +138,7 @@ public class Joueur {
 	}
 	
 	/**
-	 * @return Liste de territoires
+	 * @return ArrayList<Territoire> Liste de territoires
 	 */
 	public ArrayList<Territoire> getAllTerritoires() {
 		HashMap<Continent, ArrayList<Territoire>> map = new HashMap<>(this.territoiresConquis);
@@ -153,6 +153,9 @@ public class Joueur {
 	    return allTerritoires;
 	}
 	
+	/**
+	 * @return ArrayList<String> liste nom des territoires occupés par le joueur
+	 */
 	public ArrayList<String> getAllTerritoiresClear() {
 		ArrayList<String>liste = new ArrayList<>();
 		for (Territoire territoire : this.getAllTerritoires()) {
@@ -201,6 +204,7 @@ public class Joueur {
     total = ajoutCauseTerritoire + ajoutCauseContinent;
 	return total;
 	}
+	
 	/**
 	 * Ajoute un territoire conquis Ã  la HashMap<Continent, Territoire> alias territoiresConquis du joueur 
 	 * @param territoiresConquis
@@ -255,42 +259,15 @@ public class Joueur {
         return continentsConquis;
 	}
 	
+	/**
+	 * @param t
+	 * @return int nbRegimentsAterritoires
+	 * Nobre de régiments présent sur un territoire donné
+	 */
 	public int calculerNbRegimentsATerritoires(Territoire t) {
 		return nbRegimentsAterritoires=t.getNbRegiments();
 	}
 	
-	//Compétition échoué
-	//竞赛失败：所以领土都被占领（没有军队了）
-	public boolean ComprtitionEchoue() {
-		System.out.println("Joueur "+id+" : Malheureusement, tous vos territoires ont été confisqués ! Vous avez échoué !");
-		return nbRegiments==0;
-	}
-	//Compétition gagnant : Conquérir tous les continents
-		//获胜竞赛：征服所有大洲（打败所有人）
-		public boolean ComprtitionReussie() {
-			boolean reussi = false;
-			boolean ConquerirAmNord = false;
-			boolean ConquerirAfri = false;
-			boolean ConquerirEurope = false;
-			boolean ConquerirAsie = false;
-			boolean ConquerirOceanie = false;
-			boolean ConquerirAmSud = false;
-			for(int i=0;i<this.continentsConquis.size();i++) {
-				if(continentsConquis.get(i).getNom()=="AmeriqueDuNord") {ConquerirAmNord=true;}
-				if(continentsConquis.get(i).getNom()=="Afrique") {ConquerirAfri=true;}
-				if(continentsConquis.get(i).getNom()=="Europe") {ConquerirEurope=true;}
-				if(continentsConquis.get(i).getNom()=="Asie") {ConquerirAsie=true;}
-				if(continentsConquis.get(i).getNom()=="Oceanie") {ConquerirOceanie=true;}
-				if(continentsConquis.get(i).getNom()=="AmeriqueDuSud") {ConquerirAmSud=true;}
-			}
-			if (ConquerirAmNord&&ConquerirAfri&&ConquerirEurope&&ConquerirAsie
-					&&ConquerirOceanie&&ConquerirAmSud) {
-				reussi=true;
-				System.out.println("Félicitations au joueur "+id+" : Vous avez gagné !");
-			}
-			return reussi;
-		}
-		
 		//Compétition gagnant : reussi mission
 		//获胜竞赛：完成任务mission
 		public boolean MissionReussie(Joueur[] participants) {
@@ -492,20 +469,58 @@ public class Joueur {
 					}
 				}
 			}
-			
-			
-			
 			else {
 				reussi=false;
-//				System.out.println("Bon courage !");
 			}
-			
-			
-			
 		return reussi;
 	}
+	
 	@Override
-	public String toString() {
+	public String toString() {			
 		return "Joueur [nom=" + nom + ", prenom=" + prenom + "]";
+	}		
+	
+	/**
+	 * ARCHIVE_METHODE_ComprtitionEchoue()
+	 * @return boolean 
+	 * true si nbRegiments==0 
+	 * c'est a dire que le joueur n'a plus de regiment sur la carte
+	 */
+	//Compétition échoué
+	//竞赛失败：所以领土都被占领（没有军队了）
+	public boolean ComprtitionEchoue() {
+		System.out.println("Joueur "+id+" : Malheureusement, tous vos territoires ont été confisqués ! Vous avez échoué !");
+		return nbRegiments==0;
+	}
+	/**
+	 * ARCHIVE_METHODE_ComprtitionReussie()
+	 * @return boolean 
+	 * true si le joueur possède tous les territoires
+	 * [fonction doublon mais conservé pour archive]
+	 */
+	//Compétition gagnant : Conquérir tous les continents
+	//获胜竞赛：征服所有大洲（打败所有人）
+	public boolean ComprtitionReussie() {
+		boolean reussi = false;
+		boolean ConquerirAmNord = false;
+		boolean ConquerirAfri = false;
+		boolean ConquerirEurope = false;
+		boolean ConquerirAsie = false;
+		boolean ConquerirOceanie = false;
+		boolean ConquerirAmSud = false;
+		for(int i=0;i<this.continentsConquis.size();i++) {
+			if(continentsConquis.get(i).getNom()=="AmeriqueDuNord") {ConquerirAmNord=true;}
+			if(continentsConquis.get(i).getNom()=="Afrique") {ConquerirAfri=true;}
+			if(continentsConquis.get(i).getNom()=="Europe") {ConquerirEurope=true;}
+			if(continentsConquis.get(i).getNom()=="Asie") {ConquerirAsie=true;}
+			if(continentsConquis.get(i).getNom()=="Oceanie") {ConquerirOceanie=true;}
+			if(continentsConquis.get(i).getNom()=="AmeriqueDuSud") {ConquerirAmSud=true;}
+		}
+		if (ConquerirAmNord&&ConquerirAfri&&ConquerirEurope&&ConquerirAsie
+				&&ConquerirOceanie&&ConquerirAmSud) {
+			reussi=true;
+			System.out.println("Félicitations au joueur "+id+" : Vous avez gagné !");
+		}
+		return reussi;
 	}
 }
