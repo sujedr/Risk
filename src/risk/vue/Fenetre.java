@@ -293,7 +293,7 @@ public class Fenetre {
                     int y = e.getY();
 
                     for (Territoire territoire : territoires) {
-                        if (territoire.isInTerritory(x, y, seuil) && territoire.getVoisins().contains(attaquant)) {
+                        if (territoire.isInTerritory(x, y, seuil)) { //&& territoire.getVoisins().contains(attaquant) TODO ajouter ça lorsque les voisins sont config
                         	terDefense[0] = territoire;
                             clickWait.countDown();
                         }
