@@ -25,7 +25,6 @@ public class Joueur {
 	private int nbTerritoire;
 	private int nbRegiments;
 	private int nbTours;
-	private ArrayList<Continent> continentsConquis = new ArrayList<>();
 	private ArrayList<Territoire> allTerritoires = new ArrayList<>();
 	private int nbRegimentsAterritoires;
 	/**
@@ -205,22 +204,22 @@ public class Joueur {
    	 // Parcours de continent de la liste (conquis)
      for (Continent continent : continentsOccupes) {
         	if (continent.getNom() == "Europe") {
-        		ajoutCauseContinent = 7;
+        		ajoutCauseContinent = ajoutCauseContinent + 7;
             }
-            else if (continent.getNom() == "Asie") {
-            	ajoutCauseContinent = 12;
+            if (continent.getNom() == "Asie") {
+            	ajoutCauseContinent = ajoutCauseContinent + 12;
             }
-            else if (continent.getNom() == "Amerique du Nord") {
-            	ajoutCauseContinent = 9;
+            if (continent.getNom() == "Amerique du Nord") {
+            	ajoutCauseContinent = ajoutCauseContinent + 9;
             }
-            else if (continent.getNom() == "Amerique du Sud") {
-            	ajoutCauseContinent = 4;
+            if (continent.getNom() == "Amerique du Sud") {
+            	ajoutCauseContinent = ajoutCauseContinent + 4;
             }
-            else if (continent.getNom() == "Afrique") {
-            	ajoutCauseContinent = 6;
+            if (continent.getNom() == "Afrique") {
+            	ajoutCauseContinent = ajoutCauseContinent + 6;
             }
-            else if (continent.getNom() == "Oceanie") {
-            	ajoutCauseContinent = 4;
+            if (continent.getNom() == "Oceanie") {
+            	ajoutCauseContinent = ajoutCauseContinent + 4;
             }
         }
      int ajoutCauseTerritoire = 3;
@@ -256,6 +255,7 @@ public class Joueur {
 	 * @return Arraylist <Continent> nom continent conquis
 	 */
 	public ArrayList<Continent> consulterContinentsEntierementOccupes() {
+		ArrayList<Continent> continentsConquis = new ArrayList<>();
 		// Parcours de chaque continent dans le dico de stockage des territoires conquis
         for (Continent continent : this.territoiresConquis.keySet()) {
             int countContinents = this.territoiresConquis.get(continent).size();
@@ -301,6 +301,8 @@ public class Joueur {
 		//Compétition gagnant : reussi mission
 		//获胜竞赛：完成任务mission
 		public boolean MissionReussie(Joueur[] participants) {
+			ArrayList<Continent> continentsConquis = new ArrayList<>();
+			continentsConquis = consulterContinentsEntierementOccupes();
 			boolean reussi = false;
 			boolean ConquerirAmNord = false;
 			boolean ConquerirAfri = false;
@@ -308,13 +310,13 @@ public class Joueur {
 			boolean ConquerirAsie = false;
 			boolean ConquerirOceanie = false;
 			boolean ConquerirAmSud = false;
-			for(int i=0;i<this.continentsConquis.size();i++) {
-				if(continentsConquis.get(i).getNom()=="AmeriqueDuNord") {ConquerirAmNord=true;}
+			for(int i=0;i<continentsConquis.size();i++) {
+				if(continentsConquis.get(i).getNom()=="Amerique du Nord") {ConquerirAmNord=true;}
 				if(continentsConquis.get(i).getNom()=="Afrique") {ConquerirAfri=true;}
 				if(continentsConquis.get(i).getNom()=="Europe") {ConquerirEurope=true;}
 				if(continentsConquis.get(i).getNom()=="Asie") {ConquerirAsie=true;}
 				if(continentsConquis.get(i).getNom()=="Oceanie") {ConquerirOceanie=true;}
-				if(continentsConquis.get(i).getNom()=="AmeriqueDuSud") {ConquerirAmSud=true;}
+				if(continentsConquis.get(i).getNom()=="Amerique du Sud") {ConquerirAmSud=true;}
 			}
 			//0 MissionReussie : 
 			//Vous devez conquérir 18 territoires et occuper chacun d'eux avec deux armées au moins
@@ -531,6 +533,8 @@ public class Joueur {
 	//Compétition gagnant : Conquérir tous les continents
 	//获胜竞赛：征服所有大洲（打败所有人）
 	public boolean ComprtitionReussie() {
+		ArrayList<Continent>continentsConquis = new ArrayList<>();
+		continentsConquis = consulterContinentsEntierementOccupes();
 		boolean reussi = false;
 		boolean ConquerirAmNord = false;
 		boolean ConquerirAfri = false;
@@ -538,13 +542,13 @@ public class Joueur {
 		boolean ConquerirAsie = false;
 		boolean ConquerirOceanie = false;
 		boolean ConquerirAmSud = false;
-		for(int i=0;i<this.continentsConquis.size();i++) {
-			if(continentsConquis.get(i).getNom()=="AmeriqueDuNord") {ConquerirAmNord=true;}
+		for(int i=0;i<continentsConquis.size();i++) {
+			if(continentsConquis.get(i).getNom()=="Amerique du Nord") {ConquerirAmNord=true;}
 			if(continentsConquis.get(i).getNom()=="Afrique") {ConquerirAfri=true;}
 			if(continentsConquis.get(i).getNom()=="Europe") {ConquerirEurope=true;}
 			if(continentsConquis.get(i).getNom()=="Asie") {ConquerirAsie=true;}
 			if(continentsConquis.get(i).getNom()=="Oceanie") {ConquerirOceanie=true;}
-			if(continentsConquis.get(i).getNom()=="AmeriqueDuSud") {ConquerirAmSud=true;}
+			if(continentsConquis.get(i).getNom()=="Amerique du Sud") {ConquerirAmSud=true;}
 		}
 		if (ConquerirAmNord&&ConquerirAfri&&ConquerirEurope&&ConquerirAsie
 				&&ConquerirOceanie&&ConquerirAmSud) {

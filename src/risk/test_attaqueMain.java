@@ -62,31 +62,33 @@ public class test_attaqueMain {
         
 		////// TEST ATTAQUE /////
 		
-		/** @Raph Demander choix pays attaquant, pays attaquÃ©, nombre de troupes 
-		 *  Output : territoireAttaquant, territoireDefenseur, nbRegimentsAttaque
-		 */
-		Conflit conflit = new Conflit(joueur, territoireAttaquant, territoireDefenseur, nbRegimentsAttaque);
-		/** @Raph Demander defenseur nb de troupes riposte
-		 *  Input : conflit.getBlablabla...
-		 *  Output : nbRegimentsRiposte
-		 */
-		conflit.resultatConflit(nbRegimentsRiposte);
+//		/** @Raph Demander choix pays attaquant, pays attaquÃ©, nombre de troupes 
+//		 *  Output : territoireAttaquant, territoireDefenseur, nbRegimentsAttaque
+//		 */
+//		Conflit conflit = new Conflit(joueur, territoireAttaquant, territoireDefenseur, nbRegimentsAttaque);
+//		/** @Raph Demander defenseur nb de troupes riposte
+//		 *  Input : conflit.getBlablabla...
+//		 *  Output : nbRegimentsRiposte
+//		 */
+//		conflit.resultatConflit(nbRegimentsRiposte);
 		
 		////// TEST ATTAQUE /////
 		
 		joueur = j6;
-		
+		joueur.setCurrentmission("Vous devez conquérir en totalité l'Asie et l'Amérique du sud.");
 		for (Continent continent : monde.getMonde()) {
 			for (Territoire territoire : continent.getTerritoires()) {
-				j6.ajouterTerritoiresConquis(territoire);
+				if((continent.getNom()=="Asie") || (continent.getNom()=="Amerique du Sud")) {
+					joueur.ajouterTerritoiresConquis(territoire);
+				}
 			}
 		}
-		
-		Boolean isWinner = false;
+		System.out.println(j6.calculerNbRegimentsAPlacer());
+		System.out.println(joueur.consulterContinentsEntierementOccupes());
+
         // Si le joueur a complÃ©tÃ© son objectif
         Boolean isObjectifCompleted = joueur.MissionReussie(participants); // check dans test_Main avant d'insérer
         if (isObjectifCompleted == true) {
-       	 isWinner = true;	
        	 System.out.println("FIN PARTIE, OBJETCIF COMPLETE PAR "+joueur+" : \n"+joueur.getCurrentmission());
         }
         
@@ -94,7 +96,6 @@ public class test_attaqueMain {
         int nbTerritoiresConquis = (int) joueur.getAllTerritoires().size();
         if (nbTerritoiresConquis == monde.getNbTerritoireTotal()) {
          System.out.println("FIN PARTIE, TOUS LES TERRITOIRES CONQUIS PAS "+joueur);
-       	 isWinner = true;	
         }
 	}
 }
