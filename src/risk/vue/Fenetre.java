@@ -197,7 +197,6 @@ public class Fenetre {
      * @return nbTroupe à ajouter
      */
     public int tour(Joueur joueur) {
-        // Actualisation de l'affichage
         boolean validationTroupe = false;
         int choix = 0;
         
@@ -213,12 +212,11 @@ public class Fenetre {
             if (choice == 0) {
                 // Déplacer
             	choix = 1;
-                validationTroupe = true; // Remplacez cela par la logique appropriée
+                validationTroupe = true;
             } else if (choice == 1) {
                 // Attaquer
                 choix = 2;
-                //attaque(joueur); //TODO Enlevé pour le test
-                validationTroupe = true; // Remplacez cela par la logique appropriée
+                validationTroupe = true;
             } else if (choice == 2) {
                 // Passer tour
                 choix = 3; // Mettez le nombre de troupes à 0 (ou autre logique)

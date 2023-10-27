@@ -204,7 +204,10 @@ public class Risk {
 					        			// Creation du conflit 
 					        			Conflit conflit = new Conflit(joueur, territoireAttaquant, territoireDefenseur, nbRegimentsAttaque);
 					        			// Resultat du conflit
-					        			isNouveauTerritoireConquis = conflit.resultatConflit(nbRegimentsRiposte);			
+					        			isNouveauTerritoireConquis = conflit.resultatConflit(nbRegimentsRiposte);		
+					        			System.out.println("--------TEST-------");
+					        			System.out.println(conflit.getDesAttaque());
+					        			System.out.println(conflit.getDesDefense());
 		        			}
 		        			if (choix == 3) {
 		        				tourPassed = true;
@@ -239,9 +242,7 @@ public class Risk {
 			        			 */
 			        			// Resultat du conflit
 			        			isNouveauTerritoireConquis = conflit.resultatConflit(nbRegimentsRiposte);
-			        			System.out.println("--------TEST-------");
-			        			System.out.println(conflit.getDesAttaque());
-			        			System.out.println(conflit.getDesDefense());
+
 			        			
 		        		 }
 		        		 // DEPLACER CERTAINS DE SES REGIMENTS
