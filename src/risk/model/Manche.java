@@ -1,6 +1,7 @@
 package risk.model;
 
 import java.util.Date;
+import java.util.HashMap;
 import java.text.SimpleDateFormat;
 import java.util.Random;
 import java.util.ArrayList;
@@ -16,7 +17,7 @@ public class Manche {
 	private Chronometre duree = new Chronometre();
 	private Boolean estTerminee=false;
 	private String dateDebut;
-	private HistoriqueJoueurs historiqueJoueurs;
+	private HashMap<Integer,Joueur> classement;
 
 	// Constructeur
 	public Manche(Joueur[] joueurs) {
@@ -27,7 +28,7 @@ public class Manche {
 		// Lancement du chronometre à la création de la manche
 		duree.demarrerChronometre();
 		this.estTerminee = false;
-		
+		this.classement=new HashMap<>();
 		// Debut - Récupération de la date actuelle
 		SimpleDateFormat dateActuelle = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
         Date date = new Date();
@@ -41,6 +42,9 @@ public class Manche {
 	}
 
 	// Getter and setter
+	public HashMap<Integer, Joueur> getClassement() {
+		return classement;
+	}
 	public String getDateDebut() {
 		return dateDebut;
 	}
@@ -59,6 +63,9 @@ public class Manche {
 	public void setTours(ArrayList<Tour> tours) {
 		this.tours = tours;
 	}
+	public void addTours(Tour tour) {
+		this.tours.add(tour);
+	}
 	public Boolean getEstTerminee() {
 		return estTerminee;
 	}
@@ -76,6 +83,37 @@ public class Manche {
 	}
 
 	// Autres méthodes
+	public void addClassement(Joueur joueur) {
+		int rank=getClassementLength();
+		this.classement.put(rank,joueur);
+	}
+
+	private int findMaxValue() {
+	    int maxValue = 0;
+
+	    for (int key : classement.keySet()) {
+	        
+	        if (key > maxValue) {
+	            maxValue = key;
+	        }
+	    }
+
+	    return maxValue;
+	}
+	public int getClassementLength() {
+	    return classement.size();
+	}
+	
+	public Manche findMancheByConflit(Conflit conflit) {
+        for (Tour tour : tours) {
+            HashMap<Integer, Archive_Conflit> conflitMap = tour.getConflitMap();
+            if (conflitMap.containsValue(conflit)) {
+                return this; // 返回包含该Conflit的Manche对象
+            }
+        }
+        return null; // 如果未找到匹配的Manche，返回null或者适当的默认值
+    }
+	
 	/** Met à jour la variable estTerminee correspondant au statut de la partie à vrai pour signifier que la partie est terminée */ 
 	public void cloturerPartie() {
 		this.estTerminee = true;

@@ -10,8 +10,10 @@ public class Tour {
 	// Attributs
 	private HashMap<Integer, Archive_Conflit> conflitMap;
 	private Joueur joueur;
+	private Manche manche;//ajouté
 
 	// Constructeur 
+	/*
 	public Tour(Joueur joueur) {
 		this.joueur=joueur;
 		int numero=0;
@@ -27,7 +29,27 @@ public class Tour {
 			}
 		}
 	}
-	
+	*/
+	public Tour(Manche manche,Joueur joueur) {
+		this.manche=manche;
+		this.joueur=joueur;
+		int numero=0;
+		HashMap<Integer, Archive_Conflit> conflitMap = new HashMap<>();
+		while(numero!=-1||numero<4) {
+			numero=getPlayerChoice();
+			if(numero!=-1) {
+				numero++;
+				Archive_Attaque attaque = new Archive_Attaque(joueur);
+				Archive_Defense defense = new Archive_Defense(attaque);
+				Archive_Conflit conflit = new Archive_Conflit(this,defense);
+				conflitMap.put(numero, conflit);
+			}
+		}
+	}
+	public HashMap<Integer, Archive_Conflit> getConflitMap() {
+		return conflitMap;
+	}
+
 	//////////////////////  INTERFACE CF RAPHH //////////////////////
 	public int getPlayerChoice() {
 	    Scanner scanner = new Scanner(System.in);
@@ -53,6 +75,9 @@ public class Tour {
 	 */
 	public Joueur getJoueur() {
 		return joueur;
+	}
+	public Manche getManche() {
+		return manche;
 	}
 	/**
 	 * @param joueur

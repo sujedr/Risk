@@ -1,6 +1,7 @@
 package risk.model;
 
 import java.util.ArrayList;
+
 import java.util.Collections;
 import risk.model.HistoriqueJoueurs;
 
@@ -10,8 +11,22 @@ public class Archive_Conflit {
 	private ArrayList<Integer> desAttaque;
 	private ArrayList<Integer> desDefense;
 	private int succes;
+	private Tour tour;
+
+	/*public Archive_Conflit(Archive_Defense defense) {
+		Archive_Attaque attaque=defense.getAttaque();
+		Territoire territoireAttaquant=attaque.getTerritoireAttaquant();
+		Territoire territoireDefenseur=attaque.getTerritoireDefenseur();
+		ArrayList<Integer> desAttaque=attaque.getDesAttaque();
+		ArrayList<Integer> desDefense=defense.getDesDefense();
+		this.desAttaque=trierDesAttaqueAvecRetour(desAttaque);
+		this.desDefense=trierDesAttaqueAvecRetour(desDefense);
+		int nbSuivivant=ResultConflit(territoireAttaquant, territoireDefenseur, desAttaque, desDefense) ;
+		succes=reglementDefaite(territoireAttaquant, territoireDefenseur,nbSuivivant);
+	}	*/
 	
-	public Archive_Conflit(Archive_Defense defense) {
+	public Archive_Conflit(Tour tour,Archive_Defense defense) {
+		this.tour=tour;
 		Archive_Attaque attaque=defense.getAttaque();
 		Territoire territoireAttaquant=attaque.getTerritoireAttaquant();
 		Territoire territoireDefenseur=attaque.getTerritoireDefenseur();
@@ -23,6 +38,14 @@ public class Archive_Conflit {
 		succes=reglementDefaite(territoireAttaquant, territoireDefenseur,nbSuivivant);
 	}
 	
+	public Territoire getTerritoireAttaquant() {
+		return territoireAttaquant;
+	}
+
+	public Territoire getTerritoireDefenseur() {
+		return territoireDefenseur;
+	}
+
 	private ArrayList<Integer> trierDesAttaqueAvecRetour(ArrayList<Integer> desAttaque) {
 	    // 创建一个新的ArrayList并进行排序
 	    ArrayList<Integer> sortedDesAttaque = new ArrayList<>(desAttaque);
@@ -56,12 +79,11 @@ public class Archive_Conflit {
 	}
 	private int reglementDefaite(Territoire territoireAttaquant, Territoire territoireDefenseur,int nbSuivivant) {
 		if(territoireDefenseur.getNbRegiments()==0) {
+			elimination (territoireAttaquant, territoireDefenseur);
 			territoireDefenseur.getOccupant().supprimerTerritoiresConquis(territoireDefenseur);
 			territoireAttaquant.getOccupant().ajouterTerritoiresConquis(territoireDefenseur);
 			territoireDefenseur.setOccupant(territoireAttaquant.getOccupant());
 			territoireDefenseur.setNbRegiments(nbSuivivant);
-			//TODO commentaire car erreur
-			//elimination (territoireAttaquant, territoireDefenseur);
 			return 1;
 		}
 		else {
@@ -69,28 +91,25 @@ public class Archive_Conflit {
 		}
 	}
 	//TODO j'ai mis en commentaire car ça fait des erreurs
-	/*
+
 	private void elimination (Territoire territoireAttaquant, Territoire territoireDefenseur) {
 		ArrayList <Territoire> tousTerritoireDefenseur=new ArrayList <Territoire>();
 		tousTerritoireDefenseur=territoireDefenseur.getOccupant().getAllTerritoires();
 		ArrayList <Territoire> tousterritoireAttaquant=new ArrayList <Territoire>();
 		tousterritoireAttaquant=territoireAttaquant.getOccupant().getAllTerritoires();
 		if(tousTerritoireDefenseur.size()==0) {
-			//???????
-			MaxValue=findMaxValue();
-			historiqueJoueurs.put(MaxValue,territoireDefenseur.getOccupant());
-			if(historiqueJoueurs.getClassementLength() ==6) {
-				manche.setEstTerminee(true);
+			this.tour.getManche().addClassement(territoireDefenseur.getOccupant());
+			if(this.tour.getManche().getClassementLength() ==6) {
+				this.tour.getManche().setEstTerminee(true);
 			}
 		}
 		if(tousterritoireAttaquant.size()==0) {
-			//???????
-			MaxValue=findMaxValue();
-			historiqueJoueurs.put(MaxValue,territoireAttaquant.getOccupant());
-			if(historiqueJoueurs.getClassementLength() ==6) {
-				manche.setEstTerminee(true);
+			this.tour.getManche().addClassement(territoireAttaquant.getOccupant());
+			if(this.tour.getManche().getClassementLength() ==6) {
+				this.tour.getManche().setEstTerminee(true);
 			}
+			
 		}
-	} */
+	} 
 
 }
