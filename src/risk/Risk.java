@@ -231,8 +231,8 @@ public class Risk {
 			        			*/
 			        			Territoire territoireAttaquant = monde.getTerritoires().get(0);      // DonnÃ©es tests Ã  mettre Ã  jour avec output !!!!
 			        			Territoire territoireDefenseur = monde.getTerritoires().get(1);
-			        			int nbRegimentsAttaque = 2;
-			        			int nbRegimentsRiposte = 1;
+			        			int nbRegimentsAttaque = vue.choisirNbTroupes(joueur, territoireAttaquant, true); //true pour attaquant
+			        			int nbRegimentsRiposte = vue.choisirNbTroupes(joueur, territoireAttaquant, false); //false pour défenseur
 			        			// Creation du conflit 
 			        			Conflit conflit = new Conflit(joueur, territoireAttaquant, territoireDefenseur, nbRegimentsAttaque);
 			        			/** @Raph Demander defenseur nb de troupes riposte
@@ -248,7 +248,7 @@ public class Risk {
 			        	 /** @Raph BESOIN - Modifier ta methode choixJoueur pour qu'elle retourne le choix du joueur
 			        	  *  Genre string "Attaquer", "DÃ©placer" ou "Passer tour" c'est impec :)
 			        	  */
-		        		 else if (choixAction == "DÃ©placer") {
+		        		 else if (choixAction == "Déplacer") {
 		        			while (choixDeplacer != "Valider") {
 		        				/** @Raph choix joueur AJOUTER ou RETIRER (a chaque fin de choix si faisable) ou VALIDER
 		        				 * => AJOUTER : territoire + nb regiments
