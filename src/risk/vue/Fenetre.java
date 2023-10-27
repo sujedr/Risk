@@ -353,21 +353,18 @@ public class Fenetre {
 	        panel.add(textField);
 	        
 	
-	        int option = JOptionPane.showConfirmDialog(null, panel, "", JOptionPane.OK_CANCEL_OPTION);
+	        int option = JOptionPane.showConfirmDialog(null, panel, "Paramètres " + word, JOptionPane.OK_CANCEL_OPTION);
 	
 	        if (option == JOptionPane.OK_OPTION) {
 	            try {
 	                    String input = textField.getText();
 	        	        nbTroupes = Integer.parseInt(input);
-	                    if (territoire.getNbRegiments() > nbTroupes && nbTroupes < 3) {
+	                    if (territoire.getNbRegiments() > nbTroupes && nbTroupes <= 3) {
 	                    	if (nbTroupes != 0) {
 	                    		JOptionPane.showMessageDialog(null, "Vous attaquez avec " + nbTroupes + " troupes.");
 	                    	}
 	                    	validationTroupe = true;
-	                    } else if(joueur.getNbRegimentsRestants() == 0) {
-	                    	nbTroupes = 0;
-	                    	validationTroupe = true;
-	                    } else {
+	                    }else {
 	                    	JOptionPane.showMessageDialog(null, "Vous n'avez pas assez de troupes ou le nombre saisi est trop élevé");
 	                    }
 	            } catch (NumberFormatException e) {
