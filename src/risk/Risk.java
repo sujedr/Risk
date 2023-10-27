@@ -168,7 +168,9 @@ public class Risk {
 	        		 // => selon nombre de territoires occupÃ©s et de continents complets occupÃ©s
 	        		 int nbRegimentAPlacer = joueur.calculerNbRegimentsAPlacer();
 	        		 joueur.ajouterNbRegimentsRestants(nbRegimentAPlacer);
+	        		 System.out.println("regiment a placer : " + nbRegimentAPlacer);
 	        		 
+<<<<<<< HEAD
 		        	 // AJOUT NOUVEAUX REGIMENTS
 		        	 while (joueur.getNbRegimentsRestants() != 0) {
 		        		 
@@ -181,6 +183,9 @@ public class Risk {
 		        	  *  Pour simplifier, l'algo c'est qu'Ã  la phase d'ajout, il peuvent pas enlever quand ils posent ahah 
 		        	  *  genre, il pose 2, puis 1 , quand il en a plus ca passe Ã  autre chose :3
 		        	  */	    
+=======
+		        	 // AJOUT NOUVEAUX REGIMENTS   
+>>>>>>> 72a604c4ed253e8e24dd9be195e6c53a25f92695
 	        			 while (joueur.getNbRegimentsRestants() != 0) {
 			        		 for (Territoire territoire : joueur.getAllTerritoires()) {
 			        			 //Affichage de l'ajout d'unitÃ©s sur un territoire retourne le nombre a ajoutÃ©
@@ -189,6 +194,7 @@ public class Risk {
 			        			 joueur.enleverNbRegimentsRestants(nbUnitesAjout);
 			        		 } 
 			        	 }
+<<<<<<< HEAD
 		        		 
 		        	 /*
 		        	 Territoire destTerritoireAjout = monde.getTerritoires().get(0);                    //    <== changer valeur
@@ -200,6 +206,13 @@ public class Risk {
 		        	 System.out.println("*Fin* Territoire : "+destTerritoireAjout.getNom()+" - Nb : "+destTerritoireAjout.getNbRegiments());
 		        	 System.out.println("*Fin* Joueur : "+joueur.getNom()+" - Nb : "+joueur.getNbRegimentsRestants()); */
 		        	 }
+=======
+	        			 
+	        		vue.actionsTour(joueur);
+	        		
+	        		System.out.println("Test de pause");
+	        		
+>>>>>>> 72a604c4ed253e8e24dd9be195e6c53a25f92695
 		        	 
 		        	 // CHOIX D ATTAQUER, MODIFIER SES TROUPES OU PASSER SON TOUR
 		        	 // Tant que le tour du joueur n'est pas fini (continuer d'attaquer), on affiche la fenetre des choix 
@@ -298,6 +311,7 @@ public class Risk {
 		        	participants = participantsMaj;
 		         }	 
         	 isWinner = true;																	// A supprimer (for testing only)
+        	 //isWinner = true;																	// A supprimer (for testing only)
         	 // Incrementation indice joueur de 1
         	 indiceJoueur = indiceJoueur+1;
         	 }

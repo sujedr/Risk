@@ -78,7 +78,6 @@ public class Joueur {
 		}
 	
 	
-	
 	// Getter and setter
 	
 	/** @return int */
