@@ -113,10 +113,10 @@ public class Manche {
         for (Tour tour : tours) {
             HashMap<Integer, Archive_Conflit> conflitMap = tour.getConflitMap();
             if (conflitMap.containsValue(conflit)) {
-                return this; // 返回包含该Conflit的Manche对象
+                return this; 
             }
         }
-        return null; // 如果未找到匹配的Manche，返回null或者适当的默认值
+        return null;
     }
 	
 	/** Met à jour la variable estTerminee correspondant au statut de la partie à vrai pour signifier que la partie est terminée */ 
