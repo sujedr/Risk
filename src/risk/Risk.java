@@ -136,6 +136,7 @@ public class Risk {
          boolean isFirstTour = true;
          boolean isWinner = false;
          boolean isObjectifCompleted = false;
+         int nbJouer = 0; //On vérifie que tous les joueurs on placé leurs pions
 
          while (isWinner != true) {
         	 // POUR CHAQUE JOUEUR
@@ -151,7 +152,8 @@ public class Risk {
         		 String choixDeplacer = "null"; // variable pour stocker si il y a validation des modifications des troupes, si il veut ajouter ou encore retirer de nouvelles troupes 
         		 
 	        	 // PLACEMENT DES 20 REGIMENTS POUR LE PREMIER TOUR (7 DEJA PLACES)
-	        	 if (isFirstTour == true) {
+        		 //Condition pour que les joueurs placent leurs pions sur le premier tour
+	        	 if (nbJouer != 6) {
         			 while (joueur.getNbRegimentsRestants() != 0) {
 		        		 for (Territoire territoire : joueur.getAllTerritoires()) {
 		        			 //Affichage de l'ajout d'unités sur un territoire retourne le nombre a ajouté
@@ -160,9 +162,7 @@ public class Risk {
 		        			 joueur.enleverNbRegimentsRestants(nbUnitesAjout);
 		        		 } 
 		        	 }
-		        	 if (joueur == participants[5]) {
-		        		 isFirstTour = false;
-		        	 }
+        			 nbJouer +=1;
 	        	 }
 	        	 // PROCESSUS NORMAL POUR LES AUTRES TOURS
 	        	 else {
@@ -182,8 +182,17 @@ public class Risk {
 		        	  *  
 		        	  *  Pour simplifier, l'algo c'est qu'à la phase d'ajout, il peuvent pas enlever quand ils posent ahah 
 		        	  *  genre, il pose 2, puis 1 , quand il en a plus ca passe à autre chose :3
-		        	  */	        	 
-		    
+		        	  */	    
+	        			 while (joueur.getNbRegimentsRestants() != 0) {
+			        		 for (Territoire territoire : joueur.getAllTerritoires()) {
+			        			 //Affichage de l'ajout d'unités sur un territoire retourne le nombre a ajouté
+			        			 nbUnitesAjout = vue.premierTour(joueur, territoire);
+			        			 territoire.ajouterNbRegiments(nbUnitesAjout);
+			        			 joueur.enleverNbRegimentsRestants(nbUnitesAjout);
+			        		 } 
+			        	 }
+		        		 
+		        	 /*
 		        	 Territoire destTerritoireAjout = monde.getTerritoires().get(0);                    //    <== changer valeur
 		        	 int nbRegimentsAjoutes = 1;														//    <== changer valeur
 		        	 System.out.println("*Debut* Territoire : "+destTerritoireAjout.getNom()+" - Nb : "+destTerritoireAjout.getNbRegiments());
@@ -191,7 +200,7 @@ public class Risk {
 		        	 destTerritoireAjout.ajouterNbRegiments(nbRegimentsAjoutes); // Ajout régiment au territoire
 		        	 joueur.enleverNbRegimentsRestants(nbRegimentsAjoutes); // Retrait nb au nb de regiment à placer
 		        	 System.out.println("*Fin* Territoire : "+destTerritoireAjout.getNom()+" - Nb : "+destTerritoireAjout.getNbRegiments());
-		        	 System.out.println("*Fin* Joueur : "+joueur.getNom()+" - Nb : "+joueur.getNbRegimentsRestants());
+		        	 System.out.println("*Fin* Joueur : "+joueur.getNom()+" - Nb : "+joueur.getNbRegimentsRestants()); */
 		        	 }
 		        	 
 		        	 // CHOIX D ATTAQUER, MODIFIER SES TROUPES OU PASSER SON TOUR
@@ -298,8 +307,6 @@ public class Risk {
         
         //TODO Pour l'actualisation de l'affichage du jouer à qui c'est le tour
         //vue.actualiserTour(tour);
-         
-        System.out.println("end");
 	}
 }
 
