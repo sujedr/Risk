@@ -108,14 +108,14 @@ public class Conflit {
 	        if (attaque > defense) {
 	            int nbRegimentsDefenseur = territoireDefenseur.getNbRegiments();
 	            if (nbRegimentsDefenseur > 0) {
-	                territoireDefenseur.setNbRegiments(nbRegimentsDefenseur - 1);
+	                territoireDefenseur.setNbRegiments(territoireDefenseur.getNbRegiments() - 1);
 	                
 	            }
 		    // Pour chaque dÃ¨s, si le resultat de l'attaquant est Ã©gale ou plus petit que celui de la dÃ©fense, l' attaquant perd un regiment
 	        } else {
 	            int nbRegimentsAttaquant = territoireAttaquant.getNbRegiments();
 	            if (nbRegimentsAttaquant > 0) {
-	                territoireAttaquant.setNbRegiments(nbRegimentsAttaquant - 1);
+	                territoireAttaquant.setNbRegiments(territoireAttaquant.getNbRegiments() - 1);
 	            }
 	            nbRegimentsAttaquantRestant=nbRegimentsAttaquantRestant-1;
 	        }
@@ -132,7 +132,7 @@ public class Conflit {
 			
 			// UPDATE CLASSE TERRITOIRE
 			// Retrait des troupes du territoire attaquant pour les deplacer dans le territoire conquis
-//			this.territoireAttaquant.enleverNbRegiments(this.nbRegimentAttaquant);
+			this.territoireAttaquant.enleverNbRegiments(nbRegimentsAttaquantRestant);
 			this.territoireDefenseur.setNbRegiments(nbRegimentsAttaquantRestant);
 			// Mise à jour du joueur occupant le territoire conquis
 			this.territoireDefenseur.setOccupant(this.territoireAttaquant.getOccupant());

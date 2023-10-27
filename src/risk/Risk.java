@@ -214,7 +214,7 @@ public class Risk {
 			        			 *  Output : nbRegimentsRiposte
 			        			 */
 			        			// Resultat du conflit
-			        			conflit.resultatConflit(nbRegimentsRiposte);
+			        			isNouveauTerritoireConquis = conflit.resultatConflit(nbRegimentsRiposte);
 		        		 }
 		        		 // DEPLACER CERTAINS DE SES REGIMENTS
 		        		 // Si le joueur clique sur l'option deplacer, il choisie autant de deplacement qu'il souhaite (tant que les territoires sont voisins)
